@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PictureDiaryManager : MonoBehaviour
+public struct SDatas
 {
-
+    public string name;
 }

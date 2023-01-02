@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowthRecordManager : MonoBehaviour
+public class Manager_GrowthRecord : MonoBehaviour
 {
 
 }

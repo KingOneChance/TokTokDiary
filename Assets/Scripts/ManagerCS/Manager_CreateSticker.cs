@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateStickerManager : MonoBehaviour
+public class Manager_CreateSticker : MonoBehaviour
 {
 
 }

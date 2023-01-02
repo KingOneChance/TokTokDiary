@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
-public class MainManager : MonoBehaviour
+public class Manager_Main : MonoBehaviour
 {
     #region SingleTon
-    private static MainManager instance = null;
-    public static MainManager Instance { get { return instance; } }
+    private static Manager_Main instance = null;
+    public static Manager_Main Instance { get { return instance; } }
     #endregion
 
     private void Awake()
