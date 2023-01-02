@@ -7,8 +7,6 @@ public class MainManager : MonoBehaviour
     #region SingleTon
     private static MainManager instance = null;
     public static MainManager Instance { get { return instance; } }
-    #endregion
-
     private void Awake()
     {
         // DontDestroyOnLoad instance of MainManager to make MainManager SingleTon
@@ -21,7 +19,16 @@ public class MainManager : MonoBehaviour
         }
         else return;
     }
+    #endregion
+    /// <summary>
+    /// Declare all "Variable"
+    /// </summary>
+    
 
+    public void AwakeOnCreateSticker()
+    {
+
+    }
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
