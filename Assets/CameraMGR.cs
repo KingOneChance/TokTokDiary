@@ -48,7 +48,7 @@ public class CameraMGR : MonoBehaviour
         //후면 카메라 찾기 
         for (int i = 0; i < devices.Length; i++)
         {
-            if (devices[i].isFrontFacing == false)
+            if (devices[i].isFrontFacing == true)
             {
                 selectedCameraIndex = i;
                 break;
@@ -84,6 +84,7 @@ public class CameraMGR : MonoBehaviour
             camTexture = null;//
         }
     }
+    #region onechance camera'move
     //카메라 찍기
     public void CameraShot()
     {
@@ -118,6 +119,7 @@ public class CameraMGR : MonoBehaviour
         /*        CameraOff();
                 Invoke("CameraOn", 0.5f);*/
     }
+    #endregion
 
     public void Onclick_LoadImage()
     {
@@ -185,6 +187,7 @@ public class CameraMGR : MonoBehaviour
         ss.Apply();
         // Save the screenshot to Gallery/Photos
         string name = string.Format("{0}_Capture{1}_{2}.png", Application.productName, "{0}", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+        
         Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(ss, Application.productName + " Captures", name));
         Destroy(ss);
         takingScreenshot = false;
