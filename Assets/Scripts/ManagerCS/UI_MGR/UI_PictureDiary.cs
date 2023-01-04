@@ -14,7 +14,7 @@ public class UI_PictureDiary : MonoBehaviour
     //카메라 on - off, 불러오기
     [SerializeField] Image cameraArea = null;
     [SerializeField] Button cameraOnBtn = null;
-    [SerializeField] Button cameraOffBtn = null;
+    //[SerializeField] Button cameraOffBtn = null;
     [SerializeField] Button loadBtn = null;
     [Header("기타")]
     //홈버튼
@@ -40,11 +40,6 @@ public class UI_PictureDiary : MonoBehaviour
         cameraOnBtn.gameObject.SetActive(true);
     }
 
-    //사진 불러오기
-    public void OnClick_Load()
-    {
-        camMGR.Onclick_LoadImage();
-    }
     //홈화면
     public void OnClick_Home()
     {
