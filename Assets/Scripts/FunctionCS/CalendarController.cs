@@ -6,18 +6,24 @@ using UnityEngine.UI;
 
 public class CalendarController : MonoBehaviour
 {
-    string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+    public static CalendarController _calendarInstance;
+    
+    private DateTime _dateTime;
+
+    public GameObject _item;
+    public GameObject _itemSticker;
+
     public TextMeshProUGUI _yearNumText;
     public TextMeshProUGUI _monthNumText;
     public TextMeshProUGUI _monthStrText;
 
-    public GameObject _item;
-
     public List<GameObject> _dateItems = new List<GameObject>();
-    const int _totalDateNum = 42;
 
-    private DateTime _dateTime;
-    public static CalendarController _calendarInstance;
+    private bool _itemHasDiary = false;
+
+    private string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+    const int _totalDateNum = 42;
 
     void Start()
     {
