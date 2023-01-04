@@ -6,6 +6,6 @@ public partial class Manager_PictureDiary : MonoBehaviour
 {
     private void Start()
     {
-        Debug.Log(testStr);
+
     }
 }
