@@ -20,11 +20,18 @@ public class UI_PictureDiary : MonoBehaviour
     //홈버튼
     [SerializeField] Button homeBtn = null;
 
+    CameraMGR camMGR = null;
+    private void Start()
+    {
+        camMGR = FindObjectOfType<CameraMGR>();
+    }
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
         cameraArea.gameObject.SetActive(true);
         cameraOnBtn.gameObject.SetActive(false);
+
+        camMGR.CameraOn();
     }
     //카메라 끄기
     public void OnClick_CameraOffBtn()
@@ -36,7 +43,7 @@ public class UI_PictureDiary : MonoBehaviour
     //사진 불러오기
     public void OnClick_Load()
     {
-
+        camMGR.Onclick_LoadImage();
     }
     //홈화면
     public void OnClick_Home()
@@ -47,6 +54,7 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_Weather()
     {
         shinyImage.color = Color.red;
+        
     }
 
 }
