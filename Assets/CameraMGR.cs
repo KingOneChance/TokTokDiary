@@ -8,26 +8,10 @@ using TMPro;
 public class CameraMGR : MonoBehaviour
 {
     WebCamTexture camTexture;
-    public TextMeshProUGUI wherePath;
-    public RawImage cameraViewImgae;
+    public RawImage cameraViewImage;
     public RectTransform purposePos;
 
     public RawImage loadImage;
-
-
-    [SerializeField] float width;
-    [SerializeField] float height;
-
-    [SerializeField] int rectwidth;
-    [SerializeField] int rectheight;
-
-    private void Start()
-    {
-        Debug.Log("초기 경로는 : " + Application.persistentDataPath);
-        wherePath.text = Application.persistentDataPath;
-
-    }
-
 
     public void CameraOn()
     {
@@ -45,7 +29,7 @@ public class CameraMGR : MonoBehaviour
         WebCamDevice[] devices = WebCamTexture.devices;
         int selectedCameraIndex = -1;
 
-        //후면 카메라 찾기 
+        //전면 카메라 찾기 
         for (int i = 0; i < devices.Length; i++)
         {
             if (devices[i].isFrontFacing == true)
@@ -63,15 +47,9 @@ public class CameraMGR : MonoBehaviour
 
             camTexture.requestedFPS = 30;//카메라 프레임 설정
 
-            cameraViewImgae.texture = camTexture;
+            cameraViewImage.texture = camTexture;
 
             camTexture.Play();
-
-            width = cameraViewImgae.texture.width;
-            height = cameraViewImgae.texture.height;
-            rectwidth = (int)cameraViewImgae.rectTransform.rect.width;
-            rectheight = (int)cameraViewImgae.rectTransform.rect.height;
-            Debug.Log(camTexture.width + " " + camTexture.height);
         }
     }
     //카메라 끄기 
@@ -170,26 +148,21 @@ public class CameraMGR : MonoBehaviour
         loadImage.texture = tex;
         loadImage.rectTransform.rotation = Quaternion.identity;
     }
-    public bool takingScreenshot = false;
     public void CaptureScreenshot()
     {
         StartCoroutine(TakeScreenshotAndSave());
     }
     private IEnumerator TakeScreenshotAndSave()
     {
-        takingScreenshot = true;
-        yield return new WaitForEndOfFrame();
 
-        Texture2D ss = new Texture2D(rectwidth, rectheight, TextureFormat.RGB24, false); //앞의 두개 인자는 해상도를 의미한다.
-        ss.ReadPixels(new Rect(0, 0, rectwidth, rectheight), 0, 0);  //190,1385는 시작점 근사치
-        //  ss.ReadPixels(new Rect(190,1385, Screen.width,Screen.height), 0 , 0);
-        //  ss.ReadPixels(new Rect(190,1385,0,0), 0, 0); //앞의 두개 인자는 위치, 두개는 크기를 의미한다. 
+        yield return new WaitForEndOfFrame();
+        Texture2D ss = new Texture2D(cameraViewImage.texture.width, cameraViewImage.texture.height, TextureFormat.RGBA32, false);
+        Graphics.CopyTexture(cameraViewImage.texture, ss);
         ss.Apply();
-        // Save the screenshot to Gallery/Photos
-        string name = string.Format("{0}_Capture{1}_{2}.png", Application.productName, "{0}", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+        byte[] imageData = ss.EncodeToPNG();
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, "GalleryTest", "Image.png", (success, path) => Debug.Log("Media save result: " + success + " " + path)); ", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
         
-        Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(ss, Application.productName + " Captures", name));
         Destroy(ss);
-        takingScreenshot = false;
+
     }
 }
