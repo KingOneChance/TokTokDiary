@@ -19,8 +19,6 @@ public class CalendarController : MonoBehaviour
 
     public List<GameObject> _dateItems = new List<GameObject>();
 
-    private bool _itemHasDiary = false;
-
     private string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
     const int _totalDateNum = 42;
