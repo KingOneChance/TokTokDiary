@@ -7,11 +7,10 @@ using System.IO;
 using TMPro;
 public class CameraMGR : MonoBehaviour
 {
-    WebCamTexture camTexture;
-    public RawImage cameraViewImage;
-    public RectTransform purposePos;
+    private WebCamTexture camTexture;
+   [SerializeField] private RawImage cameraViewImage;
 
-    public RawImage loadImage;
+   [SerializeField] private RawImage loadImage;
 
     public void CameraOn()
     {
@@ -62,42 +61,6 @@ public class CameraMGR : MonoBehaviour
             camTexture = null;//
         }
     }
-    #region onechance camera'move
-    //카메라 찍기
-    public void CameraShot()
-    {
-        if (camTexture != null)
-        {
-            camTexture.Stop();
-
-            GameObject captured = new GameObject("CapturedImage");
-            RawImage captureImage = captured.AddComponent<RawImage>();
-
-            captureImage.transform.SetParent(FindObjectOfType<Canvas>().transform);
-            //captureImage.texture = cameraViewImgae.texture;
-            //captureImage.transform.localScale = cameraViewImgae.transform.localScale;
-            captureImage.transform.position = this.transform.position;
-            StartCoroutine(Co_ShotMove(captureImage.rectTransform));
-        }
-    }
-    WaitForFixedUpdate time = new WaitForFixedUpdate();
-    IEnumerator Co_ShotMove(RectTransform target)
-    {
-        while (true)
-        {
-            //    Debug.Log("목적지까지의 남은거리 : " + Vector3.Distance(target.transform.position, Vector3.zero));
-            if (Vector3.Distance(target.transform.position, Vector3.zero) < 1f)
-            {
-                yield break;
-            }
-            target.position = Vector3.Lerp(target.position, purposePos.position, 0.2f);
-            yield return time;
-            yield return null;
-        }
-        /*        CameraOff();
-                Invoke("CameraOn", 0.5f);*/
-    }
-    #endregion
 
     public void Onclick_LoadImage()
     {
@@ -148,7 +111,7 @@ public class CameraMGR : MonoBehaviour
         loadImage.texture = tex;
         loadImage.rectTransform.rotation = Quaternion.identity;
     }
-    public void CaptureScreenshot()
+    public void Camerashot()
     {
         StartCoroutine(TakeScreenshotAndSave());
     }
@@ -160,7 +123,7 @@ public class CameraMGR : MonoBehaviour
         Graphics.CopyTexture(cameraViewImage.texture, ss);
         ss.Apply();
         byte[] imageData = ss.EncodeToPNG();
-        //NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, "GalleryTest", "Image.png", (success, path) => Debug.Log("Media save result: " + success + " " + path)); ", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, "GalleryTest", "Image.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
         
         Destroy(ss);
 

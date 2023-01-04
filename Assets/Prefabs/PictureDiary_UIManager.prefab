@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6243554814211837391}
   - component: {fileID: 6243554814211837376}
+  - component: {fileID: 6243554815427553418}
   m_Layer: 0
   m_Name: PictureDiary_UIManager
   m_TagString: Untagged
@@ -49,6 +50,19 @@ MonoBehaviour:
   shinyImage: {fileID: 0}
   cameraArea: {fileID: 0}
   cameraOnBtn: {fileID: 0}
-  cameraOffBtn: {fileID: 0}
   loadBtn: {fileID: 0}
   homeBtn: {fileID: 0}
+--- !u!114 &6243554815427553418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243554814211837390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02cb54a3a733404da854d5060464be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraViewImage: {fileID: 0}
+  loadImage: {fileID: 0}
