@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CalendarController : MonoBehaviour
+public class Func_CalendarController : MonoBehaviour
 {
-    public static CalendarController _calendarInstance;
+    public static Func_CalendarController _calendarInstance;
     
     private DateTime _dateTime;
 
