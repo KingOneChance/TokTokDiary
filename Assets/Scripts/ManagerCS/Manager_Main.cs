@@ -16,7 +16,7 @@ public class Manager_Main : MonoBehaviour
             // Init Process Run
             GetAllInfoFromServer();
             instance = this;
-            Screen.SetResolution(1920, 1080, true);
+            Screen.SetResolution(960, 540, false);
             DontDestroyOnLoad(instance);
         }
         else return;
