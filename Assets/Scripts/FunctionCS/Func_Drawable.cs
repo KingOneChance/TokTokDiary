@@ -10,7 +10,7 @@ namespace FreeDraw
     // 2. Set the drawing_layers  to use in the raycast
     // 3. Attach a 2D collider (like a Box Collider 2D) to this sprite
     // 4. Hold down left mouse to draw on this texture!
-    public class Drawable : MonoBehaviour
+    public class Func_Drawable : MonoBehaviour
     {
         // PEN COLOUR
       
@@ -33,7 +33,7 @@ namespace FreeDraw
         public Color Reset_Colour = new Color(0, 0, 0, 0);  // By default, reset the canvas to be transparent
 
         // Used to reference THIS specific file without making all methods static
-        public static Drawable drawable;
+        public static Func_Drawable drawable;
         // MUST HAVE READ/WRITE enabled set in the file editor of Unity
         Sprite drawable_sprite;
         Texture2D drawable_texture;
