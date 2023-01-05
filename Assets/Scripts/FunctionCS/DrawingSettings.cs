@@ -10,19 +10,12 @@ namespace FreeDraw
     {
         public static bool isCursorOverUI = false;
         public float Transparency = 1f;
-        Drawable test = null;
-
-        private void Start()
-        {
-            test = FindObjectOfType<Drawable>();
-        }
-
 
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
         public void SetMarkerColour(Color new_color)
         {
             Drawable.Pen_Colour = new_color;
-            test.AAAAA = new_color;
+            Drawable.drawable.AAAAA = new_color;
         }
         // new_width is radius in pixels
         public void SetMarkerWidth(int new_width)

@@ -10,6 +10,7 @@ public class Func_Camera : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {

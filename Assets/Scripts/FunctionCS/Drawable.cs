@@ -139,14 +139,13 @@ namespace FreeDraw
         // This is where the magic happens.
         // Detects when user is left clicking, which then call the appropriate function
         void Update()
-        {
+        {           
             // Is the user holding down the left mouse button?
             bool mouse_held_down = Input.GetMouseButton(0);
             if (mouse_held_down && !no_drawing_on_current_drag)
             {
                 // Convert mouse coordinates to world coordinates
                 Vector2 mouse_world_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
                 // Check if the current mouse position overlaps our image
                 Collider2D hit = Physics2D.OverlapPoint(mouse_world_position, Drawing_Layers.value);
                 if (hit != null && hit.transform != null)
