@@ -1128,10 +1128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65b983b6ab00bc4dbb0ba158aa4c3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 8069285894896784774}
+  _itemSticker: {fileID: 8069285893964655562}
   _yearNumText: {fileID: 8069285894916889299}
   _monthNumText: {fileID: 8069285894904321577}
   _monthStrText: {fileID: 7646155975223243853}
-  _item: {fileID: 8069285894896784774}
   _dateItems: []
 --- !u!1 &8068288091845060011
 GameObject:
@@ -1773,7 +1774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8069285893964655561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2330,8 +2331,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
