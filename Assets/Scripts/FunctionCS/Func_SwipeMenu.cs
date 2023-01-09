@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
 public class Func_SwipeMenu : MonoBehaviour
 {
-    public GameObject scrollBar;
-    public GameObject selectButton;
-    float scroll_Pos = 0;
-    bool selectedBtn = false;
-    float[] pos;
-    Scrollbar scroll;
+    [SerializeField] GameObject scrollBar;
+    [SerializeField] GameObject selectButton;
+    [SerializeField] float scroll_Pos = 0;
+    [SerializeField] bool selectedBtn = false;
+    [SerializeField] float[] pos;
+    [SerializeField] Scrollbar scroll;
 
     void Start()
     {
