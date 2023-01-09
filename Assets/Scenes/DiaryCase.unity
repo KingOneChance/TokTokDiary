@@ -656,30 +656,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
-      propertyPath: _itemSticker
-      value: 
-      objectReference: {fileID: 2141082823}
     - target: {fileID: 8068288091793886091, guid: bfba7d9f091176344a29884ff682408a, type: 3}
       propertyPath: m_Name
       value: Calendar
       objectReference: {fileID: 0}
-    - target: {fileID: 8069285893964655562, guid: bfba7d9f091176344a29884ff682408a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8069285895847886139, guid: bfba7d9f091176344a29884ff682408a, type: 3}
-      propertyPath: m_fontSize
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8069285895847886139, guid: bfba7d9f091176344a29884ff682408a, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 13
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfba7d9f091176344a29884ff682408a, type: 3}
---- !u!1 &2141082823 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8069285893964655562, guid: bfba7d9f091176344a29884ff682408a, type: 3}
-  m_PrefabInstance: {fileID: 2141082822}
-  m_PrefabAsset: {fileID: 0}
