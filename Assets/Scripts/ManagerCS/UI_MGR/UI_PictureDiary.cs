@@ -20,7 +20,7 @@ public class UI_PictureDiary : MonoBehaviour
     //È¨¹öÆ°
     [SerializeField] Button homeBtn = null;
 
-    CameraMGR camMGR = null;
+    private CameraMGR camMGR = null;
     private void Start()
     {
         camMGR = FindObjectOfType<CameraMGR>();
