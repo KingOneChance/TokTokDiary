@@ -7,18 +7,18 @@ public class UI_PictureDiary : MonoBehaviour
 {
     //그림판
     [Header("그림판")]
-    [SerializeField] Image drawBackground = null;
-    [SerializeField] Button shinyWeatherBtn = null;
-    [SerializeField] Image shinyImage = null;
+    [SerializeField] Image ui_DrawBackground = null;
+    [SerializeField] Button ui_ShinyWeatherBtn = null;
+    [SerializeField] Image ui_ShinyImage = null;
     [Header("카메라")]
     //카메라 on - off, 불러오기
-    [SerializeField] Image cameraArea = null;
-    [SerializeField] Button cameraOnBtn = null;
+    [SerializeField] Image ui_CameraArea = null;
+    [SerializeField] Button ui_CameraOnBtn = null;
     //[SerializeField] Button cameraOffBtn = null;
-    [SerializeField] Button loadBtn = null;
+    [SerializeField] Button ui_LoadBtn = null;
     [Header("기타")]
     //홈버튼
-    [SerializeField] Button homeBtn = null;
+    [SerializeField] Button ui_HomeBtn = null;
 
     private CameraMGR camMGR = null;
     private void Start()
@@ -28,16 +28,16 @@ public class UI_PictureDiary : MonoBehaviour
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
-        cameraArea.gameObject.SetActive(true);
-        cameraOnBtn.gameObject.SetActive(false);
+        ui_CameraArea.gameObject.SetActive(true);
+        ui_CameraOnBtn.gameObject.SetActive(false);
 
         camMGR.CameraOn();
     }
     //카메라 끄기
     public void OnClick_CameraOffBtn()
     {
-        cameraArea.gameObject.SetActive(false);
-        cameraOnBtn.gameObject.SetActive(true);
+        ui_CameraArea.gameObject.SetActive(false);
+        ui_CameraOnBtn.gameObject.SetActive(true);
     }
 
     //홈화면
@@ -48,7 +48,7 @@ public class UI_PictureDiary : MonoBehaviour
 
     public void OnClick_Weather()
     {
-        shinyImage.color = Color.red;
+        ui_ShinyImage.color = Color.red;
         
     }
 
