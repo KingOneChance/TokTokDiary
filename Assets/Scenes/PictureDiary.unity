@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_PrefabInstance: {fileID: 6218628760045598222}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113175075}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d313dc9b8e27b04dadfd7fb8337b4cf, type: 3}
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6218628760045598220, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_PrefabInstance: {fileID: 6218628760045598222}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113175075}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02cb54a3a733404da854d5060464be2, type: 3}
@@ -3485,23 +3485,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014036412}
   m_CullTransparentMesh: 1
---- !u!1 &2113175075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-  m_PrefabInstance: {fileID: 6218628760045598222}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2113175077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113175075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c5d821b02266f4d9be5f4ae33cd467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2116387886
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,40 +5245,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: homeBtn
+      propertyPath: ui_HomeBtn
       value: 
       objectReference: {fileID: 7993371126205907450}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: loadBtn
+      propertyPath: ui_LoadBtn
       value: 
       objectReference: {fileID: 7993371126385170011}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: cameraArea
+      propertyPath: ui_CameraArea
       value: 
       objectReference: {fileID: 7993371126117876956}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: shinyImage
+      propertyPath: ui_ShinyImage
       value: 
       objectReference: {fileID: 7993371125671887283}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: cameraOnBtn
+      propertyPath: ui_CameraOnBtn
       value: 
       objectReference: {fileID: 7993371126956839780}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: drawBackground
+      propertyPath: ui_DrawBackground
       value: 
-      objectReference: {fileID: 7993371125304011459}
+      objectReference: {fileID: 7993371125752814933}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: shinyWeatherBtn
+      propertyPath: ui_ShinyWeatherBtn
       value: 
       objectReference: {fileID: 7993371125658827968}
     - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_Name
       value: PictureDiary_UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621129, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_RootOrder
