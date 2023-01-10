@@ -4,20 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CalendarController : MonoBehaviour
+public class Func_CalendarController : MonoBehaviour
 {
-    string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-    public TextMeshProUGUI _yearNumText;
-    public TextMeshProUGUI _monthNumText;
-    public TextMeshProUGUI _monthStrText;
-
-    public GameObject _item;
-
-    public List<GameObject> _dateItems = new List<GameObject>();
-    const int _totalDateNum = 42;
-
+    public static Func_CalendarController _calendarInstance;
+    
     private DateTime _dateTime;
-    public static CalendarController _calendarInstance;
+
+    [SerializeField] private GameObject _item;
+    [SerializeField] private GameObject _itemSticker;
+
+    [SerializeField] private TextMeshProUGUI _yearNumText;
+    [SerializeField] private TextMeshProUGUI _monthNumText;
+    [SerializeField] private TextMeshProUGUI _monthStrText;
+
+    [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
+
+    private string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+    const int _totalDateNum = 42;
 
     void Start()
     {

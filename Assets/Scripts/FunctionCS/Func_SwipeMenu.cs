@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
 public class Func_SwipeMenu : MonoBehaviour
 {
-    public GameObject scrollBar;
-    public GameObject selectButton;
-    float scroll_Pos = 0;
-    bool selectedBtn = false;
-    float[] pos;
-    Scrollbar scroll;
+    [SerializeField] GameObject scrollBar;
+    [SerializeField] GameObject selectButton;
+    [SerializeField] float scroll_Pos = 0;
+    [SerializeField] float[] pos;
+    [SerializeField] Scrollbar scroll;
 
     void Start()
     {
@@ -33,7 +31,7 @@ public class Func_SwipeMenu : MonoBehaviour
         }
         else
         {
-            if (!selectedBtn)
+            /*if (!selectedBtn)
             {
                 for (int i = 0; i < pos.Length; i++)
                 {
@@ -42,7 +40,7 @@ public class Func_SwipeMenu : MonoBehaviour
                         scroll.value = Mathf.Lerp(scroll.value, pos[i], 0.1f);
                     }
                 }
-            }
+            }*/
         }
 
         for (int i = 0; i < pos.Length; i++)
@@ -58,12 +56,12 @@ public class Func_SwipeMenu : MonoBehaviour
                     }
                 }
 
-                selectButton.transform.GetChild(i).localScale = Vector2.Lerp(selectButton.transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
+                /*selectButton.transform.GetChild(i).localScale = Vector2.Lerp(selectButton.transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
                 for (int k = 0; k < selectButton.transform.childCount; k++)
                 {
                     if (k != i)
                         selectButton.transform.GetChild(k).localScale = Vector2.Lerp(selectButton.transform.GetChild(k).localScale, new Vector2(0.7f, 0.7f), 0.1f);
-                }
+                }*/
             }
         }
     }
@@ -72,10 +70,10 @@ public class Func_SwipeMenu : MonoBehaviour
     {
         float distacne = 1f / (pos.Length - 1);
         int selectedValue = int.Parse(EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text) - 1;
-        StartCoroutine(Co_SelectBtn(selectedValue * distacne));
+       // StartCoroutine(Co_SelectBtn(selectedValue * distacne));
     }
 
-    IEnumerator Co_SelectBtn(float targetValue)
+    /*IEnumerator Co_SelectBtn(float targetValue)
     {
         selectedBtn = true;
         while (true)
@@ -89,6 +87,6 @@ public class Func_SwipeMenu : MonoBehaviour
                 break;
             }
         }
-    }
+    }*/
 
 }
