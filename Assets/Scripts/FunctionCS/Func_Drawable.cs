@@ -278,7 +278,7 @@ namespace FreeDraw
             Vector2 pixel_pos = new Vector2(Mathf.RoundToInt(centered_x), Mathf.RoundToInt(centered_y));
 
             return pixel_pos;
-        }
+        }  
 
 
         // Changes every pixel to be the reset colour
@@ -288,7 +288,7 @@ namespace FreeDraw
             drawable_texture.Apply();
         }
 
-
+        
         
         void Awake()
         {
