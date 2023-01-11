@@ -39,66 +39,57 @@ namespace FreeDraw
         // Call these these to change the pen settings
         public void SetMarkerRed()
         {
-            Color c = Color.red;
-            c.a = Transparency;
-            SetMarkerColour(c);
+            SetMarkerColour(new Color32(247, 67, 67, 255));
             Func_Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerOrange()
         {
-            SetMarkerColour(new Color(255f, 140f, 0f, 255f));
+            SetMarkerColour(new Color32(248, 151, 49, 255));
+            Func_Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerYellow()
         {
-            Color c = Color.yellow;
-            c.a = Transparency;
-            SetMarkerColour(c);
+            SetMarkerColour(new Color32(253, 241, 100, 255));
             Func_Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerGreen()
         {
-            Color c = Color.green;
-            c.a = Transparency;
-            SetMarkerColour(c);
+            SetMarkerColour(new Color32(147, 202, 91, 255));
             Func_Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerBlue()
         {
-            Color c = Color.blue;
-            c.a = Transparency;
-            SetMarkerColour(c);
+            SetMarkerColour(new Color32(98, 150, 207, 255));
             Func_Drawable.drawable.SetPenBrush();
-        }
-        public void SetMarkerIndigo()
-        {
-            SetMarkerColour(new Color(75f, 0f, 130f, 255f));
         }
         public void SetMarkerPupple()
         {
-            SetMarkerColour(new Color(128f, 0f, 128f, 255f));
+            SetMarkerColour(new Color32(158, 127, 186, 255));
+            Func_Drawable.drawable.SetPenBrush();
+        }
+        public void SetMarkerPink()
+        {
+            SetMarkerColour(new Color32(233, 160, 198, 255));
+            Func_Drawable.drawable.SetPenBrush();
+        }
+        public void SetMarkerBrown()
+        {
+            SetMarkerColour(new Color32(141, 107, 75, 255));
+            Func_Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerBlack()
         {
-            Color c = Color.black;
-            c.a = Transparency;
-            SetMarkerColour(c);
-            Func_Drawable.drawable.SetPenBrush();
-        }
-        public void SetMarkerWhite()
-        {
-            Color c = Color.white;
-            c.a = Transparency;
-            SetMarkerColour(c);
+            SetMarkerColour(new Color32(30, 30, 30, 255));
             Func_Drawable.drawable.SetPenBrush();
         }
         public void SetEraser()
         {
-            SetMarkerColour(new Color(255f, 255f, 255f, 0f));
+            SetMarkerColour(new Color32(0, 0, 0, 0));
         }
 
         public void PartialSetEraser()
         {
-            SetMarkerColour(new Color(255f, 255f, 255f, 0.5f));
+            SetMarkerColour(new Color32(255, 255, 255, 0));
         }
     }
 }
