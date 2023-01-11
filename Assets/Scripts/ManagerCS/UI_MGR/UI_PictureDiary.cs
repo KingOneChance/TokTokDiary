@@ -19,11 +19,27 @@ public class UI_PictureDiary : MonoBehaviour
     [Header("기타")]
     //홈버튼
     [SerializeField] Button ui_HomeBtn = null;
+    [Header("스티커")]
+    [SerializeField] RawImage[] ui_WaffleSticker = null;
+    [SerializeField] RawImage test = null;
 
-    private CameraMGR camMGR = null;
+    private Func_Camera func_Camera = null;
     private void Start()
     {
-        camMGR = FindObjectOfType<CameraMGR>();
+        func_Camera = FindObjectOfType<Func_Camera>();
+    }
+    public void UpdateInventory()
+    {
+        for (int i=0; i < Manager_Main.Instance.Data_LocalSticker.waffleList.Count; i++)
+        {
+            Debug.Log("waffle list count :"+Manager_Main.Instance.Data_LocalSticker.waffleList.Count);
+            Debug.Log("rawimage list count :"+ui_WaffleSticker.Length);
+
+            ui_WaffleSticker[i].texture = (Texture)Manager_Main.Instance.Data_LocalSticker.waffleList[i];
+        }
+            Manager_Main.Instance.Data_LocalSticker.waffleList.Clear();
+   
+
     }
     //카메라 켜기
     public void OnClick_CameraOnBtn()
@@ -31,7 +47,7 @@ public class UI_PictureDiary : MonoBehaviour
         ui_CameraArea.gameObject.SetActive(true);
         ui_CameraOnBtn.gameObject.SetActive(false);
 
-        camMGR.CameraOn();
+        func_Camera.CameraOn();
     }
     //카메라 끄기
     public void OnClick_CameraOffBtn()
