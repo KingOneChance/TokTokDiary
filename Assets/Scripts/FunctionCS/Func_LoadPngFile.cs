@@ -2,49 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.UI;
 public class Func_LoadPngFile : MonoBehaviour
 {
+    Data_LocalSticker data_LocalSticker = null;
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        data_LocalSticker = FindObjectOfType<Data_LocalSticker>();
         FindAllPng();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
+
     //폴더에 있는 모든 파일 긁어오기
     public void FindAllPng()
     {
         string path = "C:/Users/User/Desktop/Sticker/";
         string[] allFiles = Directory.GetFiles(path, "*.png",SearchOption.TopDirectoryOnly);
-
-        for(int i = 0; i < allFiles.Length; i++)
+        
+        for (int i = 0; i < allFiles.Length; i++)
         {
-            if (allFiles[i].Contains("Waffle"))
+            byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
+
+
+            if (byteTexture.Length > 0)
             {
-                Debug.Log("와플");
+                Texture2D texture = new Texture2D(0, 0);
+                texture.LoadImage(byteTexture);
+
+
+                if (allFiles[i].Contains("Waffle"))
+                {
+                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Waffle);
+                    //Debug.Log("와플");
+                }
+                else if (allFiles[i].Contains("Audio"))
+                {
+                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Audio);
+                    Debug.Log("오디오");
+                }
+                else if (allFiles[i].Contains("Weather"))
+                {
+                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Weather);
+                    Debug.Log("날씨");
+                }
+                else if (allFiles[i].Contains("Diary"))
+                {
+                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Diary);
+                    Debug.Log("일기");
+                }
+                else
+                {
+                    Debug.Log("나머지");
+                }
             }
-            else if (allFiles[i].Contains("Audio"))
-            {
-                Debug.Log("오디오");
-            }
-            else if (allFiles[i].Contains("Weather"))
-            {
-                Debug.Log("날씨");
-            }
-            else if (allFiles[i].Contains("Diary"))
-            {
-                Debug.Log("일기");
-            }
-            else
-            {
-                Debug.Log("나머지");
-            }
+
+            
         }
+        Manager_Main.Instance.UI_PictureDiary.UpdateInventory();
     }
 
     //바탕화면에 있는 해당 이미지 불러오기

@@ -15,5 +15,8 @@ public class UI_Main : MonoBehaviour
     public void OnClick_ToStudio()
     {
         SceneManager.LoadScene("CreateSticker");
+      
     }
+
+
 }
