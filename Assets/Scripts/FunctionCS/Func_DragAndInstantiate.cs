@@ -51,7 +51,7 @@ public class Func_DragAndInstantiate : MonoBehaviour, IDragHandler, IBeginDragHa
             temp.position = tempRect.position;
             temp.rotation = tempRect.rotation.eulerAngles;
             temp.scale = tempRect.localScale;
-            DiaryMGR.instance.AddDragInit(temp, go);
+            Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, go);
 
             rect.transform.position = myInitPos;
         }

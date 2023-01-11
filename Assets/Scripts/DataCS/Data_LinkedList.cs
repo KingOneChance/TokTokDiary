@@ -53,7 +53,7 @@ public class Data_LinkedList : MonoBehaviour
         if (head == null) return;
         if (head == tail && head.isFirst == true)
         {
-            DiaryMGR.instance.DestroySomthing(head.myObject);
+            Manager_Main.Instance.manager_PictureDiary.DestroySomthing(head.myObject);
             head = null;
             tail = null;
             return;
@@ -80,7 +80,7 @@ public class Data_LinkedList : MonoBehaviour
             else if (tail.myObject == tail.prev.myObject && tail.nodeData.position == tail.prev.nodeData.position)
             {
                 tail = tail.prev;
-                if (tail.isFirst == true) DiaryMGR.instance.DestroySomthing(tail.myObject);
+                if (tail.isFirst == true) Manager_Main.Instance.manager_PictureDiary.DestroySomthing(tail.myObject);
                 else if (tail != head)
                 {
                     RectTransform temp = tail.myObject.GetComponent<RectTransform>();
@@ -110,7 +110,7 @@ public class Data_LinkedList : MonoBehaviour
         }
         else  //처음 생긴 오브젝트일 경우
         {
-            DiaryMGR.instance.DestroySomthing(tail.myObject);
+            Manager_Main.Instance.manager_PictureDiary.DestroySomthing(tail.myObject);
             Debug.Log("파괴 : " + tail.myObject.name);
         }
         Debug.Log("지운이름 : " + tail.myObject.name);

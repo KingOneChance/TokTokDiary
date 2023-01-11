@@ -17,7 +17,7 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         nodeData.position = rect.position;
         nodeData.rotation = rect.rotation.eulerAngles;
         nodeData.scale = rect.localScale;
-        DiaryMGR.instance.AddDragBegin(nodeData, gameObject);
+        Manager_Main.Instance.manager_PictureDiary.AddDragBegin(nodeData, gameObject);
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -29,6 +29,6 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         nodeData.position = rect.position;
         nodeData.rotation = rect.rotation.eulerAngles;
         nodeData.scale = rect.localScale;
-        DiaryMGR.instance.AddDrangEnd(nodeData, gameObject);
+        Manager_Main.Instance.manager_PictureDiary.AddDrangEnd(nodeData, gameObject);
     }
 }
