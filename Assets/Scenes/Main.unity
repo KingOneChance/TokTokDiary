@@ -269,6 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1aeb13d07d6c6489794e9c8657d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui_Main: {fileID: 1071966920976230973, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
+  ui_PictureDiary: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+  data_LocalSticker: {fileID: 0}
 --- !u!4 &1759993758
 Transform:
   m_ObjectHideFlags: 0
@@ -350,7 +353,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1071966921020999105
 PrefabInstance:
@@ -361,7 +364,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1071966920976230970, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1071966920976230970, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
       propertyPath: m_LocalPosition.x
@@ -444,18 +447,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 497872892}
-    - target: {fileID: 7032546662760291597, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClick_ToPictureDiary
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546662760291597, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UI_Main, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546662760291597, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7032546663000576746, guid: 7add624988e689a478cca52451641b35, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -473,33 +464,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 497872892}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClick_ToStudio
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UI_Main, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032546663000576747, guid: 7add624988e689a478cca52451641b35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7032546663169316594, guid: 7add624988e689a478cca52451641b35, type: 3}
       propertyPath: m_Camera
       value: 
@@ -514,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7032546663169316595, guid: 7add624988e689a478cca52451641b35, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7032546663169316595, guid: 7add624988e689a478cca52451641b35, type: 3}
       propertyPath: m_AnchorMax.x

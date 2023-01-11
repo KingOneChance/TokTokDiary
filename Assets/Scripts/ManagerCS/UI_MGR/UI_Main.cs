@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UI_Main : MonoBehaviour
 {
-    [SerializeField] Button toPictureDiary = null;
-    [SerializeField] Button toStudio = null;
+    [SerializeField] Button ui_toPictureDiary = null;
+    [SerializeField] Button ui_toStudio = null;
    
     public void OnClick_ToPictureDiary()
     {
@@ -15,5 +15,8 @@ public class UI_Main : MonoBehaviour
     public void OnClick_ToStudio()
     {
         SceneManager.LoadScene("CreateSticker");
+      
     }
+
+
 }

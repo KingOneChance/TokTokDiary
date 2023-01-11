@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6218628758852621129}
   - component: {fileID: 6218628758852621126}
   - component: {fileID: 6218628760045598220}
+  - component: {fileID: 2113175077}
   m_Layer: 0
   m_Name: PictureDiary_UIManager
   m_TagString: Untagged
@@ -45,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d313dc9b8e27b04dadfd7fb8337b4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawBackground: {fileID: 0}
-  shinyWeatherBtn: {fileID: 0}
-  shinyImage: {fileID: 0}
-  cameraArea: {fileID: 0}
-  cameraOnBtn: {fileID: 0}
-  loadBtn: {fileID: 0}
-  homeBtn: {fileID: 0}
+  ui_DrawBackground: {fileID: 0}
+  ui_ShinyWeatherBtn: {fileID: 0}
+  ui_ShinyImage: {fileID: 0}
+  ui_CameraArea: {fileID: 0}
+  ui_CameraOnBtn: {fileID: 0}
+  ui_LoadBtn: {fileID: 0}
+  ui_HomeBtn: {fileID: 0}
 --- !u!114 &6218628760045598220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,3 +67,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraViewImage: {fileID: 0}
   loadImage: {fileID: 0}
+--- !u!114 &2113175077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6218628758852621128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c5d821b02266f4d9be5f4ae33cd467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
