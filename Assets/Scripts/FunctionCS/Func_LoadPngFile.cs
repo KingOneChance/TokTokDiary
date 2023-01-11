@@ -25,7 +25,7 @@ public class Func_LoadPngFile : MonoBehaviour
     public void FindAllPng()
     {
         string path = "C:/Users/User/Desktop/Sticker/";
-        string[] allFiles = Directory.GetFiles(path, "*.png",SearchOption.TopDirectoryOnly);
+        string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
         
         for (int i = 0; i < allFiles.Length; i++)
         {
