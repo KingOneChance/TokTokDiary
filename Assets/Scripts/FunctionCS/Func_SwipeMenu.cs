@@ -8,7 +8,6 @@ public class Func_SwipeMenu : MonoBehaviour
     [SerializeField] GameObject scrollBar;
     [SerializeField] GameObject selectButton;
     [SerializeField] float scroll_Pos = 0;
-   
     [SerializeField] float[] pos;
     [SerializeField] Scrollbar scroll;
 
