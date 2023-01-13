@@ -38,14 +38,21 @@ public class Manager_Main : MonoBehaviour
     /// <summary>
     /// Declare all "Variable"
     /// </summary>
-    
-    
-    
 
-    public void AwakeOnCreateSticker()
+    public Manager_PictureDiary manager_PictureDiary { get; private set; }
+
+
+
+    #region These functions are for the purpose of finding a specific manager in specific Scene.
+    public void AwakeInPictureDiaryScene()
     {
-       
+        manager_PictureDiary = FindObjectOfType<Manager_PictureDiary>();
     }
+    public void LeaveAtPictureDiaryScene()
+    {
+        manager_PictureDiary = null;
+    }
+    #endregion
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
