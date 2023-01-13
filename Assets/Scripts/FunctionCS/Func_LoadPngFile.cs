@@ -5,20 +5,12 @@ using System.IO;
 using UnityEngine.UI;
 public class Func_LoadPngFile : MonoBehaviour
 {
-    Data_LocalSticker data_LocalSticker = null;
-
+    UI_PictureDiary picture_Diary = null;
     
     // Start is called before the first frame update
     void Start()
     {
-        data_LocalSticker = FindObjectOfType<Data_LocalSticker>();
         FindAllPng();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     //폴더에 있는 모든 파일 긁어오기
@@ -62,11 +54,8 @@ public class Func_LoadPngFile : MonoBehaviour
                 {
                     Debug.Log("나머지");
                 }
-            }
-
-            
+            }          
         }
-        Manager_Main.Instance.UI_PictureDiary.UpdateInventory();
     }
 
     //바탕화면에 있는 해당 이미지 불러오기
