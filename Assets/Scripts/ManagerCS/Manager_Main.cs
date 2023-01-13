@@ -10,10 +10,10 @@ public class Manager_Main : MonoBehaviour
     public static Manager_Main Instance { get { return instance; } }
 
     [Header("UIManager")]
-    //¸ÞÀÎ
+    //ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private UI_Main ui_Main = null;
     public UI_Main UI_Main { get { return ui_Main; } }
-    //±×¸²ÀÏ±â
+    //ï¿½×¸ï¿½ï¿½Ï±ï¿½
     [SerializeField] private UI_PictureDiary ui_PictureDiary = null;
     public UI_PictureDiary UI_PictureDiary { get { return ui_PictureDiary; } }
 
@@ -40,11 +40,21 @@ public class Manager_Main : MonoBehaviour
     /// Declare all "Variable"
     /// </summary>
 
-    public void AwakeOnCreateSticker()
+    public Manager_PictureDiary manager_PictureDiary { get; private set; }
+
+
+
+    #region These functions are for the purpose of finding a specific manager in specific Scene.
+    public void AwakeInPictureDiaryScene()
     {
         if(ui_PictureDiary == null)
             ui_PictureDiary = FindObjectOfType<UI_PictureDiary>();
     }
+    public void LeaveAtPictureDiaryScene()
+    {
+        manager_PictureDiary = null;
+    }
+    #endregion
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
