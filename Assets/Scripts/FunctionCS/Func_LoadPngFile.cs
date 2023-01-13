@@ -11,7 +11,7 @@ public class Func_LoadPngFile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        data_LocalSticker = FindObjectOfType<Data_LocalSticker>();
+        data_LocalSticker = Manager_Main.Instance.Data_LocalSticker;
         FindAllPng();
     }
 
@@ -24,7 +24,9 @@ public class Func_LoadPngFile : MonoBehaviour
     //폴더에 있는 모든 파일 긁어오기
     public void FindAllPng()
     {
-        string path = "C:/Users/User/Desktop/Sticker/";
+        Manager_Main.Instance.Data_LocalSticker.ClearInventory();
+        Manager_Main.Instance.AwakeOnCreateSticker();
+        string path = "C:/Users/whdgn/Desktop/Sticker/";
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
         
         for (int i = 0; i < allFiles.Length; i++)

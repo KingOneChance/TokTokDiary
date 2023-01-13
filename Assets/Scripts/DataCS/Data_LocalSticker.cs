@@ -22,11 +22,7 @@ public class Data_LocalSticker : MonoBehaviour
 
     private void Awake()
     {
-        audioList.Clear();
-        weatherList.Clear();
-        handMadeList.Clear();
-        waffleList.Clear();
-        diaryList.Clear();
+        ClearInventory();
     }
 
     private void Start()
@@ -121,6 +117,18 @@ public class Data_LocalSticker : MonoBehaviour
             //UpdateToServer(obj);
         }
         //서버에서 빼준다.
+    }
+
+    /// <summary>
+    /// Clear Before Add New Item into List
+    /// </summary>
+    public void ClearInventory()
+    {
+        audioList.Clear();
+        weatherList.Clear();
+        handMadeList.Clear();
+        waffleList.Clear();
+        diaryList.Clear();
     }
 
    /* public void ShowInventory(ItemType state)

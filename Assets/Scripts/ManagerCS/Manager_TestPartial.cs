@@ -4,8 +4,5 @@ using UnityEngine;
 
 public partial class Manager_PictureDiary : MonoBehaviour
 {
-    private void Start()
-    {
 
-    }
 }

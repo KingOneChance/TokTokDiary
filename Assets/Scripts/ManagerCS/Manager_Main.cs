@@ -27,9 +27,10 @@ public class Manager_Main : MonoBehaviour
         if (instance == null)
         {
             // Init Process Run
+            data_LocalSticker = GetComponent<Data_LocalSticker>();
             GetAllInfoFromServer();
             instance = this;
-            Screen.SetResolution(960, 540, false);
+            Screen.SetResolution(1920, 1080, true);
             DontDestroyOnLoad(instance);
         }
         else return;
@@ -38,13 +39,11 @@ public class Manager_Main : MonoBehaviour
     /// <summary>
     /// Declare all "Variable"
     /// </summary>
-    
-    
-    
 
     public void AwakeOnCreateSticker()
     {
-       
+        if(ui_PictureDiary == null)
+            ui_PictureDiary = FindObjectOfType<UI_PictureDiary>();
     }
     private void GetAllInfoFromServer()
     {

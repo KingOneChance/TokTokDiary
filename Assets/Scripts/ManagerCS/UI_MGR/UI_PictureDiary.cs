@@ -30,16 +30,13 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void UpdateInventory()
     {
-        for (int i=0; i < Manager_Main.Instance.Data_LocalSticker.waffleList.Count; i++)
+        for (int i = 0; i < Manager_Main.Instance.Data_LocalSticker.waffleList.Count; i++)
         {
-            Debug.Log("waffle list count :"+Manager_Main.Instance.Data_LocalSticker.waffleList.Count);
-            Debug.Log("rawimage list count :"+ui_WaffleSticker.Length);
+            Debug.Log("waffle list count :" + Manager_Main.Instance.Data_LocalSticker.waffleList.Count);
+            Debug.Log("rawimage list count :" + ui_WaffleSticker.Length);
 
             ui_WaffleSticker[i].texture = (Texture)Manager_Main.Instance.Data_LocalSticker.waffleList[i];
         }
-            Manager_Main.Instance.Data_LocalSticker.waffleList.Clear();
-   
-
     }
     //카메라 켜기
     public void OnClick_CameraOnBtn()
