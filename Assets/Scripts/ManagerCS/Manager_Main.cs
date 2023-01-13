@@ -53,11 +53,6 @@ public class Manager_Main : MonoBehaviour
         manager_PictureDiary = null;
     }
     #endregion
-
-    public void AwakeOnCreateSticker()
-    {
-
-    }
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.

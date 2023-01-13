@@ -50,6 +50,7 @@ public class Func_Record : MonoBehaviour
     public void OnClick_Save()
     {
         //canvas change in Manager_BubbleBear ..connect with del
+        
     }
 
     //Save File Logic
