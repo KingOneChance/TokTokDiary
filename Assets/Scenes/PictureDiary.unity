@@ -3156,7 +3156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83e7110cd18e2a45b68bb94f247c15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testStr: Test
+  conZ: {fileID: 0}
 --- !u!4 &2116387888
 Transform:
   m_ObjectHideFlags: 0
@@ -4886,10 +4886,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2113175077, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1499110584}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: test
       value: 
@@ -4923,10 +4919,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7993371125658827968}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_WaffleSticker.Array.data[0]
       value: 
       objectReference: {fileID: 1499110584}
@@ -4950,25 +4942,9 @@ PrefabInstance:
       propertyPath: ui_WaffleSticker.Array.data[5]
       value: 
       objectReference: {fileID: 1299808692}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[7]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[8]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_Name
       value: PictureDiary_UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621129, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_RootOrder

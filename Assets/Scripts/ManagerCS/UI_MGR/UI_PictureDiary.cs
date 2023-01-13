@@ -24,20 +24,23 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage test = null;
 
     private Func_Camera func_Camera = null;
+    private Data_LocalSticker data_LocalSticker = null;
+
     private void Start()
     {
         func_Camera = FindObjectOfType<Func_Camera>();
+        data_LocalSticker = Manager_Main.Instance.Data_LocalSticker;
+        UpdateStickerInventoryFromList();
     }
-    public void UpdateInventory()
-    {
-        for (int i = 0; i < Manager_Main.Instance.Data_LocalSticker.waffleList.Count; i++)
-        {
-            Debug.Log("waffle list count :" + Manager_Main.Instance.Data_LocalSticker.waffleList.Count);
-            Debug.Log("rawimage list count :" + ui_WaffleSticker.Length);
 
-            ui_WaffleSticker[i].texture = (Texture)Manager_Main.Instance.Data_LocalSticker.waffleList[i];
+    public void UpdateStickerInventoryFromList()
+    {
+        for (int i = 0; i < data_LocalSticker.waffleList.Count; i++)
+        {
+            ui_WaffleSticker[i].texture = data_LocalSticker.waffleList[i];
         }
     }
+
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
