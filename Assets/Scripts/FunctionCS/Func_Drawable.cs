@@ -54,7 +54,7 @@ namespace FreeDraw
         // When you want to make your own type of brush effects,
         // Copy, paste and rename this function.
         // Go through each step
-        public void BrushTemplate(Vector2 world_position)
+       /* public void BrushTemplate(Vector2 world_position)
         {
             // 1. Change world position to pixel coordinates
             Vector2 pixel_pos = WorldToPixelCoordinates(world_position);
@@ -91,7 +91,7 @@ namespace FreeDraw
             
             // 4. If dragging, update where we were previously
             previous_drag_position = pixel_pos;
-        }
+        }*/
 
 
 

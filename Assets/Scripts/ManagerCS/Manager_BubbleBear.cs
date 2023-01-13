@@ -28,8 +28,6 @@ public class Manager_BubbleBear : MonoBehaviour
 
     private void Start()
     {
-        bubbleBearCtrl = FindObjectOfType<Func_BubbleBearCtrl>();
-        bubbleBearSave = FindObjectOfType<Func_BubbleBearSave>();
         record = FindObjectOfType<Func_Record>();
         saveCanvas.SetActive(false);
         InitAfterRecordButton();
