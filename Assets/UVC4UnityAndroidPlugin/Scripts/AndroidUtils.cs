@@ -149,8 +149,6 @@ namespace Serenegiant
 			grantResult = PermissionGrantResult.PERMISSION_DENY_AND_NEVER_ASK_AGAIN;
 			isPermissionRequesting = false;
 		}
-	}
-}
 
         //--------------------------------------------------------------------------------
 #if UNITY_ANDROID
@@ -331,6 +329,6 @@ namespace Serenegiant
 
     } // class AndroidUtils
 
-} // namespace Serenegiant
+} // namespace Serenegiantzz
 
 #endif // #if UNITY_ANDROID
