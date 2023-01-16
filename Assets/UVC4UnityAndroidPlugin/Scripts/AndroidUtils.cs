@@ -147,9 +147,9 @@ namespace Serenegiant.UVC
 #endif
 			grantResult = PermissionGrantResult.PERMISSION_DENY_AND_NEVER_ASK_AGAIN;
 			isPermissionRequesting = false;
-		}
+        }
 
-        //--------------------------------------------------------------------------------
+		//--------------------------------------------------------------------------------
 #if UNITY_ANDROID
         /**
 		 * プラグインの初期化実行
