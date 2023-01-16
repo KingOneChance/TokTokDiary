@@ -2,6 +2,7 @@ using UnityEditor;
 
 public class JenkinsBuild
 {
+    [MenuItem("JenkinsBuild/Build")]
     static void JenkinsBuildRun()
     {
         //string[] scenes = { "Assets/Scenes/SampleScene.unity" };
