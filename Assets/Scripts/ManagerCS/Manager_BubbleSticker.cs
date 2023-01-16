@@ -12,7 +12,8 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     [SerializeField] Texture[] Designs = null;
     [SerializeField] Color[] paletteColors = null;
-
+    [SerializeField] Animator DesignAnim = null;
+    [SerializeField] Animator ColorAnim = null;
     private bool isClickedDesign = false;
     private bool isClickedColor = false;
 
@@ -82,28 +83,18 @@ public class Manager_BubbleSticker : MonoBehaviour
         if (isClickedDesign == false)
             isClickedDesign = true;
     }
-
+    
     public void OnClick_DecideBtn()
     {
         if(isClickedColor == true && isClickedDesign == true)
         {
-            StartCoroutine(Combine());
+            DesignAnim.enabled = true;
+            ColorAnim.enabled = true;
             Debug.Log("Create Sticker");
         }
         else
         {
             Debug.Log("There are some that haven't been selected yet, so choose them");
         }
-    }
-
-    IEnumerator Combine()
-    {
-        while (true)
-        {
-            Debug.Log("гого");
-            Vector2.Lerp(SelectedColor.rectTransform.anchoredPosition, ColorPosAfterClickDecide.anchoredPosition, 0.5f);
-            yield return null;
-        }
-        //Vector2.Lerp(SelectedDesign.rectTransform.anchoredPosition, DesignPosAfterClickDecide.anchoredPosition, 0.5f);
     }
 }
