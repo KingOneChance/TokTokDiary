@@ -11,13 +11,12 @@ using UnityEngine;
 
 #if UNITY_ANDROID
 #if UNITY_2018_3_OR_NEWER
+#endif
 using UnityEngine.Android;
 #endif
-#endif
 
-namespace Serenegiant
+namespace Serenegiant.UVC
 {
-
 	public class AndroidUtils : MonoBehaviour
 	{
 		public const string FQCN_UNITY_PLAYER = "com.unity3d.player.UnityPlayer";
