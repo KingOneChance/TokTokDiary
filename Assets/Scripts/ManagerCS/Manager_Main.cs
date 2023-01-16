@@ -63,6 +63,7 @@ public class Manager_Main : MonoBehaviour
         // Receiving data from server, initial work, etc.
     }
 
+    //manange recordSticker Number 
     public int GetRecordStickerNum()
     {
         return recordStickerNum;
