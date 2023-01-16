@@ -74,5 +74,4 @@ public class Manager_Main : MonoBehaviour
     {
         recordStickerNum++;
     }
-
 }

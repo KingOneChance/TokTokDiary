@@ -97,9 +97,6 @@ public class Func_Record : MonoBehaviour
         auidPlayNum++;
         if (auidPlayNum > audioNum) auidPlayNum = 1;
     }
-
-
-
     //It is called by only OnClick_Play() method.
     private void IsRunStateChange() => isRun = false;
 }
