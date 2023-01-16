@@ -18,7 +18,8 @@ public class Manager_Main : MonoBehaviour
     [Header("Datas")]
     private Data_LocalSticker data_LocalSticker = null;
     public Data_LocalSticker Data_LocalSticker { get { return data_LocalSticker; } }
-
+    private Func_LoadPngFile func_LoadPngFile = null;
+    public Func_LoadPngFile Func_LoadPngFile { get { return func_LoadPngFile; } }
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
     private void Awake()
@@ -28,6 +29,7 @@ public class Manager_Main : MonoBehaviour
         {
             // Init Process Run
             data_LocalSticker = GetComponent<Data_LocalSticker>();
+            func_LoadPngFile = GetComponent<Func_LoadPngFile>();
             GetAllInfoFromServer();
             instance = this;
             Screen.SetResolution(1920, 1080, true);

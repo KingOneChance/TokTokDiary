@@ -12,7 +12,7 @@ public class Func_LoadPngFile : MonoBehaviour
     {
         FindAllPng();
     }
-
+    
     //폴더에 있는 모든 파일 긁어오기
     public void FindAllPng()
     {
