@@ -244,7 +244,7 @@ namespace Serenegiant.UVC
         // UnityEngineからの呼び出し
         //--------------------------------------------------------------------------------
         // Start is called before the first frame update
-        IEnumerator Start()
+       /* IEnumerator Start()
 		{
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 			Console.WriteLine($"{TAG}Start:");
@@ -252,8 +252,8 @@ namespace Serenegiant.UVC
 			mainContext = SynchronizationContext.Current;
             callback = OnDeviceChangedCallbackManager.Add(this);
 	
-			yield return Initialize();
-		}
+			*//*yield return Initialize();*//*
+		}*/
 
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 		void OnApplicationFocus()
@@ -607,12 +607,12 @@ namespace Serenegiant.UVC
 		 * プラグインを初期化
 		 * パーミッションの確認を行って取得できれば実際のプラグイン初期化処理#InitPluginを呼び出す
 		 */
-		private IEnumerator Initialize()
+		/*private IEnumerator Initialize()
 		{
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
-			Console.WriteLine($"{TAG}Initialize:");
+			//Console.WriteLine($"{TAG}Initialize:");
 #endif
-			if (AndroidUtils.CheckAndroidVersion(28))
+			*//*if (AndroidUtils.CheckAndroidVersion(28))
 			{
 				yield return AndroidUtils.GrantCameraPermission((string permission, AndroidUtils.PermissionGrantResult result) =>
 				{
@@ -635,14 +635,14 @@ namespace Serenegiant.UVC
 							break;
 					}
 				});
-			}
+			}*//*
 			else
 			{
 				InitPlugin();
 			}
 
 			yield break;
-		}
+		}*/
 
 		/**
 		 * プラグインを初期化
@@ -687,11 +687,11 @@ namespace Serenegiant.UVC
 			Console.WriteLine($"{TAG}InitPlugin:num drawers={UVCDrawers.Length}");
 #endif
 			// aandusbのDeviceDetectorを読み込み要求
-			using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_DETECTOR))
+			/*using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_DETECTOR))
 			{
 				clazz.CallStatic("initUVCDeviceDetector",
 					AndroidUtils.GetCurrentActivity());
-			}
+			}*/
 		}
 
         //--------------------------------------------------------------------------------
