@@ -13,25 +13,27 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private Button buttonPlay = null;
     [SerializeField] private Button buttonRerecord = null;
     [SerializeField] private Button buttonSave = null;
+    [SerializeField] private Button buttonSign = null;
 
     [Header("===Ojects===")]
     [SerializeField] private GameObject taskCanvas = null;
     [SerializeField] private GameObject saveCanvas = null;
+    [SerializeField] private GameObject checkCanvas = null;
     [SerializeField] private GameObject AfterRecord = null;
 
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
     [SerializeField] private Func_BubbleBearSave bubbleBearSave = null;
+    [SerializeField] private Func_BubbleBearSign bubbleBearSign = null; 
     [SerializeField] private Func_Record record = null;
 
     private bool isRecording = false;
 
     private void Start()
     {
-        bubbleBearCtrl = FindObjectOfType<Func_BubbleBearCtrl>();
-        bubbleBearSave = FindObjectOfType<Func_BubbleBearSave>();
         record = FindObjectOfType<Func_Record>();
         saveCanvas.SetActive(false);
+        checkCanvas.SetActive(false);
         InitAfterRecordButton();
     }
 
@@ -63,6 +65,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         InitAfterRecordButton();
     }
+    //Canvas Change "TaskCanvas" to "SaveCanvas"
     public void OnClick_ButtonSave()
     {
         InitAfterRecordButton();
@@ -70,7 +73,6 @@ public class Manager_BubbleBear : MonoBehaviour
         //Send Picked SpriteImage to SaveScript
         bubbleBearSave.GetSaveSPrite(bubbleBearCtrl.nowSprite);
         
-        //Canvas Change TaskCanvas to SaveCanvas
         taskCanvas.SetActive(false);
         saveCanvas.SetActive(true);
     }
@@ -78,6 +80,16 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    //Canvas change "saveCanvas" to "checkCanvas"
+    public void OnClick_ButtonSign()
+    {
+        saveCanvas.SetActive(false);
+        checkCanvas.SetActive(true);
+    }
+
+
+
+
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()
     {
