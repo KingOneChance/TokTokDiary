@@ -59,7 +59,7 @@ public class UI_PictureDiary : MonoBehaviour
     //È¨È­¸é
     public void OnClick_Home()
     {
-        SceneManager.LoadScene("Main");
+        //SceneManager.LoadScene("Main");
     }
 
     public void OnClick_Weather()
