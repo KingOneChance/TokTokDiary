@@ -1,18 +1,23 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager_BubbleSticker : MonoBehaviour
 {
+    [SerializeField] RectTransform DesignPosAfterClickDecide = null;
+    [SerializeField] RectTransform ColorPosAfterClickDecide = null;
+
     [SerializeField] RawImage SelectedDesign = null;
     [SerializeField] RawImage SelectedColor = null;
 
     [SerializeField] Texture[] Designs = null;
     [SerializeField] Color[] paletteColors = null;
 
-    [SerializeField] Button DecideBtn = null;
-
     private bool isClickedDesign = false;
     private bool isClickedColor = false;
+
+    private Color initColor = new Color(255,255,255,255);
+    private Color showColor = new Color(255,255,255,255);
 
     public void OnClick_ColorBtn(int idx)
     {
@@ -73,6 +78,7 @@ public class Manager_BubbleSticker : MonoBehaviour
                 SelectedDesign.texture = Designs[4];
                 break;
         }
+        SelectedDesign.color = showColor;
         if (isClickedDesign == false)
             isClickedDesign = true;
     }
@@ -81,11 +87,23 @@ public class Manager_BubbleSticker : MonoBehaviour
     {
         if(isClickedColor == true && isClickedDesign == true)
         {
+            StartCoroutine(Combine());
             Debug.Log("Create Sticker");
         }
         else
         {
             Debug.Log("There are some that haven't been selected yet, so choose them");
         }
+    }
+
+    IEnumerator Combine()
+    {
+        while (true)
+        {
+            Debug.Log("гого");
+            Vector2.Lerp(SelectedColor.rectTransform.anchoredPosition, ColorPosAfterClickDecide.anchoredPosition, 0.5f);
+            yield return null;
+        }
+        //Vector2.Lerp(SelectedDesign.rectTransform.anchoredPosition, DesignPosAfterClickDecide.anchoredPosition, 0.5f);
     }
 }
