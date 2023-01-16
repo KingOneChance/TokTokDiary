@@ -52,7 +52,7 @@ namespace Serenegiant
 		 * パーミッション要求時のタイムアウト
 		 */
 		public static float PermissionTimeoutSecs = 30;
-	
+
 		public event LifecycleEventHandler LifecycleEvent;
 
 		public static bool isPermissionRequesting;
@@ -149,6 +149,8 @@ namespace Serenegiant
 			grantResult = PermissionGrantResult.PERMISSION_DENY_AND_NEVER_ASK_AGAIN;
 			isPermissionRequesting = false;
 		}
+	}
+}
 
 		//--------------------------------------------------------------------------------
 #if UNITY_ANDROID
