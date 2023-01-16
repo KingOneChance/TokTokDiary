@@ -149,188 +149,186 @@ namespace Serenegiant
 			grantResult = PermissionGrantResult.PERMISSION_DENY_AND_NEVER_ASK_AGAIN;
 			isPermissionRequesting = false;
 		}
-	}
-}
 
-		//--------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------
 #if UNITY_ANDROID
-		/**
+        /**
 		 * プラグインの初期化実行
 		 */
-		private void Initialize()
-		{
+        private void Initialize()
+        {
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 			Console.WriteLine($"{TAG}Initialize:{gameObject.name}");
 #endif
-			using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
-			{
-				clazz.CallStatic("initialize",
-					AndroidUtils.GetCurrentActivity(), gameObject.name);
-			}
-		}
+            using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
+            {
+                clazz.CallStatic("initialize",
+                    AndroidUtils.GetCurrentActivity(), gameObject.name);
+            }
+        }
 
-		/**
+        /**
 		 * 指定したパーミッションを保持しているかどうかを取得
 		 * @param permission
 		 * @param 指定したパーミッションを保持している
 		 */
-		public static bool HasPermission(string permission)
-		{
-			using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
-			{
-				return clazz.CallStatic<bool>("hasPermission",
-					AndroidUtils.GetCurrentActivity(), permission);
-			}
-		}
+        public static bool HasPermission(string permission)
+        {
+            using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
+            {
+                return clazz.CallStatic<bool>("hasPermission",
+                    AndroidUtils.GetCurrentActivity(), permission);
+            }
+        }
 
-		/**
+        /**
 		 * 指定したパーミッションの説明を表示する必要があるかどうかを取得
 		 * @param permission
 		 * @param 指定したパーミッションの説明を表示する必要がある
 		 */
-		public static bool ShouldShowRequestPermissionRationale(string permission)
-		{
-			using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
-			{
-				return clazz.CallStatic<bool>("shouldShowRequestPermissionRationale",
-					AndroidUtils.GetCurrentActivity(), permission);
-			}
-		}
+        public static bool ShouldShowRequestPermissionRationale(string permission)
+        {
+            using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
+            {
+                return clazz.CallStatic<bool>("shouldShowRequestPermissionRationale",
+                    AndroidUtils.GetCurrentActivity(), permission);
+            }
+        }
 
-		/**
+        /**
 		 * パーミッション要求
 		 * こっちはJava側でRationaleの処理等を行わない
 		 * @param permission
 		 * @param callback
 		 */
-		public static IEnumerator RequestPermission(string permission, OnPermission callback)
-		{
+        public static IEnumerator RequestPermission(string permission, OnPermission callback)
+        {
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 			Console.WriteLine($"{TAG}GrantPermission:{permission}");
 #endif
-			if (!HasPermission(permission))
-			{
-				grantResult = PermissionGrantResult.PERMISSION_DENY;
-				isPermissionRequesting = true;
-				using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
-				{
-					clazz.CallStatic("requestPermission",
-						AndroidUtils.GetCurrentActivity(), permission);
-				}
-				float timeElapsed = 0;
-				while (isPermissionRequesting)
-				{
-					if ((PermissionTimeoutSecs > 0) && (timeElapsed > PermissionTimeoutSecs))
-					{
-						isPermissionRequesting = false;
-						yield break;
-					}
-					timeElapsed += Time.deltaTime;
-					yield return null;
-				}
-				callback(permission, grantResult);
-			}
-			else
-			{
-				callback(permission, PermissionGrantResult.PERMISSION_GRANT);
-			}
-	
-			yield break;
-		}
+            if (!HasPermission(permission))
+            {
+                grantResult = PermissionGrantResult.PERMISSION_DENY;
+                isPermissionRequesting = true;
+                using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
+                {
+                    clazz.CallStatic("requestPermission",
+                        AndroidUtils.GetCurrentActivity(), permission);
+                }
+                float timeElapsed = 0;
+                while (isPermissionRequesting)
+                {
+                    if ((PermissionTimeoutSecs > 0) && (timeElapsed > PermissionTimeoutSecs))
+                    {
+                        isPermissionRequesting = false;
+                        yield break;
+                    }
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                callback(permission, grantResult);
+            }
+            else
+            {
+                callback(permission, PermissionGrantResult.PERMISSION_GRANT);
+            }
 
-		/**
+            yield break;
+        }
+
+        /**
 		 * パーミッション要求
 		 * こっちはJava側でRationaleの処理等を行う
 		 * @param permission
 		 * @param callback
 		 */
-		public static IEnumerator GrantPermission(string permission, OnPermission callback)
-		{
+        public static IEnumerator GrantPermission(string permission, OnPermission callback)
+        {
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 			Console.WriteLine($"{TAG}GrantPermission:{permission}");
 #endif
-			if (!HasPermission(permission))
-			{
-				grantResult = PermissionGrantResult.PERMISSION_DENY;
-				isPermissionRequesting = true;
-				using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
-				{
-					clazz.CallStatic("grantPermission",
-						AndroidUtils.GetCurrentActivity(), permission);
-				}
-				float timeElapsed = 0;
-				while (isPermissionRequesting)
-				{
-					if ((PermissionTimeoutSecs > 0) && (timeElapsed > PermissionTimeoutSecs))
-					{
-						isPermissionRequesting = false;
-						yield break;
-					}
-					timeElapsed += Time.deltaTime;
-						yield return null;
-				}
-				callback(permission, grantResult);
-			}
-			else
-			{
-				callback(permission, PermissionGrantResult.PERMISSION_GRANT);
-			}
-	
-			yield break;
-		}
+            if (!HasPermission(permission))
+            {
+                grantResult = PermissionGrantResult.PERMISSION_DENY;
+                isPermissionRequesting = true;
+                using (AndroidJavaClass clazz = new AndroidJavaClass(FQCN_PLUGIN))
+                {
+                    clazz.CallStatic("grantPermission",
+                        AndroidUtils.GetCurrentActivity(), permission);
+                }
+                float timeElapsed = 0;
+                while (isPermissionRequesting)
+                {
+                    if ((PermissionTimeoutSecs > 0) && (timeElapsed > PermissionTimeoutSecs))
+                    {
+                        isPermissionRequesting = false;
+                        yield break;
+                    }
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                callback(permission, grantResult);
+            }
+            else
+            {
+                callback(permission, PermissionGrantResult.PERMISSION_GRANT);
+            }
 
-		/**
+            yield break;
+        }
+
+        /**
 		 * カメラパーミッションを要求
 		 * @param callback
 		 */
-		public static IEnumerator GrantCameraPermission(OnPermission callback)
-		{
+        public static IEnumerator GrantCameraPermission(OnPermission callback)
+        {
 #if (!NDEBUG && DEBUG && ENABLE_LOG)
 			Console.WriteLine($"{TAG}GrantCameraPermission:");
 #endif
-			if (CheckAndroidVersion(23))
-			{
-				// Android9以降ではUVC機器アクセスにもCAMERAパーミッションが必要
-				yield return GrantPermission(PERMISSION_CAMERA, callback);
-			}
-			else
-			{
-				// Android 6 未満ではパーミッション要求処理は不要
-				callback(PERMISSION_CAMERA, PermissionGrantResult.PERMISSION_GRANT);
-			}
+            if (CheckAndroidVersion(23))
+            {
+                // Android9以降ではUVC機器アクセスにもCAMERAパーミッションが必要
+                yield return GrantPermission(PERMISSION_CAMERA, callback);
+            }
+            else
+            {
+                // Android 6 未満ではパーミッション要求処理は不要
+                callback(PERMISSION_CAMERA, PermissionGrantResult.PERMISSION_GRANT);
+            }
 
-			yield break;
-		}
+            yield break;
+        }
 
 
-		//================================================================================
+        //================================================================================
 
-		/**
+        /**
 		 * UnityPlayerActivityを取得
 		 */
-		public static AndroidJavaObject GetCurrentActivity()
-		{
-			using (AndroidJavaClass playerClass = new AndroidJavaClass(FQCN_UNITY_PLAYER))
-			{
-				return playerClass.GetStatic<AndroidJavaObject>("currentActivity");
-			}
-		}
+        public static AndroidJavaObject GetCurrentActivity()
+        {
+            using (AndroidJavaClass playerClass = new AndroidJavaClass(FQCN_UNITY_PLAYER))
+            {
+                return playerClass.GetStatic<AndroidJavaObject>("currentActivity");
+            }
+        }
 
-		/**
+        /**
 		 * 指定したバージョン以降かどうかを確認
 		 * @param apiLevel
 		 * @return true: 指定したバージョン以降で実行されている, false: 指定したバージョンよりも古い端末で実行されている
 		 */
-		public static bool CheckAndroidVersion(int apiLevel)
-		{
-			using (var VERSION = new AndroidJavaClass("android.os.Build$VERSION"))
-			{
-				return VERSION.GetStatic<int>("SDK_INT") >= apiLevel;
-			}
-		}
+        public static bool CheckAndroidVersion(int apiLevel)
+        {
+            using (var VERSION = new AndroidJavaClass("android.os.Build$VERSION"))
+            {
+                return VERSION.GetStatic<int>("SDK_INT") >= apiLevel;
+            }
+        }
 
-	} // class AndroidUtils
+    } // class AndroidUtils
 
-} // namespace Serenegiant
+} // namespace Serenegiantzz
 
 #endif // #if UNITY_ANDROID
