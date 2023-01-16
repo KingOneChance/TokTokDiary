@@ -60,6 +60,9 @@ public class Func_BubbleBearSave : MonoBehaviour
 
         func_BubbleBearSign.GetBearSPrite(spaceBearImage.texture);
         func_BubbleBearSign.GetSignSPrite(spaceSignImage.texture);
+
+        //recordNum increase
+        Manager_Main.Instance.SetRecordStickerNum();
     }
 
     public void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
@@ -87,5 +90,4 @@ public class Func_BubbleBearSave : MonoBehaviour
     }
     //I have to add Saving record file Function.
     //I have to add Saving sign file Function.
-
 }
