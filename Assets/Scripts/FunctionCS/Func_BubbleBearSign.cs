@@ -1,12 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Func_BubbleBearSign : MonoBehaviour
 {
-    private Sprite saveSprite = null;
-    public void GetSaveSPrite(Sprite sprite)
+    [Header("===Space===")]
+    [SerializeField] private RawImage spaceSign = null;
+    [SerializeField] private RawImage spaceBear = null;
+
+    [Header("===SaveOject===")]
+    [SerializeField] private GameObject saveObjectFile = null;
+
+    private Sprite signSprite = null;
+    private Sprite bearSprite = null;
+   
+    public void GetSignSPrite(Sprite sprite)
     {
-        saveSprite = sprite;
+        signSprite = sprite;
+        spaceSign.texture = sprite.texture;
+    }
+    public void GetBearSPrite(Sprite sprite)
+    {
+        bearSprite = sprite;
+        spaceBear.texture = sprite.texture;
+    }
+    public void LoadOjbect()
+    {
+
     }
 }
