@@ -31,6 +31,7 @@ public class Func_Record : MonoBehaviour
     {
         newClip = null;
         newClip = Microphone.Start(null, true, 240, 44100);
+        audioNum = Manager_Main.Instance.GetRecordStickerNum();
     }
     public void OnClick_RecordStop()
     {
@@ -45,14 +46,19 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_Rerecord()
     {
-        File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + audioNum + ".wav");
+        //  File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + audioNum + ".wav");
+        // File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav");
+        DeleteRecordSource();
     }
     public void OnClick_Save()
     {
         //canvas change in Manager_BubbleBear ..connect with del
-        
     }
-
+    public void DeleteRecordSource()
+    {
+        if (File.Exists(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav"))
+            File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav");
+    }
     //Save File Logic
     public void StopRecordMicrophone(AudioClip recordClip)
     {
@@ -76,10 +82,10 @@ public class Func_Record : MonoBehaviour
 
             recordClip.SetData(cutSamples, 0);
         }
-        string today = DateTime.Now.ToString("yyyy-MM-dd");
+        string today = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
         //count for number of recorded audioes
-        audioNum++;
-        Func_SavWav.Save(Application.persistentDataPath + "/Record/" + soundSouceName + audioNum, recordClip);
+        //audioNum++;
+        Func_SavWav.Save(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum, recordClip);
     }
 
     //The purpose of "OnClick_Load" is Test about Save file
