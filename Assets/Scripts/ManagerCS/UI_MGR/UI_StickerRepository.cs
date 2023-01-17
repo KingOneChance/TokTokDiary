@@ -12,7 +12,7 @@ public class UI_StickerRepository : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Manager_Main.Instance.Func_LoadPngFile.FindAllPng();
+        //Manager_Main.Instance.Func_LoadPngFile.FindAllPng();
     }
 
     // Update is called once per frame

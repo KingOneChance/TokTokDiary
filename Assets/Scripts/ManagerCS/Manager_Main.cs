@@ -22,6 +22,11 @@ public class Manager_Main : MonoBehaviour
     public Func_LoadPngFile Func_LoadPngFile { get { return func_LoadPngFile; } }
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
+    private UI_StickerRepository ui_StickerRepository = null;
+    public UI_StickerRepository UI_StickerRepository { get { return ui_StickerRepository; } }
+
+
+    [SerializeField] private GameObject ui_StickerRepositoryPrefab = null;
     private void Awake()
     {
         // DontDestroyOnLoad instance of MainManager to make MainManager SingleTon
@@ -30,6 +35,7 @@ public class Manager_Main : MonoBehaviour
             // Init Process Run
             data_LocalSticker = GetComponent<Data_LocalSticker>();
             func_LoadPngFile = GetComponent<Func_LoadPngFile>();
+            ui_StickerRepository = FindObjectOfType<UI_StickerRepository>();
             GetAllInfoFromServer();
             instance = this;
             Screen.SetResolution(1920, 1080, true);
@@ -52,5 +58,19 @@ public class Manager_Main : MonoBehaviour
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
+    }
+    public void OnClick_StickerRepositoryOn()
+    {
+        if (!ui_StickerRepositoryPrefab.activeSelf)
+        ui_StickerRepositoryPrefab.SetActive(true);
+        else
+        {
+            ui_StickerRepositoryPrefab.SetActive(false);
+        }
+    }
+    public void OnClick_StickerRepositoryOff()
+    {
+        if (ui_StickerRepositoryPrefab.activeSelf)
+            ui_StickerRepositoryPrefab.SetActive(false);
     }
 }
