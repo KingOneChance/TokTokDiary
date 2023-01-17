@@ -16,7 +16,7 @@ public class Func_BubbleBearSave : MonoBehaviour
     [SerializeField] private RawImage spaceSignImage = null;
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearSign func_BubbleBearSign = null;
-    [SerializeField] private Func_Drawable drawable = null;
+    [SerializeField] private Func_Draw drawable = null;
     [Header("===Text===")]
     [SerializeField] private TextMeshProUGUI spriteText = null;
     [Header("===Path===")]
