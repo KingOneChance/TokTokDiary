@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class Manager_BubbleBear : MonoBehaviour
 {
     [Header("===Buttons===")]
-    [SerializeField] private Button buttonHome = null;
     [SerializeField] private Button buttonRecord = null;
     [SerializeField] private Button buttonRecordStop = null;
-    [SerializeField] private Button buttonPlay = null;
     [SerializeField] private Button buttonRerecord = null;
+    [SerializeField] private Button buttonPlay = null;
     [SerializeField] private Button buttonSave = null;
     [SerializeField] private Button buttonSign = null;
 
     [Header("===Ojects===")]
+    [SerializeField] private GameObject homeCanvas = null;
     [SerializeField] private GameObject taskCanvas = null;
     [SerializeField] private GameObject saveCanvas = null;
     [SerializeField] private GameObject checkCanvas = null;
@@ -84,13 +84,10 @@ public class Manager_BubbleBear : MonoBehaviour
     //Canvas change "saveCanvas" to "checkCanvas"
     public void OnClick_ButtonSign()
     {
+        homeCanvas.SetActive(false);
         saveCanvas.SetActive(false);
         checkCanvas.SetActive(true);
     }
-
-
-
-
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()
     {
