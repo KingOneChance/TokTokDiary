@@ -19,7 +19,8 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject taskCanvas = null;
     [SerializeField] private GameObject saveCanvas = null;
     [SerializeField] private GameObject checkCanvas = null;
-    [SerializeField] private GameObject AfterRecord = null;
+    [SerializeField] private GameObject afterRecord = null;
+    [SerializeField] private GameObject popUpImage = null;
 
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
@@ -54,7 +55,7 @@ public class Manager_BubbleBear : MonoBehaviour
         //recordStop button hide
         buttonRecordStop.gameObject.SetActive(false);
         //AfterRecord buttons are opened
-        AfterRecord.SetActive(true);
+        afterRecord.SetActive(true);
         isRecording = false;
     }
     public void OnClick_ButtonPlay()
@@ -76,9 +77,10 @@ public class Manager_BubbleBear : MonoBehaviour
         taskCanvas.SetActive(false);
         saveCanvas.SetActive(true);
     }
-    public void OnClick_ButtonHome()
+    //This is PopUp Function 
+    public void OnClick_HomePopUp()
     {
-        SceneManager.LoadScene("Main");
+        popUpImage.SetActive(true);
     }
     //Canvas change "saveCanvas" to "checkCanvas"
     public void OnClick_ButtonSign()
@@ -95,6 +97,6 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         buttonRecord.gameObject.SetActive(true);
         buttonRecordStop.gameObject.SetActive(false);
-        AfterRecord.SetActive(false);
+        afterRecord.SetActive(false);
     }
 }
