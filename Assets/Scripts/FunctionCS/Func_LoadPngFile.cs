@@ -16,9 +16,12 @@ public class Func_LoadPngFile : MonoBehaviour
     //폴더에 있는 모든 파일 긁어오기
     public void FindAllPng()
     {
+#if UNITY_EDITOR_WIN
         string path = "C:/Users/User/Desktop/Sticker/";
+#else
+        string path = Application.persistentDataPath + "/RecordSticker/";
+#endif
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
-        
         for (int i = 0; i < allFiles.Length; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);

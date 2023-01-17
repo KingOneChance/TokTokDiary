@@ -11,18 +11,14 @@ public class Func_BubbleBearSign : MonoBehaviour
     [Header("===SaveOject===")]
     [SerializeField] private GameObject saveObjectFile = null;
 
-    private Sprite signSprite = null;
-    private Sprite bearSprite = null;
    
-    public void GetSignSPrite(Sprite sprite)
+    public void GetSignSPrite(Texture sprite)
     {
-        signSprite = sprite;
-        spaceSign.texture = sprite.texture;
+        spaceSign.texture = sprite;
     }
-    public void GetBearSPrite(Sprite sprite)
+    public void GetBearSPrite(Texture sprite)
     {
-        bearSprite = sprite;
-        spaceBear.texture = sprite.texture;
+        spaceBear.texture = sprite;
     }
     public void LoadOjbect()
     {

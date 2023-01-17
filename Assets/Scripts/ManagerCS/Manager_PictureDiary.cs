@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public partial class Manager_PictureDiary : MonoBehaviour
 {
-    public Data_LinkedList conZ = new Data_LinkedList();
-
+    public Data_LinkedList conZ = null;
 
     #region These functions are for the purpose of controlling some specific behaviors. (like Control + Z)
     public void AddDragBegin(SData_NodeData nodata, GameObject gameObject) => conZ.AddDragStart(nodata, gameObject);
