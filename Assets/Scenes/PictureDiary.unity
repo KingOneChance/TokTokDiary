@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
+  line: {fileID: 0}
+  curColor: {r: 0, g: 0, b: 0, a: 1}
   col: {fileID: 0}
   drawingAreaMaxX: 8.65
   drawingAreaMinX: -0.65
@@ -3708,6 +3710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75600556ee9170498044c9fe573dce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  func_Draw: {fileID: 30939877}
   Transparency: 1
 --- !u!1 &1742516455
 GameObject:

@@ -7,8 +7,8 @@ namespace FreeDraw
     public class Func_Draw : MonoBehaviour
     {
         [SerializeField] GameObject linePrefab;
-        [SerializeField] public static LineRenderer line = null;
-        private static Color curColor = Color.black;
+        [SerializeField] public LineRenderer line = null;
+        public Color curColor = Color.black;
         [SerializeField] EdgeCollider2D col;
         List<Vector2> points = new List<Vector2>();
 
@@ -73,7 +73,7 @@ namespace FreeDraw
                 return false;
         }
 
-        public static void selectedColor(ColorType type)
+        public void selectedColor(ColorType type)
         {
             switch (type)
             {

@@ -8,7 +8,8 @@ namespace FreeDraw
     // Helper methods used to set drawing settings
     public class Func_DrawingSettings : MonoBehaviour
     {
-        public static bool isCursorOverUI = false;
+        [SerializeField] Func_Draw func_Draw = null;
+
         public float Transparency = 1f;
 
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
@@ -39,39 +40,39 @@ namespace FreeDraw
         // Call these these to change the pen settings
         public void SetMarkerRed()
         {
-            Func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerOrange()
         {
-            Func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerYellow()
         {
-            Func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerGreen()
         {
-            Func_Draw.selectedColor(ColorType.Green);
+            func_Draw.selectedColor(ColorType.Green);
         }
         public void SetMarkerBlue()
         {
-            Func_Draw.selectedColor(ColorType.Blue);
+            func_Draw.selectedColor(ColorType.Blue);
         }
         public void SetMarkerPupple()
         {
-            Func_Draw.selectedColor(ColorType.Blue);
+            func_Draw.selectedColor(ColorType.Blue);
         }
         public void SetMarkerPink()
         {
-            Func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerBrown()
         {
-            Func_Draw.selectedColor(ColorType.Yellow);
+            func_Draw.selectedColor(ColorType.Yellow);
         }
         public void SetMarkerBlack()
         {
-            Func_Draw.selectedColor(ColorType.Black);
+            func_Draw.selectedColor(ColorType.Black);
         }
         public void SetEraser()
         {
