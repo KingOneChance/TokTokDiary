@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.Scripting;
 
 public class Manager_Main : MonoBehaviour
@@ -49,8 +50,28 @@ public class Manager_Main : MonoBehaviour
         manager_PictureDiary = null;
     }
     #endregion
+
+    [Header("===NumberOfRecordSticker===")]
+    [SerializeField] int recordStickerNum = 0;
+
+    private void Start()
+    {
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/Record/", name, SearchOption.TopDirectoryOnly);
+
+        recordStickerNum = allFiles.Length;
+    }
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
+    }
+
+    //manange recordSticker Number 
+    public int GetRecordStickerNum()
+    {
+        return recordStickerNum;
+    }
+    public void SetRecordStickerNum()
+    {
+        recordStickerNum++;
     }
 }
