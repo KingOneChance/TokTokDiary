@@ -39,48 +39,39 @@ namespace FreeDraw
         // Call these these to change the pen settings
         public void SetMarkerRed()
         {
-            SetMarkerColour(new Color32(247, 67, 67, 255));
-        //    Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerOrange()
         {
-            SetMarkerColour(new Color32(248, 151, 49, 255));
-        //    Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerYellow()
         {
-            SetMarkerColour(new Color32(253, 241, 100, 255));
-        //    Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerGreen()
         {
-            SetMarkerColour(new Color32(147, 202, 91, 255));
-         //   Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Green);
         }
         public void SetMarkerBlue()
         {
-            SetMarkerColour(new Color32(98, 150, 207, 255));
-         //   Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Blue);
         }
         public void SetMarkerPupple()
         {
-            SetMarkerColour(new Color32(158, 127, 186, 255));
-         //   Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Blue);
         }
         public void SetMarkerPink()
         {
-            SetMarkerColour(new Color32(233, 160, 198, 255));
-         //   Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Red);
         }
         public void SetMarkerBrown()
         {
-            SetMarkerColour(new Color32(141, 107, 75, 255));
-         //   Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Yellow);
         }
         public void SetMarkerBlack()
         {
-            SetMarkerColour(new Color32(30, 30, 30, 255));
-        //    Func_Drawable.drawable.SetPenBrush();
+            Func_Draw.selectedColor(ColorType.Black);
         }
         public void SetEraser()
         {
