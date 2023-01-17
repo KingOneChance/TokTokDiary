@@ -17,7 +17,6 @@ using UnityEngine.Android;
 
 namespace Serenegiant.UVC
 {
-    [RequireComponent(typeof(AndroidUtils))]
 	public class UVCManager : MonoBehaviour
 	{
 		private const string TAG = "UVCManager#";
