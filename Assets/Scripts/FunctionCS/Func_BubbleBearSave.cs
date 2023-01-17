@@ -47,7 +47,6 @@ public class Func_BubbleBearSave : MonoBehaviour
     {
 
     }
-
     public void OnClick_RealSave()
     {
         int nowNum;
