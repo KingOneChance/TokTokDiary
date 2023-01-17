@@ -41,6 +41,11 @@ public class UI_StickerRepository : MonoBehaviour
         {
             return;
         }
+        //List Initiate for rearrange;
+        waffleList.Clear();
+        audioList.Clear();
+        weatherList.Clear();
+        diaryList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
@@ -54,26 +59,22 @@ public class UI_StickerRepository : MonoBehaviour
                 if (allFiles[i].Contains("Waffle"))
                 {
                     waffleList.Add(allFiles[i]);
-                    //Debug.Log("와플");
                 }
                 else if (allFiles[i].Contains("Audio"))
                 {
                     audioList.Add(allFiles[i]);
-                    Debug.Log("오디오");
                 }
                 else if (allFiles[i].Contains("Weather"))
                 {
                     weatherList.Add(allFiles[i]);
-                    Debug.Log("날씨");
                 }
                 else if (allFiles[i].Contains("Diary"))
                 {
                     diaryList.Add(allFiles[i]);
-                    Debug.Log("일기");
                 }
                 else
                 {
-                    Debug.Log("나머지");
+                    Debug.Log("It is not my Sticker");
                 }
             }
         }
@@ -98,26 +99,5 @@ public class UI_StickerRepository : MonoBehaviour
                 ui_Stickers[i].texture = texture;
             }
         }
-
-        //string path = "C:/Users/User/Desktop/Sticker/";
-        /* string[] allFiles = Directory.GetFiles(path, stickerName+"*.png", SearchOption.TopDirectoryOnly);
-
-         for(int i =0; i < ui_Stickers.Length; i++)
-         {
-             ui_Stickers[i].texture = null;
-         }
-
-         for (int i = 0; i < allFiles.Length; i++)
-         {
-             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-
-             if (byteTexture.Length > 0)
-             {
-                 Texture2D texture = new Texture2D(0, 0);
-                 texture.LoadImage(byteTexture);
-
-                 ui_Stickers[i].texture = texture;
-             }
-         }*/
     }
 }
