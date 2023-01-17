@@ -9,47 +9,87 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] Button[] ui_StickerBtns = null;
     [SerializeField] RawImage[] ui_Stickers = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Manager_Main.Instance.Func_LoadPngFile.FindAllPng();
-    }
+    private List<string> waffleList = new List<string>();
+    private List<string> audioList = new List<string>();
+    private List<string> weatherList = new List<string>();
+    private List<string> diaryList = new List<string>();
+    
 
-    // Update is called once per frame
-    void Update()
-    {
+    string path = "C:/Users/User/Desktop/Sticker/";
 
-    }
     public void OnClick_WaffleRepository()
     {
-        LoadLocalSticker("Waffle");
+        LoadLocalSticker(waffleList);
     }
     public void OnClick_AudioRepository()
     {
-        LoadLocalSticker("Audio");
+        LoadLocalSticker(audioList);
     }
     public void OnClick_WeatherRepository()
     {
-        LoadLocalSticker("Weather");
+        LoadLocalSticker(weatherList);
     }
     public void OnClick_DiaryRepository()
     {
-        LoadLocalSticker("Diary");
+        LoadLocalSticker(diaryList);
     }
 
-    public void LoadLocalSticker(string stickerName)
+    public void OnClick_RepositoryOpen()
     {
-        string path = "C:/Users/User/Desktop/Sticker/";
-        string[] allFiles = Directory.GetFiles(path, stickerName+"*.png", SearchOption.TopDirectoryOnly);
-
-        for(int i =0; i < ui_Stickers.Length; i++)
+        string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
+        if(allFiles.Length == waffleList.Count + audioList.Count+ weatherList.Count+ diaryList.Count)
         {
-            ui_Stickers[i].texture = null;
+            return;
         }
-
+        //List Initiate for rearrange;
+        waffleList.Clear();
+        audioList.Clear();
+        weatherList.Clear();
+        diaryList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
+
+            if (byteTexture.Length > 0)
+            {
+                Texture2D texture = new Texture2D(0, 0);
+                texture.LoadImage(byteTexture);
+
+
+                if (allFiles[i].Contains("Waffle"))
+                {
+                    waffleList.Add(allFiles[i]);
+                }
+                else if (allFiles[i].Contains("Audio"))
+                {
+                    audioList.Add(allFiles[i]);
+                }
+                else if (allFiles[i].Contains("Weather"))
+                {
+                    weatherList.Add(allFiles[i]);
+                }
+                else if (allFiles[i].Contains("Diary"))
+                {
+                    diaryList.Add(allFiles[i]);
+                }
+                else
+                {
+                    Debug.Log("It is not my Sticker");
+                }
+            }
+        }
+    }
+    public void LoadLocalSticker(List<string> anyList )
+    {
+        //initiate raw images's texture
+        for (int i = 0; i < ui_Stickers.Length; i++)
+        {
+            ui_Stickers[i].texture = null;
+        }
+        //Fill in the raw image's texture
+        for (int i = 0; i < anyList.Count; i++)
+        {
+            byte[] byteTexture = File.ReadAllBytes(anyList[i]);
 
             if (byteTexture.Length > 0)
             {

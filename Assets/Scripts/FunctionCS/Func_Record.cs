@@ -4,20 +4,26 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.IO;
+using UnityEngine.UI;
 //isRun has purpose for preventing the multi Sound Playing. WonChan
 //isRun has the purpose of preventing multiple sound playback. Google
 //The Purpose of isRun is to prevent the multi Sound play. JiHye
 public class Func_Record : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI newClipState;
-    [SerializeField] private TextMeshProUGUI playSourceState;
-    [SerializeField] private AudioSource playSouce;
-    [SerializeField] private AudioClip newClip;
-    [SerializeField] private string soundSouceName;
-    [SerializeField] private bool isRun;
+    [Header("===StateText===")]
+    [SerializeField] private TextMeshProUGUI newClipState = null;
+    [SerializeField] private TextMeshProUGUI playSourceState = null;
+    [Header("===RecordPart===")]
+    [SerializeField] private AudioSource playSouce = null;
+    [SerializeField] private AudioClip newClip = null;
+    [SerializeField] private string soundSouceName = null;
+    [SerializeField] private bool isRun = false;
     [SerializeField] private int audioNum;
     [SerializeField] private int auidPlayNum;
     [SerializeField] private float nowClipTime;
+    [Header("===BubbleBearImage===")]
+    [SerializeField] private RawImage bubbleBearImage = null;
+
 
 
     private void Start()
@@ -53,6 +59,14 @@ public class Func_Record : MonoBehaviour
     public void OnClick_Save()
     {
         //canvas change in Manager_BubbleBear ..connect with del
+        if (bubbleBearImage.texture == null) return;
+        else
+        {
+            Manager_BubbleBear bubbleBear = FindObjectOfType<Manager_BubbleBear>();
+            bubbleBear.OnClick_ButtonSave();    
+        } 
+           
+
     }
     public void DeleteRecordSource()
     {
