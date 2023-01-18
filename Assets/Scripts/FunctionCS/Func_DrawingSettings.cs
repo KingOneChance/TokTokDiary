@@ -76,12 +76,12 @@ namespace FreeDraw
         }
         public void SetEraser()
         {
-            SetMarkerColour(new Color32(255, 255, 255, 0));
+            func_Draw.selectedColor(ColorType.Eraser);
         }
 
         public void PartialSetEraser()
         {
-            SetMarkerColour(new Color32(255, 255, 255, 0));
+            SetMarkerColour(new Color32(255, 255, 255, 255));
         }
     }
 }
