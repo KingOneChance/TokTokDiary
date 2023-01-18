@@ -15,8 +15,8 @@ public class Func_BubbleBearSave : MonoBehaviour
     [SerializeField] private RawImage spaceBearImage = null;
     [SerializeField] private RawImage spaceSignImage = null;
     [Header("===Scripts===")]
+    [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
     [SerializeField] private Func_BubbleBearSign func_BubbleBearSign = null;
-    [SerializeField] private Func_Draw drawable = null;
     [Header("===Text===")]
     [SerializeField] private TextMeshProUGUI spriteText = null;
     [Header("===Path===")]
@@ -31,8 +31,6 @@ public class Func_BubbleBearSave : MonoBehaviour
 
     private void Awake()
     {
-        drawable.gameObject.SetActive(true);
-
         savePath = Application.persistentDataPath + "/RecordSticker/";
     }
     public void GetSaveSPrite(Sprite sprite)
@@ -49,9 +47,38 @@ public class Func_BubbleBearSave : MonoBehaviour
     }
     public void OnClick_RealSave()
     {
+        //test
+        StartCoroutine(Co_ScreenShotFrame());
+    }
+    IEnumerator Co_ScreenShotFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Texture2D tempTexture = ScreenCapture.CaptureScreenshotAsTexture();
+
+
+        Texture2D tex = new Texture2D(500, 500, TextureFormat.RGB24, false);
+
+        Rect rex = new Rect(1010, 240, 500, 500);
+
+        tex.ReadPixels(rex, 0, 0);
+        tex.Apply();
+
+
+
+        tempTexture.SetPixels(0, 0, 100, 100, tempTexture.GetPixels());
+
+        //tempTexture.ReadPixels(new Rect(0.5f,-2.75f,10,10), 0, 0);
+        tempTexture.Apply();
+
+        spaceSignImage.texture = tex;
+
+
+        SaveTexture();
+    }
+    private void SaveTexture()
+    {
         int nowNum;
         nowNum = Manager_Main.Instance.GetRecordStickerNum();
-
         //Bearimage Save
         SaveTextureToPng(spaceBearImage.texture, savePath, fileNameBear + "_" + nowNum);
         //Signimage Save
@@ -62,7 +89,9 @@ public class Func_BubbleBearSave : MonoBehaviour
 
         //recordNum increase
         Manager_Main.Instance.SetRecordStickerNum();
+        manager_BubbleBear.OnClick_ButtonSign();
     }
+
 
     public void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
@@ -87,6 +116,14 @@ public class Func_BubbleBearSave : MonoBehaviour
 
         File.WriteAllBytes(filePath, texturePNGBytes);
     }
+
+    public void SignTextureMaker()
+    {
+        Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
+        spaceSignImage.texture = (Texture)screenshot;
+    }
+
+
     //I have to add Saving record file Function.
     //I have to add Saving sign file Function.
 }
