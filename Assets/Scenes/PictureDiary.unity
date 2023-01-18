@@ -292,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
   line: {fileID: 0}
+  curColor: {r: 0, g: 0, b: 0, a: 1}
   col: {fileID: 0}
   drawingAreaMaxX: 8.65
   drawingAreaMinX: -0.65
@@ -6436,6 +6437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729917609}
+  - component: {fileID: 1729917610}
   m_Layer: 0
   m_Name: DrawingSettings
   m_TagString: Untagged
@@ -6458,6 +6460,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1729917610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729917607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75600556ee9170498044c9fe573dce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  func_Draw: {fileID: 30939877}
+  Transparency: 1
 --- !u!1 &1742516455
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,10 +7759,18 @@ PrefabInstance:
     - target: {fileID: 350009642305857298, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 350009642305857298, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerPink
       objectReference: {fileID: 0}
     - target: {fileID: 1640453850766617021, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 1640453850766617021, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerBlack
       objectReference: {fileID: 0}
     - target: {fileID: 2406333906068543427, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7923,10 +7947,18 @@ PrefabInstance:
     - target: {fileID: 3642014982209750249, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 3642014982209750249, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerRed
       objectReference: {fileID: 0}
     - target: {fileID: 3951555538713558134, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 3951555538713558134, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetEraser
       objectReference: {fileID: 0}
     - target: {fileID: 3961981934358295604, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_Name
@@ -7935,6 +7967,10 @@ PrefabInstance:
     - target: {fileID: 4907929177238048291, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 4907929177238048291, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerPupple
       objectReference: {fileID: 0}
     - target: {fileID: 5350286688358055038, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7955,6 +7991,10 @@ PrefabInstance:
     - target: {fileID: 5369506443711789161, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 5369506443711789161, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerBlue
       objectReference: {fileID: 0}
     - target: {fileID: 5397512628145859924, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7975,6 +8015,10 @@ PrefabInstance:
     - target: {fileID: 5794784796944115988, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 5794784796944115988, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerBrown
       objectReference: {fileID: 0}
     - target: {fileID: 5794784796944115995, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7995,10 +8039,18 @@ PrefabInstance:
     - target: {fileID: 6046129290236144785, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 6046129290236144785, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerGreen
       objectReference: {fileID: 0}
     - target: {fileID: 6135239062914213534, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 6135239062914213534, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerYellow
       objectReference: {fileID: 0}
     - target: {fileID: 6207353281275369068, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8019,6 +8071,10 @@ PrefabInstance:
     - target: {fileID: 8815873879709405550, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1729917610}
+    - target: {fileID: 8815873879709405550, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMarkerOrange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c718dd4e880d8b049a55468ac9b8c951, type: 3}

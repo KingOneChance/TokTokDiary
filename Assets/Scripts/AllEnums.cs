@@ -10,3 +10,16 @@ public enum ItemType
     Waffle,
     Diary
 }
+
+public enum ColorType
+{
+    Red,
+    Orange,
+    Yellow,
+    Green,
+    Blue,
+    Purple,
+    Pink,
+    Brown,
+    Black
+}
