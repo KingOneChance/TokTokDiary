@@ -23,7 +23,7 @@ public class UI_BubbleBubble : MonoBehaviour
     void Update()
     {
         if (isClicked == false) return;
-        Update_MousePosition();
+        //Update_MousePosition();
     }
     
     //È¨È­¸é
@@ -31,7 +31,7 @@ public class UI_BubbleBubble : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-    public void OnClick_BubbleGun()
+   /* public void OnClick_BubbleGun()
     {
         if(isClicked == false)
         {
@@ -42,10 +42,10 @@ public class UI_BubbleBubble : MonoBehaviour
             ui_BubbleGunRect.transform.position = startPos;
             isClicked = false;
         }
-        Init_Cursor();
+        //Init_Cursor();
        
     }
-    public void Init_Cursor()
+    *//*public void Init_Cursor()
     {
         //Cursor.visible = false;
 
@@ -58,8 +58,8 @@ public class UI_BubbleBubble : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         float w = ui_BubbleGunRect.rect.width;
         float h = ui_BubbleGunRect.rect.height;
-        ui_BubbleGunRect.position = mousePos /*+ (new Vector2(w, h) * 0.5f)*/;
+        ui_BubbleGunRect.position = mousePos *//*+ (new Vector2(w, h) * 0.5f)*//*;
 
-    }
+    }*/
 
 }

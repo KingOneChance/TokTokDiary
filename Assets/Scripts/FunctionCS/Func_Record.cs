@@ -65,8 +65,6 @@ public class Func_Record : MonoBehaviour
             Manager_BubbleBear bubbleBear = FindObjectOfType<Manager_BubbleBear>();
             bubbleBear.OnClick_ButtonSave();    
         } 
-           
-
     }
     public void DeleteRecordSource()
     {
