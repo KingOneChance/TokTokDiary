@@ -44,11 +44,11 @@ namespace FreeDraw
         }
         public void SetMarkerOrange()
         {
-            func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Orange);
         }
         public void SetMarkerYellow()
         {
-            func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Yellow);
         }
         public void SetMarkerGreen()
         {
@@ -60,15 +60,15 @@ namespace FreeDraw
         }
         public void SetMarkerPupple()
         {
-            func_Draw.selectedColor(ColorType.Blue);
+            func_Draw.selectedColor(ColorType.Purple);
         }
         public void SetMarkerPink()
         {
-            func_Draw.selectedColor(ColorType.Red);
+            func_Draw.selectedColor(ColorType.Pink);
         }
         public void SetMarkerBrown()
         {
-            func_Draw.selectedColor(ColorType.Yellow);
+            func_Draw.selectedColor(ColorType.Brown);
         }
         public void SetMarkerBlack()
         {
@@ -76,7 +76,7 @@ namespace FreeDraw
         }
         public void SetEraser()
         {
-            SetMarkerColour(new Color32(0, 0, 0, 0));
+            SetMarkerColour(new Color32(255, 255, 255, 0));
         }
 
         public void PartialSetEraser()
