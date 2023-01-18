@@ -10,9 +10,6 @@ using UnityEngine.UI;
 //The Purpose of isRun is to prevent the multi Sound play. JiHye
 public class Func_Record : MonoBehaviour
 {
-    [Header("===StateText===")]
-    [SerializeField] private TextMeshProUGUI newClipState = null;
-    [SerializeField] private TextMeshProUGUI playSourceState = null;
     [Header("===RecordPart===")]
     [SerializeField] private AudioSource playSouce = null;
     [SerializeField] private AudioClip newClip = null;
