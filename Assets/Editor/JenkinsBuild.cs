@@ -58,6 +58,12 @@ public class JenkinsBuild
     {
         if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+        FileInfo info = new FileInfo(Directory.GetCurrentDirectory() + "/Build");
+
+        if(info.Exists == false)
+        {
+            Directory.CreateDirectory(info.FullName);
+        }
 
         BuildPipeline.BuildPlayer(scenes, Directory.GetCurrentDirectory() + "/Build/" + target_filename, build_target, build_options);
     }
