@@ -41,7 +41,7 @@ public class JenkinsBuild
     {
         string target_filename = "TokTokDiary" + ".apk";
         string[] SCENES = EditorBuildSettingsScene.GetActiveSceneList(UnityEditor.EditorBuildSettings.scenes);
-        GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.None);
+        GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.Development);
     }
     //private static string[] FindEnabledEditorScenes()
     //{
