@@ -9,10 +9,10 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] Button[] ui_StickerBtns = null;
     [SerializeField] RawImage[] ui_Stickers = null;
 
-    private List<string> waffleList = new List<string>();
-    private List<string> audioList = new List<string>();
-    private List<string> weatherList = new List<string>();
-    private List<string> diaryList = new List<string>();
+    public List<string> waffleList = new List<string>();
+    public List<string> audioList = new List<string>();
+    public List<string> weatherList = new List<string>();
+    public List<string> diaryList = new List<string>();
     
 
     string path = "C:/Users/User/Desktop/Sticker/";

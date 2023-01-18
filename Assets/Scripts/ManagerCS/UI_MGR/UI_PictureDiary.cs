@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 public class UI_PictureDiary : MonoBehaviour
 {
     //그림판
@@ -20,27 +21,55 @@ public class UI_PictureDiary : MonoBehaviour
     //홈버튼
     [SerializeField] Button ui_HomeBtn = null;
     [Header("스티커")]
-    [SerializeField] RawImage[] ui_WaffleSticker = null;
-    [SerializeField] RawImage test = null;
+    [SerializeField] RawImage[] ui_Stickers = null;
+    [SerializeField] Button[] ui_StickersBtns = null;
 
     private Func_Camera func_Camera = null;
-    private Data_LocalSticker data_LocalSticker = null;
 
     private void Start()
     {
         func_Camera = FindObjectOfType<Func_Camera>();
-        data_LocalSticker = Manager_Main.Instance.Data_LocalSticker;
-        UpdateStickerInventoryFromList();
+        Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
     }
-
-    public void UpdateStickerInventoryFromList()
+    public void OnClick_WaffleRepository()
     {
-        for (int i = 0; i < data_LocalSticker.waffleList.Count; i++)
-        {
-            ui_WaffleSticker[i].texture = data_LocalSticker.waffleList[i];
-        }
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.waffleList);
     }
+    public void OnClick_AudioRepository()
+    {
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.audioList);
+    }
+    public void OnClick_WeatherRepository()
+    {
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.weatherList);
+    }
+    public void OnClick_DiaryRepository()
+    {
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.diaryList);
+    }
+    public void LoadLocalStickerInventory(List<string> anyList)
+    {
+        //initiate raw images's texture
+        for (int i = 0; i < ui_Stickers.Length; i++)
+        {
+            ui_Stickers[i].texture = null;
+        }
+        //Fill in the raw image's texture
+        for (int i = 0; i < anyList.Count; i++)
+        {
+            byte[] byteTexture = File.ReadAllBytes(anyList[i]);
 
+            if (byteTexture.Length > 0)
+            {
+                Texture2D texture = new Texture2D(0, 0);
+                texture.LoadImage(byteTexture);
+
+                ui_Stickers[i].texture = texture;
+            }
+        }
+
+        
+    }
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
@@ -54,12 +83,6 @@ public class UI_PictureDiary : MonoBehaviour
     {
         ui_CameraArea.gameObject.SetActive(false);
         ui_CameraOnBtn.gameObject.SetActive(true);
-    }
-
-    //홈화면
-    public void OnClick_Home()
-    {
-        //SceneManager.LoadScene("Main");
     }
 
     public void OnClick_Weather()
