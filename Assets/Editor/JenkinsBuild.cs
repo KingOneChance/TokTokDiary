@@ -42,7 +42,6 @@ public class JenkinsBuild
     {
         string target_filename = APP_NAME + ".apk";
         SCENES = FindEnabledEditorScenes();
-
         GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.None);
     }
     private static string[] FindEnabledEditorScenes()
