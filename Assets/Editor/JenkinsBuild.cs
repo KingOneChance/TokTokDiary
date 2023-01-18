@@ -38,11 +38,10 @@ public class JenkinsBuild
     static string APP_NAME = "TokTokDiary";
 
     [MenuItem("JenkinBuild/Build", false, 1)]
-    static void PerformBuild()
+    static void JenkinsBuildRun()
     {
-        string target_filename = "Build/" + APP_NAME + ".apk";
+        string target_filename = APP_NAME + ".apk";
         SCENES = FindEnabledEditorScenes();
-
         GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.None);
     }
     private static string[] FindEnabledEditorScenes()

@@ -78,31 +78,31 @@ namespace FreeDraw
             switch (type)
             {
                 case ColorType.Red :
-                    curColor = Color.red;
+                    curColor = new Color32(247, 67, 67, 255);
                     break;
                 case ColorType.Orange:
-                    curColor = Color.red;
+                    curColor = new Color32(248, 151, 49, 255);
                     break;
                 case ColorType.Yellow:
-                    curColor = Color.yellow;
+                    curColor = new Color32(253, 241, 100, 255);
                     break;
                 case ColorType.Green:
-                    curColor = Color.green;
+                    curColor = new Color32(147, 202, 91, 255);
                     break;
                 case ColorType.Blue:
-                    curColor = Color.blue;
+                    curColor = new Color32(98, 150, 207, 255);
                     break;
                 case ColorType.Purple:
-                    curColor = Color.blue;
+                    curColor = new Color32(158, 157, 186, 255);
                     break;
                 case ColorType.Pink:
-                    curColor = Color.red;
+                    curColor = new Color32(233, 160, 198, 255);
                     break;
                 case ColorType.Brown:
-                    curColor = Color.yellow;
+                    curColor = new Color32(141, 107, 75, 255);
                     break;
                 case ColorType.Black:
-                    curColor = Color.black;
+                    curColor = new Color32(30, 30, 30, 255);
                     break;
             }
         }
