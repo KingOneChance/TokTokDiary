@@ -33,15 +33,15 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_WaffleRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.waffleList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.freeList);
     }
     public void OnClick_AudioRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.audioList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.signList);
     }
     public void OnClick_WeatherRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.weatherList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bearList);
     }
     public void OnClick_DiaryRepository()
     {

@@ -71,9 +71,11 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/Record/", name, SearchOption.TopDirectoryOnly);
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/RecordSticker/", "*.png", SearchOption.TopDirectoryOnly);
 
-        recordStickerNum = allFiles.Length;
+        recordStickerNum = allFiles.Length/2;
+
+        
     }
     private void GetAllInfoFromServer()
     {

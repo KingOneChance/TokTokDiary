@@ -6,12 +6,15 @@ using System.IO;
 
 public class UI_StickerRepository : MonoBehaviour
 {
-    [SerializeField] Button[] ui_StickerBtns = null;
-    [SerializeField] RawImage[] ui_Stickers = null;
+    [Header("===StickerButtons===")]
+    [SerializeField] private Button[] ui_StickerBtns = null;
+    [Header("===Stickers===")]
+    [SerializeField] private RawImage[] ui_Stickers = null;
+    [SerializeField] private RawImage[] ui_RecordSubStickers = null;
 
-    public List<string> waffleList = new List<string>();
-    public List<string> audioList = new List<string>();
-    public List<string> weatherList = new List<string>();
+    public List<string> freeList = new List<string>();
+    public List<string> signList = new List<string>();
+    public List<string> bearList = new List<string>();
     public List<string> diaryList = new List<string>();
 
 
@@ -23,32 +26,36 @@ public class UI_StickerRepository : MonoBehaviour
 
     public void OnClick_WaffleRepository()
     {
-        LoadLocalSticker(waffleList);
+        LoadLocalSticker(freeList);
     }
     public void OnClick_AudioRepository()
     {
-        LoadLocalSticker(audioList);
+        LoadLocalSticker(signList);
     }
     public void OnClick_WeatherRepository()
     {
-        LoadLocalSticker(weatherList);
+        LoadLocalSticker(bearList);
     }
     public void OnClick_DiaryRepository()
     {
         LoadLocalSticker(diaryList);
     }
+    public void OnClick_RecordStickerRepository()
+    {
+        LoadLocalSticker(bearList, signList);
+    }
 
     public void OnClick_RepositoryOpen()
     {
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
-        if(allFiles.Length == waffleList.Count + audioList.Count+ weatherList.Count+ diaryList.Count)
+        if (allFiles.Length == freeList.Count + signList.Count + bearList.Count + diaryList.Count)
         {
             return;
         }
         //List Initiate for rearrange;
-        waffleList.Clear();
-        audioList.Clear();
-        weatherList.Clear();
+        freeList.Clear();
+        signList.Clear();
+        bearList.Clear();
         diaryList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
@@ -60,17 +67,17 @@ public class UI_StickerRepository : MonoBehaviour
                 texture.LoadImage(byteTexture);
 
 
-                if (allFiles[i].Contains("Waffle"))
+                if (allFiles[i].Contains("Free"))
                 {
-                    waffleList.Add(allFiles[i]);
+                    freeList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("Audio"))
+                else if (allFiles[i].Contains("Sign"))
                 {
-                    audioList.Add(allFiles[i]);
+                    signList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("Weather"))
+                else if (allFiles[i].Contains("Bear"))
                 {
-                    weatherList.Add(allFiles[i]);
+                    bearList.Add(allFiles[i]);
                 }
                 else if (allFiles[i].Contains("Diary"))
                 {
@@ -83,12 +90,23 @@ public class UI_StickerRepository : MonoBehaviour
             }
         }
     }
-    public void LoadLocalSticker(List<string> anyList )
+    /// <summary>
+    /// This function is purpose to fill Repository 
+    /// </summary>
+    /// <param name="anyList">Insert anyList without signlist</param>
+    /// <param name="anyList2">Insert signList</param>
+    public void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
         //initiate raw images's texture
         for (int i = 0; i < ui_Stickers.Length; i++)
         {
             ui_Stickers[i].texture = null;
+            ui_RecordSubStickers[i].gameObject.SetActive(false);
+            if (anyList2 != null)
+            {
+                ui_RecordSubStickers[i].gameObject.SetActive(true);    
+                ui_RecordSubStickers[i].texture = null;
+            }
         }
         //Fill in the raw image's texture
         for (int i = 0; i < anyList.Count; i++)
@@ -101,6 +119,17 @@ public class UI_StickerRepository : MonoBehaviour
                 texture.LoadImage(byteTexture);
 
                 ui_Stickers[i].texture = texture;
+            }
+            if (anyList2 != null)
+            {
+                byte[] byteTexture2 = File.ReadAllBytes(anyList2[i]);
+                if (byteTexture2.Length > 0)
+                {
+                    Texture2D texture2 = new Texture2D(0, 0);
+                    texture2.LoadImage(byteTexture2);
+
+                    ui_RecordSubStickers[i].texture = texture2;
+                }
             }
         }
     }
