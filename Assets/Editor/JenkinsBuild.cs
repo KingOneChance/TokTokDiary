@@ -34,26 +34,25 @@ using UnityEditor;
 
 public class JenkinsBuild
 {
-    static string[] SCENES = FindEnabledEditorScenes();
     static string APP_NAME = "TokTokDiary";
 
     [MenuItem("JenkinBuild/Build", false, 1)]
     static void JenkinsBuildRun()
     {
-        string target_filename = APP_NAME + ".apk";
-        SCENES = FindEnabledEditorScenes();
+        string target_filename = "TokTokDiary" + ".apk";
+        string[] SCENES = EditorBuildSettingsScene.GetActiveSceneList(UnityEditor.EditorBuildSettings.scenes);
         GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.None);
     }
-    private static string[] FindEnabledEditorScenes()
-    {
-        List<string> EditorScenes = new List<string>();
-        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
-        {
-            if (!scene.enabled) continue;
-            EditorScenes.Add(scene.path);
-        }
-        return EditorScenes.ToArray();
-    }
+    //private static string[] FindEnabledEditorScenes()
+    //{
+    //    List<string> EditorScenes = new List<string>();
+    //    foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+    //    {
+    //        if (!scene.enabled) continue;
+    //        EditorScenes.Add(scene.path);
+    //    }
+    //    return EditorScenes.ToArray();
+    //}
 
     static void GenericBuild(string[] scenes, string target_filename, BuildTarget build_target, BuildOptions build_options)
     {
