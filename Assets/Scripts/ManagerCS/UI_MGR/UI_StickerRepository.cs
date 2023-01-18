@@ -13,9 +13,13 @@ public class UI_StickerRepository : MonoBehaviour
     public List<string> audioList = new List<string>();
     public List<string> weatherList = new List<string>();
     public List<string> diaryList = new List<string>();
-    
 
+
+#if UNITY_EDITOR_WIN
     string path = "C:/Users/User/Desktop/Sticker/";
+#else
+        string path = Application.persistentDataPath + "/RecordSticker/";
+#endif
 
     public void OnClick_WaffleRepository()
     {

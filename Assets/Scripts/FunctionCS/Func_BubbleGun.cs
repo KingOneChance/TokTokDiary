@@ -2,35 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Func_BubbleGun : MonoBehaviour
+using UnityEngine.EventSystems;
+public class Func_BubbleGun : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    [SerializeField] RectTransform transform_icon;
+    [SerializeField] RectTransform ui_transform_icon;
+    [SerializeField] Image ui_backGround;
+    private Vector3 startPos;
 
-    private void Start()
-    {
-        //Init_Cursor();
-    }
-    private void Update()
-    {
-        //Update_MousePosition();
-    }
-
-    public void Init_Cursor()
-    {
-        //Cursor.visible = false;
-       
-        if (transform_icon.GetComponent<Graphic>())
-            transform_icon.GetComponent<Graphic>().raycastTarget = false;
-    }
-
-    public void Update_MousePosition()
+    public void OnDrag(PointerEventData eventData)
     {
         Vector2 mousePos = Input.mousePosition;
-        float w = transform_icon.rect.width;
-        float h = transform_icon.rect.height;
-        transform_icon.position = mousePos /*+ (new Vector2(w, h) * 0.5f)*/;
+        ui_transform_icon.position = mousePos;
 
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Debug.Log("시작");
+        startPos = ui_backGround.transform.position;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("드래그끝");
+        ui_transform_icon.position = startPos;
     }
 
 }
