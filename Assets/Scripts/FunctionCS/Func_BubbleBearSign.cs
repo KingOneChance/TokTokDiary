@@ -10,8 +10,11 @@ public class Func_BubbleBearSign : MonoBehaviour
 
     [Header("===SaveOject===")]
     [SerializeField] private GameObject saveObjectFile = null;
-
+    [Header("===DrawCamera===")]
+    [SerializeField] private Camera drawCam=null;
    
+    
+
     public void GetSignSPrite(Texture sprite)
     {
         spaceSign.texture = sprite;

@@ -21,6 +21,7 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject checkCanvas = null;
     [SerializeField] private GameObject afterRecord = null;
     [SerializeField] private GameObject popUpImage = null;
+    [SerializeField] private GameObject drawDraw = null;
 
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
@@ -34,6 +35,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         saveCanvas.SetActive(false);
         checkCanvas.SetActive(false);
+        drawDraw.SetActive(false);
         InitAfterRecordButton();
     }
 
@@ -75,6 +77,7 @@ public class Manager_BubbleBear : MonoBehaviour
         
         taskCanvas.SetActive(false);
         saveCanvas.SetActive(true);
+        drawDraw.SetActive(true);
     }
     //This is PopUp Function 
     public void OnClick_HomePopUp()
@@ -87,6 +90,8 @@ public class Manager_BubbleBear : MonoBehaviour
         homeCanvas.SetActive(false);
         saveCanvas.SetActive(false);
         checkCanvas.SetActive(true);
+        drawDraw.SetActive(false);
+
     }
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()
