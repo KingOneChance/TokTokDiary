@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
+using Debug = UnityEngine.Debug;
 
 public class JenkinsBuild
 {
@@ -25,7 +26,7 @@ public class JenkinsBuild
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = UnityEditor.EditorBuildSettingsScene.GetActiveSceneList(UnityEditor.EditorBuildSettings.scenes);
-        buildPlayerOptions.locationPathName = string.Format("Build(AOS)/≈Â≈Â¥Ÿ¿ÃæÓ∏Æ_{0}.apk", PlayerSettings.bundleVersion);
+        buildPlayerOptions.locationPathName = string.Format("Build/≈Â≈Â¥Ÿ¿ÃæÓ∏Æ_{0}.apk", PlayerSettings.bundleVersion);
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.Development;
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
@@ -33,12 +34,12 @@ public class JenkinsBuild
 
         if (summary.result == BuildResult.Succeeded)
         {
-            Debug.Print("Build Succeeded: " + summary.totalSize + "bytes");
+            Debug.Log("Build Succeeded: " + summary.totalSize + "bytes");
         }
 
         if (summary.result == BuildResult.Failed)
         {
-            Debug.Print("Build Failed");
+            Debug.Log("Build Failed");
         }
     }
 }
