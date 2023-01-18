@@ -53,7 +53,7 @@ using System;
 public class JenkinsBuild
 {
     static string[] SCENES = FindEnabledEditorScenes();
-    static string APP_NAME = "≈Â≈Â¥Ÿ¿ÃæÓ∏Æ";
+    static string APP_NAME = "TokTokDiary";
 
     [UnityEditor.MenuItem("JenkinsBuild/Build", false, 1)]
     static void JenkinsBuildRun()
@@ -63,7 +63,7 @@ public class JenkinsBuild
         //    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Build/");
         //}
 
-        string target_filename = "Build/" + APP_NAME + ".apk";
+        string target_filename = "BuildT/" + APP_NAME + ".apk";
         SCENES = FindEnabledEditorScenes();
 
         GenericBuild(SCENES, target_filename, BuildTarget.Android, BuildOptions.None);
