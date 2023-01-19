@@ -130,7 +130,6 @@ public class UI_PictureDiary : MonoBehaviour
             isNiddleClicked = false;
             NiddleState = NiddleType.None;
         }
-
     } 
     public void OnClick_BubbleStick()
     {
