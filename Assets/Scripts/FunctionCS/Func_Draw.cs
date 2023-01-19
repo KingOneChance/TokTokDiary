@@ -31,7 +31,10 @@ namespace FreeDraw
         public void StopDraw(bool isStop)
         {
             isDragSticker = isStop;
-            onObject = true;
+            if (isStop)
+                onObject = true;
+            else
+                onObject = false;
         }
 
         private void Awake()
@@ -44,10 +47,10 @@ namespace FreeDraw
         {
             if (onObject == false)
             {
-                if (CheckArea() == true  )
+                if (CheckArea() == true)
                 {
                     //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
-                    if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false ||onObject==true)))
+                    if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
                     {
                         internalClick = true;
                         GameObject Obj = Instantiate(linePrefab);
@@ -89,7 +92,6 @@ namespace FreeDraw
         {
             onObject = false;
         }
-
 
         public bool CheckArea()
         {
