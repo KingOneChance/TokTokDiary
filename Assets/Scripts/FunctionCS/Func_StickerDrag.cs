@@ -18,6 +18,7 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
         del_DrawStop = func_draw.StopDraw;
 
         rect = GetComponent<RectTransform>();
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -29,12 +30,14 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("시작");
+       // Debug.Log("시작");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("끝");
+       //Debug.Log("끝");
         del_DrawStop(false);
     }
+
+
 }
