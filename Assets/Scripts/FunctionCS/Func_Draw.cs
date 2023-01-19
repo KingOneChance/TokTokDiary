@@ -6,18 +6,24 @@ namespace FreeDraw
 {
     public class Func_Draw : MonoBehaviour
     {
+        [Header("===Frame shape check===")]
+        [SerializeField] private bool isCircleFrame = false;
+        [SerializeField] private float circleSize;
+
         [SerializeField] GameObject linePrefab;
         [SerializeField] public LineRenderer line = null;
         public Color curColor = Color.black;
         [SerializeField] EdgeCollider2D col;
         List<Vector2> points = new List<Vector2>();
 
-        [SerializeField] float drawingAreaMaxX = 0f;
-        [SerializeField] float drawingAreaMinX = 0f;
-        [SerializeField] float drawingAreaMaxY = 0f;
-        [SerializeField] float drawingAreaMinY = 0f;
+        [SerializeField] private float drawingAreaMaxX = 0f;
+        [SerializeField] private float drawingAreaMinX = 0f;
+        [SerializeField] private float drawingAreaMaxY = 0f;
+        [SerializeField] private float drawingAreaMinY = 0f;
+        [SerializeField] private Camera mainCam = null;
 
-        [SerializeField] Camera mainCam = null;
+        [Header("===InitialClickPoisitionCheck===")]
+        [SerializeField] private bool externalClick = false;
 
         private void Awake()
         {
@@ -29,8 +35,10 @@ namespace FreeDraw
         {
             if (CheckArea() == true)
             {
-                if (Input.GetMouseButtonDown(0))
+
+                if (Input.GetMouseButtonDown(0)||((Input.GetMouseButton(0) && externalClick == false)))
                 {
+                    externalClick = true;
                     GameObject Obj = Instantiate(linePrefab);
                     line = Obj.GetComponent<LineRenderer>();
                     col = Obj.GetComponent<EdgeCollider2D>();
@@ -42,11 +50,9 @@ namespace FreeDraw
                     line.positionCount = 1;
                     line.SetPosition(0, points[0]);
                 }
-
-                else if (Input.GetMouseButton(0))
+                else if (Input.GetMouseButton(0) && externalClick == true)
                 {
                     Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
                     points.Add(pos);
                     line.positionCount++;
                     line.SetPosition(line.positionCount - 1, pos);
@@ -57,27 +63,45 @@ namespace FreeDraw
                     points.Clear();
                 }
             }
+            else externalClick = false;
         }
 
         private bool CheckArea()
         {
-            Vector3 curTouchPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
-            if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
-                curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY)
+            if (isCircleFrame == false)
             {
+                Vector3 curTouchPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-                return true;
+                if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
+                    curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY)
+                {
+                    return true;
+                }
+                else
+                {
+                    points.Clear();
+                    return false;
+                }
             }
             else
-                return false;
+            {
+                Vector3 curTouchPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                // this condition for draw only circle frame, so Use this equation of a circle 
+                if (curTouchPos.x * curTouchPos.x + curTouchPos.y * curTouchPos.y <= circleSize * circleSize)
+                    return true;
+                else
+                {
+                    points.Clear();
+                    return false;
+                }
+            }
         }
 
         public void selectedColor(ColorType type)
         {
             switch (type)
             {
-                case ColorType.Red :
+                case ColorType.Red:
                     curColor = new Color32(247, 67, 67, 255);
                     break;
                 case ColorType.Orange:
