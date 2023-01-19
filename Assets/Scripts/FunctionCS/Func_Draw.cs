@@ -100,7 +100,7 @@ namespace FreeDraw
                     curColor = new Color32(98, 150, 207, 255);
                     break;
                 case ColorType.Purple:
-                    curColor = new Color32(158, 157, 186, 255);
+                    curColor = new Color32(158, 127, 186, 255);
                     break;
                 case ColorType.Pink:
                     curColor = new Color32(233, 160, 198, 255);
