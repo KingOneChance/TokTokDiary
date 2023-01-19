@@ -71,9 +71,15 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/Record/", name, SearchOption.TopDirectoryOnly);
-
+        
+#if UNITY_EDITOR_WIN
+        
+#else
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/Record/", name, SearchOption.TopDirectoryOnly);.
         recordStickerNum = allFiles.Length;
+#endif
+
+
     }
     private void GetAllInfoFromServer()
     {

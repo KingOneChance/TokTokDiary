@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class UI_BubbleBubble : MonoBehaviour
 {
     //È¨¹öÆ°
-    [SerializeField] Button ui_HomeBtn = null;
+    [SerializeField] private Button ui_HomeBtn = null;
     //BubbleGun Image
-    [SerializeField] RectTransform ui_BubbleGunRect = null;
-    [SerializeField] Button ui_BubbleGunBtn = null;
+    [SerializeField] private RectTransform ui_BubbleGunRect = null;
+    [SerializeField] private Button ui_BubbleGunBtn = null;
 
     Vector2 startPos = Vector3.zero;
     private bool isClicked = false;
