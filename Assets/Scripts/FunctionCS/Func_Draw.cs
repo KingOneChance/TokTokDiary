@@ -19,6 +19,13 @@ namespace FreeDraw
 
         [SerializeField] Camera mainCam = null;
 
+        private bool isDragSticker = false;
+
+        public void StopDraw(bool isStop)
+        {
+            isDragSticker = isStop;
+        }
+
         private void Awake()
         {
             mainCam = Camera.main;
@@ -27,7 +34,7 @@ namespace FreeDraw
 
         private void Update()
         {
-            if (CheckArea() == true)
+            if (CheckArea() == true && isDragSticker == false)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
