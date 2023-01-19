@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace FreeDraw
 {
     public class Func_Draw : MonoBehaviour
@@ -23,13 +23,15 @@ namespace FreeDraw
         [SerializeField] private Camera mainCam = null;
 
         [Header("===InitialClickPoisitionCheck===")]
-        [SerializeField] private bool externalClick = false;
+        [SerializeField] private bool internalClick = false;
 
-        private bool isDragSticker = false;
-
+        [SerializeField] private bool isDragSticker = false;
+        private GameObject tempOBJ;
+        [SerializeField] private bool onObject;
         public void StopDraw(bool isStop)
         {
             isDragSticker = isStop;
+            onObject = true;
         }
 
         private void Awake()
@@ -40,40 +42,56 @@ namespace FreeDraw
 
         private void Update()
         {
-            if (CheckArea() == true && isDragSticker == false)
+            if (onObject == false)
             {
+                if (CheckArea() == true  )
+                {
+                    //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
+                    if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false ||onObject==true)))
+                    {
+                        internalClick = true;
+                        GameObject Obj = Instantiate(linePrefab);
+                        tempOBJ = Obj;
+                        line = Obj.GetComponent<LineRenderer>();
+                        col = Obj.GetComponent<EdgeCollider2D>();
+                        Obj.transform.position = Vector3.zero;
+                        Obj.GetComponent<LineRenderer>().startColor = curColor;
+                        Obj.GetComponent<LineRenderer>().endColor = curColor;
 
-                if (Input.GetMouseButtonDown(0)||((Input.GetMouseButton(0) && externalClick == false)))
-                {
-                    externalClick = true;
-                    GameObject Obj = Instantiate(linePrefab);
-                    line = Obj.GetComponent<LineRenderer>();
-                    col = Obj.GetComponent<EdgeCollider2D>();
-                    Obj.transform.position = Vector3.zero;
-                    Obj.GetComponent<LineRenderer>().startColor = curColor;
-                    Obj.GetComponent<LineRenderer>().endColor = curColor;
-
-                    points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
-                    line.positionCount = 1;
-                    line.SetPosition(0, points[0]);
+                        points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
+                        line.positionCount = 1;
+                        line.SetPosition(0, points[0]);
+                    }
+                    //during drag
+                    else if (Input.GetMouseButton(0) && internalClick == true)
+                    {
+                        Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                        points.Add(pos);
+                        line.positionCount++;
+                        line.SetPosition(line.positionCount - 1, pos);
+                        col.points = points.ToArray();
+                    }
+                    //end drag
+                    else if (Input.GetMouseButtonUp(0))
+                    {
+                        points.Clear();
+                        if (isDragSticker == true) Destroy(tempOBJ);
+                    }
                 }
-                else if (Input.GetMouseButton(0) && externalClick == true)
-                {
-                    Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                    points.Add(pos);
-                    line.positionCount++;
-                    line.SetPosition(line.positionCount - 1, pos);
-                    col.points = points.ToArray();
-                }
-                else if (Input.GetMouseButtonUp(0))
-                {
-                    points.Clear();
-                }
+                else internalClick = false;
             }
-            else externalClick = false;
+        }
+        public void MMMMMM()
+        {
+            onObject = true;
+        }
+        public void NNNNN()
+        {
+            onObject = false;
         }
 
-        private bool CheckArea()
+
+        public bool CheckArea()
         {
             if (isCircleFrame == false)
             {
@@ -103,7 +121,6 @@ namespace FreeDraw
                 }
             }
         }
-
         public void selectedColor(ColorType type)
         {
             switch (type)

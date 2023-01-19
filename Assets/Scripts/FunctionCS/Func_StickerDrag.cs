@@ -12,13 +12,25 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     public Del_DrawStop del_DrawStop = null;
     Func_Draw func_draw = null;
 
+    [SerializeField] private bool isClickMe = false;
+
+    RectTransform rectTransform = null;
+
     private void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
         func_draw = FindObjectOfType<Func_Draw>();
         del_DrawStop = func_draw.StopDraw;
 
         rect = GetComponent<RectTransform>();
     }
+
+
+    public void OnClick_MyButton()
+    {
+        isClickMe = true;
+    }
+
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -37,4 +49,5 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
         Debug.Log("³¡");
         del_DrawStop(false);
     }
+
 }

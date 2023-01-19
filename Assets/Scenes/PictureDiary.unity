@@ -4536,6 +4536,7 @@ GameObject:
   - component: {fileID: 1034301098}
   - component: {fileID: 1034301099}
   - component: {fileID: 1034301101}
+  - component: {fileID: 1034301102}
   m_Layer: 5
   m_Name: SoapBubble
   m_TagString: Untagged
@@ -4560,7 +4561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -190.40399}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034301098
@@ -4633,7 +4634,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1034301098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1034301101}
+        m_TargetAssemblyTypeName: Func_StickerDrag, Assembly-CSharp
+        m_MethodName: OnClick_MyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1034301100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4654,6 +4667,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3779829f436c1d48b6f41edc3f26560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClickMe: 0
+--- !u!114 &1034301102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034301096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 30939877}
+          m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
+          m_MethodName: NNNNN
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 30939877}
+          m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
+          m_MethodName: NNNNN
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 30939877}
+          m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
+          m_MethodName: MMMMMM
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1099955211
 GameObject:
   m_ObjectHideFlags: 0

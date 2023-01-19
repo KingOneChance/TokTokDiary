@@ -237,7 +237,8 @@ MonoBehaviour:
   drawingAreaMaxY: 3.95
   drawingAreaMinY: -3.3
   mainCam: {fileID: 1359955307}
-  externalClick: 0
+  internalClick: 0
+  isDragSticker: 0
 --- !u!20 &30939878
 Camera:
   m_ObjectHideFlags: 0
