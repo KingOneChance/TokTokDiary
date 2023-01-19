@@ -111,6 +111,9 @@ namespace FreeDraw
                 case ColorType.Black:
                     curColor = new Color32(30, 30, 30, 255);
                     break;
+                case ColorType.Eraser:
+                    curColor = new Color32(255, 255, 255, 255);
+                    break;
             }
         }
     }

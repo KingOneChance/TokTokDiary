@@ -53,8 +53,6 @@ public class Func_BubbleBearSave : MonoBehaviour
     IEnumerator Co_ScreenShotFrame()
     {
         yield return new WaitForEndOfFrame();
-        Texture2D tempTexture = ScreenCapture.CaptureScreenshotAsTexture();
-
 
         Texture2D tex = new Texture2D(500, 500, TextureFormat.RGB24, false);
 
@@ -62,13 +60,6 @@ public class Func_BubbleBearSave : MonoBehaviour
 
         tex.ReadPixels(rex, 0, 0);
         tex.Apply();
-
-
-
-        tempTexture.SetPixels(0, 0, 100, 100, tempTexture.GetPixels());
-
-        //tempTexture.ReadPixels(new Rect(0.5f,-2.75f,10,10), 0, 0);
-        tempTexture.Apply();
 
         spaceSignImage.texture = tex;
 

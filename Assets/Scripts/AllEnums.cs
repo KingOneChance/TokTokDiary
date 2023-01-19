@@ -21,5 +21,6 @@ public enum ColorType
     Purple,
     Pink,
     Brown,
-    Black
+    Black,
+    Eraser
 }
