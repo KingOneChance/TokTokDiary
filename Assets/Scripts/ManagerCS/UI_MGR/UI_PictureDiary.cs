@@ -24,11 +24,21 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage[] ui_Stickers = null;
     [SerializeField] Button[] ui_StickersBtns = null;
 
+    [Header("¹Ù´Ã")]
+    [SerializeField] Button ui_NiddleBtn = null;
+    [SerializeField] Texture2D ui_NiddleImage = null;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
+
     private Func_Camera func_Camera = null;
 
     private void Start()
     {
         func_Camera = FindObjectOfType<Func_Camera>();
+
+        hotSpot.x = ui_NiddleImage.width / 2;
+        hotSpot.y = ui_NiddleImage.height / 2;
+
         Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
     }
     public void OnClick_WaffleRepository()
@@ -90,5 +100,19 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ShinyImage.color = Color.red;
         
     }
+    private bool isClicked = false;
+    public void OnClick_NiddleBtn()
+    {
+        if (!isClicked)
+        {
+            Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
+            isClicked = true;
+        }
+        else
+        {
+            Cursor.SetCursor(default, hotSpot, cursorMode);
+            isClicked = false;
+        }
 
+    }
 }

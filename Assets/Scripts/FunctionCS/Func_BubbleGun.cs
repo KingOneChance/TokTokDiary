@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Func_BubbleGun : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+
     [SerializeField] RectTransform ui_transform_icon;
     [SerializeField] Image ui_backGround;
     private Vector3 startPos;
@@ -18,13 +19,11 @@ public class Func_BubbleGun : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("시작");
         startPos = ui_backGround.transform.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("드래그끝");
         ui_transform_icon.position = startPos;
     }
 
