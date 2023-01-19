@@ -14,11 +14,18 @@ public class Manager_BubbleSticker : MonoBehaviour
     [SerializeField] Color[] paletteColors = null;
     [SerializeField] Animator DesignAnim = null;
     [SerializeField] Animator ColorAnim = null;
+
     private bool isClickedDesign = false;
     private bool isClickedColor = false;
 
-    private Color initColor = new Color(255,255,255,255);
     private Color showColor = new Color(255,255,255,255);
+
+    private CreateStickerState curState;
+
+    private void Start()
+    {
+        curState = CreateStickerState.Select;
+    }
 
     public void OnClick_ColorBtn(int idx)
     {
@@ -96,5 +103,26 @@ public class Manager_BubbleSticker : MonoBehaviour
         {
             Debug.Log("There are some that haven't been selected yet, so choose them");
         }
+    }
+
+    private void ChangeState(CreateStickerState state)
+    {
+        curState = state;
+        StartCoroutine("CO_" + state.ToString());
+    }
+
+    IEnumerator CO_Select()
+    {
+        yield return null;
+    }
+
+    IEnumerator CO_Decide()
+    {
+        yield return null;
+    }
+
+    IEnumerator CO_Create()
+    {
+        yield return null;
     }
 }
