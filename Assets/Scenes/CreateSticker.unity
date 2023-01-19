@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCircleFrame: 1
-  circleSize: 4
+  circleSize: 4.4
   linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
   line: {fileID: 0}
   curColor: {r: 0, g: 0, b: 0, a: 1}
@@ -239,6 +239,7 @@ MonoBehaviour:
   mainCam: {fileID: 1359955307}
   internalClick: 0
   isDragSticker: 0
+  onObject: 0
 --- !u!20 &30939878
 Camera:
   m_ObjectHideFlags: 0
