@@ -9,7 +9,7 @@ public class JenkinsBuild
     public static void JenkinsBuildRun()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = UnityEditor.EditorBuildSettingsScene.GetActiveSceneList(UnityEditor.EditorBuildSettings.scenes);
+        buildPlayerOptions.scenes = EditorBuildSettingsScene.GetActiveSceneList(UnityEditor.EditorBuildSettings.scenes);
         buildPlayerOptions.locationPathName = string.Format("Build/TokTokDiary_{0}.apk", PlayerSettings.bundleVersion);
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.Development;
