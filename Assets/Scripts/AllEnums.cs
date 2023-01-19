@@ -24,3 +24,21 @@ public enum ColorType
     Black,
     Eraser
 }
+
+public enum NiddleType
+{
+    None,
+    Niddle
+}
+
+public enum SoupBubbleType
+{
+    Soap,
+    Attached
+}
+
+public enum StickType
+{
+    None,
+    Stick
+}

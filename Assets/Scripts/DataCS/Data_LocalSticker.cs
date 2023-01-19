@@ -37,7 +37,6 @@ public class Data_LocalSticker : MonoBehaviour
         {
             //Add Waffle Sticker
             waffleList.Add(obj);
-            Debug.Log("It is a Waffle Sticker!");
         }
         else if (state == ItemType.Audio)
         {

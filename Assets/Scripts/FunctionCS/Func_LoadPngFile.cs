@@ -41,21 +41,21 @@ public class Func_LoadPngFile : MonoBehaviour
                 else if (allFiles[i].Contains("Audio"))
                 {
                     Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Audio);
-                    Debug.Log("오디오");
+                    //Debug.Log("오디오");
                 }
                 else if (allFiles[i].Contains("Weather"))
                 {
                     Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Weather);
-                    Debug.Log("날씨");
+                    //Debug.Log("날씨");
                 }
                 else if (allFiles[i].Contains("Diary"))
                 {
                     Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, ItemType.Diary);
-                    Debug.Log("일기");
+                   // Debug.Log("일기");
                 }
                 else
                 {
-                    Debug.Log("나머지");
+                    //Debug.Log("나머지");
                 }
             }          
         }

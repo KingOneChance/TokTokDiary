@@ -24,12 +24,36 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage[] ui_Stickers = null;
     [SerializeField] Button[] ui_StickersBtns = null;
 
+    [Header("¹Ù´Ã")]
+    [SerializeField] Button ui_NiddleBtn = null;
+    [SerializeField] Texture2D ui_NiddleImage = null;
+
+    [SerializeField] Texture2D ui_StickImage = null;
+
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
+
+    private bool isNiddleClicked = false;
+    private bool isStickClicked = false;
+
     private Func_Camera func_Camera = null;
+
+    [SerializeField] GameObject soupImage = null;
 
     private void Start()
     {
+        
         func_Camera = FindObjectOfType<Func_Camera>();
+
+        hotSpot.x = ui_NiddleImage.width / 2;
+        hotSpot.y = ui_NiddleImage.height / 2;
+       
         Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
+
+        //¹Ù´Ã »óÅÂ
+        NiddleState = NiddleType.None;
+        //ºñ´°¹æ¿ï ½ºÆ¼Ä¿ »óÅÂ
+        SoupState = SoupBubbleType.Soap;
     }
     public void OnClick_WaffleRepository()
     {
@@ -89,6 +113,61 @@ public class UI_PictureDiary : MonoBehaviour
     {
         ui_ShinyImage.color = Color.red;
         
+    }
+
+    
+    public void OnClick_NiddleBtn()
+    {
+        if (!isNiddleClicked)
+        {
+            Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
+            isNiddleClicked = true;
+            NiddleState = NiddleType.Niddle;
+        }
+        else
+        {
+            Cursor.SetCursor(default, hotSpot, cursorMode);
+            isNiddleClicked = false;
+            NiddleState = NiddleType.None;
+        }
+
+    } 
+    public void OnClick_BubbleStick()
+    {
+        if (!isStickClicked)
+        {
+            Cursor.SetCursor(ui_StickImage, hotSpot, cursorMode);
+            isStickClicked = true;
+            StickState = StickType.Stick;
+        }
+        else
+        {
+            Cursor.SetCursor(default, hotSpot, cursorMode);
+            isStickClicked = false;
+            StickState = StickType.None;
+        }
+    }
+    private NiddleType NiddleState;
+    public NiddleType NiddleStateInfo { get { return NiddleState; } }
+    private SoupBubbleType SoupState;
+    public SoupBubbleType SoupStateInfo { get { return SoupState; } }
+
+    private StickType StickState;
+    public StickType StickStateInfo { get { return StickState; } }
+    public void OnClick_Pop()
+    {
+        if(NiddleState == NiddleType.Niddle && SoupState == SoupBubbleType.Soap)
+        {
+            Debug.Log("Æã");
+            soupImage.GetComponent<Func_StickerDrag>().enabled = false;
+            SoupState = SoupBubbleType.Attached;
+        }
+        if (SoupState == SoupBubbleType.Attached && StickState == StickType.Stick)
+        {
+            soupImage.GetComponent<Func_StickerDrag>().enabled = true;
+            SoupState = SoupBubbleType.Soap;
+            Debug.Log("¶¼Á³Áê?");
+        }
     }
 
 }

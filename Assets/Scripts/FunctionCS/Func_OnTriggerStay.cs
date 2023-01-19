@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Func_OnTriggerStay : MonoBehaviour
 {
-    float flowTime = 0;
-    Color mat;
+    private float flowTime = 0;
+    private Color mat;
 
     private void Start()
     {
@@ -24,7 +24,6 @@ public class Func_OnTriggerStay : MonoBehaviour
                 flowTime = 0;
                 Debug.Log("Æã");
                 collision.GetComponent<Image>().color = mat;
-
             }
         }
         else
