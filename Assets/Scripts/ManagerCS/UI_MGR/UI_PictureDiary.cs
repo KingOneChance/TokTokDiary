@@ -9,8 +9,8 @@ public class UI_PictureDiary : MonoBehaviour
     //그림판
     [Header("그림판")]
     [SerializeField] Image ui_DrawBackground = null;
-    [SerializeField] Button ui_ShinyWeatherBtn = null;
-    [SerializeField] Image ui_ShinyImage = null;
+    [SerializeField] Button[] ui_WeatherBtn = null;
+   
     [Header("카메라")]
     //카메라 on - off, 불러오기
     [SerializeField] Image ui_CameraArea = null;
@@ -108,11 +108,36 @@ public class UI_PictureDiary : MonoBehaviour
         ui_CameraArea.gameObject.SetActive(false);
         ui_CameraOnBtn.gameObject.SetActive(true);
     }
-
-    public void OnClick_Weather()
+    //날씨 색 바꾸기
+    public void OnClick_Weather(string weatherState)
     {
-        ui_ShinyImage.color = Color.red;
-        
+        switch (weatherState)
+        {
+            case "Shiny":
+                if(ui_WeatherBtn[0].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.white;
+                break;
+            case "Rainy":
+                if (ui_WeatherBtn[1].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.white;
+                break;
+            case "Snow":
+                if (ui_WeatherBtn[2].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.white;
+                break;
+            case "Cloudy":
+                if (ui_WeatherBtn[3].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.white;
+                break;
+        }
     }
 
     
