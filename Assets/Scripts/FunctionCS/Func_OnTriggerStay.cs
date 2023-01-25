@@ -10,7 +10,6 @@ public class Func_OnTriggerStay : MonoBehaviour
 
     private void Start()
     {
-
         mat = new Color(0, 0, 0,0);
     }
     private void OnTriggerStay2D(Collider2D collision)
