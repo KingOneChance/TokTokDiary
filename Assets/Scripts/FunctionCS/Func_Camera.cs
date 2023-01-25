@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Android;
 using System.IO;
 using TMPro;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+
 public class Func_Camera : MonoBehaviour
 {
     private WebCamTexture camTexture;
@@ -64,30 +66,35 @@ public class Func_Camera : MonoBehaviour
 
     public void Onclick_LoadImage()
     {
-        Debug.Log("file Path : ");
-        NativeGallery.GetImageFromGallery((file) =>
-        {
-            //용량제한
-            Debug.Log("file Path : 1번째줄" + file);
-            FileInfo selected = new FileInfo(file);
-            //용량제한
-            Debug.Log("file Path : 2번째줄" + file);
-            if (selected.Length > 50000000)
-            {
-                Debug.Log("file Path 없음");
-                return;
-            }
-            if (!string.IsNullOrEmpty(file))
-            {
-                Debug.Log("file Path 있음");
+        //Debug.Log("file Path : ");
+        //NativeGallery.GetImageFromGallery((file) =>
+        //{
+        //    //용량제한
+        //    Debug.Log("file Path : 1번째줄" + file);
+        //    FileInfo selected = new FileInfo(file);
+        //    //용량제한
+        //    Debug.Log("file Path : 2번째줄" + file);
+        //    if (selected.Length > 50000000)
+        //    {
+        //        Debug.Log("file Path 없음");
+        //        return;
+        //    }
+        //    if (!string.IsNullOrEmpty(file))
+        //    {
+        //        Debug.Log("file Path 있음");
 
-                //불러와라
-                StartCoroutine(LoadImage(file));
-            }
-        });
-        Debug.Log("file Path 탐색끝 ");
-        if (loadImage.rectTransform.rotation != Quaternion.identity)
-            loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+        //        //불러와라
+        //        StartCoroutine(LoadImage(file));
+        //    }
+        //});
+        //Debug.Log("file Path 탐색끝 ");
+        //if (loadImage.rectTransform.rotation != Quaternion.identity)
+        //    loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+
+        NativeGallery.GetMixedMediaFromGallery((media) =>
+        {
+            FileInfo selectedMedia = new FileInfo(media);
+        }, NativeGallery.MediaType.Image | NativeGallery.MediaType.Video);
 
     }
     IEnumerator LoadImage(string path)

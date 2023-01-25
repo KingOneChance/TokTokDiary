@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using static NativeCamera;
+using System;
+
 public class UI_PictureDiary : MonoBehaviour
 {
+    [SerializeField] string path = "";
     //그림판
     [Header("그림판")]
     [SerializeField] Image ui_DrawBackground = null;
@@ -42,7 +46,6 @@ public class UI_PictureDiary : MonoBehaviour
 
     private void Start()
     {
-        
         func_Camera = FindObjectOfType<Func_Camera>();
 
         hotSpot.x = ui_NiddleImage.width / 2;
@@ -94,6 +97,31 @@ public class UI_PictureDiary : MonoBehaviour
 
         
     }
+
+    public void OnClick_NativeCameraOnBtn()
+    {
+        TakePicture(CallBack);
+    }
+
+    private void CallBack(string path)
+    {
+        Byte[] bytes = File.ReadAllBytes(path);
+        string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+        NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
+    }
+
+    public void OnClick_NativeCameraVideoOnBtn()
+    {
+        RecordVideo(VideoCallBack);
+    }
+
+    private void VideoCallBack(string path)
+    {
+        Byte[] bytes = File.ReadAllBytes(path);
+        string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+        NativeGallery.SaveVideoToGallery(bytes, "DiaryVideoAlbum", fileName + ".mp4");
+    }
+
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
