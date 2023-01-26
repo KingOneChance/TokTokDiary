@@ -29,6 +29,9 @@ namespace FreeDraw
         [SerializeField] private bool isDragSticker = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
+
+        private float currentPenWidth = 0f;
+
     //    const float Min_Pen_Width = 0.1f;
     //    const float Max_Pen_Width = 1.0f;
         public void StopDraw(bool isStop)
@@ -56,6 +59,11 @@ namespace FreeDraw
             line = GetComponent<LineRenderer>();
         }
 
+        private void Start()
+        {
+            currentPenWidth = 0.3f;
+        }
+
         private void Update()
         {
             if (onObject == false)
@@ -73,7 +81,8 @@ namespace FreeDraw
                         Obj.transform.position = Vector3.zero;
                         Obj.GetComponent<LineRenderer>().startColor = curColor;
                         Obj.GetComponent<LineRenderer>().endColor = curColor;
-
+                        Obj.GetComponent<LineRenderer>().startWidth = currentPenWidth;
+                        Obj.GetComponent<LineRenderer>().endWidth = currentPenWidth;
                         points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
                         line.positionCount = 1;
                         line.SetPosition(0, points[0]);
@@ -173,6 +182,11 @@ namespace FreeDraw
                     curColor = new Color32(255, 255, 255, 255);
                     break;
             }
+        }
+
+        public void ControllPenWidth()
+        {
+            currentPenWidth = Pen_Width.value;
         }
     }
 }

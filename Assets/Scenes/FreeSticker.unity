@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 33339238}
   - component: {fileID: 33339239}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: PenWidthController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,13 +344,13 @@ MonoBehaviour:
   m_MinValue: 0.1
   m_MaxValue: 0.5
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0.3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 30939877}
+        m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
+        m_MethodName: ControllPenWidth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
