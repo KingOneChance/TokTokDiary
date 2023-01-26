@@ -34,7 +34,7 @@ public class Func_Record : MonoBehaviour
     {
         newClip = null;
         newClip = Microphone.Start(null, true, 240, 44100);
-        audioNum = Manager_Main.Instance.GetRecordStickerNum();
+        audioNum = Manager_Main.Instance.GetRecordNum("RecordFile");
     }
     public void OnClick_RecordStop()
     {
@@ -49,8 +49,6 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_Rerecord()
     {
-        //  File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + audioNum + ".wav");
-        // File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav");
         DeleteRecordSource();
     }
     public void OnClick_Save()
@@ -65,8 +63,8 @@ public class Func_Record : MonoBehaviour
     }
     public void DeleteRecordSource()
     {
-        if (File.Exists(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav"))
-            File.Delete(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum + ".wav");
+        if (File.Exists(Application.persistentDataPath + "/RecordFile/" + soundSouceName + "_" + audioNum + ".wav"))
+            File.Delete(Application.persistentDataPath + "/RecordFile/" + soundSouceName + "_" + audioNum + ".wav");
     }
     //Save File Logic
     public void StopRecordMicrophone(AudioClip recordClip)
@@ -94,13 +92,13 @@ public class Func_Record : MonoBehaviour
         string today = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
         //count for number of recorded audioes
         //audioNum++;
-        Func_SavWav.Save(Application.persistentDataPath + "/Record/" + soundSouceName + "_" + audioNum, recordClip);
+        Func_SavWav.Save(Application.persistentDataPath + "/RecordFile/" + soundSouceName + "_" + audioNum, recordClip);
     }
 
     //The purpose of "OnClick_Load" is Test about Save file
     public void OnClick_Load()
     {
-        playSouce.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/Record/" + soundSouceName + auidPlayNum + ".wav");
+        playSouce.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + soundSouceName + auidPlayNum + ".wav");
 
         playSouce.Play();
         auidPlayNum++;

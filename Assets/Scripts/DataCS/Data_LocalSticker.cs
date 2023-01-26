@@ -28,7 +28,7 @@ public class Data_LocalSticker : MonoBehaviour
             //Add Weather Sticker
             weatherList.Add(obj);
         }
-        else if (state == StickerType.FreeStricker)
+        else if (state == StickerType.FreeSticker)
         {
             //Add Handmade Sticker
             handMadeList.Add(obj);
