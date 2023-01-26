@@ -7,6 +7,9 @@ public class Func_OnTriggerStay : MonoBehaviour
 {
     private float flowTime = 0;
 
+    [SerializeField] private Canvas mainCanvas = null;
+    [SerializeField] private Canvas subCanvas = null;
+
     [SerializeField] RectTransform[] positions = null;
     [SerializeField] private Sprite image = null;
 
@@ -36,7 +39,12 @@ public class Func_OnTriggerStay : MonoBehaviour
                 go.GetComponent<RawImage>().color = showImgColor;
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
-                    //이미지 인벤토리 추가
+                    // 파일 저장하고 이름 리스트에 추가
+                    //Manager_Main.Instance.UI_StickerRepository.bearList.Add()
+
+                    // 씬 전환
+
+                    // 
                     Debug.Log("펑");
                 }
                 flowTime = 0;
