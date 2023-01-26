@@ -42,3 +42,11 @@ public enum StickType
     None,
     Stick
 }
+
+public enum CreateStickerState
+{
+    Select,
+    Decide,
+    Create
+}
+
