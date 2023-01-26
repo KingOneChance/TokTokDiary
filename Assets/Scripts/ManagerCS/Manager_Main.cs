@@ -51,8 +51,22 @@ public class Manager_Main : MonoBehaviour
     [field: SerializeField]
     [SerializeField] public GameObject ui_StickerRepositoryPrefab { get; private set; }
 
-    [Header("===NumberOfRecordSticker===")]
-    [SerializeField] int recordStickerNum = 0;
+    [Header("===NumberOfStickers===")]
+    [SerializeField] private int getBubbleGunStickerNum = 0;
+    [SerializeField] private int getAudioStickerNum = 0;
+    [SerializeField] private int getBubbleStickerNum = 0;
+    [SerializeField] private int getFreeStickerNum = 0;
+    [SerializeField] private int getDiaryNum = 0;
+
+    [Header("===NumberOfStickers===")]
+    [SerializeField] private int setBubbleGunStickerNum = 0;
+    [SerializeField] private int setAudioStickerNum = 0;
+    [SerializeField] private int setBubbleStickerNum = 0;
+    [SerializeField] private int setFreeStickerNum = 0;
+    [SerializeField] private int setDiaryNum = 0;
+
+    int recordStickerNum;
+
     #endregion
 
 
@@ -72,15 +86,12 @@ public class Manager_Main : MonoBehaviour
     private void Start()
     {
 #if UNITY_EDITOR_WIN
-       
+
 #else
        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/RecordSticker/", "*.png", SearchOption.TopDirectoryOnly);
 
         recordStickerNum = allFiles.Length/2;
 #endif
-
-
-
     }
     private void GetAllInfoFromServer()
     {
@@ -89,7 +100,7 @@ public class Manager_Main : MonoBehaviour
 
     public void OnClick_StickerRepositoryOn()
     {
-        if (!ui_StickerRepositoryPrefab.activeSelf) 
+        if (!ui_StickerRepositoryPrefab.activeSelf)
             ui_StickerRepositoryPrefab.SetActive(true);
     }
     public void OnClick_StickerRepositoryOff()
@@ -99,12 +110,46 @@ public class Manager_Main : MonoBehaviour
     }
 
     //manange recordSticker Number 
-    public int GetRecordStickerNum()
+    public int GetBubbleGunStickerNum(string folder)
     {
-        return recordStickerNum;
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getBubbleGunStickerNum = allFiles.Length;
+        return getBubbleGunStickerNum;
     }
-    public void SetRecordStickerNum()
+    public int GetBubbleStickerNum(string folder)
     {
-        recordStickerNum++;
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getBubbleStickerNum = allFiles.Length;
+        return getBubbleStickerNum;
     }
+    public int GetAudioStickerNum(string folder)
+    {
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getAudioStickerNum = allFiles.Length;
+        return getAudioStickerNum;
+    }
+    public int GetRecordNum(string folder)
+    {
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getAudioStickerNum = allFiles.Length;
+        return getAudioStickerNum;
+    }
+    public int GetFreeStickerNum(string folder)
+    {
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getFreeStickerNum = allFiles.Length;
+        return getFreeStickerNum;
+    }
+    public int GetDiaryNum(string folder)
+    {
+        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+        getDiaryNum = allFiles.Length;
+        return getDiaryNum;
+    }
+
+    public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;
+    public void SetBubbleStickerNum() => setBubbleStickerNum++;
+    public void SetAudioStickerNum() => setAudioStickerNum++;
+    public void SetFreeStickerNum() => setFreeStickerNum++;
+    public void SetDiaryNum() => setDiaryNum++;
 }
