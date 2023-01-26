@@ -14,6 +14,9 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private Button buttonSave = null;
     [SerializeField] private Button buttonSign = null;
 
+    [SerializeField] private Button buttonBefore = null;
+    [SerializeField] private Button buttonNext = null;
+
     [Header("===Ojects===")]
     [SerializeField] private GameObject homeCanvas = null;
     [SerializeField] private GameObject taskCanvas = null;
@@ -23,22 +26,103 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject popUpImage = null;
     [SerializeField] private GameObject drawDraw = null;
 
+    [SerializeField] private GameObject toggleBoddy = null;
+    [SerializeField] private GameObject toggleBelly = null;
+    [SerializeField] private GameObject toggleHead = null;
+    [SerializeField] private GameObject toggleArmLeg = null;
+
+
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
     [SerializeField] private Func_BubbleBearSave bubbleBearSave = null;
-    [SerializeField] private Func_BubbleBearSign bubbleBearSign = null; 
+    [SerializeField] private Func_BubbleBearSign bubbleBearSign = null;
     [SerializeField] private Func_Record record = null;
 
     private bool isRecording = false;
+    private SelectHedgehogState selectState = SelectHedgehogState.Body;
 
     private void Start()
     {
+        //canvas on
         saveCanvas.SetActive(false);
         checkCanvas.SetActive(false);
         drawDraw.SetActive(false);
+
+        toggleBoddy.SetActive(true);
+        toggleBelly.SetActive(false);
+        toggleHead.SetActive(false);
+        toggleArmLeg.SetActive(false);
+
         InitAfterRecordButton();
     }
 
+    public void OnClick_ButtonNext()
+    {
+        toggleBoddy.SetActive(false);
+        toggleBelly.SetActive(false);
+        toggleHead.SetActive(false);
+        toggleArmLeg.SetActive(false);
+
+        //body to belly
+        if (selectState == SelectHedgehogState.Body)
+        {
+            selectState = SelectHedgehogState.Belly;
+            toggleBelly.SetActive(true);
+        }
+        //belly to head
+        else if (selectState == SelectHedgehogState.Belly)
+        {
+            selectState = SelectHedgehogState.Head;
+            toggleHead.SetActive(true);
+        }
+        //head to arm&leg
+        else if (selectState == SelectHedgehogState.Head)
+        {
+            selectState = SelectHedgehogState.ArmLeg;
+            toggleArmLeg.SetActive(true);
+        }
+        //arm&leg to Record saveCanvas
+        else if (selectState == SelectHedgehogState.ArmLeg)
+        {
+            selectState = SelectHedgehogState.ArmLeg;
+            taskCanvas.SetActive(false);
+            saveCanvas.SetActive(true);
+        }
+    }
+
+    public void OnClick_ButtonBefore()
+    {
+        toggleBoddy.SetActive(false);
+        toggleBelly.SetActive(false);
+        toggleHead.SetActive(false);
+        toggleArmLeg.SetActive(false);
+        //body to body
+        if (selectState == SelectHedgehogState.Body)
+        {
+            selectState = SelectHedgehogState.Body;
+            toggleBoddy.SetActive(true);
+        }
+        //belly to body
+        else if (selectState == SelectHedgehogState.Belly)
+        {
+            selectState = SelectHedgehogState.Body;
+            toggleBoddy.SetActive(true);
+        }
+        //head to belly
+        else if (selectState == SelectHedgehogState.Head)
+        {
+            selectState = SelectHedgehogState.Belly;
+            toggleBelly.SetActive(true);
+        }
+        //arm&leg to head
+        else if (selectState == SelectHedgehogState.ArmLeg)
+        {
+            selectState = SelectHedgehogState.Head;
+            toggleHead.SetActive(true);
+        }   
+    }
+
+    //Record Start
     public void OnClick_ButtonRecord()
     {
         if (isRecording == true) return;
@@ -50,6 +134,7 @@ public class Manager_BubbleBear : MonoBehaviour
         buttonRecordStop.gameObject.SetActive(true);
         isRecording = true;
     }
+    //Record Stop
     public void OnClick_ButtonRecordStop()
     {
         if (isRecording == false) return;
@@ -63,6 +148,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         //Sound play eff
     }
+    //Rerecord
     public void OnClick_ButtonRerecord()
     {
         InitAfterRecordButton();
@@ -74,7 +160,7 @@ public class Manager_BubbleBear : MonoBehaviour
 
         //Send Picked SpriteImage to SaveScript
         bubbleBearSave.GetSaveSPrite(bubbleBearCtrl.nowSprite);
-        
+
         taskCanvas.SetActive(false);
         saveCanvas.SetActive(true);
         drawDraw.SetActive(true);
@@ -91,7 +177,6 @@ public class Manager_BubbleBear : MonoBehaviour
         saveCanvas.SetActive(false);
         checkCanvas.SetActive(true);
         drawDraw.SetActive(false);
-
     }
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()

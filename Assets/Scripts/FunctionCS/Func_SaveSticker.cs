@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
+/// <summary>
+/// you need to prepare 2 things,
+/// First thing is empty raw image. 
+/// it is inserted on "saveImage"
+/// Second thing is button.
+/// look at "TestSave" Script.
+/// </summary>
 public class Func_SaveSticker : MonoBehaviour
 {
-    [SerializeField] private RawImage saveImage = null;
+    [Tooltip("save path : Application.persistentDataPath.saveFolder.saveFileName_(ascending order number)")]
+    [Header("Save path")]
     [SerializeField] private string saveFileName = "";
-    [SerializeField] private string savePath = "";
+    [SerializeField] private RawImage saveImage = null;
+    private string bubbleGunStikcerFolder = "BubbleGun";
+    private string bubbleStickerFolder = "Bubble";
+    private string audioStickerFolder = "Audio";
+    private string freeStickerFolder = "Free";
+    private string diaryFolder = "Diary";
+    private string savePath ="";
 
     [Tooltip("startXPos and startYPos 's start postion from left of bottom")]
     [Header("Save position of screen")]
@@ -16,12 +31,16 @@ public class Func_SaveSticker : MonoBehaviour
     [SerializeField] private int widthValue;
     [SerializeField] private int heightValue;
 
-    protected void OnClick_RealSave()
+    protected virtual void Start()
+    {
+        savePath = Application.persistentDataPath;
+    }
+    protected virtual void OnClick_SaveImgae(StickerType stickerType)
     {
         //test
-        StartCoroutine(Co_ScreenShotFrame());
+        StartCoroutine(Co_ScreenShotFrame(stickerType));
     }
-    protected IEnumerator Co_ScreenShotFrame()
+    protected virtual IEnumerator Co_ScreenShotFrame(StickerType stickerType)
     {
         yield return new WaitForEndOfFrame();
 
@@ -34,25 +53,52 @@ public class Func_SaveSticker : MonoBehaviour
 
         saveImage.texture = texture;
 
-        //SaveTexture();
+        SaveTexture(stickerType);
     }
-   /* protected void SaveTexture()
+    protected  virtual void SaveTexture(StickerType stickerType)
     {
         int nowNum;
-        nowNum = Manager_Main.Instance.GetRecordStickerNum();
-        //Bearimage Save
-        SaveTextureToPng(saveImage.texture, savePath, saveFileName + "_" + nowNum);
+        switch (stickerType)
+        {
+            //First, Get number of sticker what you want
+            //Secont, Set number of sticker what you want plus 1
+            case StickerType.BubbleGunSticker:
+                nowNum = Manager_Main.Instance.GetBubbleGunStickerNum(bubbleGunStikcerFolder);
+                Manager_Main.Instance.SetBubbleGunStickerNum();
+                //Saveimage save
+                SaveTextureToPng(saveImage.texture, savePath + $"/{bubbleGunStikcerFolder}/", saveFileName + "_" + nowNum);
+                //SaveTextureToPng(saveImage.texture, "C:/Users/User/Desktop/Sticker/", saveFileName + "_" + nowNum);
 
-        func_BubbleBearSign.GetBearSPrite(spaceBearImage.texture);
-        func_BubbleBearSign.GetSignSPrite(spaceSignImage.texture);
-
-        //recordNum increase
-        Manager_Main.Instance.SetRecordStickerNum();
-        manager_BubbleBear.OnClick_ButtonSign();
+                break;
+            case StickerType.BubbleSticker:
+                nowNum = Manager_Main.Instance.GetBubbleStickerNum(bubbleStickerFolder);
+                Manager_Main.Instance.SetBubbleStickerNum();
+                SaveTextureToPng(saveImage.texture, savePath + $"/{bubbleStickerFolder}/", saveFileName + "_" + nowNum);
+                break;
+            case StickerType.AudioSticker:
+                nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
+                Manager_Main.Instance.SetAudioStickerNum();
+                SaveTextureToPng(saveImage.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum);
+                break;
+            case StickerType.FreeSticker:
+                nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
+                Manager_Main.Instance.SetFreeStickerNum();
+                SaveTextureToPng(saveImage.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "_" + nowNum);
+                break;
+            case StickerType.Diary:
+                nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder);
+                Manager_Main.Instance.SetDiaryNum();
+                SaveTextureToPng(saveImage.texture, savePath + $"/{diaryFolder}/", saveFileName + "_" + nowNum);
+                break;
+            default:
+                Debug.Log("there is no sticker what you want");
+                nowNum = 0;
+                break;
+        }
     }
 
 
-    public void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
+    protected virtual void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
@@ -74,5 +120,5 @@ public class Func_SaveSticker : MonoBehaviour
         string filePath = directoryPath + fileName + ".png";
 
         File.WriteAllBytes(filePath, texturePNGBytes);
-    }*/
+    }
 }

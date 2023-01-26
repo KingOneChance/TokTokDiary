@@ -31,7 +31,7 @@ public class Func_BubbleBearSave : MonoBehaviour
 
     private void Awake()
     {
-        savePath = Application.persistentDataPath + "/RecordSticker/";
+        savePath = Application.persistentDataPath + "/RecordFile/";
     }
     public void GetSaveSPrite(Sprite sprite)
     {
@@ -69,7 +69,7 @@ public class Func_BubbleBearSave : MonoBehaviour
     private void SaveTexture()
     {
         int nowNum;
-        nowNum = Manager_Main.Instance.GetRecordStickerNum();
+        nowNum = Manager_Main.Instance.GetAudioStickerNum("RecordFile");
         //Bearimage Save
         SaveTextureToPng(spaceBearImage.texture, savePath, fileNameBear + "_" + nowNum);
         //Signimage Save
@@ -79,7 +79,7 @@ public class Func_BubbleBearSave : MonoBehaviour
         func_BubbleBearSign.GetSignSPrite(spaceSignImage.texture);
 
         //recordNum increase
-        Manager_Main.Instance.SetRecordStickerNum();
+        Manager_Main.Instance.SetAudioStickerNum();
         manager_BubbleBear.OnClick_ButtonSign();
     }
 
