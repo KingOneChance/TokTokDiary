@@ -11,6 +11,7 @@ namespace FreeDraw
         [SerializeField] private float circleSize;
 
         [SerializeField] GameObject linePrefab;
+        [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
         public Color curColor = Color.black;
         [SerializeField] EdgeCollider2D col;
@@ -20,7 +21,7 @@ namespace FreeDraw
         [SerializeField] private float drawingAreaMinX = 0f;
         [SerializeField] private float drawingAreaMaxY = 0f;
         [SerializeField] private float drawingAreaMinY = 0f;
-        [SerializeField] private Camera mainCam = null;
+        [SerializeField] private Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
         [SerializeField] private bool internalClick = false;
@@ -28,6 +29,8 @@ namespace FreeDraw
         [SerializeField] private bool isDragSticker = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
+    //    const float Min_Pen_Width = 0.1f;
+    //    const float Max_Pen_Width = 1.0f;
         public void StopDraw(bool isStop)
         {
             isDragSticker = isStop;
@@ -36,7 +39,17 @@ namespace FreeDraw
             else
                 onObject = false;
         }
-
+        
+     //   private void Start()
+     //   {
+     //       Pen_Width.onValueChanged.AddListener(delegate { Pen_WidthTest(); });
+     //   }
+     //
+     //   public void Pen_WidthTest()
+     //   {
+     //       float diff = Max_Pen_Width - Min_Pen_Width;
+     //       float value = Min_Pen_Width + (diff + Pen_Width.value);
+     //   }
         private void Awake()
         {
             mainCam = Camera.main;
@@ -92,6 +105,8 @@ namespace FreeDraw
         {
             onObject = false;
         }
+
+      
 
         public bool CheckArea()
         {
