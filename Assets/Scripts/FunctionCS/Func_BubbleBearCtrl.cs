@@ -5,22 +5,30 @@ using UnityEngine.UI;
 
 public class Func_BubbleBearCtrl : MonoBehaviour
 {
-    [Header("BubbleStickers")]
+    [Header("===BubbleStickers===")]
     [SerializeField] private Sprite testBear1 = null;
     [SerializeField] private Sprite testBear2 = null;
     [SerializeField] private Sprite testBear3 = null;
     [SerializeField] private Sprite testBear4 = null;
     [SerializeField] private Sprite testBear5 = null;
 
-    [Header("ToggleButtons")]
+    [Header("===ToggleButtons===")]
     [SerializeField] private Toggle button1 = null;
     [SerializeField] private Toggle button2 = null;
     [SerializeField] private Toggle button3 = null;
     [SerializeField] private Toggle button4 = null;
     [SerializeField] private Toggle button5 = null;
 
-    [Header("BubbleBearCanvas")]
+    [Header("===BubbleBearCanvas===")]
     [SerializeField] private RawImage bubbleBearCanvas = null;
+    [SerializeField] private RawImage bubbleHedgehogThorn = null;
+    [SerializeField] private RawImage bubbleHedgehogBelly = null;
+    [SerializeField] private RawImage bubbleHedgehogHead = null;
+    [SerializeField] private RawImage bubbleHedgehogLArm = null;
+    [SerializeField] private RawImage bubbleHedgehogRArm = null;
+    [SerializeField] private RawImage bubbleHedgehogLLeg = null;
+    [SerializeField] private RawImage bubbleHedgehogRLeg = null;
+
 
     public Sprite nowSprite { get; private set; }
 
