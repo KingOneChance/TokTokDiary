@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Data_LocalSticker : MonoBehaviour
             //Add Weather Sticker
             weatherList.Add(obj);
         }
-        else if (state == StickerType.FreeStricker)
+        else if (state == StickerType.FreeSticker)
         {
             //Add Handmade Sticker
             handMadeList.Add(obj);
@@ -52,7 +53,6 @@ public class Data_LocalSticker : MonoBehaviour
         // Save At Server
         //UpdateToServer(obj);
     }
-
     //¼­¹ö¿ë
     public void GetServerData()
     {
