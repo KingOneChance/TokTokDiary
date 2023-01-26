@@ -11,6 +11,7 @@ namespace FreeDraw
         [SerializeField] private float circleSize;
 
         [SerializeField] GameObject linePrefab;
+        [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
         public Color curColor = Color.black;
         [SerializeField] EdgeCollider2D col;
@@ -20,7 +21,7 @@ namespace FreeDraw
         [SerializeField] private float drawingAreaMinX = 0f;
         [SerializeField] private float drawingAreaMaxY = 0f;
         [SerializeField] private float drawingAreaMinY = 0f;
-        [SerializeField] private Camera mainCam = null;
+        [SerializeField] private Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
         [SerializeField] private bool internalClick = false;
@@ -28,6 +29,11 @@ namespace FreeDraw
         [SerializeField] private bool isDragSticker = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
+
+        private float currentPenWidth = 0f;
+
+    //    const float Min_Pen_Width = 0.1f;
+    //    const float Max_Pen_Width = 1.0f;
         public void StopDraw(bool isStop)
         {
             isDragSticker = isStop;
@@ -36,11 +42,26 @@ namespace FreeDraw
             else
                 onObject = false;
         }
-
+        
+     //   private void Start()
+     //   {
+     //       Pen_Width.onValueChanged.AddListener(delegate { Pen_WidthTest(); });
+     //   }
+     //
+     //   public void Pen_WidthTest()
+     //   {
+     //       float diff = Max_Pen_Width - Min_Pen_Width;
+     //       float value = Min_Pen_Width + (diff + Pen_Width.value);
+     //   }
         private void Awake()
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
+        }
+
+        private void Start()
+        {
+            currentPenWidth = 0.3f;
         }
 
         private void Update()
@@ -60,7 +81,8 @@ namespace FreeDraw
                         Obj.transform.position = Vector3.zero;
                         Obj.GetComponent<LineRenderer>().startColor = curColor;
                         Obj.GetComponent<LineRenderer>().endColor = curColor;
-
+                        Obj.GetComponent<LineRenderer>().startWidth = currentPenWidth;
+                        Obj.GetComponent<LineRenderer>().endWidth = currentPenWidth;
                         points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
                         line.positionCount = 1;
                         line.SetPosition(0, points[0]);
@@ -92,6 +114,8 @@ namespace FreeDraw
         {
             onObject = false;
         }
+
+      
 
         public bool CheckArea()
         {
@@ -158,6 +182,11 @@ namespace FreeDraw
                     curColor = new Color32(255, 255, 255, 255);
                     break;
             }
+        }
+
+        public void ControllPenWidth()
+        {
+            currentPenWidth = Pen_Width.value;
         }
     }
 }

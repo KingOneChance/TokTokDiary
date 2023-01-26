@@ -21,7 +21,7 @@ namespace FreeDraw
         // new_width is radius in pixels
         public void SetMarkerWidth(int new_width)
         {
-        //    Func_Drawable.Pen_Width = new_width;
+         //   func_Draw.Pen_Width = new_width;
         }
         public void SetMarkerWidth(float new_width)
         {
