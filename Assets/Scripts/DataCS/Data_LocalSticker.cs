@@ -21,29 +21,29 @@ public class Data_LocalSticker : MonoBehaviour
         //GetServerData();
     }
 
-    public void AddInventory(Texture2D obj, ItemType state)
+    public void AddInventory(Texture2D obj, StickerType state)
     {
-        if (state == ItemType.Weather)
+        if (state == StickerType.BubbleGunSticker)
         {
             //Add Weather Sticker
             weatherList.Add(obj);
         }
-        else if (state == ItemType.Handmade)
+        else if (state == StickerType.FreeStricker)
         {
             //Add Handmade Sticker
             handMadeList.Add(obj);
         }
-        else if (state == ItemType.Waffle)
+        else if (state == StickerType.BubbleSticker)
         {
             //Add Waffle Sticker
             waffleList.Add(obj);
         }
-        else if (state == ItemType.Audio)
+        else if (state == StickerType.AudioSticker)
         {
             //Add Audio Sticker
             audioList.Add(obj);
         }
-        else if (state == ItemType.Diary)
+        else if (state == StickerType.Diary)
         {
             //Add Diary
             diaryList.Add(obj);
