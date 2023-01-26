@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class Func_OnTriggerStay : MonoBehaviour
 {
     private float flowTime = 0;
-    private Color mat;
 
     [SerializeField] RectTransform[] positions = null;
     [SerializeField] private Sprite image = null;
 
-    GameObject go = null;
-    Color hideImgColor = new Color(0, 0, 0, 0);
-    Color showImgColor = new Color(255, 255, 255, 255);
+     private GameObject go = null;
+    private Color hideImgColor = new Color(0, 0, 0, 0);
+    private Color showImgColor = new Color(255, 255, 255, 255);
     public int ranNum = 0;
     private void Start()
     {
@@ -24,7 +23,7 @@ public class Func_OnTriggerStay : MonoBehaviour
 
         go.AddComponent<RawImage>().texture = image.texture;
         go.GetComponent<RawImage>().color = hideImgColor;
-        go.transform.parent = positions[ranNum];
+        go.transform.SetParent(positions[ranNum]);
         go.transform.position = positions[ranNum].transform.position;
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -38,9 +37,10 @@ public class Func_OnTriggerStay : MonoBehaviour
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
                     //이미지 인벤토리 추가
+                    Debug.Log("펑");
                 }
                 flowTime = 0;
-                Debug.Log("펑");
+                
                 collision.GetComponent<Image>().color = hideImgColor;
             }
         }

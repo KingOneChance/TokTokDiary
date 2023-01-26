@@ -7,14 +7,14 @@ using FreeDraw;
 public delegate void Del_DrawStop(bool isStop);
 public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    RectTransform rect = null;
-    Vector2 mousePos = Vector2.zero;
+    private RectTransform rect = null;
+    private Vector2 mousePos = Vector2.zero;
     public Del_DrawStop del_DrawStop = null;
-    Func_Draw func_draw = null;
+    private Func_Draw func_draw = null;
 
     [SerializeField] private bool isClickMe = false;
 
-    RectTransform rectTransform = null;
+    private RectTransform rectTransform = null;
 
     private void Start()
     {
