@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+public enum StickerType
 {
-    Weather,
-    Handmade,
-    Audio,
-    Waffle,
+    BubbleGunSticker,
+    FreeSticker,
+    AudioSticker,
+    BubbleSticker,
     Diary
 }
 
