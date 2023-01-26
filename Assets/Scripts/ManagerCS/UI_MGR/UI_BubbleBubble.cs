@@ -5,61 +5,23 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UI_BubbleBubble : MonoBehaviour
 {
-    //홈버튼
-    [SerializeField] private Button ui_HomeBtn = null;
-    //BubbleGun Image
-    [SerializeField] private RectTransform ui_BubbleGunRect = null;
-    [SerializeField] private Button ui_BubbleGunBtn = null;
+    [SerializeField] RectTransform[] positions = null;
+    [SerializeField] private Sprite image = null;
 
-    Vector2 startPos = Vector3.zero;
-    private bool isClicked = false;
-    // Start is called before the first frame update
+    GameObject go = null;
+    Color hideImgColor = new Color(0, 0, 0, 0);
+    Color showImgColor = new Color(255, 255, 255, 255);
+    public int ranNum = 0;
     void Start()
     {
-        startPos = ui_BubbleGunRect.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isClicked == false) return;
-        //Update_MousePosition();
+        ranNum = Random.Range(0, positions.Length);
+        go = new GameObject();
+        go.name = "HideSticker";
+        go.AddComponent<RawImage>().texture = image.texture;
+        go.GetComponent<RawImage>().color = hideImgColor;
+        go.transform.parent = positions[ranNum];
+        go.transform.position = positions[ranNum].transform.position;
+    
     }
     
-    //홈화면
-    public void OnClick_Home()
-    {
-        SceneManager.LoadScene("Main");
-    }
-   /* public void OnClick_BubbleGun()
-    {
-        if(isClicked == false)
-        {
-            isClicked = true;
-        }
-        else
-        {
-            ui_BubbleGunRect.transform.position = startPos;
-            isClicked = false;
-        }
-        //Init_Cursor();
-       
-    }
-    *//*public void Init_Cursor()
-    {
-        //Cursor.visible = false;
-
-        if (ui_BubbleGunRect.GetComponent<Graphic>())
-            ui_BubbleGunRect.GetComponent<Graphic>().raycastTarget = false;
-    }
-
-    public void Update_MousePosition()
-    {
-        Vector2 mousePos = Input.mousePosition;
-        float w = ui_BubbleGunRect.rect.width;
-        float h = ui_BubbleGunRect.rect.height;
-        ui_BubbleGunRect.position = mousePos *//*+ (new Vector2(w, h) * 0.5f)*//*;
-
-    }*/
-
 }

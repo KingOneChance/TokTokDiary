@@ -4,13 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using static NativeCamera;
+using System;
+
 public class UI_PictureDiary : MonoBehaviour
 {
+    [SerializeField] string path = "";
     //그림판
     [Header("그림판")]
     [SerializeField] Image ui_DrawBackground = null;
-    [SerializeField] Button ui_ShinyWeatherBtn = null;
-    [SerializeField] Image ui_ShinyImage = null;
+    [SerializeField] Button[] ui_WeatherBtn = null;
+   
     [Header("카메라")]
     //카메라 on - off, 불러오기
     [SerializeField] Image ui_CameraArea = null;
@@ -42,7 +46,6 @@ public class UI_PictureDiary : MonoBehaviour
 
     private void Start()
     {
-        
         func_Camera = FindObjectOfType<Func_Camera>();
 
         hotSpot.x = ui_NiddleImage.width / 2;
@@ -94,6 +97,31 @@ public class UI_PictureDiary : MonoBehaviour
 
         
     }
+
+    public void OnClick_NativeCameraOnBtn()
+    {
+        TakePicture(CallBack);
+    }
+
+    private void CallBack(string path)
+    {
+        Byte[] bytes = File.ReadAllBytes(path);
+        string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+        NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
+    }
+
+    public void OnClick_NativeCameraVideoOnBtn()
+    {
+        RecordVideo(VideoCallBack);
+    }
+
+    private void VideoCallBack(string path)
+    {
+        Byte[] bytes = File.ReadAllBytes(path);
+        string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+        NativeGallery.SaveVideoToGallery(bytes, "DiaryVideoAlbum", fileName + ".mp4");
+    }
+
     //카메라 켜기
     public void OnClick_CameraOnBtn()
     {
@@ -108,11 +136,36 @@ public class UI_PictureDiary : MonoBehaviour
         ui_CameraArea.gameObject.SetActive(false);
         ui_CameraOnBtn.gameObject.SetActive(true);
     }
-
-    public void OnClick_Weather()
+    //날씨 색 바꾸기
+    public void OnClick_Weather(string weatherState)
     {
-        ui_ShinyImage.color = Color.red;
-        
+        switch (weatherState)
+        {
+            case "Shiny":
+                if(ui_WeatherBtn[0].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.white;
+                break;
+            case "Rainy":
+                if (ui_WeatherBtn[1].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.white;
+                break;
+            case "Snow":
+                if (ui_WeatherBtn[2].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.white;
+                break;
+            case "Cloudy":
+                if (ui_WeatherBtn[3].GetComponent<Image>().color != Color.red)
+                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.red;
+                else 
+                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.white;
+                break;
+        }
     }
 
     
@@ -130,7 +183,6 @@ public class UI_PictureDiary : MonoBehaviour
             isNiddleClicked = false;
             NiddleState = NiddleType.None;
         }
-
     } 
     public void OnClick_BubbleStick()
     {
