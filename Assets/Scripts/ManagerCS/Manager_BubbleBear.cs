@@ -19,18 +19,21 @@ public class Manager_BubbleBear : MonoBehaviour
 
     [Header("===Ojects===")]
     [SerializeField] private GameObject homeCanvas = null;
-    [SerializeField] private GameObject taskCanvas = null;
-    [SerializeField] private GameObject saveCanvas = null;
+    [SerializeField] private GameObject makeCanvas = null;
+    [SerializeField] private GameObject audioCanvas = null;
+    [SerializeField] private GameObject signCanvas = null;
     [SerializeField] private GameObject checkCanvas = null;
     [SerializeField] private GameObject afterRecord = null;
     [SerializeField] private GameObject popUpImage = null;
-    [SerializeField] private GameObject drawDraw = null;
+    [SerializeField] private GameObject drawCam = null;
 
     [SerializeField] private GameObject toggleBoddy = null;
     [SerializeField] private GameObject toggleBelly = null;
     [SerializeField] private GameObject toggleHead = null;
     [SerializeField] private GameObject toggleArmLeg = null;
 
+    [SerializeField] private GameObject sceneBefore = null;
+    [SerializeField] private GameObject sceneNext = null;
 
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
@@ -39,19 +42,28 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private Func_Record record = null;
 
     private bool isRecording = false;
+    private bool canMoveAudio = false;
     private SelectHedgehogState selectState = SelectHedgehogState.Body;
+    private NowStateInAudio nowState = NowStateInAudio.Make;
 
     private void Start()
     {
         //canvas on
-        saveCanvas.SetActive(false);
+        makeCanvas.SetActive(true);
+        audioCanvas.SetActive(false);
+        signCanvas.SetActive(false);
         checkCanvas.SetActive(false);
-        drawDraw.SetActive(false);
+        drawCam.SetActive(false);
 
         toggleBoddy.SetActive(true);
         toggleBelly.SetActive(false);
         toggleHead.SetActive(false);
         toggleArmLeg.SetActive(false);
+
+        //Canvas move button GameObject
+        sceneBefore.SetActive(false);
+        sceneNext.SetActive(true);
+
 
         InitAfterRecordButton();
     }
@@ -112,8 +124,10 @@ public class Manager_BubbleBear : MonoBehaviour
             if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Head))
             {
                 selectState = SelectHedgehogState.ArmLeg;
-                taskCanvas.SetActive(false);
-                saveCanvas.SetActive(true);
+                toggleArmLeg.SetActive(true);
+
+                //  taskCanvas.SetActive(false);
+                //  saveCanvas.SetActive(true);
             }
             else
             {
@@ -155,6 +169,9 @@ public class Manager_BubbleBear : MonoBehaviour
     }
 
     #endregion
+
+    #region Record Buttons
+
     //Record Start
     public void OnClick_ButtonRecord()
     {
@@ -186,17 +203,67 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         InitAfterRecordButton();
     }
-    //Canvas Change "TaskCanvas" to "SaveCanvas"
+    #endregion
+
+    #region Canvas Change
+    //Canvas move to next Canvas
+    public void OnClick_ToNextCanvas()
+    {
+        if (nowState == NowStateInAudio.Make)
+        {
+            if (bubbleBearCtrl.canMoveToAudio)
+            {
+                makeCanvas.SetActive(false);
+                audioCanvas.SetActive(true);
+                sceneBefore.SetActive(true); //beforScene button on
+                sceneNext.SetActive(false); //nextScene button off
+                nowState = NowStateInAudio.Audio;
+            }
+            else
+            {
+                Debug.Log("고슴도치를 완성해주세요");
+            }
+        }
+        else if (nowState == NowStateInAudio.Audio)//no func
+        {
+
+        }
+        else if (nowState == NowStateInAudio.Sign)
+        {
+
+        }
+    }
+    //Canvas move to before Canvas
+    public void OnClick_ToBeforeCanvas()
+    {
+        if (nowState == NowStateInAudio.Audio)
+        {
+            SceneManager.LoadScene("BubbleBear");
+        }
+        else if (nowState == NowStateInAudio.Sign) //no func
+        {
+
+        }
+        else if (nowState == NowStateInAudio.Attatch)
+        {
+
+        }
+    }
+
+
+    //Canvas Change "AudioCanvas" to "SaveCanvas"
     public void OnClick_ButtonSave()
     {
         InitAfterRecordButton();
 
+        sceneNext.SetActive(true);
+        sceneBefore.SetActive(false);
         //Send Picked SpriteImage to SaveScript
-        bubbleBearSave.GetSaveSPrite(bubbleBearCtrl.nowSprite);
+        //bubbleBearSave.GetSaveSPrite(bubbleBearCtrl.nowSprite);
 
-        taskCanvas.SetActive(false);
-        saveCanvas.SetActive(true);
-        drawDraw.SetActive(true);
+        audioCanvas.SetActive(false);
+        signCanvas.SetActive(true);
+        drawCam.SetActive(true);
     }
     //This is PopUp Function 
     public void OnClick_HomePopUp()
@@ -207,10 +274,11 @@ public class Manager_BubbleBear : MonoBehaviour
     public void OnClick_ButtonSign()
     {
         homeCanvas.SetActive(false);
-        saveCanvas.SetActive(false);
+        signCanvas.SetActive(false);
         checkCanvas.SetActive(true);
-        drawDraw.SetActive(false);
+        drawCam.SetActive(false);
     }
+    #endregion
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()
     {

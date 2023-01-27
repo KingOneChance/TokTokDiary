@@ -52,3 +52,11 @@ public enum SelectHedgehogState
     Head,
     ArmLeg
 }
+
+public enum NowStateInAudio
+{
+    Make,
+    Audio,
+    Sign,
+    Attatch
+}
