@@ -55,6 +55,7 @@ public class Manager_BubbleBear : MonoBehaviour
 
         InitAfterRecordButton();
     }
+    #region Hedgehog make button
 
     public void OnClick_ButtonNext()
     {
@@ -66,30 +67,61 @@ public class Manager_BubbleBear : MonoBehaviour
         //body to belly
         if (selectState == SelectHedgehogState.Body)
         {
-            selectState = SelectHedgehogState.Belly;
-            toggleBelly.SetActive(true);
+            if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Body))
+            {
+                selectState = SelectHedgehogState.Belly;
+                toggleBelly.SetActive(true);
+            }
+            else
+            {
+                toggleBoddy.SetActive(true);
+                Debug.Log("몸을 선택해주세요");
+            }
         }
         //belly to head
         else if (selectState == SelectHedgehogState.Belly)
         {
-            selectState = SelectHedgehogState.Head;
-            toggleHead.SetActive(true);
+            if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Belly))
+            {
+                selectState = SelectHedgehogState.Head;
+                toggleHead.SetActive(true);
+            }
+            else
+            {
+                toggleBelly.SetActive(true);
+                Debug.Log("배를 선택해주세요");
+            }
         }
         //head to arm&leg
         else if (selectState == SelectHedgehogState.Head)
         {
-            selectState = SelectHedgehogState.ArmLeg;
-            toggleArmLeg.SetActive(true);
+            if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Head))
+            {
+                selectState = SelectHedgehogState.ArmLeg;
+                toggleArmLeg.SetActive(true);
+            }
+            else
+            {
+                toggleHead.SetActive(true);
+                Debug.Log("머리를 선택해주세요");
+            }
         }
         //arm&leg to Record saveCanvas
         else if (selectState == SelectHedgehogState.ArmLeg)
         {
-            selectState = SelectHedgehogState.ArmLeg;
-            taskCanvas.SetActive(false);
-            saveCanvas.SetActive(true);
+            if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Head))
+            {
+                selectState = SelectHedgehogState.ArmLeg;
+                taskCanvas.SetActive(false);
+                saveCanvas.SetActive(true);
+            }
+            else
+            {
+                toggleArmLeg.SetActive(true);
+                Debug.Log("팔다리를 선택해주세요");
+            }
         }
     }
-
     public void OnClick_ButtonBefore()
     {
         toggleBoddy.SetActive(false);
@@ -119,9 +151,10 @@ public class Manager_BubbleBear : MonoBehaviour
         {
             selectState = SelectHedgehogState.Head;
             toggleHead.SetActive(true);
-        }   
+        }
     }
 
+    #endregion
     //Record Start
     public void OnClick_ButtonRecord()
     {
