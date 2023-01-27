@@ -506,7 +506,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6134060082707487200}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_Value: 0.00000025431316
+  m_Value: 0.00000050862633
   m_Size: 0.84415585
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -605,11 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae44319f2fff1243b041de536f7ba63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollBar: {fileID: 6134060082707487229}
-  selectButton: {fileID: 0}
   scroll_Pos: 0
   pos: []
-  scroll: {fileID: 0}
+  scroll: {fileID: 6134060082707487203}
 --- !u!1 &6134060082889647401
 GameObject:
   m_ObjectHideFlags: 0
