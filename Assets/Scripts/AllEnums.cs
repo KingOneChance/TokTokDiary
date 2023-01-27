@@ -60,3 +60,12 @@ public enum NowStateInAudio
     Sign,
     Attatch
 }
+
+public enum UserInputState
+{
+    TouchStationary,
+    TouchCanceled,
+    TouchEnded,
+    TouchMoved,
+    TouchBegan
+}

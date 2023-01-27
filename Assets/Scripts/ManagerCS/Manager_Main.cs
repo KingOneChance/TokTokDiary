@@ -66,7 +66,6 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setDiaryNum = 0;
 
     int recordStickerNum;
-    private UserInputState curUserInputState;
 
     #endregion
 
