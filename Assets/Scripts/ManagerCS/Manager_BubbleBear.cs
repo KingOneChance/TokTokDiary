@@ -230,7 +230,11 @@ public class Manager_BubbleBear : MonoBehaviour
         }
         else if (nowState == NowStateInAudio.Sign)
         {
-
+            signCanvas.SetActive(false);
+            checkCanvas.SetActive(true);
+            sceneBefore.SetActive(true);
+            sceneNext.SetActive(false);
+            nowState = NowStateInAudio.Attatch;
         }
     }
     //Canvas move to before Canvas
@@ -251,13 +255,14 @@ public class Manager_BubbleBear : MonoBehaviour
     }
 
 
-    //Canvas Change "AudioCanvas" to "SaveCanvas"
+    //Canvas Change "AudioCanvas" to "SignCanvas"
     public void OnClick_ButtonSave()
     {
         InitAfterRecordButton();
 
         sceneNext.SetActive(true);
         sceneBefore.SetActive(false);
+        nowState = NowStateInAudio.Sign;
         //Send Picked SpriteImage to SaveScript
         //bubbleBearSave.GetSaveSPrite(bubbleBearCtrl.nowSprite);
 
