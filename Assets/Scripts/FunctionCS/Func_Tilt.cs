@@ -1,11 +1,11 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Func_Tilt : MonoBehaviour
 {
-    [SerializeField] RectTransform tiltObj = null;
+    [SerializeField] private RectTransform tiltObj = null;
+    [SerializeField] private Slider progressBar = null;
     private Vector3 angle = new Vector3(0, 0, 1);
     private bool isTouched = false;
 
@@ -48,6 +48,7 @@ public class Func_Tilt : MonoBehaviour
                 yield break;
             }
             tiltObj.localEulerAngles += angle * Time.deltaTime * 120f;
+            progressBar.value += 0.001f;
             yield return null;
         }
     }

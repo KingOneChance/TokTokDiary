@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +6,28 @@ public class Manager_BubbleSticker : MonoBehaviour
     private CreateStickerState _state;
 
     [SerializeField] private bool isDefaultBottleSelected = false;
+
+    [SerializeField] private RectTransform[] bucketPos = null;
+
+    [SerializeField] private RectTransform myPos = null;
+
+    [SerializeField] private RawImage[] ColorBuckets = null;
+
+    [SerializeField] private Button[] ColorButtons = null;
+
+    [SerializeField] private RawImage myColor = null;
+
+    [SerializeField] private Func_Tilt myTilt = null;
+
+    private void Start()
+    {
+        myTilt.enabled = false;
+        myPos.transform.position = bucketPos[0].transform.position;
+        for (int i = 0; i < ColorButtons.Length; i++)
+        {
+            ColorButtons[i].interactable = false;
+        }
+    }
 
     public void OnClick_NextBtn(CreateStickerState nextState)
     {
@@ -21,127 +42,41 @@ public class Manager_BubbleSticker : MonoBehaviour
     public void OnClick_DefaultBottle()
     {
         isDefaultBottleSelected = !isDefaultBottleSelected;
+        if(isDefaultBottleSelected == true)
+        {
+            myPos.transform.position = bucketPos[1].transform.position;
+            myTilt.enabled = true;
+            for (int i = 0; i < ColorButtons.Length; i++)
+            {
+                ColorButtons[i].interactable = true;
+            }
+        }
+        else
+        {
+            myPos.transform.position = bucketPos[0].transform.position;
+            myTilt.enabled = false;
+            for (int i = 0; i < ColorButtons.Length; i++)
+            {
+                ColorButtons[i].interactable = false;
+            }
+        }
     }
 
-    //[SerializeField] RectTransform DesignPosAfterClickDecide = null;
-    //[SerializeField] RectTransform ColorPosAfterClickDecide = null;
+    public void OnClick_SelectColor(string color)
+    {
+        switch (color)
+        {
+            case "Yellow":
+                myColor.color = ColorBuckets[0].color;
+                break;
 
-    //[SerializeField] RawImage SelectedDesign = null;
-    //[SerializeField] RawImage SelectedColor = null;
+            case "Orange":
+                myColor.color = ColorBuckets[1].color;
+                break;
 
-    //[SerializeField] Texture[] Designs = null;
-    //[SerializeField] Color[] paletteColors = null;
-    //[SerializeField] Animator DesignAnim = null;
-    //[SerializeField] Animator ColorAnim = null;
-
-    //private bool isClickedDesign = false;
-    //private bool isClickedColor = false;
-
-    //private Color showColor = new Color(255,255,255,255);
-
-    //private CreateStickerState curState;
-
-    //private void Start()
-    //{
-    //    curState = CreateStickerState.Select;
-    //}
-
-    //public void OnClick_ColorBtn(int idx)
-    //{
-    //    switch (idx)
-    //    {
-    //        case 0:
-    //            SelectedColor.color = paletteColors[0];
-    //            break;
-    //        case 1:
-    //            SelectedColor.color = paletteColors[1];
-    //            break;
-    //        case 2:
-    //            SelectedColor.color = paletteColors[2];
-    //            break;
-    //        case 3:
-    //            SelectedColor.color = paletteColors[3];
-    //            break;
-    //        case 4:
-    //            SelectedColor.color = paletteColors[4];
-    //            break;
-    //        case 5:
-    //            SelectedColor.color = paletteColors[5];
-    //            break;
-    //        case 6:
-    //            SelectedColor.color = paletteColors[6];
-    //            break;
-    //        case 7:
-    //            SelectedColor.color = paletteColors[7];
-    //            break;
-    //        case 8:
-    //            SelectedColor.color = paletteColors[8];
-    //            break;
-    //        case 9:
-    //            SelectedColor.color = paletteColors[9];
-    //            break;
-    //    }
-    //    if (isClickedColor == false)
-    //        isClickedColor = true;
-    //}
-
-    //public void OnClick_DesignBtn(int idx)
-    //{
-    //    switch (idx)
-    //    {
-    //        case 0:
-    //            SelectedDesign.texture = Designs[0];
-    //            break;
-    //        case 1:
-    //            SelectedDesign.texture = Designs[1];
-    //            break;
-    //        case 2:
-    //            SelectedDesign.texture = Designs[2];
-    //            break;
-    //        case 3:
-    //            SelectedDesign.texture = Designs[3];
-    //            break;
-    //        case 4:
-    //            SelectedDesign.texture = Designs[4];
-    //            break;
-    //    }
-    //    SelectedDesign.color = showColor;
-    //    if (isClickedDesign == false)
-    //        isClickedDesign = true;
-    //}
-
-    //public void OnClick_DecideBtn()
-    //{
-    //    if(isClickedColor == true && isClickedDesign == true)
-    //    {
-    //        DesignAnim.enabled = true;
-    //        ColorAnim.enabled = true;
-    //        Debug.Log("Create Sticker");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("There are some that haven't been selected yet, so choose them");
-    //    }
-    //}
-
-    //private void ChangeState(CreateStickerState state)
-    //{
-    //    curState = state;
-    //    StartCoroutine("CO_" + state.ToString());
-    //}
-
-    //IEnumerator CO_Select()
-    //{
-    //    yield return null;
-    //}
-
-    //IEnumerator CO_Decide()
-    //{
-    //    yield return null;
-    //}
-
-    //IEnumerator CO_Create()
-    //{
-    //    yield return null;
-    //}
+            case "Purple":
+                myColor.color = ColorBuckets[2].color;
+                break;
+        }
+    }
 }
