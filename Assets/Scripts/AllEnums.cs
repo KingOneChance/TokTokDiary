@@ -41,9 +41,9 @@ public enum StickType
 }
 public enum CreateStickerState
 {
-    DecideDesign,
-    SelectColor,
-    Stir
+    Select,
+    Decide,
+    Create
 }
 public enum SelectHedgehogState
 {
@@ -52,11 +52,20 @@ public enum SelectHedgehogState
     Head,
     ArmLeg
 }
+
+public enum NowStateInAudio
+{
+    Make,
+    Audio,
+    Sign,
+    Attatch
+}
+
 public enum UserInputState
 {
-    TouchBegan,
     TouchStationary,
-    TouchMoved,
+    TouchCanceled,
     TouchEnded,
-    TouchCanceled
+    TouchMoved,
+    TouchBegan
 }
