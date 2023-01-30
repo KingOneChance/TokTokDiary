@@ -13,25 +13,25 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private Sprite testBear5 = null;
 
     [Header("===ToggleButtons===")]
-    [SerializeField] private Toggle button1 = null;
-    [SerializeField] private Toggle button2 = null;
-    [SerializeField] private Toggle button3 = null;
-    [SerializeField] private Toggle button4 = null;
-    [SerializeField] private Toggle button5 = null;
-
     [SerializeField] private Toggle[] buttonBody = null;
     [SerializeField] private Toggle[] buttonBelly = null;
     [SerializeField] private Toggle[] buttonHead = null;
-    [SerializeField] private Toggle[] buttonArmLeg = null;
-
-    [Header("===BubbleBearCanvas===")]
-    [SerializeField] private RawImage bubbleBearCanvas = null;
+    [SerializeField] private Toggle[] buttonArmLeg = null;  
 
     [Header("===BubbleHedgehogCanvas===")]
     [SerializeField] private RawImage bubbleHedgehogBody = null;
     [SerializeField] private RawImage bubbleHedgehogBelly = null;
     [SerializeField] private RawImage bubbleHedgehogHead = null;
     [SerializeField] private RawImage bubbleHedgehogArmLeg = null;
+    [Header("===TemporarySaveImage===")]
+    [SerializeField] private RawImage tempHedgehog = null;
+    [SerializeField] private RectTransform beforeHogRect = null;
+    [SerializeField] private float startXPos;
+    [SerializeField] private float startYPos;
+    [SerializeField] private int widthValue;
+    [SerializeField] private int heightValue;
+    [Header("===Scripts===")]
+    [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
 
     private bool isSelectedBody = false;
     private bool isSelectedBelly = false;
@@ -48,44 +48,15 @@ public class Func_BubbleBearCtrl : MonoBehaviour
 
     private void Start()
     {
-        button1.image.sprite = testBear1;
-        button2.image.sprite = testBear2;
-        button3.image.sprite = testBear3;
-        button4.image.sprite = testBear4;
-        button5.image.sprite = testBear5;
+        Debug.Log(bubbleHedgehogBody.transform.position);
+        beforeHogRect = bubbleHedgehogBody.GetComponent<RectTransform>();
+        startXPos = bubbleHedgehogBody.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
+        startYPos = bubbleHedgehogBody.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
+        widthValue = (int)beforeHogRect.rect.width;
+        heightValue = (int)beforeHogRect.rect.height;
+       // Debug.Log(startXPos+" // " + startYPos);
+       // Debug.Log(beforeHogRect.rect.position.x + "//" + beforeHogRect.rect.position.y);
     }
-
-    public void OnClick_Button1()
-    {
-        AlphaChange(1);
-        bubbleBearCanvas.texture = testBear1.texture;
-        nowSprite = testBear1;
-    }
-    public void OnClick_Button2()
-    {
-        AlphaChange(2);
-        bubbleBearCanvas.texture = testBear2.texture;
-        nowSprite = testBear2;
-    }
-    public void OnClick_Button3()
-    {
-        AlphaChange(3);
-        bubbleBearCanvas.texture = testBear3.texture;
-        nowSprite = testBear3;
-    }
-    public void OnClick_Button4()
-    {
-        AlphaChange(4);
-        bubbleBearCanvas.texture = testBear4.texture;
-        nowSprite = testBear4;
-    }
-    public void OnClick_Button5()
-    {
-        AlphaChange(5);
-        bubbleBearCanvas.texture = testBear5.texture;
-        nowSprite = testBear5;
-    }
-
     #region Hedgehog Make button
     public void OnClick_ButtonBody1()
     {
@@ -184,35 +155,6 @@ public class Func_BubbleBearCtrl : MonoBehaviour
             else toggles[i].image.color = new Color(255, 255, 255, 1);
         }
     }
-    private void AlphaChange(int buttonNum)
-    {
-        button1.image.color = new Color(255, 255, 255, 1f);
-        button2.image.color = new Color(255, 255, 255, 1f);
-        button3.image.color = new Color(255, 255, 255, 1f);
-        button4.image.color = new Color(255, 255, 255, 1f);
-        button5.image.color = new Color(255, 255, 255, 1f);
-        switch (buttonNum)
-        {
-            case 1:
-                button1.image.color = new Color(255, 255, 255, 0.3f);
-                break;
-            case 2:
-                button2.image.color = new Color(255, 255, 255, 0.3f);
-                break;
-            case 3:
-                button3.image.color = new Color(255, 255, 255, 0.3f);
-                break;
-            case 4:
-                button4.image.color = new Color(255, 255, 255, 0.3f);
-                break;
-            case 5:
-                button5.image.color = new Color(255, 255, 255, 0.3f);
-                break;
-            default:
-                break;
-        }
-    }
-
     public bool IsSelected(SelectHedgehogState part)
     {
         switch (part)
@@ -233,5 +175,23 @@ public class Func_BubbleBearCtrl : MonoBehaviour
                 return false;
         }
         return false;
+    }
+    public void SaveTempHedgeHog()
+    {
+        StartCoroutine(Co_ScreenShotFrame());
+    }
+    private IEnumerator Co_ScreenShotFrame()
+    {
+        yield return new WaitForEndOfFrame();
+
+        Texture2D tex = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
+
+        Rect rex = new Rect(startXPos, startYPos, widthValue, heightValue);
+
+        tex.ReadPixels(rex, 0, 0);
+        tex.Apply();
+
+        tempHedgehog.texture = tex;
+        manager_BubbleBear.MoveMakeToAudioCanvas();
     }
 }
