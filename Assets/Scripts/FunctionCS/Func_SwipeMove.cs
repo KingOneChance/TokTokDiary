@@ -60,9 +60,9 @@ public class Func_SwipeMove : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
+            if (Manager_UserInput.curInputState == UserInputState.TouchBegan)
                 startTouchX = touch.position.x;
-            else if ( touch.phase == TouchPhase.Ended)
+            else if (Manager_UserInput.curInputState == UserInputState.TouchEnded)
             {
                 endTouchX = touch.position.x;
                 UpdateSwipe();

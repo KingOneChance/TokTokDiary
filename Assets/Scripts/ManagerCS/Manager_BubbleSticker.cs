@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class Manager_BubbleSticker : MonoBehaviour
 {
-    [SerializeField] private Func_Tilt Bucket = null;
     private CreateStickerState _state;
+
+    [SerializeField] private bool isDefaultBottleSelected = false;
 
     public void OnClick_NextBtn(CreateStickerState nextState)
     {
@@ -17,19 +18,9 @@ public class Manager_BubbleSticker : MonoBehaviour
         Debug.Log("Next!! Next!!");
     }
 
-    private void Update()
+    public void OnClick_DefaultBottle()
     {
-        switch (Manager_UserInput.curInputState)
-        {
-            case UserInputState.TouchStationary:
-                Bucket.StartTilt(true);
-                break;
-
-            case UserInputState.TouchCanceled:
-            case UserInputState.TouchEnded:
-                Bucket.StartTilt(false);
-                break;
-        }
+        isDefaultBottleSelected = !isDefaultBottleSelected;
     }
 
     //[SerializeField] RectTransform DesignPosAfterClickDecide = null;

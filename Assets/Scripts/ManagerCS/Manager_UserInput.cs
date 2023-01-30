@@ -3,6 +3,7 @@ using UnityEngine;
 public static class Manager_UserInput
 {
     public static UserInputState curInputState;
+    public static int touchCount = 0;
 
     public static void UpdateTouch()
     {
