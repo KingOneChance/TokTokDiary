@@ -66,6 +66,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setDiaryNum = 0;
 
     int recordStickerNum;
+    private UserInputState curUserInputState;
 
     #endregion
 
@@ -93,6 +94,12 @@ public class Manager_Main : MonoBehaviour
         recordStickerNum = allFiles.Length/2;
 #endif
     }
+    private void Update()
+    {
+        // Check user input every frame
+        Manager_UserInput.UpdateTouch();
+    }
+
     private void GetAllInfoFromServer()
     {
         // Receiving data from server, initial work, etc.
