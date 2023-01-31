@@ -19,7 +19,9 @@ public class Func_BubbleBearSign : MonoBehaviour
     [SerializeField] private Camera drawCam=null;
     [Header("===Script===")]
     [SerializeField] private Manager_BubbleBear manager_bubble= null;
-
+    [Header("===RemoveColor===")]
+    [SerializeField] private Color backGroundColor;
+    [SerializeField] private Color backGroundColor2;
 
 
     [SerializeField] private RectTransform beforeSignRect = null;
@@ -61,7 +63,29 @@ public class Func_BubbleBearSign : MonoBehaviour
         tex.ReadPixels(rex, 0, 0);
         tex.Apply();
 
-        tempSign.texture = tex;
+
+        //
+        Debug.Log("BGC 22: " + backGroundColor);
+        Texture2D newTex = new Texture2D(widthValue, heightValue);
+        for (int x = 0; x < widthValue; x++)
+        {
+            for (int y = 0; y < heightValue; y++)
+            {
+                Color pixelColor = tex.GetPixel(x, y);
+                if (pixelColor != backGroundColor )
+                {
+                    newTex.SetPixel(x, y, pixelColor);
+                }
+                else
+                {
+                    newTex.SetPixel(x, y, Color.clear);
+                }
+            }
+        }
+        newTex.Apply();
+        //
+        tempSign.texture = newTex;
+
         drawCam.gameObject.SetActive(false);
         manager_bubble.MoveSignToCheckCanvas();
     }

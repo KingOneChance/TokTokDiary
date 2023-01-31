@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Func_BubbleBearCtrl : MonoBehaviour
 {
     [Header("===BubbleStickers===")]
@@ -16,7 +17,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private Toggle[] buttonBody = null;
     [SerializeField] private Toggle[] buttonBelly = null;
     [SerializeField] private Toggle[] buttonHead = null;
-    [SerializeField] private Toggle[] buttonArmLeg = null;  
+    [SerializeField] private Toggle[] buttonArmLeg = null;
 
     [Header("===BubbleHedgehogCanvas===")]
     [SerializeField] private RawImage bubbleHedgehogBody = null;
@@ -32,6 +33,10 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private int heightValue;
     [Header("===Scripts===")]
     [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
+    [SerializeField] private Func_RemoveBackGround func_RemoveBackgound = null;
+    [Header("===RemoveColor===")]
+    [SerializeField] private Color backGroundColor;
+
 
     private bool isSelectedBody = false;
     private bool isSelectedBelly = false;
@@ -54,8 +59,6 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         startYPos = bubbleHedgehogBody.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
         widthValue = (int)beforeHogRect.rect.width;
         heightValue = (int)beforeHogRect.rect.height;
-       // Debug.Log(startXPos+" // " + startYPos);
-       // Debug.Log(beforeHogRect.rect.position.x + "//" + beforeHogRect.rect.position.y);
     }
     #region Hedgehog Make button
     public void OnClick_ButtonBody1()
@@ -191,7 +194,27 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         tex.ReadPixels(rex, 0, 0);
         tex.Apply();
 
-        tempHedgehog.texture = tex;
+        //
+        Debug.Log("BGC : " + backGroundColor);
+        Texture2D newTex = new Texture2D(widthValue, heightValue);
+        for (int x = 0; x < widthValue; x++)
+        {
+            for (int y = 0; y < heightValue; y++)
+            {
+                Color pixelColor = tex.GetPixel(x, y);
+                if (pixelColor != backGroundColor)
+                {
+                    newTex.SetPixel(x, y, pixelColor);
+                }
+                else
+                {
+                    newTex.SetPixel(x, y, Color.clear);
+                }
+            }
+        }
+        newTex.Apply();
+        //
+        tempHedgehog.texture = newTex;
         manager_BubbleBear.MoveMakeToAudioCanvas();
     }
 }

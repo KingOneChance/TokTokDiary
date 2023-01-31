@@ -282,6 +282,7 @@ public class Manager_BubbleBear : MonoBehaviour
         checkCanvas.SetActive(true);
         sceneBefore.SetActive(true);
         sceneNext.SetActive(false);
+        bubbleBearSign.SetImage();
     }
     //Canvas change "MakeCanvas" to "AudioCanvas"
     public void MoveMakeToAudioCanvas()

@@ -25,7 +25,6 @@ public class Func_BubbleBearSave : Func_SaveSticker
     protected override void Start()
     {
         base.Start();
-        signSaveButton.onClick.AddListener(() => OnClick_SaveImgae(StickerType.AudioSticker));
     }
 
     //It will be called when the sign image drop on the hedgehog image
