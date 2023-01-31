@@ -12,12 +12,13 @@ public class UI_BubbleGun : MonoBehaviour
 
     Func_OnTriggerStay func_OnTriggerStay = null;
 
-    private void Start()
+    private void OnEnable()
     {
         func_OnTriggerStay = FindObjectOfType<Func_OnTriggerStay>();
     }
     private void OnDisable()
     {
+        if (func_OnTriggerStay == null) return;
         sticker.texture = func_OnTriggerStay.go.GetComponent<RawImage>().texture;
     }
 

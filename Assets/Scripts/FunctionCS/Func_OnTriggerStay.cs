@@ -11,9 +11,9 @@ public class Func_OnTriggerStay : MonoBehaviour
 
     private float flowTime = 0;
 
-    [SerializeField] RectTransform[] positions = null;
+    [SerializeField] private RectTransform[] positions = null;
     [SerializeField] private Sprite[] bubbleGunImage = null;
-    [SerializeField] Image[] boards = null;
+    [SerializeField] private Image[] boards = null;
     
 
     public GameObject go = null;
@@ -30,12 +30,13 @@ public class Func_OnTriggerStay : MonoBehaviour
         }
         ranImageNum = Random.Range(0, bubbleGunImage.Length);
         ranPosNum = Random.Range(0, positions.Length);
+
         go = new GameObject();
         go.name = "HideSticker";
         go.tag = "Find";
-
         go.AddComponent<RawImage>().texture = bubbleGunImage[ranImageNum].texture;
         go.GetComponent<RawImage>().color = hideImgColor;
+        go.AddComponent<BoxCollider2D>().isTrigger = true;
         go.transform.SetParent(positions[ranPosNum]);
         go.transform.position = positions[ranPosNum].transform.position;
     }
@@ -55,17 +56,27 @@ public class Func_OnTriggerStay : MonoBehaviour
             flowTime += Time.deltaTime;
             if (flowTime > 2.0f)
             {
-                go.GetComponent<RawImage>().color = showImgColor;
+                if(collision.transform.childCount == 1)
+                {
+                    Debug.Log("내자식은 1명이다");
+                    go.GetComponent<RawImage>().color = showImgColor;
+                }
+
+                
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
-                    Debug.Log("펑");
+                    Debug.Log(go.GetComponent<RawImage>().texture);
 
                     subCanvas.gameObject.SetActive(true);
                     mainCanvas.gameObject.SetActive(false);
                 }
                 flowTime = 0;
                 
-                collision.GetComponent<Image>().color = hideImgColor;
+                if (collision.CompareTag("Image"))
+                {
+                    collision.GetComponent<Image>().color = hideImgColor;
+                }
+                
             }
         }
         else
@@ -73,10 +84,10 @@ public class Func_OnTriggerStay : MonoBehaviour
             flowTime = 0;
         }
     }
- 
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Image")
+        if (collision.CompareTag("Image"))
         {
             flowTime = 0;
         }
