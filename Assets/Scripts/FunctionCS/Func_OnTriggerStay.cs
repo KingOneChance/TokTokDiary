@@ -5,29 +5,48 @@ using UnityEngine.UI;
 
 public class Func_OnTriggerStay : MonoBehaviour
 {
-    private float flowTime = 0;
-
+    //메인 캔버스, 서브 캔버스
     [SerializeField] private Canvas mainCanvas = null;
     [SerializeField] private Canvas subCanvas = null;
 
-    [SerializeField] RectTransform[] positions = null;
-    [SerializeField] private Sprite image = null;
+    private float flowTime = 0;
 
-     private GameObject go = null;
+    [SerializeField] RectTransform[] positions = null;
+    [SerializeField] private Sprite[] bubbleGunImage = null;
+    [SerializeField] Image[] boards = null;
+    
+
+    public GameObject go = null;
     private Color hideImgColor = new Color(0, 0, 0, 0);
     private Color showImgColor = new Color(255, 255, 255, 255);
-    public int ranNum = 0;
-    private void Start()
+    private int ranPosNum = 0;
+    private int ranImageNum = 0;
+
+    private void OnEnable()
     {
-        ranNum = Random.Range(0, positions.Length);
+        for(int i = 0; i < boards.Length; i++)
+        {
+            boards[i].color = showImgColor;
+        }
+        ranImageNum = Random.Range(0, bubbleGunImage.Length);
+        ranPosNum = Random.Range(0, positions.Length);
         go = new GameObject();
         go.name = "HideSticker";
         go.tag = "Find";
 
-        go.AddComponent<RawImage>().texture = image.texture;
+        go.AddComponent<RawImage>().texture = bubbleGunImage[ranImageNum].texture;
         go.GetComponent<RawImage>().color = hideImgColor;
-        go.transform.SetParent(positions[ranNum]);
-        go.transform.position = positions[ranNum].transform.position;
+        go.transform.SetParent(positions[ranPosNum]);
+        go.transform.position = positions[ranPosNum].transform.position;
+    }
+    private void OnDisable()
+    {
+        Destroy(go);
+    }
+    private void Start()
+    {
+        subCanvas.gameObject.SetActive(false);
+        mainCanvas.gameObject.SetActive(true);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -39,13 +58,10 @@ public class Func_OnTriggerStay : MonoBehaviour
                 go.GetComponent<RawImage>().color = showImgColor;
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
-                    // 파일 저장하고 이름 리스트에 추가
-                    //Manager_Main.Instance.UI_StickerRepository.bearList.Add()
-
-                    // 씬 전환
-
-                    // 
                     Debug.Log("펑");
+
+                    subCanvas.gameObject.SetActive(true);
+                    mainCanvas.gameObject.SetActive(false);
                 }
                 flowTime = 0;
                 

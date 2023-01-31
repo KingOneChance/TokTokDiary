@@ -21,7 +21,7 @@ public class UI_StickerRepository : MonoBehaviour
 #if UNITY_EDITOR_WIN
     string path = "C:/Users/User/Desktop/Sticker/";
 #else
-        string path = Application.persistentDataPath + "/RecordSticker/";
+    string path = Application.persistentDataPath + "/RecordSticker/";
 #endif
 
     public void OnClick_WaffleRepository()

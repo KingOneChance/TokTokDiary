@@ -10,6 +10,7 @@ public class Func_BubbleGun : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     [SerializeField] Image ui_backGround;
     private Vector3 startPos;
 
+ 
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 mousePos = Input.mousePosition;
