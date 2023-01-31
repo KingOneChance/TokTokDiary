@@ -32,7 +32,7 @@ public class Func_SaveSticker : MonoBehaviour
     [SerializeField] private int widthValue;
     [SerializeField] private int heightValue;
 
-    RectTransform saveImageRect = null;
+    private RectTransform saveImageRect = null;
     protected virtual void Start()
     {
         savePath = Application.persistentDataPath;

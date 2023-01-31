@@ -213,10 +213,7 @@ public class Manager_BubbleBear : MonoBehaviour
         {
             if (bubbleBearCtrl.canMoveToAudio)
             {
-                makeCanvas.SetActive(false);
-                audioCanvas.SetActive(true);
-                sceneBefore.SetActive(true); //beforScene button on
-                sceneNext.SetActive(false); //nextScene button off
+                bubbleBearCtrl.SaveTempHedgeHog();
                 nowState = NowStateInAudio.Audio;
             }
             else
@@ -230,10 +227,8 @@ public class Manager_BubbleBear : MonoBehaviour
         }
         else if (nowState == NowStateInAudio.Sign)
         {
-            signCanvas.SetActive(false);
-            checkCanvas.SetActive(true);
-            sceneBefore.SetActive(true);
-            sceneNext.SetActive(false);
+            //temporary save sign image
+            bubbleBearSign.SaveTempSign();
             nowState = NowStateInAudio.Attatch;
         }
     }
@@ -250,7 +245,12 @@ public class Manager_BubbleBear : MonoBehaviour
         }
         else if (nowState == NowStateInAudio.Attatch)
         {
-
+            signCanvas.SetActive(true);
+            checkCanvas.SetActive(false);
+            sceneBefore.SetActive(false);
+            sceneNext.SetActive(true);
+            drawCam.SetActive(true);
+            nowState=NowStateInAudio.Sign;
         }
     }
 
@@ -276,13 +276,24 @@ public class Manager_BubbleBear : MonoBehaviour
         popUpImage.SetActive(true);
     }
     //Canvas change "saveCanvas" to "checkCanvas"
-    public void OnClick_ButtonSign()
+    public void MoveSignToCheckCanvas()
     {
-        homeCanvas.SetActive(false);
         signCanvas.SetActive(false);
         checkCanvas.SetActive(true);
-        drawCam.SetActive(false);
+        sceneBefore.SetActive(true);
+        sceneNext.SetActive(false);
+        bubbleBearSign.SetImage();
     }
+    //Canvas change "MakeCanvas" to "AudioCanvas"
+    public void MoveMakeToAudioCanvas()
+    {
+        makeCanvas.SetActive(false);
+        audioCanvas.SetActive(true);
+        sceneBefore.SetActive(true); //beforScene button on
+        sceneNext.SetActive(false); //nextScene button off
+    }
+
+
     #endregion
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()
