@@ -19,18 +19,32 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private Toggle button4 = null;
     [SerializeField] private Toggle button5 = null;
 
+    [SerializeField] private Toggle[] buttonBody = null;
+    [SerializeField] private Toggle[] buttonBelly = null;
+    [SerializeField] private Toggle[] buttonHead = null;
+    [SerializeField] private Toggle[] buttonArmLeg = null;
+
     [Header("===BubbleBearCanvas===")]
     [SerializeField] private RawImage bubbleBearCanvas = null;
-    [SerializeField] private RawImage bubbleHedgehogThorn = null;
+
+    [Header("===BubbleHedgehogCanvas===")]
+    [SerializeField] private RawImage bubbleHedgehogBody = null;
     [SerializeField] private RawImage bubbleHedgehogBelly = null;
     [SerializeField] private RawImage bubbleHedgehogHead = null;
-    [SerializeField] private RawImage bubbleHedgehogLArm = null;
-    [SerializeField] private RawImage bubbleHedgehogRArm = null;
-    [SerializeField] private RawImage bubbleHedgehogLLeg = null;
-    [SerializeField] private RawImage bubbleHedgehogRLeg = null;
+    [SerializeField] private RawImage bubbleHedgehogArmLeg = null;
 
+    private bool isSelectedBody = false;
+    private bool isSelectedBelly = false;
+    private bool isSelectedHead = false;
+    private bool isSelectedArmLeg = false;
 
     public Sprite nowSprite { get; private set; }
+    //new ver
+    public Sprite nowBodySprite { get; private set; }
+    public Sprite nowBellySprite { get; private set; }
+    public Sprite nowHeadSprite { get; private set; }
+    public Sprite nowArmLegSprite { get; private set; }
+    public bool canMoveToAudio { get; private set; } = false;
 
     private void Start()
     {
@@ -72,6 +86,104 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowSprite = testBear5;
     }
 
+    #region Hedgehog Make button
+    public void OnClick_ButtonBody1()
+    {
+        ToggleAlphaChange(buttonBody);
+        nowBodySprite = buttonBody[0].image.sprite;
+        bubbleHedgehogBody.texture = nowBodySprite.texture;
+        if (isSelectedBody != true) isSelectedBody = true;
+    }
+    public void OnClick_ButtonBody2()
+    {
+        ToggleAlphaChange(buttonBody);
+        nowBodySprite = buttonBody[1].image.sprite;
+        bubbleHedgehogBody.texture = nowBodySprite.texture;
+        if (isSelectedBody != true) isSelectedBody = true;
+    }
+    public void OnClick_ButtonBody3()
+    {
+        ToggleAlphaChange(buttonBody);
+        nowBodySprite = buttonBody[2].image.sprite;
+        bubbleHedgehogBody.texture = nowBodySprite.texture;
+        if (isSelectedBody != true) isSelectedBody = true;
+    }
+    public void OnClick_ButtonBelly1()
+    {
+        ToggleAlphaChange(buttonBelly);
+        nowBellySprite = buttonBelly[0].image.sprite;
+        bubbleHedgehogBelly.texture = nowBellySprite.texture;
+        if (isSelectedBelly != true) isSelectedBelly = true;
+    }
+    public void OnClick_ButtonBelly2()
+    {
+        ToggleAlphaChange(buttonBelly);
+        nowBellySprite = buttonBelly[1].image.sprite;
+        bubbleHedgehogBelly.texture = nowBellySprite.texture;
+        if (isSelectedBelly != true) isSelectedBelly = true;
+    }
+    public void OnClick_ButtonBelly3()
+    {
+        ToggleAlphaChange(buttonBelly);
+        nowBellySprite = buttonBelly[2].image.sprite;
+        bubbleHedgehogBelly.texture = nowBellySprite.texture;
+        if (isSelectedBelly != true) isSelectedBelly = true;
+    }
+    public void OnClick_ButtonHead1()
+    {
+        ToggleAlphaChange(buttonHead);
+        nowHeadSprite = buttonHead[0].image.sprite;
+        bubbleHedgehogHead.texture = nowHeadSprite.texture;
+        if (isSelectedHead != true) isSelectedHead = true;
+    }
+    public void OnClick_ButtonHead2()
+    {
+        ToggleAlphaChange(buttonHead);
+        nowHeadSprite = buttonHead[1].image.sprite;
+        bubbleHedgehogHead.texture = nowHeadSprite.texture;
+        if (isSelectedHead != true) isSelectedHead = true;
+    }
+    public void OnClick_ButtonHead3()
+    {
+        ToggleAlphaChange(buttonHead);
+        nowHeadSprite = buttonHead[2].image.sprite;
+        bubbleHedgehogHead.texture = nowHeadSprite.texture;
+        if (isSelectedHead != true) isSelectedHead = true;
+    }
+    public void OnClick_ButtonArmLeg1()
+    {
+        ToggleAlphaChange(buttonArmLeg);
+        nowArmLegSprite = buttonArmLeg[0].image.sprite;
+        bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
+        canMoveToAudio = true;
+        if (isSelectedArmLeg != true) isSelectedArmLeg = true;
+    }
+    public void OnClick_ButtonArmLeg2()
+    {
+        ToggleAlphaChange(buttonArmLeg);
+        nowArmLegSprite = buttonArmLeg[1].image.sprite;
+        bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
+        canMoveToAudio = true;
+        if (isSelectedArmLeg != true) isSelectedArmLeg = true;
+    }
+    public void OnClick_ButtonArmLeg3()
+    {
+        ToggleAlphaChange(buttonArmLeg);
+        nowArmLegSprite = buttonArmLeg[2].image.sprite;
+        bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
+        canMoveToAudio = true;
+        if (isSelectedArmLeg != true) isSelectedArmLeg = true;
+    }
+    #endregion
+    //Change Button Color when Click toggle button
+    private void ToggleAlphaChange(Toggle[] toggles)
+    {
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            if (toggles[i].isOn) toggles[i].image.color = new Color(255, 255, 255, 0.3f);
+            else toggles[i].image.color = new Color(255, 255, 255, 1);
+        }
+    }
     private void AlphaChange(int buttonNum)
     {
         button1.image.color = new Color(255, 255, 255, 1f);
@@ -99,5 +211,27 @@ public class Func_BubbleBearCtrl : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public bool IsSelected(SelectHedgehogState part)
+    {
+        switch (part)
+        {
+            case SelectHedgehogState.Body:
+                if (isSelectedBody == true) return true;
+                break;
+            case SelectHedgehogState.Belly:
+                if (isSelectedBelly == true) return true;
+                break;
+            case SelectHedgehogState.Head:
+                if (isSelectedHead == true) return true;
+                break;
+            case SelectHedgehogState.ArmLeg:
+                if (isSelectedArmLeg == true) return true;
+                break;
+            default:
+                return false;
+        }
+        return false;
     }
 }

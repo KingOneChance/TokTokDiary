@@ -15,7 +15,6 @@ public class Func_BubbleGun : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     {
         Vector2 mousePos = Input.mousePosition;
         ui_transform_icon.position = mousePos;
-
     }
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -52,3 +52,20 @@ public enum SelectHedgehogState
     Head,
     ArmLeg
 }
+
+public enum NowStateInAudio
+{
+    Make,
+    Audio,
+    Sign,
+    Attatch
+}
+
+public enum UserInputState
+{
+    TouchStationary,
+    TouchCanceled,
+    TouchEnded,
+    TouchMoved,
+    TouchBegan
+}

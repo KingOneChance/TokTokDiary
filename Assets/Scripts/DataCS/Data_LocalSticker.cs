@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,7 +53,6 @@ public class Data_LocalSticker : MonoBehaviour
         // Save At Server
         //UpdateToServer(obj);
     }
-
     //¼­¹ö¿ë
     public void GetServerData()
     {
