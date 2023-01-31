@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,64 +7,97 @@ public class Func_Tilt : MonoBehaviour
 {
     [SerializeField] private RectTransform tiltObj = null;
     [SerializeField] private Slider progressBar = null;
-    private Vector3 angle = new Vector3(0, 0, 1);
-    private bool isTouched = false;
+    [SerializeField] private RawImage myImage = null;
 
+    private Color myInitColor = new Vector4(255,255,255,255);
+    private Vector3 angle = new Vector3(0, 0, 1);
+
+    private Vector3 FirstPoint;
+    private Vector3 SecondPoint;
+
+    [SerializeField] private bool isSwipeDown = false;
+    [SerializeField] private bool isProgress = false;
+
+    private void Start()
+    {
+        isSwipeDown = false;
+        isProgress = false;
+    }
     private void Update()
     {
-        Manager_UserInput.UpdateTouch(); // It will remove before merge
-        if (Input.touchCount != 1) return;
-        if(Manager_UserInput.curInputState == UserInputState.TouchStationary && isTouched == false)
+        //Manager_UserInput.UpdateTouch();
+        if (Manager_UserInput.touchCount > 0)
         {
-            isTouched = true;
-            StartTilt();
+            if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
+            {
+                FirstPoint = Manager_UserInput.touches[0].position;
+            }
+            if (Manager_UserInput.touches[0].phase == TouchPhase.Moved)
+            {
+                SecondPoint = Manager_UserInput.touches[0].position;
+                if (Mathf.Abs(FirstPoint.y - SecondPoint.y) > 150f)
+                {
+                    if (FirstPoint.y - SecondPoint.y > 0)
+                        isSwipeDown = true;
+                    else
+                        isSwipeDown = false;
+                }
+            }
+            //if(Manager_UserInput.touches[0].phase == TouchPhase.Ended)
+            //{
+            //    isProgress = false;
+            //    StopCoroutine(CO_ProgressBar());
+            //    FirstPoint = Vector3.zero;
+            //    SecondPoint = Vector3.zero;
+            //    return;
+            //}
         }
-        if(Manager_UserInput.curInputState == UserInputState.TouchEnded)
-        {
-            isTouched = false;
-            StopTilt();
-        }
-    }
 
-    public void StartTilt()
-    {
-        StopAllCoroutines();
-        StartCoroutine(CO_TiltStart());
-    }
-    public void StopTilt() 
-    {
-        StopAllCoroutines();
-        StartCoroutine(CO_TiltStop());
-    }
-   
-
-    private IEnumerator CO_TiltStart()
-    {
-        while (true)
+        if (isSwipeDown == true)
         {
-            if(tiltObj.localEulerAngles.z > 119f || isTouched == false)
+            tiltObj.localEulerAngles += angle * Time.deltaTime * 100f;
+            if (tiltObj.localEulerAngles.z > 120f)
             {
                 tiltObj.localEulerAngles = new Vector3(0, 0, 120);
-                Debug.Log("Start Fill");
+                if (isProgress == false)
+                    StartCoroutine(CO_ProgressBar());
+            }
+        }
+        else
+        {
+            isProgress = false;
+            tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
+            if (tiltObj.rotation.z < 0f)
+            {
+                tiltObj.localEulerAngles = Vector3.zero;
+            }
+        }
+    }
+
+    private IEnumerator CO_ProgressBar()
+    {
+        isProgress = true;
+        while (true)
+        {
+            if (isProgress == false)
+            {
+                isProgress = false;
                 yield break;
             }
-            tiltObj.localEulerAngles += angle * Time.deltaTime * 120f;
+            if(progressBar.value >= 1f)
+            {
+                isProgress = false;
+                progressBar.value = 0f;
+                yield break;
+
+            }
             progressBar.value += 0.001f;
             yield return null;
         }
     }
 
-    private IEnumerator CO_TiltStop()
+    public void ResetBucket()
     {
-        while (true)
-        {
-            if (tiltObj.localEulerAngles.z < 1f)
-            {
-                tiltObj.localEulerAngles = Vector3.zero;
-                yield break;
-            }
-            tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 120f;
-            yield return null;
-        }
+        myImage.color = myInitColor;
     }
 }

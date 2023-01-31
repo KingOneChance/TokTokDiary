@@ -5,6 +5,8 @@ public class Manager_BubbleSticker : MonoBehaviour
 {
     private CreateStickerState _state;
 
+    [SerializeField] GameObject[] Panels = null;
+
     [SerializeField] private bool isDefaultBottleSelected = false;
 
     [SerializeField] private RectTransform[] bucketPos = null;
@@ -19,8 +21,11 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     [SerializeField] private Func_Tilt myTilt = null;
 
+    private int PanelIdx = 0;
+
     private void Start()
     {
+        PanelIdx = 1;
         myTilt.enabled = false;
         myPos.transform.position = bucketPos[0].transform.position;
         for (int i = 0; i < ColorButtons.Length; i++)
@@ -31,12 +36,14 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     public void OnClick_NextBtn(CreateStickerState nextState)
     {
-        Debug.Log("Back!! Back!!");
+        Panels[PanelIdx + 1 > Panels.Length ? PanelIdx : PanelIdx + 1].SetActive(true);
+        Panels[PanelIdx].SetActive(false);
     }
 
     public void OnClick_BackBtn(CreateStickerState prevState)
     {
-        Debug.Log("Next!! Next!!");
+        Panels[PanelIdx - 1 < 0 ? PanelIdx - 1: 0].SetActive(true);
+        Panels[PanelIdx].SetActive(false);
     }
 
     public void OnClick_DefaultBottle()
@@ -55,6 +62,8 @@ public class Manager_BubbleSticker : MonoBehaviour
         {
             myPos.transform.position = bucketPos[0].transform.position;
             myTilt.enabled = false;
+            myTilt.ResetBucket();
+            myPos.transform.localEulerAngles = Vector3.zero;
             for (int i = 0; i < ColorButtons.Length; i++)
             {
                 ColorButtons[i].interactable = false;
