@@ -3,11 +3,8 @@ using UnityEngine.UI;
 
 public class Manager_BubbleSticker : MonoBehaviour
 {
-    private CreateStickerState _state;
-
+    #region SerializeField
     [SerializeField] GameObject[] Panels = null;
-
-    [SerializeField] private bool isDefaultBottleSelected = false;
 
     [SerializeField] private RectTransform[] bucketPos = null;
 
@@ -17,15 +14,36 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     [SerializeField] private Button[] ColorButtons = null;
 
+    [SerializeField] private Button BackButton = null;
+
+    [SerializeField] private Button NextButton = null;
+
     [SerializeField] private RawImage myColor = null;
 
     [SerializeField] private Func_Tilt myTilt = null;
 
+    #endregion
+
+    private bool isDefaultBottleSelected = false;
     private int PanelIdx = 0;
+
+    public RawImage BubbleSicker = null;
+    public Color BubbleStickerColor = Vector4.zero;
 
     private void Start()
     {
-        PanelIdx = 1;
+        Init();
+    }
+
+    private void Init()
+    {
+        PanelIdx = 0;
+        BackButton.interactable = false;
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[0].SetActive(true);
         myTilt.enabled = false;
         myPos.transform.position = bucketPos[0].transform.position;
         for (int i = 0; i < ColorButtons.Length; i++)
@@ -34,22 +52,28 @@ public class Manager_BubbleSticker : MonoBehaviour
         }
     }
 
-    public void OnClick_NextBtn(CreateStickerState nextState)
+    public void OnClick_NextBtn()
     {
-        Panels[PanelIdx + 1 > Panels.Length ? PanelIdx : PanelIdx + 1].SetActive(true);
+        BackButton.interactable = true;
+        if (PanelIdx + 1 == Panels.Length - 1) NextButton.interactable = false;
+        Panels[PanelIdx + 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
+        PanelIdx++;
     }
 
-    public void OnClick_BackBtn(CreateStickerState prevState)
+    public void OnClick_BackBtn()
     {
-        Panels[PanelIdx - 1 < 0 ? PanelIdx - 1: 0].SetActive(true);
+        NextButton.interactable = true;
+        if (PanelIdx - 1 == 0) BackButton.interactable = false;
+        Panels[PanelIdx - 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
+        PanelIdx--;
     }
 
     public void OnClick_DefaultBottle()
     {
         isDefaultBottleSelected = !isDefaultBottleSelected;
-        if(isDefaultBottleSelected == true)
+        if (isDefaultBottleSelected == true)
         {
             myPos.transform.position = bucketPos[1].transform.position;
             myTilt.enabled = true;
