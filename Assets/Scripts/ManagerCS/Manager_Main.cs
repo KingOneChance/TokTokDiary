@@ -118,39 +118,87 @@ public class Manager_Main : MonoBehaviour
     //manange recordSticker Number 
     public int GetBubbleGunStickerNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getBubbleGunStickerNum = allFiles.Length;
-        return getBubbleGunStickerNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            getBubbleGunStickerNum = allFiles.Length;
+            return getBubbleGunStickerNum;
+        }
     }
     public int GetBubbleStickerNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getBubbleStickerNum = allFiles.Length;
-        return getBubbleStickerNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            getBubbleStickerNum = allFiles.Length;
+            return getBubbleStickerNum;
+        }
     }
     public int GetAudioStickerNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getAudioStickerNum = allFiles.Length;
-        return getAudioStickerNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            getAudioStickerNum = allFiles.Length;
+            return getAudioStickerNum;
+        }
     }
     public int GetRecordNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getAudioStickerNum = allFiles.Length;
-        return getAudioStickerNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.wav", SearchOption.TopDirectoryOnly);
+            getAudioStickerNum = allFiles.Length;
+            return getAudioStickerNum;
+        }
     }
     public int GetFreeStickerNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getFreeStickerNum = allFiles.Length;
-        return getFreeStickerNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            getFreeStickerNum = allFiles.Length;
+            return getFreeStickerNum;
+        }
     }
     public int GetDiaryNum(string folder)
     {
-        string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-        getDiaryNum = allFiles.Length;
-        return getDiaryNum;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            return 0;
+        }
+        else
+        {
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            getDiaryNum = allFiles.Length;
+            return getDiaryNum;
+        }
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;

@@ -148,6 +148,40 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         canMoveToAudio = true;
         if (isSelectedArmLeg != true) isSelectedArmLeg = true;
     }
+    public void OnClick_ButtonRandom()
+    {
+        int body, belly, head, amrleg;
+        body = Random.Range(0, 3);
+        ToggleAlphaChange(buttonBody);
+        nowBodySprite = buttonBody[body].image.sprite;
+        bubbleHedgehogBody.texture = nowBodySprite.texture;
+        if (isSelectedBody != true) isSelectedBody = true;
+
+        belly = Random.Range(0, 3);
+        ToggleAlphaChange(buttonBelly);
+        nowBellySprite = buttonBelly[belly].image.sprite;
+        bubbleHedgehogBelly.texture = nowBellySprite.texture;
+        if (isSelectedBelly != true) isSelectedBelly = true;
+
+        head = Random.Range(0, 3);
+        ToggleAlphaChange(buttonHead);
+        nowHeadSprite = buttonHead[head].image.sprite;
+        bubbleHedgehogHead.texture = nowHeadSprite.texture;
+        if (isSelectedHead != true) isSelectedHead = true;
+
+        amrleg = Random.Range(0, 3);
+        ToggleAlphaChange(buttonArmLeg);
+        nowArmLegSprite = buttonArmLeg[amrleg].image.sprite;
+        bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
+        if (isSelectedArmLeg != true) isSelectedArmLeg = true;
+        canMoveToAudio = true;
+
+        buttonBody[body].isOn = true;
+        buttonBelly[body].isOn = true;
+        buttonHead[body].isOn = true;
+        buttonArmLeg[body].isOn = true;
+    }
+
     #endregion
     //Change Button Color when Click toggle button
     private void ToggleAlphaChange(Toggle[] toggles)

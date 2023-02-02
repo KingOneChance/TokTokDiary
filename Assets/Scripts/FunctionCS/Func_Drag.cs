@@ -5,6 +5,11 @@ using UnityEngine.EventSystems;
 
 public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
+    [SerializeField] private GameObject restartButton = null;
+    [SerializeField] private GameObject beforeButton = null;
+    [SerializeField] private GameObject finishCanvas = null;
+    [SerializeField] private GameObject checkCanvas = null;
     [SerializeField] private GameObject hitBoxPos = null;
     [SerializeField] private GameObject myPos = null;
     [SerializeField] private Canvas canvas = null;
@@ -34,9 +39,12 @@ public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         if (isOn == true) return;
         gameObject.transform.position = myPos.transform.position;
+        //change canvas when drag sign on hedgehog sticker
     }
-
-
+    public void LoadFinishCanvas()
+    {
+        manager_BubbleBear.MoveCheckToFinishCanvas();
+    }
     private void OnMouseUp()
     {
         if (isOn == false) gameObject.transform.position = myPos.transform.position;
@@ -45,6 +53,7 @@ public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         isOn = true;
         gameObject.transform.position = hitBoxPos.transform.position;
+        Invoke("LoadFinishCanvas", 1f);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

@@ -16,13 +16,12 @@ public class Func_BubbleBearSign : MonoBehaviour
 
 
     [Header("===DrawCamera===")]
-    [SerializeField] private Camera drawCam=null;
+    [SerializeField] private Camera drawCam = null;
     [Header("===Script===")]
-    [SerializeField] private Manager_BubbleBear manager_bubble= null;
+    [SerializeField] private Manager_BubbleBear manager_bubble = null;
     [Header("===RemoveColor===")]
     [SerializeField] private Color backGroundColor;
     [SerializeField] private Color backGroundColor2;
-
 
     [SerializeField] private RectTransform beforeSignRect = null;
     [SerializeField] private float startXPos;
@@ -35,11 +34,11 @@ public class Func_BubbleBearSign : MonoBehaviour
     {
         Debug.Log(saveObjectFile.transform.position);
         beforeSignRect = saveObjectFile.GetComponent<RectTransform>();
-        startXPos = saveObjectFile.gameObject.transform.position.x + beforeSignRect.rect.position.x+960;
-        startYPos = saveObjectFile.gameObject.transform.position.y + beforeSignRect.rect.position.y+540;
+        startXPos = saveObjectFile.gameObject.transform.position.x + beforeSignRect.rect.position.x + 960;
+        startYPos = saveObjectFile.gameObject.transform.position.y + beforeSignRect.rect.position.y + 540;
         widthValue = (int)beforeSignRect.rect.width;
         heightValue = (int)beforeSignRect.rect.height;
-     //   Debug.Log(startXPos);
+        //   Debug.Log(startXPos);
     }
 
     public void SetImage()
@@ -72,7 +71,7 @@ public class Func_BubbleBearSign : MonoBehaviour
             for (int y = 0; y < heightValue; y++)
             {
                 Color pixelColor = tex.GetPixel(x, y);
-                if (pixelColor != backGroundColor )
+                if (pixelColor != backGroundColor)
                 {
                     newTex.SetPixel(x, y, pixelColor);
                 }

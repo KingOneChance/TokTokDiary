@@ -12,10 +12,10 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private Button buttonRerecord = null;
     [SerializeField] private Button buttonPlay = null;
     [SerializeField] private Button buttonSave = null;
-    [SerializeField] private Button buttonSign = null;
+    // [SerializeField] private Button buttonSign = null;
 
-    [SerializeField] private Button buttonBefore = null;
-    [SerializeField] private Button buttonNext = null;
+    [SerializeField] private GameObject buttonBefore = null;
+    [SerializeField] private GameObject buttonNext = null;
 
     [Header("===Ojects===")]
     [SerializeField] private GameObject homeCanvas = null;
@@ -23,6 +23,8 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject audioCanvas = null;
     [SerializeField] private GameObject signCanvas = null;
     [SerializeField] private GameObject checkCanvas = null;
+    [SerializeField] private GameObject finishCanvas = null;
+
     [SerializeField] private GameObject afterRecord = null;
     [SerializeField] private GameObject popUpImage = null;
     [SerializeField] private GameObject drawCam = null;
@@ -34,6 +36,13 @@ public class Manager_BubbleBear : MonoBehaviour
 
     [SerializeField] private GameObject sceneBefore = null;
     [SerializeField] private GameObject sceneNext = null;
+    [SerializeField] private GameObject restartAll = null;
+
+    [Header("===StageUI===")]
+    [SerializeField] private RawImage Ui_Stage1 = null;
+    [SerializeField] private RawImage Ui_Stage2 = null;
+    [SerializeField] private RawImage Ui_Stage3 = null;
+    [SerializeField] private Color stageColor;
 
     [Header("===Scripts===")]
     [SerializeField] private Func_BubbleBearCtrl bubbleBearCtrl = null;
@@ -53,7 +62,9 @@ public class Manager_BubbleBear : MonoBehaviour
         audioCanvas.SetActive(false);
         signCanvas.SetActive(false);
         checkCanvas.SetActive(false);
+        finishCanvas.SetActive(false);
         drawCam.SetActive(false);
+        buttonBefore.SetActive(false);
 
         toggleBoddy.SetActive(true);
         toggleBelly.SetActive(false);
@@ -64,7 +75,7 @@ public class Manager_BubbleBear : MonoBehaviour
         sceneBefore.SetActive(false);
         sceneNext.SetActive(true);
 
-
+        StageUIChange(1);
         InitAfterRecordButton();
     }
     #region Hedgehog make button
@@ -82,6 +93,7 @@ public class Manager_BubbleBear : MonoBehaviour
             if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Body))
             {
                 selectState = SelectHedgehogState.Belly;
+                buttonBefore.SetActive(true);
                 toggleBelly.SetActive(true);
             }
             else
@@ -110,6 +122,7 @@ public class Manager_BubbleBear : MonoBehaviour
             if (bubbleBearCtrl.IsSelected(SelectHedgehogState.Head))
             {
                 selectState = SelectHedgehogState.ArmLeg;
+                buttonNext.SetActive(false);
                 toggleArmLeg.SetActive(true);
             }
             else
@@ -152,6 +165,7 @@ public class Manager_BubbleBear : MonoBehaviour
         else if (selectState == SelectHedgehogState.Belly)
         {
             selectState = SelectHedgehogState.Body;
+            buttonBefore.SetActive(false);
             toggleBoddy.SetActive(true);
         }
         //head to belly
@@ -164,6 +178,7 @@ public class Manager_BubbleBear : MonoBehaviour
         else if (selectState == SelectHedgehogState.ArmLeg)
         {
             selectState = SelectHedgehogState.Head;
+            buttonNext.SetActive(true);
             toggleHead.SetActive(true);
         }
     }
@@ -215,6 +230,7 @@ public class Manager_BubbleBear : MonoBehaviour
             {
                 bubbleBearCtrl.SaveTempHedgeHog();
                 nowState = NowStateInAudio.Audio;
+                StageUIChange(2);
             }
             else
             {
@@ -230,6 +246,7 @@ public class Manager_BubbleBear : MonoBehaviour
             //temporary save sign image
             bubbleBearSign.SaveTempSign();
             nowState = NowStateInAudio.Attatch;
+            StageUIChange(3);
         }
     }
     //Canvas move to before Canvas
@@ -237,7 +254,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         if (nowState == NowStateInAudio.Audio)
         {
-            SceneManager.LoadScene("BubbleBear");
+            RestartScene();
         }
         else if (nowState == NowStateInAudio.Sign) //no func
         {
@@ -250,7 +267,9 @@ public class Manager_BubbleBear : MonoBehaviour
             sceneBefore.SetActive(false);
             sceneNext.SetActive(true);
             drawCam.SetActive(true);
-            nowState=NowStateInAudio.Sign;
+            nowState = NowStateInAudio.Sign;
+            //back to stage2
+            StageUIChange(2);
         }
     }
 
@@ -282,6 +301,7 @@ public class Manager_BubbleBear : MonoBehaviour
         checkCanvas.SetActive(true);
         sceneBefore.SetActive(true);
         sceneNext.SetActive(false);
+        buttonNext.SetActive(false);
         bubbleBearSign.SetImage();
     }
     //Canvas change "MakeCanvas" to "AudioCanvas"
@@ -292,7 +312,16 @@ public class Manager_BubbleBear : MonoBehaviour
         sceneBefore.SetActive(true); //beforScene button on
         sceneNext.SetActive(false); //nextScene button off
     }
+    //Canvas Change "CheckCanvas" to "FinishCanvas"
+    public void MoveCheckToFinishCanvas()
+    {
+        finishCanvas.SetActive(true);
+        checkCanvas.SetActive(false);
+        restartAll.SetActive(true);
+        sceneBefore.SetActive(false);
 
+        bubbleBearSave.TextureChange();
+    }
 
     #endregion
     //Initiate Button to OriginState.
@@ -301,5 +330,32 @@ public class Manager_BubbleBear : MonoBehaviour
         buttonRecord.gameObject.SetActive(true);
         buttonRecordStop.gameObject.SetActive(false);
         afterRecord.SetActive(false);
+    }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("BubbleBear");
+    }
+    private void StageUIChange(int num)
+    {
+        switch (num)
+        {
+            case 1:
+                Ui_Stage1.color = new Color(255f, 255f, 255f, 1.0f);
+                Ui_Stage2.color = stageColor;
+                Ui_Stage3.color = stageColor;
+                break;
+
+            case 2:
+                Ui_Stage1.color = stageColor;
+                Ui_Stage2.color = new Color(255f, 255f, 255f, 1.0f);
+                Ui_Stage3.color = stageColor;
+                break;
+
+            case 3:
+                Ui_Stage1.color = stageColor;
+                Ui_Stage2.color = stageColor;
+                Ui_Stage3.color = new Color(255f, 255f, 255f, 1.0f);
+                break;
+        }
     }
 }

@@ -20,25 +20,39 @@ public class Func_Record : MonoBehaviour
     [SerializeField] private float nowClipTime;
     [Header("===BubbleBearImage===")]
     [SerializeField] private RawImage bubbleBearImage = null;
-
-
+    [Header("===Buttons===")]
+    [SerializeField] private GameObject finishPlayButton = null;
+    [Header("===Timer===")]
+    [SerializeField] private TextMeshProUGUI timerText = null;
+    [SerializeField] private GameObject timerBox = null;
+    [SerializeField] private bool timerRun = false;
 
     private void Start()
     {
         playSouce = GetComponent<AudioSource>();
         audioNum = 0;
         auidPlayNum = 1;
+        timerBox.SetActive(false);
+        timerRun = false;
     }
 
     public void OnClick_Record()
     {
+        timerBox.SetActive(true);
+        timerRun = true;
         newClip = null;
         newClip = Microphone.Start(null, true, 240, 44100);
         audioNum = Manager_Main.Instance.GetRecordNum("RecordFile");
+        StartCoroutine(Co_UiTimer());
+        //this is for timer
+
     }
     public void OnClick_RecordStop()
     {
+        timerRun = false;
         StopRecordMicrophone(newClip);
+        StopCoroutine(Co_UiTimer());
+        timerBox.SetActive(false);
     }
 
     //After record
@@ -47,6 +61,15 @@ public class Func_Record : MonoBehaviour
         playSouce.clip = newClip;
         playSouce.Play();
     }
+    public void OnClick_PlayInFinish()
+    {
+        playSouce.clip = newClip;
+        finishPlayButton.SetActive(false);
+        playSouce.Play();
+        StartCoroutine(Co_EndReturn());
+    }
+
+
     public void OnClick_Rerecord()
     {
         DeleteRecordSource();
@@ -57,9 +80,10 @@ public class Func_Record : MonoBehaviour
         if (bubbleBearImage.texture == null) return;
         else
         {
+            StopSoundPlay();
             Manager_BubbleBear bubbleBear = FindObjectOfType<Manager_BubbleBear>();
-            bubbleBear.OnClick_ButtonSave();    
-        } 
+            bubbleBear.OnClick_ButtonSave();
+        }
     }
     public void DeleteRecordSource()
     {
@@ -106,4 +130,24 @@ public class Func_Record : MonoBehaviour
     }
     //It is called by only OnClick_Play() method.
     private void IsRunStateChange() => isRun = false;
+    private void StopSoundPlay() => playSouce.Stop();
+
+    IEnumerator Co_EndReturn()
+    {
+        yield return new WaitForSeconds(time);
+        finishPlayButton.SetActive(true);
+    }
+    [SerializeField] private float time = 0f;
+    IEnumerator Co_UiTimer()
+    {
+        time = 0f;
+        yield return null;
+        Debug.Log("코루틴 시작");
+        while (timerRun == true)
+        {
+            time += Time.deltaTime;
+            yield return null;
+            timerText.text = time.ToString("F2");
+        }
+    }
 }
