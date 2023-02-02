@@ -15,24 +15,25 @@ public class Func_SaveSticker : MonoBehaviour
 {
     [Tooltip("save path : Application.persistentDataPath.saveFolder.saveFileName_(ascending order number)")]
     [Header("Save path")]
-    [SerializeField] private string saveFileName = "";
-    [SerializeField] private RawImage saveTemp = null;
+    [SerializeField] protected string saveFileName = "";
+    [SerializeField] protected RawImage saveTemp = null;
+    [SerializeField] protected Color backGroundColor ;
     private string bubbleGunStikcerFolder = "BubbleGun";
     private string bubbleStickerFolder = "Bubble";
     private string audioStickerFolder = "Audio";
     private string freeStickerFolder = "Free";
     private string diaryFolder = "Diary";
-    private string savePath = "";
+    protected string savePath = "";
 
     [Tooltip("startXPos and startYPos 's start postion from left of bottom")]
     [Header("Save position of screen")]
-    [SerializeField] private GameObject saveImage;
-    [SerializeField] private float startXPos;
-    [SerializeField] private float startYPos;
-    [SerializeField] private int widthValue;
-    [SerializeField] private int heightValue;
+    [SerializeField] protected GameObject saveImage;
+    [SerializeField] protected float startXPos;
+    [SerializeField] protected float startYPos;
+    [SerializeField] protected int widthValue;
+    [SerializeField] protected int heightValue;
 
-    RectTransform saveImageRect = null;
+    protected RectTransform saveImageRect = null;
     protected virtual void Start()
     {
         savePath = Application.persistentDataPath;
@@ -76,7 +77,6 @@ public class Func_SaveSticker : MonoBehaviour
                 //Saveimage save
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleGunStikcerFolder}/", saveFileName + "_" + nowNum);
                 //SaveTextureToPng(saveImage.texture, "C:/Users/User/Desktop/Sticker/", saveFileName + "_" + nowNum);
-
                 break;
             case StickerType.BubbleSticker:
                 nowNum = Manager_Main.Instance.GetBubbleStickerNum(bubbleStickerFolder);
@@ -121,10 +121,32 @@ public class Func_SaveSticker : MonoBehaviour
         texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
         texture2D.Apply();
 
+        //
+        Debug.Log("BGC 22: " + backGroundColor);
+        Texture2D newTex = new Texture2D(widthValue, heightValue);
+        for (int x = 0; x < widthValue; x++)
+        {
+            for (int y = 0; y < heightValue; y++)
+            {
+                Color pixelColor = texture2D.GetPixel(x, y);
+                if (pixelColor != backGroundColor)
+                {
+                    newTex.SetPixel(x, y, pixelColor);
+                }
+                else
+                {
+                    newTex.SetPixel(x, y, Color.clear);
+                }
+            }
+        }
+        newTex.Apply();
+        saveTemp.texture = newTex;
+        //
+
         RenderTexture.active = currentRenderTexture;
 
-        byte[] texturePNGBytes = texture2D.EncodeToPNG();
-
+       // byte[] texturePNGBytes = texture2D.EncodeToPNG();
+        byte[] texturePNGBytes = newTex.EncodeToPNG();
         string filePath = directoryPath + fileName + ".png";
 
         File.WriteAllBytes(filePath, texturePNGBytes);

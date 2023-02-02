@@ -2,119 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using FreeDraw;
-using TMPro;
-using System.IO;
-using System;
 
-public class Func_BubbleBearSave : MonoBehaviour
+public class Func_BubbleBearSave : Func_SaveSticker
 {
-    [Header("===Panel===")]
-    [SerializeField] private GameObject panel = null;
-    [Header("===RawImageSpace===")]
-    [SerializeField] private RawImage spaceBearImage = null;
-    [SerializeField] private RawImage spaceSignImage = null;
-    [Header("===Scripts===")]
-    [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
-    [SerializeField] private Func_BubbleBearSign func_BubbleBearSign = null;
-    [Header("===Text===")]
-    [SerializeField] private TextMeshProUGUI spriteText = null;
-    [Header("===Path===")]
-    [SerializeField] private string savePath = null;
-    [Header("===FileName===")]
-    [SerializeField] private string fileNameBear = null;
-    [SerializeField] private string fileNameSign = null;
+    [SerializeField] private RawImage signImage = null;
+    [SerializeField] private RawImage signTempImage = null;
+    [SerializeField] private RawImage hogImage = null;
+    [SerializeField] private RawImage hogTempImage = null;
+    [SerializeField] private GameObject finishPlayButton = null;
 
-    private Sprite saveBearSprite = null;
-    private Sprite saveSignSprite = null;
-
-
-    private void Awake()
+    protected override void Start()
     {
-        savePath = Application.persistentDataPath + "/RecordFile/";
+        savePath = Application.persistentDataPath;
+        //calculate all position
+        saveImageRect = saveImage.GetComponent<RectTransform>();
+        startXPos = saveImage.gameObject.transform.position.x + saveImageRect.rect.position.x + 960;
+        startYPos = saveImage.gameObject.transform.position.y + saveImageRect.rect.position.y + 540;
+        widthValue = (int)saveImageRect.rect.width;
+        heightValue = (int)saveImageRect.rect.height;
     }
-    public void GetSaveSPrite(Sprite sprite)
+    //It will be called when the sign image drop on the hedgehog image
+    public void SaveAll()
     {
-        if (sprite != null) spriteText.text = "is not null";
-        else spriteText.text = "is null";
-
-        saveBearSprite = sprite;
-        spaceBearImage.texture = saveBearSprite.texture;
+        base.OnClick_SaveImgae(StickerType.AudioSticker);
     }
-    public void OnClick_PencileButton()
+    public void TextureChange()
     {
-
+        signImage.texture = signTempImage.texture;
+        hogImage.texture = hogTempImage.texture;
+        SaveAll();
     }
-    public void OnClick_RealSave()
+    public void OnClick_TurnOff()
     {
-        //test
-        StartCoroutine(Co_ScreenShotFrame());
+        finishPlayButton.SetActive(true);
     }
-    IEnumerator Co_ScreenShotFrame()
-    {
-        yield return new WaitForEndOfFrame();
-
-        Texture2D tex = new Texture2D(500, 500, TextureFormat.RGB24, false);
-
-        Rect rex = new Rect(1010, 240, 500, 500);
-
-        tex.ReadPixels(rex, 0, 0);
-        tex.Apply();
-
-        spaceSignImage.texture = tex;
-
-
-        SaveTexture();
-    }
-    private void SaveTexture()
-    {
-        int nowNum;
-        nowNum = Manager_Main.Instance.GetAudioStickerNum("RecordFile");
-        //Bearimage Save
-        SaveTextureToPng(spaceBearImage.texture, savePath, fileNameBear + "_" + nowNum);
-        //Signimage Save
-        SaveTextureToPng(spaceSignImage.texture, savePath, fileNameSign + "_" + nowNum);
-
-        func_BubbleBearSign.GetBearSPrite(spaceBearImage.texture);
-        func_BubbleBearSign.GetSignSPrite(spaceSignImage.texture);
-
-        //recordNum increase
-        Manager_Main.Instance.SetAudioStickerNum();
-        manager_BubbleBear.OnClick_ButtonSign();
-    }
-
-
-    public void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
-    {
-        if (true == string.IsNullOrEmpty(directoryPath)) return;
-        if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-
-        RenderTexture currentRenderTexture = RenderTexture.active;
-        RenderTexture copiedRenderTexture = new RenderTexture(texture.width, texture.height, 0);
-
-        Graphics.Blit(texture, copiedRenderTexture);
-        RenderTexture.active = copiedRenderTexture;
-
-        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
-        texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-        texture2D.Apply();
-
-        RenderTexture.active = currentRenderTexture;
-
-        byte[] texturePNGBytes = texture2D.EncodeToPNG();
-
-        string filePath = directoryPath + fileName + ".png";
-
-        File.WriteAllBytes(filePath, texturePNGBytes);
-    }
-
-    public void SignTextureMaker()
-    {
-        Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
-        spaceSignImage.texture = (Texture)screenshot;
-    }
-
-
-    //I have to add Saving record file Function.
-    //I have to add Saving sign file Function.
 }

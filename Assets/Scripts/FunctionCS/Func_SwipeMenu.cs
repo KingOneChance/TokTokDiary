@@ -5,14 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Func_SwipeMenu : MonoBehaviour
 {
-    [SerializeField] private float scroll_Pos = 0;
     [SerializeField] private float[] pos;
     [SerializeField] private Scrollbar scroll;
     
 
     void Update()
     {
-//        scroll.value
+        
         pos = new float[transform.childCount];
         float distacne = 1f / (pos.Length - 1);
         for (int i = 0; i < pos.Length; i++)
