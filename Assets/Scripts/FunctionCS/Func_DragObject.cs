@@ -32,3 +32,4 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         Manager_Main.Instance.manager_PictureDiary.AddDrangEnd(nodeData, gameObject);
     }
 }
+

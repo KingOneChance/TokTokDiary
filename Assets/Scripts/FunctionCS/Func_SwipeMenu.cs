@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Func_SwipeMenu : MonoBehaviour
 {
-    [SerializeField] private float scroll_Pos = 0;
     [SerializeField] private float[] pos;
     [SerializeField] private Scrollbar scroll;
     
