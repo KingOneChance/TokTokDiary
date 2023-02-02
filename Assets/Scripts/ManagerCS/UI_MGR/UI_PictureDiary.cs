@@ -93,9 +93,7 @@ public class UI_PictureDiary : MonoBehaviour
 
                 ui_Stickers[i].texture = texture;
             }
-        }
-
-        
+        }  
     }
 
     public void OnClick_NativeCameraOnBtn()
@@ -136,39 +134,6 @@ public class UI_PictureDiary : MonoBehaviour
         ui_CameraArea.gameObject.SetActive(false);
         ui_CameraOnBtn.gameObject.SetActive(true);
     }
-    //날씨 색 바꾸기
-    public void OnClick_Weather(string weatherState)
-    {
-        switch (weatherState)
-        {
-            case "Shiny":
-                if(ui_WeatherBtn[0].GetComponent<Image>().color != Color.red)
-                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.red;
-                else 
-                    ui_WeatherBtn[0].GetComponent<Image>().color = Color.white;
-                break;
-            case "Rainy":
-                if (ui_WeatherBtn[1].GetComponent<Image>().color != Color.red)
-                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.red;
-                else 
-                    ui_WeatherBtn[1].GetComponent<Image>().color = Color.white;
-                break;
-            case "Snow":
-                if (ui_WeatherBtn[2].GetComponent<Image>().color != Color.red)
-                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.red;
-                else 
-                    ui_WeatherBtn[2].GetComponent<Image>().color = Color.white;
-                break;
-            case "Cloudy":
-                if (ui_WeatherBtn[3].GetComponent<Image>().color != Color.red)
-                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.red;
-                else 
-                    ui_WeatherBtn[3].GetComponent<Image>().color = Color.white;
-                break;
-        }
-    }
-
-    
     public void OnClick_NiddleBtn()
     {
         if (!isNiddleClicked)
