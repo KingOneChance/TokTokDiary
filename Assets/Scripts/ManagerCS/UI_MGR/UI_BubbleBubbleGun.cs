@@ -18,18 +18,19 @@ public class UI_BubbleBubbleGun : MonoBehaviour
 
     //마지막 획득 스티커
     [SerializeField] private Image sticker = null;
-    //스프라이트 모음
-    [SerializeField] private Sprite[] randSticker = null;
+
     //스티커가 될 
-    [SerializeField] private RawImage[] randImages=null;
+    [SerializeField] public RawImage[] randImages=null;
 
-
+    private int randStickerNum = 0;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
 
+    Func_GunCollision func_GunCollision = null;
     void Start()
     {
-        int randStickerNum = Random.Range(0, randImages.Length);
+        func_GunCollision = FindObjectOfType<Func_GunCollision>();
+        randStickerNum = Random.Range(0, randImages.Length);
         
         randImages[randStickerNum].gameObject.SetActive(true);
         sticker.sprite = stickers[randStickerNum];
@@ -47,4 +48,10 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     {
         SceneManager.LoadScene("BubbleGun");
     }
+    public void TobeSticker()
+    {
+        randImages[randStickerNum].gameObject.GetComponent<Button>().interactable = true;
+       // func_GunCollision.OnClickSticker();
+    }
+
 }

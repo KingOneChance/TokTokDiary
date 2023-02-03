@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveFileName: 
   saveTemp: {fileID: 1224876429}
+  backGroundColor: {r: 0, g: 0, b: 0, a: 0}
   saveImage: {fileID: 477895590}
   startXPos: 0
   startYPos: 0
@@ -2333,7 +2334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 627, y: 627}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &707460978
@@ -2398,8 +2399,8 @@ MonoBehaviour:
   - {fileID: 366316499}
   - {fileID: 1535434313}
   - {fileID: 231453227}
-  backGroundSticker: {fileID: 808301622}
   stickerBackGround: {fileID: 1090409418}
+  BackGroundSticker: {fileID: 808301622}
 --- !u!1 &709810326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,6 +2798,7 @@ GameObject:
   - component: {fileID: 810216392}
   - component: {fileID: 810216394}
   - component: {fileID: 810216393}
+  - component: {fileID: 810216395}
   m_Layer: 5
   m_Name: Slide
   m_TagString: Untagged
@@ -2859,6 +2861,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810216391}
   m_CullTransparentMesh: 1
+--- !u!114 &810216395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810216391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 810216393}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 707460979}
+        m_TargetAssemblyTypeName: Func_GunCollision, Assembly-CSharp
+        m_MethodName: OnClickSticker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &825190057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,6 +3195,7 @@ GameObject:
   - component: {fileID: 1001669552}
   - component: {fileID: 1001669554}
   - component: {fileID: 1001669553}
+  - component: {fileID: 1001669555}
   m_Layer: 5
   m_Name: YellowHorse
   m_TagString: Untagged
@@ -3199,6 +3258,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001669551}
   m_CullTransparentMesh: 1
+--- !u!114 &1001669555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001669551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 1001669553}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 707460979}
+        m_TargetAssemblyTypeName: Func_GunCollision, Assembly-CSharp
+        m_MethodName: OnClickSticker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1008457840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3652,6 +3767,7 @@ GameObject:
   - component: {fileID: 1197956321}
   - component: {fileID: 1197956323}
   - component: {fileID: 1197956322}
+  - component: {fileID: 1197956324}
   m_Layer: 5
   m_Name: Swing
   m_TagString: Untagged
@@ -3714,6 +3830,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197956320}
   m_CullTransparentMesh: 1
+--- !u!114 &1197956324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197956320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 1197956322}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 707460979}
+        m_TargetAssemblyTypeName: Func_GunCollision, Assembly-CSharp
+        m_MethodName: OnClickSticker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1198498900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4325,8 +4497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickers:
-  - {fileID: -257519499, guid: 436d42533432899468b829734c2f2966, type: 3}
   - {fileID: 1573284069, guid: 3688a1a10281333419f89713fa9932b8, type: 3}
+  - {fileID: -257519499, guid: 436d42533432899468b829734c2f2966, type: 3}
   - {fileID: 1830401789, guid: 98e32f950974bbb498db149f66930269, type: 3}
   blacks:
   - {fileID: 1654014843}
@@ -4360,7 +4532,6 @@ MonoBehaviour:
   bubbleStickImage: {fileID: 2800000, guid: 92dea5ead070f3a4e835de7636edf779, type: 3}
   followImage: {fileID: 707460974}
   sticker: {fileID: 477895594}
-  randSticker: []
   randImages:
   - {fileID: 1197956322}
   - {fileID: 810216393}
