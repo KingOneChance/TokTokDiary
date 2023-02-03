@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,24 +7,26 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private RectTransform tiltObj = null;
     [SerializeField] private Slider progressBar = null;
     [SerializeField] private RawImage myImage = null;
-
-    private Color myInitColor = new Vector4(255,255,255,255);
-    private Vector3 angle = new Vector3(0, 0, 1);
-
-    private Vector3 FirstPoint;
-    private Vector3 SecondPoint;
-
+    [SerializeField] private Button NextButton = null;
     [SerializeField] private bool isSwipeDown = false;
     [SerializeField] private bool isProgress = false;
 
-    private void Start()
+    private Color myInitColor = new Vector4(255, 255, 255, 255);
+    private Vector3 angle = new Vector3(0, 0, 1);
+    private Vector3 FirstPoint = Vector3.zero;
+    private Vector3 SecondPoint = Vector3.zero;
+
+    public Color stickerColor = Vector4.zero;
+
+    private void OnDisable()
     {
-        isSwipeDown = false;
         isProgress = false;
+        isSwipeDown = false;
     }
+
     private void Update()
     {
-        //Manager_UserInput.UpdateTouch();
+        Manager_UserInput.UpdateTouch();
         if (Manager_UserInput.touchCount > 0)
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
@@ -43,34 +44,15 @@ public class Func_Tilt : MonoBehaviour
                         isSwipeDown = false;
                 }
             }
-            //if(Manager_UserInput.touches[0].phase == TouchPhase.Ended)
-            //{
-            //    isProgress = false;
-            //    StopCoroutine(CO_ProgressBar());
-            //    FirstPoint = Vector3.zero;
-            //    SecondPoint = Vector3.zero;
-            //    return;
-            //}
         }
 
         if (isSwipeDown == true)
         {
-            tiltObj.localEulerAngles += angle * Time.deltaTime * 100f;
-            if (tiltObj.localEulerAngles.z > 120f)
-            {
-                tiltObj.localEulerAngles = new Vector3(0, 0, 120);
-                if (isProgress == false)
-                    StartCoroutine(CO_ProgressBar());
-            }
+            TiltDown();
         }
         else
         {
-            isProgress = false;
-            tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
-            if (tiltObj.rotation.z < 0f)
-            {
-                tiltObj.localEulerAngles = Vector3.zero;
-            }
+            TiltUp();
         }
     }
 
@@ -81,18 +63,41 @@ public class Func_Tilt : MonoBehaviour
         {
             if (isProgress == false)
             {
-                isProgress = false;
                 yield break;
             }
             if(progressBar.value >= 1f)
             {
                 isProgress = false;
+                isSwipeDown = false;
+                TiltUp();
+                NextButton.interactable = true;
                 progressBar.value = 0f;
                 yield break;
 
             }
             progressBar.value += 0.001f;
             yield return null;
+        }
+    }
+
+    private void TiltDown()
+    {
+        tiltObj.localEulerAngles += angle * Time.deltaTime * 100f;
+        if (tiltObj.localEulerAngles.z > 120f)
+        {
+            tiltObj.localEulerAngles = new Vector3(0, 0, 120);
+            if (isProgress == false)
+                StartCoroutine(CO_ProgressBar());
+        }
+    }
+
+    private void TiltUp()
+    {
+        isProgress = false;
+        tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
+        if (tiltObj.rotation.z < 0f)
+        {
+            tiltObj.localEulerAngles = Vector3.zero;
         }
     }
 
