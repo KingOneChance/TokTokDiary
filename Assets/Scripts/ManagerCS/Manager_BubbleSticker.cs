@@ -1,156 +1,136 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager_BubbleSticker : MonoBehaviour
 {
-    [SerializeField] private Func_Tilt Bucket = null;
-    private CreateStickerState _state;
+    #region SerializeField
+    [SerializeField] private GameObject[] Panels = null;
+    [SerializeField] private RectTransform[] bucketPos = null;
+    [SerializeField] private RectTransform myPos = null;
+    [SerializeField] private RawImage[] ColorBuckets = null;
+    [SerializeField] private RawImage[] StickerDesignArr = null;
+    [SerializeField] private Button[] ColorButtons = null;
+    [SerializeField] private Button BackButton = null;
+    [SerializeField] private Button NextButton = null;
+    [SerializeField] private RawImage defaultBucketColor = null;
+    [SerializeField] private Func_Tilt myTilt = null;
+    [SerializeField] private Func_Stir myStir = null;
+    [SerializeField] private Func_SwellUp mySwellUp = null;
+    [SerializeField] private RawImage BubbleSicker = null;
+    [SerializeField] private Func_SwipeMove StickerDesign = null;
+    #endregion
 
-    public void OnClick_NextBtn(CreateStickerState nextState)
+    private bool isDefaultBottleSelected = false;
+    [SerializeField] private int PanelIdx = 0;
+
+    private void Start()
     {
-        Debug.Log("Back!! Back!!");
+        Init();
     }
 
-    public void OnClick_BackBtn(CreateStickerState prevState)
+    private void Init()
     {
-        Debug.Log("Next!! Next!!");
-    }
-
-    private void Update()
-    {
-        switch (Manager_UserInput.curInputState)
+        PanelIdx = 0;
+        BackButton.gameObject.SetActive(false);
+        for (int i = 0; i < Panels.Length; i++)
         {
-            case UserInputState.TouchStationary:
-                Bucket.StartTilt(true);
+            Panels[i].SetActive(false);
+        }
+        Panels[0].SetActive(true);
+        myTilt.enabled = false;
+        myPos.transform.position = bucketPos[0].transform.position;
+        for (int i = 0; i < ColorButtons.Length; i++)
+        {
+            ColorButtons[i].interactable = false;
+        }
+    }
+
+    public void OnClick_NextBtn()
+    {
+        CheckCurPanel();
+        BackButton.gameObject.SetActive(true);
+        if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
+        Panels[PanelIdx + 1].SetActive(true);
+        Panels[PanelIdx].SetActive(false);
+        PanelIdx++;
+        NextButton.interactable = false;
+    }
+
+    public void OnClick_BackBtn()
+    {
+        if (PanelIdx == 1) NextButton.interactable = true;
+        NextButton.gameObject.SetActive(true);
+        if (PanelIdx - 1 == 0) BackButton.gameObject.SetActive(false);
+        Panels[PanelIdx - 1].SetActive(true);
+        Panels[PanelIdx].SetActive(false);
+        PanelIdx--;
+        if (PanelIdx == 0) NextButton.interactable = true;
+        else NextButton.interactable = false;
+    }
+
+    private void CheckCurPanel()
+    {
+        switch (PanelIdx)
+        {
+            case 0:
+                BubbleSicker.texture = StickerDesignArr[StickerDesign.CurrentSticker].texture;
                 break;
 
-            case UserInputState.TouchCanceled:
-            case UserInputState.TouchEnded:
-                Bucket.StartTilt(false);
+            case 1:
+                BubbleSicker.color = defaultBucketColor.color;
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
                 break;
         }
     }
 
-    //[SerializeField] RectTransform DesignPosAfterClickDecide = null;
-    //[SerializeField] RectTransform ColorPosAfterClickDecide = null;
+    public void OnClick_DefaultBottle()
+    {
+        isDefaultBottleSelected = !isDefaultBottleSelected;
+        if (isDefaultBottleSelected == true)
+        {
+            myPos.transform.position = bucketPos[1].transform.position;
+            myTilt.enabled = true;
+            for (int i = 0; i < ColorButtons.Length; i++)
+            {
+                ColorButtons[i].interactable = true;
+            }
+        }
+        else
+        {
+            myPos.transform.position = bucketPos[0].transform.position;
+            myTilt.enabled = false;
+            myTilt.ResetBucket();
+            myPos.transform.localEulerAngles = Vector3.zero;
+            for (int i = 0; i < ColorButtons.Length; i++)
+            {
+                ColorButtons[i].interactable = false;
+            }
+        }
+    }
 
-    //[SerializeField] RawImage SelectedDesign = null;
-    //[SerializeField] RawImage SelectedColor = null;
+    public void OnClick_SelectColor(string color)
+    {
+        switch (color)
+        {
+            case "Yellow":
+                defaultBucketColor.color = ColorBuckets[0].color;
+                break;
 
-    //[SerializeField] Texture[] Designs = null;
-    //[SerializeField] Color[] paletteColors = null;
-    //[SerializeField] Animator DesignAnim = null;
-    //[SerializeField] Animator ColorAnim = null;
+            case "Orange":
+                defaultBucketColor.color = ColorBuckets[1].color;
+                break;
 
-    //private bool isClickedDesign = false;
-    //private bool isClickedColor = false;
-
-    //private Color showColor = new Color(255,255,255,255);
-
-    //private CreateStickerState curState;
-
-    //private void Start()
-    //{
-    //    curState = CreateStickerState.Select;
-    //}
-
-    //public void OnClick_ColorBtn(int idx)
-    //{
-    //    switch (idx)
-    //    {
-    //        case 0:
-    //            SelectedColor.color = paletteColors[0];
-    //            break;
-    //        case 1:
-    //            SelectedColor.color = paletteColors[1];
-    //            break;
-    //        case 2:
-    //            SelectedColor.color = paletteColors[2];
-    //            break;
-    //        case 3:
-    //            SelectedColor.color = paletteColors[3];
-    //            break;
-    //        case 4:
-    //            SelectedColor.color = paletteColors[4];
-    //            break;
-    //        case 5:
-    //            SelectedColor.color = paletteColors[5];
-    //            break;
-    //        case 6:
-    //            SelectedColor.color = paletteColors[6];
-    //            break;
-    //        case 7:
-    //            SelectedColor.color = paletteColors[7];
-    //            break;
-    //        case 8:
-    //            SelectedColor.color = paletteColors[8];
-    //            break;
-    //        case 9:
-    //            SelectedColor.color = paletteColors[9];
-    //            break;
-    //    }
-    //    if (isClickedColor == false)
-    //        isClickedColor = true;
-    //}
-
-    //public void OnClick_DesignBtn(int idx)
-    //{
-    //    switch (idx)
-    //    {
-    //        case 0:
-    //            SelectedDesign.texture = Designs[0];
-    //            break;
-    //        case 1:
-    //            SelectedDesign.texture = Designs[1];
-    //            break;
-    //        case 2:
-    //            SelectedDesign.texture = Designs[2];
-    //            break;
-    //        case 3:
-    //            SelectedDesign.texture = Designs[3];
-    //            break;
-    //        case 4:
-    //            SelectedDesign.texture = Designs[4];
-    //            break;
-    //    }
-    //    SelectedDesign.color = showColor;
-    //    if (isClickedDesign == false)
-    //        isClickedDesign = true;
-    //}
-
-    //public void OnClick_DecideBtn()
-    //{
-    //    if(isClickedColor == true && isClickedDesign == true)
-    //    {
-    //        DesignAnim.enabled = true;
-    //        ColorAnim.enabled = true;
-    //        Debug.Log("Create Sticker");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("There are some that haven't been selected yet, so choose them");
-    //    }
-    //}
-
-    //private void ChangeState(CreateStickerState state)
-    //{
-    //    curState = state;
-    //    StartCoroutine("CO_" + state.ToString());
-    //}
-
-    //IEnumerator CO_Select()
-    //{
-    //    yield return null;
-    //}
-
-    //IEnumerator CO_Decide()
-    //{
-    //    yield return null;
-    //}
-
-    //IEnumerator CO_Create()
-    //{
-    //    yield return null;
-    //}
+            case "Purple":
+                defaultBucketColor.color = ColorBuckets[2].color;
+                break;
+        }
+    }
 }

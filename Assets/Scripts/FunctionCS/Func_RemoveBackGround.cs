@@ -7,7 +7,7 @@ public class Func_RemoveBackGround : MonoBehaviour
     public Texture2D sourceTex;
     public Color backgroundColor;
 
-    void Start()
+    public Texture2D RemoveBackGround()
     {
         Texture2D newTex = new Texture2D(sourceTex.width, sourceTex.height);
         for (int x = 0; x < sourceTex.width; x++)
@@ -26,6 +26,6 @@ public class Func_RemoveBackGround : MonoBehaviour
             }
         }
         newTex.Apply();
-        GetComponent<Renderer>().material.mainTexture = newTex;
+        return newTex;
     }
 }

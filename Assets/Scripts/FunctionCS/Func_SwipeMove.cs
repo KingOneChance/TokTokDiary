@@ -11,7 +11,8 @@ public class Func_SwipeMove : MonoBehaviour
 
     private float[] scrollpageValues = null;
     private float valueDistance = 0;
-    private int currentPage = 0;
+    private int currentSticker = 0;
+    public int CurrentSticker { get { return currentSticker; } private set { } }
     private int maxPage = 0;
     private float startTouchX = 0f;
     private float endTouchX = 0f;
@@ -37,7 +38,7 @@ public class Func_SwipeMove : MonoBehaviour
 
     public void SetScrollBarValue(int index)
     {
-        currentPage = index;
+        currentSticker = index;
         scrollBar.value = scrollpageValues[index];
     }
 
@@ -56,15 +57,13 @@ public class Func_SwipeMove : MonoBehaviour
 #endif
 
 #if UNITY_ANDROID
-        if(Input.touchCount == 1)
+        if(Manager_UserInput.touchCount == 1)
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-                startTouchX = touch.position.x;
-            else if ( touch.phase == TouchPhase.Ended)
+            if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
+                startTouchX = Manager_UserInput.touches[0].position.x;
+            else if (Manager_UserInput.touches[0].phase == TouchPhase.Ended)
             {
-                endTouchX = touch.position.x;
+                endTouchX = Manager_UserInput.touches[0].position.x;
                 UpdateSwipe();
             }
         }
@@ -75,7 +74,7 @@ public class Func_SwipeMove : MonoBehaviour
     {
         if(Mathf.Abs(startTouchX - endTouchX) < swipeDistance)
         {
-            StartCoroutine(OnSwipeOneStep(currentPage));
+            StartCoroutine(OnSwipeOneStep(currentSticker));
             return;
         }
 
@@ -83,17 +82,17 @@ public class Func_SwipeMove : MonoBehaviour
 
         if( isLeft == true)
         {
-            if (currentPage == 0) return;
-            currentPage--;
+            if (currentSticker == 0) return;
+            currentSticker--;
         }
 
         else
         {
-            if (currentPage == maxPage - 1) return;
-            currentPage++;
+            if (currentSticker == maxPage - 1) return;
+            currentSticker++;
         }
 
-        StartCoroutine(OnSwipeOneStep(currentPage));
+        StartCoroutine(OnSwipeOneStep(currentSticker));
     }
 
     private IEnumerator OnSwipeOneStep(int index)
