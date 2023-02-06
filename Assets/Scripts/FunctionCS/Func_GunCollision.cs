@@ -71,5 +71,6 @@ public class Func_GunCollision : MonoBehaviour
     {
         BackGroundSticker.gameObject.SetActive(false);
         ui_BubbleBubbleGun.TobeSticker();
+        skipBtn.gameObject.SetActive(false);
     }
 }
