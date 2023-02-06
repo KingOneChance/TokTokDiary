@@ -7,6 +7,7 @@ public class Func_Stir : MonoBehaviour
     [SerializeField] private RectTransform myRect = null;
     [SerializeField] private Button stickButton = null;
     [SerializeField] private Button NextButton = null;
+    [SerializeField] private Button SkipButton = null;
     [SerializeField] private float radius = 0;
     [SerializeField] private float deg = 0;
     [SerializeField] private float stirSpeed = 0;
@@ -14,10 +15,15 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_BubbleStick() => StartCoroutine(Stir());
 
-    private void OnEnable() => stickButton.enabled = true;
+    private void OnEnable()
+    {
+        stickButton.enabled = true;
+        SkipButton.gameObject.SetActive(true);
+    }
+
     private void OnDisable()
     {
-        stirCount = 0; 
+        stirCount = 0;
     }
 
     private IEnumerator Stir()
@@ -47,5 +53,11 @@ public class Func_Stir : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    public void OnClick_SkipButton()
+    {
+        NextButton.interactable = true;
+        stickButton.enabled = false;
     }
 }

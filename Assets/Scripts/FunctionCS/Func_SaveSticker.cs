@@ -38,7 +38,7 @@ public class Func_SaveSticker : MonoBehaviour
     {
         savePath = Application.persistentDataPath;
         //calculate all position
-        saveImageRect = saveImage.GetComponent<RectTransform>();  
+        saveImageRect = saveImage.GetComponent<RectTransform>();
         startXPos = saveImage.gameObject.transform.position.x + saveImageRect.rect.position.x;
         startYPos = saveImage.gameObject.transform.position.y + saveImageRect.rect.position.y;
         widthValue = (int)saveImageRect.rect.width;

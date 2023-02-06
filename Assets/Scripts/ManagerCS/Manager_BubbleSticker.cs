@@ -1,30 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Manager_BubbleSticker : MonoBehaviour
+public class Manager_BubbleSticker : Func_SaveSticker
 {
     #region SerializeField
+    [Header("========== 기본 UI ==========")]
+    [SerializeField] private Button BackButton = null;
+    [SerializeField] private Button NextButton = null;
     [SerializeField] private GameObject[] Panels = null;
+    [SerializeField] private RawImage BubbleSicker = null;
+
+    [Header("========== 도안 선택 ==========")]
+    [SerializeField] private RawImage[] StickerDesignArr = null;
+    [SerializeField] private Func_SwipeMove StickerDesign = null;
+
+    [Header("========== 기울이기 ==========")]
+    [SerializeField] private Func_Tilt myTilt = null;
     [SerializeField] private RectTransform[] bucketPos = null;
     [SerializeField] private RectTransform myPos = null;
     [SerializeField] private RawImage[] ColorBuckets = null;
-    [SerializeField] private RawImage[] StickerDesignArr = null;
     [SerializeField] private Button[] ColorButtons = null;
-    [SerializeField] private Button BackButton = null;
-    [SerializeField] private Button NextButton = null;
     [SerializeField] private RawImage defaultBucketColor = null;
-    [SerializeField] private Func_Tilt myTilt = null;
-    [SerializeField] private Func_Stir myStir = null;
-    [SerializeField] private Func_SwellUp mySwellUp = null;
-    [SerializeField] private RawImage BubbleSicker = null;
-    [SerializeField] private Func_SwipeMove StickerDesign = null;
+
     #endregion
 
     private bool isDefaultBottleSelected = false;
-    [SerializeField] private int PanelIdx = 0;
+    private int PanelIdx = 0;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Init();
     }
 
@@ -47,7 +52,7 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     public void OnClick_NextBtn()
     {
-        CheckCurPanel();
+        DecideDesignAndColor();
         BackButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
         Panels[PanelIdx + 1].SetActive(true);
@@ -68,7 +73,7 @@ public class Manager_BubbleSticker : MonoBehaviour
         else NextButton.interactable = false;
     }
 
-    private void CheckCurPanel()
+    private void DecideDesignAndColor()
     {
         switch (PanelIdx)
         {
@@ -78,15 +83,6 @@ public class Manager_BubbleSticker : MonoBehaviour
 
             case 1:
                 BubbleSicker.color = defaultBucketColor.color;
-                break;
-
-            case 2:
-                break;
-
-            case 3:
-                break;
-
-            case 4:
                 break;
         }
     }
@@ -132,5 +128,15 @@ public class Manager_BubbleSticker : MonoBehaviour
                 defaultBucketColor.color = ColorBuckets[2].color;
                 break;
         }
+    }
+
+    public void OnClick_SaveBubbleSticker()
+    {
+        OnClick_SaveImgae(StickerType.BubbleSticker);
+    }
+
+    protected override void OnClick_SaveImgae(StickerType stickerType)
+    {
+        base.OnClick_SaveImgae(stickerType);
     }
 }

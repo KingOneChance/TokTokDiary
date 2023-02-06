@@ -16,7 +16,6 @@ public class Manager_Main : MonoBehaviour
         if (instance == null)
         {
             // Init Process Run
-            data_LocalSticker = GetComponent<Data_LocalSticker>();
             func_LoadPngFile = GetComponent<Func_LoadPngFile>();
             ui_StickerRepository = FindObjectOfType<UI_StickerRepository>();
             GetAllInfoFromServer();
@@ -38,11 +37,11 @@ public class Manager_Main : MonoBehaviour
     public UI_Main UI_Main { get { return ui_Main; } }
 
     [Header("Datas")]
-    private Data_LocalSticker data_LocalSticker = null;
-    public Data_LocalSticker Data_LocalSticker { get { return data_LocalSticker; } }
+
 
     private Func_LoadPngFile func_LoadPngFile = null;
     public Func_LoadPngFile Func_LoadPngFile { get { return func_LoadPngFile; } }
+    [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
     private UI_StickerRepository ui_StickerRepository = null;
@@ -71,14 +70,21 @@ public class Manager_Main : MonoBehaviour
 
 
     #region These functions are for the purpose of finding a specific manager in specific Scene.
-    public void InitMainScene()
-    {
 
+    public void InitPictureDiaryScene()
+    {
+        manager_PictureDiary = FindObjectOfType<Manager_PictureDiary>();
     }
     public void LeaveAtPictureDiaryScene()
     {
         manager_PictureDiary = null;
     }
+
+    public void InitMainScene()
+    {
+
+    }
+
     #endregion
 
 

@@ -21,6 +21,10 @@ namespace FreeDraw
         [SerializeField] private float drawingAreaMinX = 0f;
         [SerializeField] private float drawingAreaMaxY = 0f;
         [SerializeField] private float drawingAreaMinY = 0f;
+        [SerializeField] private float writingAreaMaxX = 0f;
+        [SerializeField] private float writingAreaMinX = 0f;
+        [SerializeField] private float writingAreaMaxY = 0f;
+        [SerializeField] private float writingAreaMinY = 0f;
         [SerializeField] private Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
@@ -79,18 +83,22 @@ namespace FreeDraw
                         line = Obj.GetComponent<LineRenderer>();
                         col = Obj.GetComponent<EdgeCollider2D>();
                         Obj.transform.position = Vector3.zero;
-                        Obj.GetComponent<LineRenderer>().startColor = curColor;
-                        Obj.GetComponent<LineRenderer>().endColor = curColor;
-                        Obj.GetComponent<LineRenderer>().startWidth = currentPenWidth;
-                        Obj.GetComponent<LineRenderer>().endWidth = currentPenWidth;
-                        points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
+                        line.startColor = curColor;
+                        line.endColor = curColor;
+                        line.startWidth = currentPenWidth;
+                        line.endWidth = currentPenWidth;
                         line.positionCount = 1;
+                        points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
                         line.SetPosition(0, points[0]);
                     }
                     //during drag
                     else if (Input.GetMouseButton(0) && internalClick == true)
                     {
                         Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                   /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                        {
+                            return;
+                        }*/
                         points.Add(pos);
                         line.positionCount++;
                         line.SetPosition(line.positionCount - 1, pos);
@@ -99,8 +107,8 @@ namespace FreeDraw
                     //end drag
                     else if (Input.GetMouseButtonUp(0))
                     {
-                        points.Clear();
                         if (isDragSticker == true) Destroy(tempOBJ);
+                        points.Clear();
                     }
                 }
                 else internalClick = false;
@@ -124,8 +132,21 @@ namespace FreeDraw
                 Vector3 curTouchPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
                 if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
-                    curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY)
+                    curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY ||
+                    curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
                 {
+                    if (curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                    {
+                        currentPenWidth = 0.05f;
+                    }
+
+                    else
+                    {
+                        currentPenWidth = Pen_Width.value;
+                    }
+
                     return true;
                 }
                 else

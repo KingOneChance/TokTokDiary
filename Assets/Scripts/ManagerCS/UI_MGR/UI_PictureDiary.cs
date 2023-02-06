@@ -47,7 +47,6 @@ public class UI_PictureDiary : MonoBehaviour
     private void Start()
     {
         func_Camera = FindObjectOfType<Func_Camera>();
-
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -169,6 +168,8 @@ public class UI_PictureDiary : MonoBehaviour
             StickState = StickType.None;
         }
     }
+
+
     private NiddleType NiddleState;
     public NiddleType NiddleStateInfo { get { return NiddleState; } }
     private SoupBubbleType SoupState;
