@@ -46,7 +46,6 @@ public class Func_SwipeMove : MonoBehaviour
     {
         if (isSwipeMode == true) return;
 
-#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
             startTouchX = Input.mousePosition.x;
         else if (Input.GetMouseButtonUp(0))
@@ -54,20 +53,6 @@ public class Func_SwipeMove : MonoBehaviour
             endTouchX = Input.mousePosition.x;
             UpdateSwipe();
         }
-#endif
-
-#if UNITY_ANDROID
-        if (Manager_UserInput.touchCount == 1)
-        {
-            if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
-                startTouchX = Manager_UserInput.touches[0].position.x;
-            if (Manager_UserInput.touches[0].phase == TouchPhase.Ended)
-            {
-                endTouchX = Manager_UserInput.touches[0].position.x;
-                UpdateSwipe();
-            }
-        }
-#endif
     }
 
     private void UpdateSwipe()

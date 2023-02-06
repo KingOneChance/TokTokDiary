@@ -8,6 +8,7 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private Slider progressBar = null;
     [SerializeField] private RawImage myImage = null;
     [SerializeField] private Button NextButton = null;
+    [SerializeField] private Button SkipButton = null;
     [SerializeField] private bool isSwipeDown = false;
     [SerializeField] private bool isProgress = false;
 
@@ -18,10 +19,16 @@ public class Func_Tilt : MonoBehaviour
 
     public Color stickerColor = Vector4.zero;
 
+    private void OnEnable()
+    {
+        SkipButton.gameObject.SetActive(false);
+    }
+
     private void OnDisable()
     {
         isProgress = false;
         isSwipeDown = false;
+        SkipButton.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -57,15 +64,18 @@ public class Func_Tilt : MonoBehaviour
 
     private IEnumerator CO_ProgressBar()
     {
+        SkipButton.gameObject.SetActive(true);
         isProgress = true;
         while (true)
         {
             if (isProgress == false)
             {
+                SkipButton.gameObject.SetActive(false);
                 yield break;
             }
             if(progressBar.value >= 1f)
             {
+                SkipButton.gameObject.SetActive(false);
                 isProgress = false;
                 isSwipeDown = false;
                 TiltUp();
@@ -104,4 +114,7 @@ public class Func_Tilt : MonoBehaviour
     {
         myImage.color = myInitColor;
     }
+
+    public void OnClick_SkipButton() => progressBar.value = 1f;
+    
 }
