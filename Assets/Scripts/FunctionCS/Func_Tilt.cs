@@ -26,7 +26,6 @@ public class Func_Tilt : MonoBehaviour
 
     private void Update()
     {
-        Manager_UserInput.UpdateTouch();
         if (Manager_UserInput.touchCount > 0)
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
@@ -75,7 +74,7 @@ public class Func_Tilt : MonoBehaviour
                 yield break;
 
             }
-            progressBar.value += 0.001f;
+            progressBar.value += 0.01f;
             yield return null;
         }
     }

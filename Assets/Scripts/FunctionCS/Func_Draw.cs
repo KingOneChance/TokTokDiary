@@ -107,8 +107,8 @@ namespace FreeDraw
                     //end drag
                     else if (Input.GetMouseButtonUp(0))
                     {
+                        if (isDragSticker == true || points.Count <= 1) Destroy(tempOBJ);
                         points.Clear();
-                        if (isDragSticker == true) Destroy(tempOBJ);
                     }
                 }
                 else internalClick = false;

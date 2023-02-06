@@ -57,11 +57,11 @@ public class Func_SwipeMove : MonoBehaviour
 #endif
 
 #if UNITY_ANDROID
-        if(Manager_UserInput.touchCount == 1)
+        if (Manager_UserInput.touchCount == 1)
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
                 startTouchX = Manager_UserInput.touches[0].position.x;
-            else if (Manager_UserInput.touches[0].phase == TouchPhase.Ended)
+            if (Manager_UserInput.touches[0].phase == TouchPhase.Ended)
             {
                 endTouchX = Manager_UserInput.touches[0].position.x;
                 UpdateSwipe();
