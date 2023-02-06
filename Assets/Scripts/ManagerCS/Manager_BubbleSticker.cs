@@ -1,35 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Manager_BubbleSticker : MonoBehaviour
+public class Manager_BubbleSticker : Func_SaveSticker
 {
     #region SerializeField
-    [Header("=== 도안 선택 ===")]
-    [Header("=== 기울이기 ===")]
-    [Header("=== 휘젓기 ===")]
-    [Header("=== 부풀리기 ===")]
-    [SerializeField] private GameObject[] Panels = null;
-    [SerializeField] private RectTransform[] bucketPos = null;
-    [SerializeField] private RectTransform myPos = null;
-    [SerializeField] private RawImage[] ColorBuckets = null;
-    [SerializeField] private RawImage[] StickerDesignArr = null;
-    [SerializeField] private Button[] ColorButtons = null;
+    [Header("========== 기본 UI ==========")]
     [SerializeField] private Button BackButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-    [SerializeField] private RawImage defaultBucketColor = null;
-    [SerializeField] private Func_Tilt myTilt = null;
-    [SerializeField] private Func_Stir myStir = null;
-    [SerializeField] private Func_SwellUp mySwellUp = null;
+    [SerializeField] private GameObject[] Panels = null;
     [SerializeField] private RawImage BubbleSicker = null;
+
+    [Header("========== 도안 선택 ==========")]
+    [SerializeField] private RawImage[] StickerDesignArr = null;
     [SerializeField] private Func_SwipeMove StickerDesign = null;
+
+    [Header("========== 기울이기 ==========")]
+    [SerializeField] private Func_Tilt myTilt = null;
+    [SerializeField] private RectTransform[] bucketPos = null;
+    [SerializeField] private RectTransform myPos = null;
+    [SerializeField] private RawImage[] ColorBuckets = null;
+    [SerializeField] private Button[] ColorButtons = null;
+    [SerializeField] private RawImage defaultBucketColor = null;
+
+    [Header("========== 휘젓기 ==========")]
+    [SerializeField] private Func_Stir myStir = null;
+
+    [Header("========== 부풀리기 ==========")]
+    [SerializeField] private Func_SwellUp mySwellUp = null;
     #endregion
 
     private bool isDefaultBottleSelected = false;
     private int PanelIdx = 0;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Init();
     }
 
@@ -128,5 +134,15 @@ public class Manager_BubbleSticker : MonoBehaviour
                 defaultBucketColor.color = ColorBuckets[2].color;
                 break;
         }
+    }
+
+    public void OnClick_SaveBubbleSticker()
+    {
+        OnClick_SaveImgae(StickerType.BubbleSticker);
+    }
+
+    protected override void OnClick_SaveImgae(StickerType stickerType)
+    {
+        base.OnClick_SaveImgae(stickerType);
     }
 }

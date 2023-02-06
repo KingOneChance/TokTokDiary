@@ -14,6 +14,11 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_BubbleStick() => StartCoroutine(Stir());
 
+    private void Start()
+    {
+        radius = Screen.height / 5;
+    }
+
     private void OnEnable() => stickButton.enabled = true;
     private void OnDisable()
     {

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Func_CalendarController : MonoBehaviour
 {
-    public static Func_CalendarController _calendarInstance;
-    
     private DateTime _dateTime;
 
     [SerializeField] private GameObject _item;
@@ -25,7 +23,6 @@ public class Func_CalendarController : MonoBehaviour
 
     void Start()
     {
-        _calendarInstance = this;
         Vector3 startPos = _item.transform.localPosition;
         _dateItems.Clear();
         _dateItems.Add(_item);
