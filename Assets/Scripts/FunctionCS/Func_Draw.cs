@@ -21,6 +21,10 @@ namespace FreeDraw
         [SerializeField] private float drawingAreaMinX = 0f;
         [SerializeField] private float drawingAreaMaxY = 0f;
         [SerializeField] private float drawingAreaMinY = 0f;
+        [SerializeField] private float writingAreaMaxX = 0f;
+        [SerializeField] private float writingAreaMinX = 0f;
+        [SerializeField] private float writingAreaMaxY = 0f;
+        [SerializeField] private float writingAreaMinY = 0f;
         [SerializeField] private Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
@@ -128,8 +132,21 @@ namespace FreeDraw
                 Vector3 curTouchPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
                 if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
-                    curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY)
+                    curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY ||
+                    curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
                 {
+                    if (curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                    {
+                        currentPenWidth = 0.05f;
+                    }
+
+                    else
+                    {
+                        currentPenWidth = Pen_Width.value;
+                    }
+
                     return true;
                 }
                 else

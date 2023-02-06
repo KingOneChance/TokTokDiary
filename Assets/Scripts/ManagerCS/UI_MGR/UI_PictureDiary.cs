@@ -43,12 +43,10 @@ public class UI_PictureDiary : MonoBehaviour
     private Func_Camera func_Camera = null;
 
     [SerializeField] GameObject soupImage = null;
-    [SerializeField] GameObject TodayFeelingMenu = null;
 
     private void Start()
     {
         func_Camera = FindObjectOfType<Func_Camera>();
-
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -170,10 +168,8 @@ public class UI_PictureDiary : MonoBehaviour
             StickState = StickType.None;
         }
     }
-    public void OnClick_TodayFeeling()
-    {
-        TodayFeelingMenu.SetActive(true);
-    }
+
+
     private NiddleType NiddleState;
     public NiddleType NiddleStateInfo { get { return NiddleState; } }
     private SoupBubbleType SoupState;
