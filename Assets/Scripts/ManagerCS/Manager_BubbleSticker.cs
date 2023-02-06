@@ -4,6 +4,10 @@ using UnityEngine.UI;
 public class Manager_BubbleSticker : MonoBehaviour
 {
     #region SerializeField
+    [Header("=== 도안 선택 ===")]
+    [Header("=== 기울이기 ===")]
+    [Header("=== 휘젓기 ===")]
+    [Header("=== 부풀리기 ===")]
     [SerializeField] private GameObject[] Panels = null;
     [SerializeField] private RectTransform[] bucketPos = null;
     [SerializeField] private RectTransform myPos = null;
@@ -12,6 +16,7 @@ public class Manager_BubbleSticker : MonoBehaviour
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private Button BackButton = null;
     [SerializeField] private Button NextButton = null;
+    [SerializeField] private Button SkipButton = null;
     [SerializeField] private RawImage defaultBucketColor = null;
     [SerializeField] private Func_Tilt myTilt = null;
     [SerializeField] private Func_Stir myStir = null;
@@ -21,7 +26,7 @@ public class Manager_BubbleSticker : MonoBehaviour
     #endregion
 
     private bool isDefaultBottleSelected = false;
-    [SerializeField] private int PanelIdx = 0;
+    private int PanelIdx = 0;
 
     private void Start()
     {
@@ -47,7 +52,7 @@ public class Manager_BubbleSticker : MonoBehaviour
 
     public void OnClick_NextBtn()
     {
-        CheckCurPanel();
+        DecideDesignAndColor();
         BackButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
         Panels[PanelIdx + 1].SetActive(true);
@@ -68,7 +73,7 @@ public class Manager_BubbleSticker : MonoBehaviour
         else NextButton.interactable = false;
     }
 
-    private void CheckCurPanel()
+    private void DecideDesignAndColor()
     {
         switch (PanelIdx)
         {
@@ -78,15 +83,6 @@ public class Manager_BubbleSticker : MonoBehaviour
 
             case 1:
                 BubbleSicker.color = defaultBucketColor.color;
-                break;
-
-            case 2:
-                break;
-
-            case 3:
-                break;
-
-            case 4:
                 break;
         }
     }
