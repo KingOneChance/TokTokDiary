@@ -1,24 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Func_Stir : MonoBehaviour
 {
+    [SerializeField] private RectTransform myRect = null;
+    [SerializeField] private Button stickButton = null;
+    [SerializeField] private Button NextButton = null;
     [SerializeField] private float radius = 0;
     [SerializeField] private float deg = 0;
     [SerializeField] private float stirSpeed = 0;
-    [SerializeField] private RectTransform myRect = null;
-
-    [SerializeField] private Button stickButton = null;
-
     [SerializeField] private int stirCount = 0;
 
     public void OnClick_BubbleStick() => StartCoroutine(Stir());
 
+    private void OnEnable() => stickButton.enabled = true;
     private void OnDisable()
     {
-        stirCount = 0;
+        stirCount = 0; 
     }
 
     private IEnumerator Stir()
@@ -39,6 +38,11 @@ public class Func_Stir : MonoBehaviour
                 deg = 0;
                 stickButton.enabled = true;
                 stirCount++;
+                if(stirCount == 3)
+                {
+                    NextButton.interactable = true;
+                    stickButton.enabled = false;
+                }
                 yield break;
             }
             yield return null;
