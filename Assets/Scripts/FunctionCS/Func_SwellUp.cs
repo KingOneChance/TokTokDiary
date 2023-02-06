@@ -8,7 +8,13 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] RawImage SwellUpImg = null;
     [SerializeField] Button SwellUpButton = null;
     [SerializeField] private Button NextButton = null;
+    [SerializeField] private Button SkipButton = null;
     private int curIdx = 0;
+
+    private void OnEnable()
+    {
+        SkipButton.gameObject.SetActive(true);
+    }
 
     private void OnDisable()
     {
@@ -48,5 +54,12 @@ public class Func_SwellUp : MonoBehaviour
             SwellUpImg.rectTransform.localScale += 0.02f * curIdx * Vector3.one;
             yield return null;
         }
+    }
+
+    public void OnClick_SkipButton()
+    {
+        Bomb();
+        SwellUpButton.interactable = false;
+        NextButton.interactable = true;
     }
 }

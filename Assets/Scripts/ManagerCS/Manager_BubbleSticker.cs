@@ -7,7 +7,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [Header("========== ±‚∫ª UI ==========")]
     [SerializeField] private Button BackButton = null;
     [SerializeField] private Button NextButton = null;
-    [SerializeField] private Button SkipButton = null;
     [SerializeField] private GameObject[] Panels = null;
     [SerializeField] private RawImage BubbleSicker = null;
 
@@ -23,11 +22,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private RawImage defaultBucketColor = null;
 
-    [Header("========== »÷¡£±‚ ==========")]
-    [SerializeField] private Func_Stir myStir = null;
-
-    [Header("========== ∫Œ«Æ∏Æ±‚ ==========")]
-    [SerializeField] private Func_SwellUp mySwellUp = null;
     #endregion
 
     private bool isDefaultBottleSelected = false;
