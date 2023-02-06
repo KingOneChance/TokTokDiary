@@ -43,6 +43,7 @@ public class UI_PictureDiary : MonoBehaviour
     private Func_Camera func_Camera = null;
 
     [SerializeField] GameObject soupImage = null;
+    [SerializeField] GameObject TodayFeelingMenu = null;
 
     private void Start()
     {
@@ -163,6 +164,10 @@ public class UI_PictureDiary : MonoBehaviour
             isStickClicked = false;
             StickState = StickType.None;
         }
+    }
+    public void OnClick_TodayFeeling()
+    {
+        TodayFeelingMenu.SetActive(true);
     }
     private NiddleType NiddleState;
     public NiddleType NiddleStateInfo { get { return NiddleState; } }
