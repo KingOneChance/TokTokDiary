@@ -18,12 +18,10 @@ public class Data_LinkedList : MonoBehaviour
         if (head == null)
         {
             head = newNode;
-            //     Debug.Log("헤드 : " + head.myObject.name);
         }
         else
         {
             newNode.prev = tail;
-            //      Debug.Log("드래그 비긴으로 추가된 오브젝트 : " + tail.myObject.name);
         }
         tail = newNode;
         prevData = newData;
@@ -37,12 +35,10 @@ public class Data_LinkedList : MonoBehaviour
         if (head == null)
         {
             head = newNode;
-            //     Debug.Log("헤드 : " + head.myObject.name);
         }
         else
         {
             newNode.prev = tail;
-            //      Debug.Log("드래그 비긴으로 추가된 오브젝트 : " + tail.myObject.name);
         }
         tail = newNode;
         prevData = newData;
@@ -67,7 +63,8 @@ public class Data_LinkedList : MonoBehaviour
 
         if (tail.isFirst == false)//처음 생긴 오브젝트인지 확인 
         {
-            if (tail.myObject == tail.prev.myObject && tail.nodeData.position != tail.prev.nodeData.position) //이전과 같은 오브젝트인경우  (트랜스폼 변경)
+            //이전과 같은 오브젝트인경우  (트랜스폼 변경)
+            if (tail.myObject == tail.prev.myObject && tail.nodeData.position != tail.prev.nodeData.position) 
             {
                 RectTransform temp = tail.myObject.GetComponent<RectTransform>();
                 temp.rotation = Quaternion.Euler(tail.prev.nodeData.rotation);
@@ -75,7 +72,6 @@ public class Data_LinkedList : MonoBehaviour
                 temp.localScale = tail.prev.nodeData.scale;
 
                 tail = tail.prev;
-                // Debug.Log("자리이동 + 처음?" + tail.isFirst+tail.myObject.name);
             }
             else if (tail.myObject == tail.prev.myObject && tail.nodeData.position == tail.prev.nodeData.position)
             {
@@ -89,7 +85,8 @@ public class Data_LinkedList : MonoBehaviour
                     temp.localScale = tail.prev.nodeData.scale;
                 }
             }
-            else if (tail.myObject != tail.prev.myObject && tail.prev.isFirst == false)//이전과 다른 오브젝트인 경우  (트랜스폼 변경)
+            //이전과 다른 오브젝트인 경우  (트랜스폼 변경)
+            else if (tail.myObject != tail.prev.myObject && tail.prev.isFirst == false)
             {
                 tail = tail.prev;
                 if (tail != head)

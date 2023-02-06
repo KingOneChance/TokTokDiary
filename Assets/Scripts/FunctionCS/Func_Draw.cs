@@ -91,10 +91,10 @@ namespace FreeDraw
                     else if (Input.GetMouseButton(0) && internalClick == true)
                     {
                         Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                        if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                   /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
                         {
                             return;
-                        }
+                        }*/
                         points.Add(pos);
                         line.positionCount++;
                         line.SetPosition(line.positionCount - 1, pos);
@@ -103,7 +103,7 @@ namespace FreeDraw
                     //end drag
                     else if (Input.GetMouseButtonUp(0))
                     {
-                        if (isDragSticker == true || points.Count <= 1) Destroy(tempOBJ);
+                        if (isDragSticker == true) Destroy(tempOBJ);
                         points.Clear();
                     }
                 }

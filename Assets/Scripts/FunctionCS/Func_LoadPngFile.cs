@@ -35,22 +35,22 @@ public class Func_LoadPngFile : MonoBehaviour
 
                 if (allFiles[i].Contains("Waffle"))
                 {
-                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.BubbleSticker);
+                   // Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.BubbleSticker);
                     //Debug.Log("와플");
                 }
                 else if (allFiles[i].Contains("Audio"))
                 {
-                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.AudioSticker);
+                   // Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.AudioSticker);
                     //Debug.Log("오디오");
                 }
                 else if (allFiles[i].Contains("Weather"))
                 {
-                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.BubbleGunSticker);
+                   // Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.BubbleGunSticker);
                     //Debug.Log("날씨");
                 }
                 else if (allFiles[i].Contains("Diary"))
                 {
-                    Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.Diary);
+                   // Manager_Main.Instance.Data_LocalSticker.AddInventory(texture, StickerType.Diary);
                    // Debug.Log("일기");
                 }
                 else
