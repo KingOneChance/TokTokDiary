@@ -51,13 +51,18 @@ public class UI_PictureDiary : MonoBehaviour
 
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
-       
+
         Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
 
         //바늘 상태
         NiddleState = NiddleType.None;
         //비눗방울 스티커 상태
         SoupState = SoupBubbleType.Soap;
+
+        foreach (string device in Microphone.devices)
+        {
+            Debug.Log("Name: " + device);
+        }
     }
     public void OnClick_WaffleRepository()
     {

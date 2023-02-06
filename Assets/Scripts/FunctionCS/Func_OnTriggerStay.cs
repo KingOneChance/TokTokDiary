@@ -5,27 +5,49 @@ using UnityEngine.UI;
 
 public class Func_OnTriggerStay : MonoBehaviour
 {
+    //메인 캔버스, 서브 캔버스
+    [SerializeField] private Canvas mainCanvas = null;
+    [SerializeField] private Canvas subCanvas = null;
+
     private float flowTime = 0;
-    private Color mat;
 
-    [SerializeField] RectTransform[] positions = null;
-    [SerializeField] private Sprite image = null;
+    [SerializeField] private RectTransform[] positions = null;
+    [SerializeField] private Sprite[] bubbleGunImage = null;
+    [SerializeField] private Image[] boards = null;
+    
 
-    GameObject go = null;
-    Color hideImgColor = new Color(0, 0, 0, 0);
-    Color showImgColor = new Color(255, 255, 255, 255);
-    public int ranNum = 0;
-    private void Start()
+    public GameObject go = null;
+    private Color hideImgColor = new Color(0, 0, 0, 0);
+    private Color showImgColor = new Color(255, 255, 255, 255);
+    private int ranPosNum = 0;
+    private int ranImageNum = 0;
+
+    private void OnEnable()
     {
-        ranNum = Random.Range(0, positions.Length);
+        for(int i = 0; i < boards.Length; i++)
+        {
+            boards[i].color = showImgColor;
+        }
+        ranImageNum = Random.Range(0, bubbleGunImage.Length);
+        ranPosNum = Random.Range(0, positions.Length);
+
         go = new GameObject();
         go.name = "HideSticker";
         go.tag = "Find";
-
-        go.AddComponent<RawImage>().texture = image.texture;
+        go.AddComponent<RawImage>().texture = bubbleGunImage[ranImageNum].texture;
         go.GetComponent<RawImage>().color = hideImgColor;
-        go.transform.parent = positions[ranNum];
-        go.transform.position = positions[ranNum].transform.position;
+        go.AddComponent<BoxCollider2D>().isTrigger = true;
+        go.transform.SetParent(positions[ranPosNum]);
+        go.transform.position = positions[ranPosNum].transform.position;
+    }
+    private void OnDisable()
+    {
+        Destroy(go);
+    }
+    private void Start()
+    {
+        subCanvas.gameObject.SetActive(false);
+        mainCanvas.gameObject.SetActive(true);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -34,14 +56,27 @@ public class Func_OnTriggerStay : MonoBehaviour
             flowTime += Time.deltaTime;
             if (flowTime > 2.0f)
             {
-                go.GetComponent<RawImage>().color = showImgColor;
+                if(collision.transform.childCount == 1)
+                {
+                    Debug.Log("내자식은 1명이다");
+                    go.GetComponent<RawImage>().color = showImgColor;
+                }
+
+                
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
-                    //이미지 인벤토리 추가
+                    Debug.Log(go.GetComponent<RawImage>().texture);
+
+                    subCanvas.gameObject.SetActive(true);
+                    mainCanvas.gameObject.SetActive(false);
                 }
                 flowTime = 0;
-                Debug.Log("펑");
-                collision.GetComponent<Image>().color = hideImgColor;
+                
+                if (collision.CompareTag("Image"))
+                {
+                    collision.GetComponent<Image>().color = hideImgColor;
+                }
+                
             }
         }
         else
@@ -49,10 +84,10 @@ public class Func_OnTriggerStay : MonoBehaviour
             flowTime = 0;
         }
     }
- 
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Image")
+        if (collision.CompareTag("Image"))
         {
             flowTime = 0;
         }
