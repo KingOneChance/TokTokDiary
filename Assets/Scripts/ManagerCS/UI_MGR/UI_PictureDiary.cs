@@ -39,7 +39,7 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage ui_ProfileMain = null;
     [SerializeField] RawImage ui_ProfilePlus = null;
 
-    [SerializeField] RawImage[] profileImages = null;
+ 
 
     //프로필 추가
     [SerializeField] RawImage plusProfileImage = null;
@@ -157,14 +157,14 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void Onclick_LoadImage(RawImage raw)
     {
-        Debug.Log("file Path : ");
+        //Debug.Log("file Path : ");
         NativeGallery.GetImageFromGallery((file) =>
         {
             //용량제한
-            Debug.Log("file Path : 1번째줄" + file);
+            //Debug.Log("file Path : 1번째줄" + file);
             FileInfo selected = new FileInfo(file);
             //용량제한
-            Debug.Log("file Path : 2번째줄" + file);
+            //Debug.Log("file Path : 2번째줄" + file);
             if (selected.Length > 50000000)
             {
                 Debug.Log("file Path 없음");
@@ -178,7 +178,7 @@ public class UI_PictureDiary : MonoBehaviour
                 StartCoroutine(LoadImage(file, raw));
             }
         });
-        Debug.Log("file Path 탐색끝 ");
+        //Debug.Log("file Path 탐색끝 ");
         if (loadImage.rectTransform.rotation != Quaternion.identity)
             loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
@@ -306,13 +306,17 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_SaveNewProfile()
     {
-        string savePath = Application.persistentDataPath + "/" + newNickName.text + "/";
+        string savePath = Application.persistentDataPath + "/Profile/" + newNickName.text + "/";
         SaveTextureToPng(plusProfileImage.texture, savePath , newNickName.text);
+
+        ui_ProfileMain.gameObject.SetActive(true);
+        ui_ProfilePlus.gameObject.SetActive(false);
     }
     
     private void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
+        if (false == Directory.Exists(Application.persistentDataPath + "/" + "Profile")) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
 
         int widthValue = texture.width;
