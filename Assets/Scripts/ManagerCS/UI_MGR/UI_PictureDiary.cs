@@ -24,6 +24,7 @@ public class UI_PictureDiary : MonoBehaviour
     [Header("기타")]
     //홈버튼
     [SerializeField] Button ui_HomeBtn = null;
+
     [Header("스티커")]
     [SerializeField] RawImage[] ui_Stickers = null;
     [SerializeField] Button[] ui_StickersBtns = null;
@@ -33,6 +34,8 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] Texture2D ui_NiddleImage = null;
 
     [SerializeField] Texture2D ui_StickImage = null;
+
+    [SerializeField] Image ui_ProfileBackGround = null;
 
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
@@ -62,6 +65,8 @@ public class UI_PictureDiary : MonoBehaviour
             Debug.Log("Name: " + device);
         }
     }
+
+    #region Road Sticker Button
     public void OnClick_WaffleRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.freeList);
@@ -78,6 +83,7 @@ public class UI_PictureDiary : MonoBehaviour
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.diaryList);
     }
+    #endregion
     public void LoadLocalStickerInventory(List<string> anyList)
     {
         //initiate raw images's texture
@@ -99,6 +105,8 @@ public class UI_PictureDiary : MonoBehaviour
             }
         }  
     }
+
+
 
     public void OnClick_NativeCameraOnBtn()
     {
