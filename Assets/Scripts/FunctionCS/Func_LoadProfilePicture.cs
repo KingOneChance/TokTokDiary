@@ -38,10 +38,4 @@ public class Func_LoadProfilePicture : MonoBehaviour
 
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
