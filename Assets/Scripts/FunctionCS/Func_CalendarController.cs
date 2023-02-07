@@ -17,7 +17,7 @@ public class Func_CalendarController : MonoBehaviour
 
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
-    private string[] monthStr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+    private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
     const int _totalDateNum = 42;
 
@@ -79,7 +79,7 @@ public class Func_CalendarController : MonoBehaviour
             }
         }
         _yearNumText.text = _dateTime.Year.ToString();
-        _monthNumText.text = _dateTime.Month.ToString();
+        _monthNumText.text = _dateTime.Month.ToString() + " 월 ";
 
         switch (_dateTime.Month)
         {
