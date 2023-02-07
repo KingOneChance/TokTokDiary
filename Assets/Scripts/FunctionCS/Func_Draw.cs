@@ -77,12 +77,13 @@ namespace FreeDraw
                     //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
                     if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
                     {
+                        SData_NodeData temp = new SData_NodeData();
                         internalClick = true;
-                        GameObject Obj = Instantiate(linePrefab);
-                        tempOBJ = Obj;
-                        line = Obj.GetComponent<LineRenderer>();
-                        col = Obj.GetComponent<EdgeCollider2D>();
-                        Obj.transform.position = Vector3.zero;
+                        GameObject obj = Instantiate(linePrefab);
+                        tempOBJ = obj;
+                        line = obj.GetComponent<LineRenderer>();
+                        col = obj.GetComponent<EdgeCollider2D>();
+                        obj.transform.position = Vector3.zero;
                         line.startColor = curColor;
                         line.endColor = curColor;
                         line.startWidth = currentPenWidth;
@@ -90,6 +91,12 @@ namespace FreeDraw
                         line.positionCount = 1;
                         points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
                         line.SetPosition(0, points[0]);
+
+
+                        temp.position = obj.transform.position;
+                        temp.rotation = obj.transform.rotation.eulerAngles;
+                        temp.scale = obj.transform.localScale;
+                        Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
                     }
                     //during drag
                     else if (Input.GetMouseButton(0) && internalClick == true)
