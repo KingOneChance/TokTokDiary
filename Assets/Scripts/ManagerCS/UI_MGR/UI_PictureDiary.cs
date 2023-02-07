@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using static NativeCamera;
 
 public class UI_PictureDiary : MonoBehaviour
 {
-    [SerializeField] string path = "";
     //그림판
     [Header("그림판")]
     [SerializeField] private Image ui_DrawBackground = null;
@@ -41,7 +41,9 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] RawImage[] profileImages = null;
 
-    //프로필 
+    //프로필 추가
+    [SerializeField] RawImage plusProfileImage = null;
+    [SerializeField] TMP_InputField newNickName = null;
 
     [SerializeField] private RawImage loadImage;
 
@@ -56,6 +58,7 @@ public class UI_PictureDiary : MonoBehaviour
 
     private void Start()
     {
+        
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -112,8 +115,6 @@ public class UI_PictureDiary : MonoBehaviour
         }  
     }
 
-
-
     public void OnClick_NativeCameraOnBtn()
     {
         TakePicture(CallBack);
@@ -124,7 +125,7 @@ public class UI_PictureDiary : MonoBehaviour
         Byte[] bytes = File.ReadAllBytes(path);
         string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
         NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
-        StartCoroutine(LoadImage(path));
+        StartCoroutine(LoadImage(path, loadImage));
     }
 
     public void Onclick_LoadImage()
@@ -147,29 +148,55 @@ public class UI_PictureDiary : MonoBehaviour
                 Debug.Log("file Path 있음");
 
                 //불러와라
-                StartCoroutine(LoadImage(file));
+                StartCoroutine(LoadImage(file, loadImage));
             }
         });
         Debug.Log("file Path 탐색끝 ");
         if (loadImage.rectTransform.rotation != Quaternion.identity)
             loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
+    public void Onclick_LoadImage(RawImage raw)
+    {
+        Debug.Log("file Path : ");
+        NativeGallery.GetImageFromGallery((file) =>
+        {
+            //용량제한
+            Debug.Log("file Path : 1번째줄" + file);
+            FileInfo selected = new FileInfo(file);
+            //용량제한
+            Debug.Log("file Path : 2번째줄" + file);
+            if (selected.Length > 50000000)
+            {
+                Debug.Log("file Path 없음");
+                return;
+            }
+            if (!string.IsNullOrEmpty(file))
+            {
+                Debug.Log("file Path 있음");
 
-    IEnumerator LoadImage(string path)
+                //불러와라
+                StartCoroutine(LoadImage(file, raw));
+            }
+        });
+        Debug.Log("file Path 탐색끝 ");
+        if (loadImage.rectTransform.rotation != Quaternion.identity)
+            loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+    }
+    IEnumerator LoadImage(string path, RawImage loadImage)
     {
         yield return null;
         byte[] fileData = File.ReadAllBytes(path);
         string fileName = Path.GetFileName(path).Split('.')[0];
-        string savePath = Application.persistentDataPath + "/TestImage";
+       // string savePath = Application.persistentDataPath + "/TestImage/";
 
-        if (!Directory.Exists(savePath))
-        {
-            Directory.CreateDirectory(savePath);
-        }
+        //if (!Directory.Exists(savePath))
+        //{
+        //    Directory.CreateDirectory(savePath);
+        //}
 
-        File.WriteAllBytes(savePath + fileName + ".png", fileData);
+        File.WriteAllBytes(path + fileName + ".png", fileData);
 
-        var temp = File.ReadAllBytes(savePath + fileName + ".png");
+        var temp = File.ReadAllBytes(path + fileName + ".png");
 
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
@@ -236,6 +263,7 @@ public class UI_PictureDiary : MonoBehaviour
 
     #region Profile
     // 메인화면 x 버튼, 메인화면 취소버튼 
+
     public void OnClick_ExitProfile()
     {
         ui_ProfileBackGround.gameObject.SetActive(false);
@@ -244,17 +272,19 @@ public class UI_PictureDiary : MonoBehaviour
     //프로필 메인
     public void OnClick_OpenProfileButton()
     {
+        ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
+        ui_ProfilePlus.gameObject.SetActive(false);
     }
 
-    public void OnClick_PlusProfile()
+    public void OnClick_OpenPlusProfile()
     {
         ui_ProfilePlus.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(false);
 
     }
 
-    public void OnClick_OverWriteProfile()
+    public void OnClick_OpenOverWriteProfile()
     {
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(false);
@@ -265,7 +295,45 @@ public class UI_PictureDiary : MonoBehaviour
 
     }
     //프로필 추가부분
+    public void OnClick_ExitPlusProfile()
+    {
+        ui_ProfilePlus.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(true);
+    }
+    public void OnClick_LoadProfilePicture()
+    {
+        Onclick_LoadImage(plusProfileImage);
+    }
+    public void OnClick_SaveNewProfile()
+    {
+        string savePath = Application.persistentDataPath + "/" + newNickName.text + "/";
+        SaveTextureToPng(plusProfileImage.texture, savePath , newNickName.text);
+    }
+    
+    private void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
+    {
+        if (true == string.IsNullOrEmpty(directoryPath)) return;
+        if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
 
+        int widthValue = texture.width;
+        int heightValue = texture.height;
 
+        RenderTexture currentRenderTexture = RenderTexture.active;
+        RenderTexture copiedRenderTexture = new RenderTexture(texture.width, texture.height, 0);
+
+        Graphics.Blit(texture, copiedRenderTexture);
+        RenderTexture.active = copiedRenderTexture;
+
+        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
+        texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
+        texture2D.Apply();
+
+        RenderTexture.active = currentRenderTexture;
+
+        byte[] texturePNGBytes = texture2D.EncodeToPNG();
+        string filePath = directoryPath + fileName + ".png";
+
+        File.WriteAllBytes(filePath, texturePNGBytes);
+    }
     #endregion
 }
