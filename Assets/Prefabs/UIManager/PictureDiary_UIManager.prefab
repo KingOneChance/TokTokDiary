@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6218628758852621129}
   - component: {fileID: 6218628758852621126}
   - component: {fileID: 6218628760045598220}
+  - component: {fileID: 6218628760045598224}
   m_Layer: 0
   m_Name: PictureDiary_UIManager
   m_TagString: Untagged
@@ -45,21 +46,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d313dc9b8e27b04dadfd7fb8337b4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: 
   ui_DrawBackground: {fileID: 0}
-  ui_ShinyWeatherBtn: {fileID: 0}
-  ui_ShinyImage: {fileID: 0}
-  ui_CameraArea: {fileID: 0}
+  ui_WeatherBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ui_CameraOnBtn: {fileID: 0}
   ui_LoadBtn: {fileID: 0}
   ui_HomeBtn: {fileID: 0}
-  ui_WaffleSticker:
+  ui_Stickers:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  test: {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ui_StickersBtns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ui_NiddleBtn: {fileID: 0}
+  ui_NiddleImage: {fileID: 2800000, guid: 4ec4ca26a95002b4a9e29bfaf28568c6, type: 3}
+  ui_StickImage: {fileID: 2800000, guid: 07687234b46c2654f8f1f5a4097109df, type: 3}
+  soupImage: {fileID: 0}
 --- !u!114 &6218628760045598220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,3 +89,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraViewImage: {fileID: 0}
   loadImage: {fileID: 0}
+--- !u!114 &6218628760045598224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6218628758852621128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui_Stikcers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  soapBubble: {fileID: 0}

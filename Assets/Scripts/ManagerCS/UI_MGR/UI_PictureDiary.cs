@@ -17,7 +17,6 @@ public class UI_PictureDiary : MonoBehaviour
    
     [Header("카메라")]
     //카메라 on - off, 불러오기
-    [SerializeField] Image ui_CameraArea = null;
     [SerializeField] Button ui_CameraOnBtn = null;
     //[SerializeField] Button cameraOffBtn = null;
     [SerializeField] Button ui_LoadBtn = null;
@@ -120,32 +119,6 @@ public class UI_PictureDiary : MonoBehaviour
         NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
     }
 
-    public void OnClick_NativeCameraVideoOnBtn()
-    {
-        RecordVideo(VideoCallBack);
-    }
-
-    private void VideoCallBack(string path)
-    {
-        Byte[] bytes = File.ReadAllBytes(path);
-        string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
-        NativeGallery.SaveVideoToGallery(bytes, "DiaryVideoAlbum", fileName + ".mp4");
-    }
-
-    //카메라 켜기
-    public void OnClick_CameraOnBtn()
-    {
-        ui_CameraArea.gameObject.SetActive(true);
-        ui_CameraOnBtn.gameObject.SetActive(false);
-
-        func_Camera.CameraOn();
-    }
-    //카메라 끄기
-    public void OnClick_CameraOffBtn()
-    {
-        ui_CameraArea.gameObject.SetActive(false);
-        ui_CameraOnBtn.gameObject.SetActive(true);
-    }
     public void OnClick_NiddleBtn()
     {
         if (!isNiddleClicked)
