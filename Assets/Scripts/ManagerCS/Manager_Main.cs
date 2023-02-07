@@ -16,7 +16,6 @@ public class Manager_Main : MonoBehaviour
         if (instance == null)
         {
             // Init Process Run
-            func_LoadPngFile = GetComponent<Func_LoadPngFile>();
             ui_StickerRepository = FindObjectOfType<UI_StickerRepository>();
             GetAllInfoFromServer();
             instance = this;
@@ -35,12 +34,6 @@ public class Manager_Main : MonoBehaviour
     //����
     [SerializeField] private UI_Main ui_Main = null;
     public UI_Main UI_Main { get { return ui_Main; } }
-
-    [Header("Datas")]
-
-
-    private Func_LoadPngFile func_LoadPngFile = null;
-    public Func_LoadPngFile Func_LoadPngFile { get { return func_LoadPngFile; } }
     [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
