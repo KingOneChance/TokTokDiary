@@ -12,7 +12,7 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] string path = "";
     //그림판
     [Header("그림판")]
-    [SerializeField] Image ui_DrawBackground = null;
+    [SerializeField] private Image ui_DrawBackground = null;
     [SerializeField] Button[] ui_WeatherBtn = null;
    
     [Header("카메라")]
@@ -34,7 +34,16 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] Texture2D ui_StickImage = null;
 
+    [Header("프로필")]
+    //프로필 메인
     [SerializeField] Image ui_ProfileBackGround = null;
+    [SerializeField] RawImage ui_ProfileMain = null;
+    [SerializeField] RawImage ui_ProfilePlus = null;
+
+    [SerializeField] RawImage[] profileImages = null;
+
+    //프로필 
+
 
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
@@ -118,7 +127,8 @@ public class UI_PictureDiary : MonoBehaviour
         string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
         NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
     }
-
+    
+    #region NiddleBtn , StickBtn
     public void OnClick_NiddleBtn()
     {
         if (!isNiddleClicked)
@@ -173,5 +183,40 @@ public class UI_PictureDiary : MonoBehaviour
             Debug.Log("떼졌쥬?");
         }
     }
+    #endregion
 
+    #region Profile
+    // 메인화면 x 버튼, 메인화면 취소버튼 
+    public void OnClick_ExitProfile()
+    {
+        ui_ProfileBackGround.gameObject.SetActive(false);
+    }
+
+    //프로필 메인
+    public void OnClick_OpenProfileButton()
+    {
+        ui_ProfileMain.gameObject.SetActive(true);
+    }
+
+    public void OnClick_PlusProfile()
+    {
+        ui_ProfilePlus.gameObject.SetActive(true);
+        ui_ProfileMain.gameObject.SetActive(false);
+
+    }
+
+    public void OnClick_OverWriteProfile()
+    {
+        ui_ProfilePlus.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(false);
+    }
+
+    public void OnClick_SaveProfile()
+    {
+
+    }
+    //프로필 추가부분
+
+
+    #endregion
 }
