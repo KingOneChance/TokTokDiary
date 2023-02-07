@@ -19,7 +19,7 @@ public class Func_Tilt : MonoBehaviour
 
     public Color stickerColor = Vector4.zero;
 
-    private void OnEnable()
+    private void Start()
     {
         SkipButton.gameObject.SetActive(false);
     }
@@ -28,7 +28,6 @@ public class Func_Tilt : MonoBehaviour
     {
         isProgress = false;
         isSwipeDown = false;
-        SkipButton.gameObject.SetActive(true);
     }
 
     private void Update()

@@ -21,7 +21,7 @@ public class UI_StickerRepository : MonoBehaviour
 #if UNITY_EDITOR_WIN
     string path = "C:/Users/User/Desktop/Sticker/";
 #else
-    string path = Application.persistentDataPath + "/RecordSticker/";
+    string path = Application.persistentDataPath;
 #endif
 
     public void OnClick_WaffleRepository()
@@ -47,7 +47,7 @@ public class UI_StickerRepository : MonoBehaviour
 
     public void OnClick_RepositoryOpen()
     {
-        string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly);
+        string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
         if (allFiles.Length == freeList.Count + signList.Count + bearList.Count + diaryList.Count)
         {
             return;
