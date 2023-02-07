@@ -302,8 +302,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3818636585261483289}
   - component: {fileID: 3818636585261483290}
-  - component: {fileID: 3818636585261483288}
-  - component: {fileID: 3818636585261483303}
   - component: {fileID: 1503318229}
   m_Layer: 0
   m_Name: MainManager
@@ -341,33 +339,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui_Main: {fileID: 1071966920976230973, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
+  <manager_PictureDiary>k__BackingField: {fileID: 0}
   <ui_StickerRepositoryPrefab>k__BackingField: {fileID: 3818636586790310436}
-  recordStickerNum: 0
---- !u!114 &3818636585261483288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3818636585261483291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca2be6678deca040966b150f0ef2e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waffleList: []
---- !u!114 &3818636585261483303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3818636585261483291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c5d821b02266f4d9be5f4ae33cd467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  getBubbleGunStickerNum: 0
+  getAudioStickerNum: 0
+  getBubbleStickerNum: 0
+  getFreeStickerNum: 0
+  getDiaryNum: 0
+  setBubbleGunStickerNum: 0
+  setAudioStickerNum: 0
+  setBubbleStickerNum: 0
+  setFreeStickerNum: 0
+  setDiaryNum: 0
 --- !u!114 &1503318229
 MonoBehaviour:
   m_ObjectHideFlags: 0

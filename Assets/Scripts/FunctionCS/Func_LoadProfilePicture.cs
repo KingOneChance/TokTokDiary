@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 public class Func_LoadProfilePicture : MonoBehaviour
 {
     [SerializeField] RawImage[] profileImages = null;
