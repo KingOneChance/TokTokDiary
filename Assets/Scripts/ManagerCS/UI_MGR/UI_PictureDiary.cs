@@ -1,11 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.IO;
 using static NativeCamera;
-using System;
 
 public class UI_PictureDiary : MonoBehaviour
 {
@@ -33,19 +32,18 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] Texture2D ui_StickImage = null;
 
+    [SerializeField] private RawImage loadImage;
+
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
 
     private bool isNiddleClicked = false;
     private bool isStickClicked = false;
 
-    private Func_Camera func_Camera = null;
-
     [SerializeField] GameObject soupImage = null;
 
     private void Start()
     {
-        func_Camera = FindObjectOfType<Func_Camera>();
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -109,6 +107,57 @@ public class UI_PictureDiary : MonoBehaviour
         Byte[] bytes = File.ReadAllBytes(path);
         string fileName = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
         NativeGallery.SaveImageToGallery(bytes, "DiaryPictureAlbum", fileName + ".jpg");
+        StartCoroutine(LoadImage(path));
+    }
+
+    public void Onclick_LoadImage()
+    {
+        Debug.Log("file Path : ");
+        NativeGallery.GetImageFromGallery((file) =>
+        {
+            //용량제한
+            Debug.Log("file Path : 1번째줄" + file);
+            FileInfo selected = new FileInfo(file);
+            //용량제한
+            Debug.Log("file Path : 2번째줄" + file);
+            if (selected.Length > 50000000)
+            {
+                Debug.Log("file Path 없음");
+                return;
+            }
+            if (!string.IsNullOrEmpty(file))
+            {
+                Debug.Log("file Path 있음");
+
+                //불러와라
+                StartCoroutine(LoadImage(file));
+            }
+        });
+        Debug.Log("file Path 탐색끝 ");
+        if (loadImage.rectTransform.rotation != Quaternion.identity)
+            loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+    }
+
+    IEnumerator LoadImage(string path)
+    {
+        yield return null;
+        byte[] fileData = File.ReadAllBytes(path);
+        string fileName = Path.GetFileName(path).Split('.')[0];
+        string savePath = Application.persistentDataPath + "/TestImage";
+
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+        }
+
+        File.WriteAllBytes(savePath + fileName + ".png", fileData);
+
+        var temp = File.ReadAllBytes(savePath + fileName + ".png");
+
+        Texture2D tex = new Texture2D(0, 0);
+        tex.LoadImage(temp);
+        loadImage.texture = tex;
+        loadImage.rectTransform.rotation = Quaternion.identity;
     }
 
     public void OnClick_NiddleBtn()
@@ -165,5 +214,4 @@ public class UI_PictureDiary : MonoBehaviour
             Debug.Log("떼졌쥬?");
         }
     }
-
 }
