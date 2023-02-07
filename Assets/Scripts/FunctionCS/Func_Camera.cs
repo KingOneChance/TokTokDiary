@@ -91,10 +91,10 @@ public class Func_Camera : MonoBehaviour
         //if (loadImage.rectTransform.rotation != Quaternion.identity)
         //    loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
 
-        NativeGallery.GetMixedMediaFromGallery((media) =>
+        NativeGallery.GetImageFromGallery((media) =>
         {
             FileInfo selectedMedia = new FileInfo(media);
-        }, NativeGallery.MediaType.Image | NativeGallery.MediaType.Video);
+        });
 
     }
     IEnumerator LoadImage(string path)
