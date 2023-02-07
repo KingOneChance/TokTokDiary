@@ -398,7 +398,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
   m_PrefabInstance: {fileID: 4095744915378150475}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4095744915378150476}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
@@ -6654,7 +6654,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_PrefabInstance: {fileID: 6218628760045598222}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218628760045598223}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d313dc9b8e27b04dadfd7fb8337b4cf, type: 3}
@@ -6665,7 +6665,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6218628760045598220, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_PrefabInstance: {fileID: 6218628760045598222}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218628760045598223}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02cb54a3a733404da854d5060464be2, type: 3}
@@ -12868,62 +12868,12 @@ PrefabInstance:
       propertyPath: Pen_Width
       value: 
       objectReference: {fileID: 1292630004}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: drawingAreaMaxX
-      value: 8.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: drawingAreaMaxY
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: drawingAreaMinX
-      value: -3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: drawingAreaMinY
-      value: -1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: writingAreaMaxX
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: writingAreaMaxY
-      value: -2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: writingAreaMinX
-      value: -1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: writingAreaMinY
-      value: -4.2
-      objectReference: {fileID: 0}
     - target: {fileID: 4095744915355600559, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: m_Name
       value: DrawRenderCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
---- !u!1 &4095744915378150476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4095744915355600559, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-  m_PrefabInstance: {fileID: 4095744915378150475}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4095744915378150477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4095744915378150476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!1 &4360024350584166632
 GameObject:
   m_ObjectHideFlags: 0
@@ -13456,10 +13406,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: test
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: soupImage
       value: 
       objectReference: {fileID: 1034301096}
@@ -13476,125 +13422,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1389530195}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_CameraArea
-      value: 
-      objectReference: {fileID: 7993371126117876956}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_ShinyImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_StickImage
-      value: 
-      objectReference: {fileID: 2800000, guid: 07687234b46c2654f8f1f5a4097109df, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_CameraOnBtn
       value: 
       objectReference: {fileID: 7993371126956839780}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_NiddleImage
-      value: 
-      objectReference: {fileID: 2800000, guid: 4ec4ca26a95002b4a9e29bfaf28568c6, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ThisImage_Rainy
-      value: 
-      objectReference: {fileID: 21300000, guid: ed30f7005368cd54e868146e9f74ede6, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ThisImage_Snowy
-      value: 
-      objectReference: {fileID: 21300000, guid: 9eed8d5ff9434394780e54dc53bbca05, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ThisImage_Sunny
-      value: 
-      objectReference: {fileID: 21300000, guid: fb2d2bedcc02dd644913af7116532045, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeelingBtn
-      value: 
-      objectReference: {fileID: 1527136331}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ChangImage_Rainy
-      value: 
-      objectReference: {fileID: 21300000, guid: ed30f7005368cd54e868146e9f74ede6, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ChangImage_Snowy
-      value: 
-      objectReference: {fileID: 21300000, guid: 9eed8d5ff9434394780e54dc53bbca05, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ChangImage_Sunny
-      value: 
-      objectReference: {fileID: 21300000, guid: fb2d2bedcc02dd644913af7116532045, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: Change_Image_Sad
-      value: 
-      objectReference: {fileID: 21300000, guid: 37e7d8c1de2502d4f81c6014dd57915a, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ThisImage_Cloudy
-      value: 
-      objectReference: {fileID: 21300000, guid: d07750a4c54c9124387423e70538cd06, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeelingMenu
-      value: 
-      objectReference: {fileID: 1297975706}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeeling_Sad
-      value: 
-      objectReference: {fileID: 1672472428}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ChangImage_Cloudy
-      value: 
-      objectReference: {fileID: 21300000, guid: d07750a4c54c9124387423e70538cd06, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ChangeImage_Sunny
-      value: 
-      objectReference: {fileID: 21300000, guid: fb2d2bedcc02dd644913af7116532045, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: Change_Image_Calm
-      value: 
-      objectReference: {fileID: 21300000, guid: 3499b009d10c68a41a09e0e0343e7694, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeeling_Calm
-      value: 
-      objectReference: {fileID: 160973987}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_DrawBackground
       value: 
       objectReference: {fileID: 7993371125752814933}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: Change_Image_Angry
-      value: 
-      objectReference: {fileID: 21300000, guid: aada62512900bad42a9997d1e9f39b6b, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: Change_Image_Happy
-      value: 
-      objectReference: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeeling_Angry
-      value: 
-      objectReference: {fileID: 119525462}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeeling_Happy
-      value: 
-      objectReference: {fileID: 475189750}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_ShinyWeatherBtn
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: Change_Image_Excited
-      value: 
-      objectReference: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: TodayFeeling_Excited
-      value: 
-      objectReference: {fileID: 1114703184}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_Stickers.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WeatherBtn.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_Stickers.Array.data[0]
       value: 
@@ -13632,26 +13466,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1237402944}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_StickersBtns.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WeatherBtn.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WeatherBtn.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WeatherBtn.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WeatherBtn.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_StickersBtns.Array.data[0]
       value: 
       objectReference: {fileID: 945676390}
@@ -13667,37 +13481,9 @@ PrefabInstance:
       propertyPath: ui_StickersBtns.Array.data[3]
       value: 
       objectReference: {fileID: 1418457692}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: ui_WaffleSticker.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_Name
       value: PictureDiary_UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621129, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_RootOrder
@@ -13751,36 +13537,59 @@ PrefabInstance:
       propertyPath: cameraViewImage
       value: 
       objectReference: {fileID: 1952084974}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: soapBubble
+      value: 
+      objectReference: {fileID: 1034301098}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1425523917}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586783579}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[2]
+      value: 
+      objectReference: {fileID: 630049500}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[3]
+      value: 
+      objectReference: {fileID: 1449752653}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[4]
+      value: 
+      objectReference: {fileID: 78760725}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[5]
+      value: 
+      objectReference: {fileID: 393052653}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[6]
+      value: 
+      objectReference: {fileID: 313272165}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[7]
+      value: 
+      objectReference: {fileID: 1510015353}
+    - target: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: ui_Stikcers.Array.data[8]
+      value: 
+      objectReference: {fileID: 1237402944}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
---- !u!1 &6218628760045598223 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6218628758852621128, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+--- !u!114 &6218628760045598224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_PrefabInstance: {fileID: 6218628760045598222}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6218628760045598224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218628760045598223}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_Stikcers:
-  - {fileID: 1425523917}
-  - {fileID: 1586783579}
-  - {fileID: 630049500}
-  - {fileID: 1449752653}
-  - {fileID: 78760725}
-  - {fileID: 393052653}
-  - {fileID: 313272165}
-  - {fileID: 1510015353}
-  - {fileID: 1237402944}
-  soapBubble: {fileID: 1034301098}
 --- !u!1 &6604929974173447498
 GameObject:
   m_ObjectHideFlags: 0
@@ -15127,7 +14936,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1241245000}
         m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_CameraOnBtn
+        m_MethodName: OnClick_NativeCameraOnBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
