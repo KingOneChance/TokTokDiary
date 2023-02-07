@@ -1239,7 +1239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &120740642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7851,18 +7851,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
         m_MethodName: OnClick_SaveNewProfile
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 574320454}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14530,6 +14518,7 @@ GameObject:
   - component: {fileID: 2036005198}
   - component: {fileID: 2036005200}
   - component: {fileID: 2036005199}
+  - component: {fileID: 2036005201}
   m_Layer: 5
   m_Name: ProfileMain
   m_TagString: Untagged
@@ -14598,6 +14587,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036005197}
   m_CullTransparentMesh: 1
+--- !u!114 &2036005201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036005197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e1d9d50571a849a4de4372096c208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profileImages:
+  - {fileID: 1201897219}
+  - {fileID: 221790864}
+  - {fileID: 577584216}
+  - {fileID: 1164295195}
+  - {fileID: 889177543}
+  - {fileID: 1391780934}
 --- !u!1 &2036859601
 GameObject:
   m_ObjectHideFlags: 0
