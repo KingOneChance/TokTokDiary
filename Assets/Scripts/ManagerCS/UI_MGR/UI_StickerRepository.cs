@@ -17,13 +17,12 @@ public class UI_StickerRepository : MonoBehaviour
     public List<string> bearList = new List<string>();
     public List<string> diaryList = new List<string>();
 
+    string path = "";
 
-#if UNITY_EDITOR_WIN
-    string path = "C:/Users/User/Desktop/Sticker/";
-#else
-    string path = Application.persistentDataPath;
-#endif
-
+    private void Start()
+    {
+        path = Application.persistentDataPath;
+    }
     public void OnClick_WaffleRepository()
     {
         LoadLocalSticker(freeList);

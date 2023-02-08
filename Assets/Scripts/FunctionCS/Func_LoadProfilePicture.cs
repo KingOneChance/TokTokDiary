@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 public class Func_LoadProfilePicture : MonoBehaviour
 {
     [SerializeField] RawImage[] profileImages = null;
@@ -15,7 +13,7 @@ public class Func_LoadProfilePicture : MonoBehaviour
             profileImages[i].gameObject.SetActive(false);
         }
         string path = Application.persistentDataPath + "/Profile";
-        if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
+        if (false == Directory.Exists(path)) Directory.CreateDirectory(path);
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
 
         DirectoryInfo di = new DirectoryInfo(path);
@@ -37,11 +35,5 @@ public class Func_LoadProfilePicture : MonoBehaviour
             }
 
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

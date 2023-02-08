@@ -9,10 +9,14 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] Button SwellUpButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
+
+    private bool isProgress = false;
+
     private int curIdx = 0;
 
     private void OnEnable()
     {
+        isProgress = false;
         SkipButton.gameObject.SetActive(true);
     }
 

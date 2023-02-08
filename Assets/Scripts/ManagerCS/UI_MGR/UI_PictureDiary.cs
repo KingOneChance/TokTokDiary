@@ -13,15 +13,13 @@ public class UI_PictureDiary : MonoBehaviour
     [Header("그림판")]
     [SerializeField] private Image ui_DrawBackground = null;
     [SerializeField] Button[] ui_WeatherBtn = null;
-   
+
     [Header("카메라")]
     //카메라 on - off, 불러오기
     [SerializeField] Button ui_CameraOnBtn = null;
     //[SerializeField] Button cameraOffBtn = null;
     [SerializeField] Button ui_LoadBtn = null;
-    [Header("기타")]
-    //홈버튼
-    [SerializeField] Button ui_HomeBtn = null;
+
 
     [Header("스티커")]
     [SerializeField] RawImage[] ui_Stickers = null;
@@ -38,15 +36,23 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] Image ui_ProfileBackGround = null;
     [SerializeField] RawImage ui_ProfileMain = null;
     [SerializeField] RawImage ui_ProfilePlus = null;
-
- 
+    [SerializeField] RawImage ui_ProfilePick = null;
+    [SerializeField] RawImage ui_ProfileOverWrite = null;
+    [SerializeField] RawImage ui_ProfileDelete = null;
 
     //프로필 추가
     [SerializeField] RawImage plusProfileImage = null;
     [SerializeField] TMP_InputField newNickName = null;
 
+    //프로필 수정
+    [SerializeField] RawImage overWriteImage = null;
+    [SerializeField] TMP_InputField overWriteNickName = null;
+    [Header("기타")]
+    //홈버튼
+    [SerializeField] Button ui_HomeBtn = null;
     [SerializeField] private RawImage loadImage;
 
+    private TextMeshProUGUI before = null;
 
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
@@ -58,7 +64,7 @@ public class UI_PictureDiary : MonoBehaviour
 
     private void Start()
     {
-        
+
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -73,6 +79,7 @@ public class UI_PictureDiary : MonoBehaviour
         {
             Debug.Log("Name: " + device);
         }
+        before = new TextMeshProUGUI();
     }
 
     #region Road Sticker Button
@@ -112,7 +119,7 @@ public class UI_PictureDiary : MonoBehaviour
 
                 ui_Stickers[i].texture = texture;
             }
-        }  
+        }
     }
 
     public void OnClick_NativeCameraOnBtn()
@@ -187,7 +194,7 @@ public class UI_PictureDiary : MonoBehaviour
         yield return null;
         byte[] fileData = File.ReadAllBytes(path);
         string fileName = Path.GetFileName(path).Split('.')[0];
-       // string savePath = Application.persistentDataPath + "/TestImage/";
+        // string savePath = Application.persistentDataPath + "/TestImage/";
 
         //if (!Directory.Exists(savePath))
         //{
@@ -203,7 +210,7 @@ public class UI_PictureDiary : MonoBehaviour
         loadImage.texture = tex;
         loadImage.rectTransform.rotation = Quaternion.identity;
     }
-    
+
     #region NiddleBtn , StickBtn
     public void OnClick_NiddleBtn()
     {
@@ -219,7 +226,7 @@ public class UI_PictureDiary : MonoBehaviour
             isNiddleClicked = false;
             NiddleState = NiddleType.None;
         }
-    } 
+    }
     public void OnClick_BubbleStick()
     {
         if (!isStickClicked)
@@ -246,7 +253,7 @@ public class UI_PictureDiary : MonoBehaviour
     public StickType StickStateInfo { get { return StickState; } }
     public void OnClick_Pop()
     {
-        if(NiddleState == NiddleType.Niddle && SoupState == SoupBubbleType.Soap)
+        if (NiddleState == NiddleType.Niddle && SoupState == SoupBubbleType.Soap)
         {
             Debug.Log("펑");
             soupImage.GetComponent<Func_StickerDrag>().enabled = false;
@@ -275,19 +282,25 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfileOverWrite.gameObject.SetActive(false);
+
     }
 
     public void OnClick_OpenPlusProfile()
     {
         ui_ProfilePlus.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(false);
-
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfileOverWrite.gameObject.SetActive(false);
     }
 
     public void OnClick_OpenOverWriteProfile()
     {
+        ui_ProfilePick.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(false);
+        ui_ProfileOverWrite.gameObject.SetActive(false);
     }
 
     public void OnClick_SaveProfile()
@@ -307,12 +320,12 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_SaveNewProfile()
     {
         string savePath = Application.persistentDataPath + "/Profile/" + newNickName.text + "/";
-        SaveTextureToPng(plusProfileImage.texture, savePath , newNickName.text);
+        SaveTextureToPng(plusProfileImage.texture, savePath, newNickName.text);
 
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
     }
-    
+
     private void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
@@ -338,6 +351,104 @@ public class UI_PictureDiary : MonoBehaviour
         string filePath = directoryPath + fileName + ".png";
 
         File.WriteAllBytes(filePath, texturePNGBytes);
+    }
+
+    //수정할 프로필 고르기
+    public void OnClick_ExitPickProfile()
+    {
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(true);
+    }
+
+    public void OnClick_PickToOverWriteImage(RawImage picked)
+    {
+        ui_ProfileOverWrite.gameObject.SetActive(true);
+        ui_ProfilePick.gameObject.SetActive(false);
+        overWriteImage.texture = picked.texture;
+
+    }
+    public void OnClick_PickToOverWriteText(TextMeshProUGUI beforeNickName)
+    {
+        overWriteNickName.text = beforeNickName.text;
+
+        before.text = beforeNickName.text;
+    }
+
+    //프로필 수정부분
+    public void OnClick_ExitOverWriteProfile()
+    {
+        overWriteImage.texture = null;
+        overWriteNickName.text = null;
+        ui_ProfileOverWrite.gameObject.SetActive(false);
+        ui_ProfilePick.gameObject.SetActive(true);
+    } // x 버튼 , 취소버튼
+    public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
+    {
+        Onclick_LoadImage(overWriteImage);
+    }
+    public void OnClick_OverWriteDirectory()
+    {
+
+        string path = Application.persistentDataPath + "/Profile/";
+        
+        if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + overWriteNickName.text);
+
+        
+        Rename(path);
+        TobeEmpty(path);
+        string savePath = Application.persistentDataPath + "/Profile/" + overWriteNickName.text + "/";
+        SaveTextureToPng(overWriteImage.texture, savePath, overWriteNickName.text);
+
+    }
+    private void TobeEmpty(string path)
+    {
+        string fileName = path + overWriteNickName.text;
+        Debug.Log(fileName);
+        Debug.Log(before.text);
+
+        if (File.Exists(fileName + "/" + before.text + ".png"))
+        {
+            try
+            {
+                Debug.Log(fileName + "/" + before.text + ".png");
+                File.Delete(fileName + "/" + before.text + ".png");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+
+        }
+
+    }
+
+    private void Rename(string filepath)
+    {
+        string oldFile = filepath + "/" + before.text;
+        string newFile = filepath + "/" + overWriteNickName.text;
+
+        Directory.Move(oldFile, newFile);
+
+    }
+
+    public void OnClick_DeleteProfile()
+    {
+        ui_ProfileDelete.gameObject.SetActive(true);
+    }
+    private void DeleteDirectory()
+    {
+        string path = Application.persistentDataPath + "/Profile/" + overWriteNickName.text;
+        Directory.Delete(path, true);
+    }
+    public void OnClick_RealDelete()
+    {
+        DeleteDirectory();
+        ui_ProfileDelete.gameObject.SetActive(false);
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfilePlus.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(true);
+        ui_ProfileOverWrite.gameObject.SetActive(false);
     }
     #endregion
 }
