@@ -60,3 +60,11 @@ public enum NowStateInAudio
     Sign,
     Attatch
 }
+public enum AccessoryType
+{
+    Con,
+    VolleyBall,
+    HeadPalmtree,
+    HeadBand,
+    None
+}
