@@ -13,7 +13,7 @@ public class Func_LoadProfilePicture : MonoBehaviour
             profileImages[i].gameObject.SetActive(false);
         }
         string path = Application.persistentDataPath + "/Profile";
-        if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
+        if (false == Directory.Exists(path)) Directory.CreateDirectory(path);
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
 
         DirectoryInfo di = new DirectoryInfo(path);
