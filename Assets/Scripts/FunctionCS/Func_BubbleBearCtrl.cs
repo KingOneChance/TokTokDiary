@@ -41,12 +41,16 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private float startYPos;
     [SerializeField] private int widthValue;
     [SerializeField] private int heightValue;
+
     [Header("===Scripts===")]
     [SerializeField] private Manager_BubbleBear manager_BubbleBear = null;
     [SerializeField] private Func_RemoveBackGround func_RemoveBackgound = null;
+
     [Header("===RemoveColor===")]
     [SerializeField] private Color backGroundColor;
 
+    [Header("===NextButton===")]
+    [SerializeField] private GameObject nextButton;
 
     private bool isSelectedBody = false;
     private bool isSelectedBelly = false;
@@ -68,6 +72,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
         widthValue = (int)beforeHogRect.rect.width;
         heightValue = (int)beforeHogRect.rect.height;
+        nextButton.SetActive(false);
     }
     #region Hedgehog Make button
     public void OnClick_ButtonBody1()//summer
@@ -145,6 +150,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowArmLegSprite = buttonArmLeg[0].image.sprite;
         bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
         canMoveToAudio = true;
+        nextButton.SetActive(true);
         if (isSelectedArmLeg != true) isSelectedArmLeg = true;
     }
     public void OnClick_ButtonArmLeg2()
@@ -153,6 +159,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowArmLegSprite = buttonArmLeg[1].image.sprite;
         bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
         canMoveToAudio = true;
+        nextButton.SetActive(true);
         if (isSelectedArmLeg != true) isSelectedArmLeg = true;
     }
     public void OnClick_ButtonArmLeg3()
@@ -161,6 +168,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowArmLegSprite = buttonArmLeg[2].image.sprite;
         bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
         canMoveToAudio = true;
+        nextButton.SetActive(true);
         if (isSelectedArmLeg != true) isSelectedArmLeg = true;
     }
     public void OnClick_ButtonRandom()
@@ -170,14 +178,14 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         if(randomSkin ==1) //origin skin
         {
             AccessoryChange(AccessoryType.None);
-            bubbleHedgehogBody.texture = bubbleHedgehogOriginBody.texture;
-            bubbleHedgehogBelly.texture = bubbleHedgehogOriginBelly.texture;
-            bubbleHedgehogHead.texture = bubbleHedgehogOriginHead.texture;
-            bubbleHedgehogArmLeg.texture = bubbleHedgehogOriginArmLeg.texture;
             buttonBody[randomSkin].isOn = true;
             buttonBelly[randomSkin].isOn = true;
             buttonHead[randomSkin].isOn = true;
             buttonArmLeg[randomSkin].isOn = true;
+            bubbleHedgehogBody.texture = bubbleHedgehogOriginBody.texture;
+            bubbleHedgehogBelly.texture = bubbleHedgehogOriginBelly.texture;
+            bubbleHedgehogHead.texture = bubbleHedgehogOriginHead.texture;
+            bubbleHedgehogArmLeg.texture = bubbleHedgehogOriginArmLeg.texture;
             if (isSelectedBody != true) isSelectedBody = true;
             if (isSelectedBelly != true) isSelectedBelly = true;
             if (isSelectedHead != true) isSelectedHead = true;
@@ -215,13 +223,14 @@ public class Func_BubbleBearCtrl : MonoBehaviour
             nowArmLegSprite = buttonArmLeg[amrleg].image.sprite;
             bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
             if (isSelectedArmLeg != true) isSelectedArmLeg = true;
-            canMoveToAudio = true;
 
             buttonBody[body].isOn = true;
             buttonBelly[body].isOn = true;
             buttonHead[body].isOn = true;
             buttonArmLeg[body].isOn = true;
         }
+        canMoveToAudio = true;
+        nextButton.SetActive(true);
     }
 
     #endregion

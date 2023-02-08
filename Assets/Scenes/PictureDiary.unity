@@ -17338,6 +17338,10 @@ PrefabInstance:
       propertyPath: Pen_Width
       value: 
       objectReference: {fileID: 1292630004}
+    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: isDiaryScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4095744915355600559, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: m_Name
       value: DrawRenderCamera
