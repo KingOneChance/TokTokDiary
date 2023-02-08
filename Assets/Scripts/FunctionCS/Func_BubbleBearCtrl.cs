@@ -252,18 +252,30 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         switch (type)
         {
             case AccessoryType.VolleyBall:
+                if (buttonHead[1].isOn)
+                    bubbleHedgehogAccPalmtree.SetActive(true);
                 bubbleHedgehogAccVolleyball.SetActive(true);
                 break;
             case AccessoryType.HeadPalmtree:
+                if (buttonBelly[1].isOn) 
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccPalmtree.SetActive(true);
                 break;
             case AccessoryType.HeadBand:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccHeadBand.SetActive(true);
                 break;
             case AccessoryType.Con:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccCon.SetActive(true);
                 break;
             case AccessoryType.None:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
+                if (buttonHead[1].isOn)
+                    bubbleHedgehogAccPalmtree.SetActive(true);
                 Debug.Log("There is no accessory");
                 break;
 
