@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -50,6 +51,20 @@ public class Manager_DiaryCase : MonoBehaviour
                 diaryList.Add(texture);
             }
         }
-        previewImg.texture = diaryList[0];
+    }
+
+    public void OnClick_BackButton()
+    {
+        diaryList.Clear();
+        selectedProfilPath = "";
+        selectedProfileName = "";
+
+    }
+
+    private void ShowPreviewDiary()
+    {
+        DateTime today = DateTime.Now;
+        
+        previewImg.texture = diaryList[1];
     }
 }
