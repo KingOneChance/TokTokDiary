@@ -12,7 +12,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private Sprite testBear3 = null;
     [SerializeField] private Sprite testBear4 = null;
     [SerializeField] private Sprite testBear5 = null;
-
+    //
     [Header("===ToggleButtons===")]
     [SerializeField] private Toggle[] buttonBody = null;
     [SerializeField] private Toggle[] buttonBelly = null;

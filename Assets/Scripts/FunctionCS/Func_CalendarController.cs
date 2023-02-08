@@ -6,78 +6,52 @@ using UnityEngine.UI;
 
 public class Func_CalendarController : MonoBehaviour
 {
+    const int _totalDateNum = 42;
     private DateTime _dateTime;
 
     [SerializeField] private GameObject _item;
     [SerializeField] private GameObject _itemSticker;
-
     [SerializeField] private TextMeshProUGUI _yearNumText;
     [SerializeField] private TextMeshProUGUI _monthNumText;
     [SerializeField] private TextMeshProUGUI _monthStrText;
-
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    private string myName = "";
 
-    const int _totalDateNum = 42;
+    private void OnEnable()
+    {
+        
+    }
 
-    void Start()
+    private void Start()
     {
         Vector3 startPos = _item.transform.localPosition;
         _dateItems.Clear();
         _dateItems.Add(_item);
+        _dateTime = DateTime.Now;
 
         for (int i = 1; i < _totalDateNum; i++)
         {
             GameObject item = Instantiate(_item);
-            item.name = "Item" + (i + 1).ToString();
+            item.name = "Date" + (i + 1).ToString();
             item.transform.SetParent(_item.transform.parent);
             item.transform.localScale = Vector3.one;
             item.transform.localRotation = Quaternion.identity;
-            item.transform.localPosition = new Vector3((i % 7) * 36  + startPos.x, startPos.y - (i / 7) * 30, startPos.z);
+            item.transform.localPosition = new Vector3((i % 7) * 36 + startPos.x, startPos.y - (i / 7) * 30, startPos.z);
             _dateItems.Add(item);
         }
-
-        _dateTime = DateTime.Now;
 
         CreateCalendar();
     }
 
-    void CreateCalendar()
+    private void CreateCalendar()
     {
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
         int index = GetDays(firstDay.DayOfWeek);
-
+        bool checkToday = false;
         int date = 0;
-        for (int i = 0; i < _totalDateNum; i++)
-        {
-            TextMeshProUGUI label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
-            GameObject dateObj = _dateItems[i].gameObject;
-            _dateItems[i].SetActive(false);
 
-            if (i >= index)
-            {
-                DateTime thatDay = firstDay.AddDays(date);
-                if (thatDay.Month == firstDay.Month)
-                {
-                    _dateItems[i].SetActive(true);
-
-                    label.text = (date + 1).ToString();
-
-                    if (dateObj.transform.localPosition.x == 106.5) // SaturDay
-                    {
-                        label.color = Color.blue;
-                    }
-
-                    if (dateObj.transform.localPosition.x == -109.5) // SunDay
-                    {
-                        label.color = Color.red;
-                    }
-
-                    date++;
-                }
-            }
-        }
         _yearNumText.text = _dateTime.Year.ToString();
         _monthNumText.text = _dateTime.Month.ToString() + " 월 ";
 
@@ -120,19 +94,55 @@ public class Func_CalendarController : MonoBehaviour
                 _monthStrText.text = monthStr[11];
                 break;
         }
+
+        if (_yearNumText.text == DateTime.Now.Year.ToString() &&
+           _monthNumText.text == DateTime.Now.Month.ToString() + " 월 ") checkToday = true;
+
+        for (int i = 0; i < _totalDateNum; i++)
+        {
+            TextMeshProUGUI label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
+            GameObject dateObj = _dateItems[i].gameObject;
+            _dateItems[i].SetActive(false);
+
+            if (i >= index)
+            {
+                DateTime thatDay = firstDay.AddDays(date);
+                if (thatDay.Month == firstDay.Month)
+                {
+                    _dateItems[i].SetActive(true);
+
+                    label.text = (date + 1).ToString();
+
+                    if (dateObj.transform.localPosition.x == 106.5) // SaturDay
+                    {
+                        label.color = Color.blue;
+                    }
+
+                    if (dateObj.transform.localPosition.x == -109.5) // SunDay
+                    {
+                        label.color = Color.red;
+                    }
+
+                    if (checkToday == true && label.text == _dateTime.Day.ToString())
+                        _dateItems[i].GetComponent<Button>().Select();
+
+                    date++;
+                }
+            }
+        }
     }
 
-    int GetDays(DayOfWeek day)
+    private int GetDays(DayOfWeek day)
     {
         switch (day)
         {
+            case DayOfWeek.Sunday: return 0;
             case DayOfWeek.Monday: return 1;
             case DayOfWeek.Tuesday: return 2;
             case DayOfWeek.Wednesday: return 3;
             case DayOfWeek.Thursday: return 4;
             case DayOfWeek.Friday: return 5;
             case DayOfWeek.Saturday: return 6;
-            case DayOfWeek.Sunday: return 0;
         }
 
         return 0;
@@ -164,6 +174,7 @@ public class Func_CalendarController : MonoBehaviour
 
     public void OnClick_Date()
     {
-        Debug.Log("눌렀다");
+        // If there is a diary for that date, the corresponding diary file is displayed in preview.
+
     }
 }
