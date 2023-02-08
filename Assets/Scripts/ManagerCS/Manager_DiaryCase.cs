@@ -30,12 +30,12 @@ public class Manager_DiaryCase : MonoBehaviour
     {
         selectedProfileName = profileName[idx - 1].text;
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/" + "Diary";
-        CheckDiaryFiles();
+        AddDiaryFiles();
         panels[0].SetActive(false);
         panels[1].SetActive(true);
     }
 
-    private void CheckDiaryFiles()
+    private void AddDiaryFiles()
     {
         string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories);
 
