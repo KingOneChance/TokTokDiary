@@ -4,25 +4,6 @@ using UnityEngine;
 
 public class Func_BubbleMove : MonoBehaviour
 {
-    // public float speed = 80f;
-    // private Vector2 direction;
-    // RectTransform myTr = null;
-    // void Start()
-    // {
-    //     myTr = GetComponent<RectTransform>();
-    //     direction = Random.insideUnitCircle.normalized;
-    // }
-    // 
-    // void Update()
-    // {
-    //     myTr.transform.position += (Vector3)(direction * Time.deltaTime * speed);
-    // 
-    //     if (myTr.transform.position.magnitude > 1900f)
-    //     {
-    //         direction = -direction;
-    //     }
-    // }
-
     public float speed = 20f;
     private Vector2 direction;
     private float screenWidth, screenHeight;
