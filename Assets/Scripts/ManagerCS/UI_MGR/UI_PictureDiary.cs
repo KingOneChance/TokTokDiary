@@ -427,9 +427,7 @@ public class UI_PictureDiary : MonoBehaviour
     {
         string oldFile = filepath + "/" + before.text;
         string newFile = filepath + "/" + overWriteNickName.text;
-
         Directory.Move(oldFile, newFile);
-
     }
 
     public void OnClick_DeleteProfile()
