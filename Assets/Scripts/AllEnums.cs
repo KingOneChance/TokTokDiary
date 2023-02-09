@@ -7,6 +7,7 @@ public enum StickerType
     BubbleGunSticker,
     FreeSticker,
     AudioSticker,
+    SignSticker,
     BubbleSticker,
     Diary
 }
