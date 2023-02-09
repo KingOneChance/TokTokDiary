@@ -18,10 +18,11 @@ public class Func_SaveSticker : MonoBehaviour
     [SerializeField] protected string saveFileName = "";
     [SerializeField] protected RawImage saveTemp = null;
     [SerializeField] protected Color backGroundColor ;
-    private string bubbleGunStikcerFolder = "BubbleGun";
-    private string bubbleStickerFolder = "Bubble";
-    private string audioStickerFolder = "Audio";
-    private string freeStickerFolder = "Free";
+    private string bubbleGunStikcerFolder = "BubbleGunSticker";
+    private string bubbleStickerFolder = "BubbleSticker";
+    private string audioStickerFolder = "RecordingSticker";
+    private string recordingSignFolder = "RecordingSign";
+    private string freeStickerFolder = "BubbleFreeSticker";
     private string diaryFolder = "Diary";
     protected string savePath = "";
 
@@ -64,7 +65,7 @@ public class Func_SaveSticker : MonoBehaviour
 
         SaveTexture(stickerType);
     }
-    protected virtual void SaveTexture(StickerType stickerType)
+    protected virtual void SaveTexture(StickerType stickerType, string name =null)
     {
         int nowNum;
         switch (stickerType)
@@ -87,6 +88,11 @@ public class Func_SaveSticker : MonoBehaviour
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum);
+                break;
+            case StickerType.SignSticker:
+                nowNum = Manager_Main.Instance.GetAudioStickerNum(recordingSignFolder);
+                Manager_Main.Instance.SetAudioStickerNum();
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum);
                 break;
             case StickerType.FreeSticker:
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);

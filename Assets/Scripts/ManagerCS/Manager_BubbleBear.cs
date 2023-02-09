@@ -238,7 +238,6 @@ public class Manager_BubbleBear : MonoBehaviour
             {
                 hedgehogStage.SetActive(false);
                 StartCoroutine(Co_SetActiveCheck());
-              
             }
             else
             {

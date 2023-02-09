@@ -12,10 +12,11 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] private RawImage[] ui_Stickers = null;
     [SerializeField] private RawImage[] ui_RecordSubStickers = null;
 
-    public List<string> freeList = new List<string>();
-    public List<string> signList = new List<string>();
-    public List<string> bearList = new List<string>();
-    public List<string> diaryList = new List<string>();
+    public List<string> bubbleStickerList = new List<string>();
+    public List<string> recordingStickerList = new List<string>();
+    public List<string> recordingSignList = new List<string>();
+    public List<string> bubbleGunStickerList = new List<string>();
+    public List<string> bubbleFreeStickerList = new List<string>();
 
     string path = "";
 
@@ -23,39 +24,40 @@ public class UI_StickerRepository : MonoBehaviour
     {
         path = Application.persistentDataPath;
     }
-    public void OnClick_WaffleRepository()
+    public void OnClick_BubbleStickerRepository()
     {
-        LoadLocalSticker(freeList);
+        LoadLocalSticker(bubbleStickerList);
     }
-    public void OnClick_AudioRepository()
+    public void OnClick_RecordingStickerRepository()
     {
-        LoadLocalSticker(signList);
+        LoadLocalSticker(recordingStickerList);
     }
-    public void OnClick_WeatherRepository()
+    public void OnClick_RecordFileRepository()
     {
-        LoadLocalSticker(bearList);
+        LoadLocalSticker(recordingStickerList, recordingSignList);
     }
-    public void OnClick_DiaryRepository()
+    public void OnClick_BubbleGunStickerRepository()
     {
-        LoadLocalSticker(diaryList);
+        LoadLocalSticker(bubbleGunStickerList);
     }
-    public void OnClick_RecordStickerRepository()
+    public void OnClick_BubbleFreeStickerRepository()
     {
-        LoadLocalSticker(bearList, signList);
+        LoadLocalSticker(bubbleFreeStickerList);
     }
 
     public void OnClick_RepositoryOpen()
     {
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
-        if (allFiles.Length == freeList.Count + signList.Count + bearList.Count + diaryList.Count)
+        if (allFiles.Length == bubbleStickerList.Count + recordingStickerList.Count + recordingSignList.Count + bubbleGunStickerList.Count + bubbleFreeStickerList.Count)
         {
             return;
         }
         //List Initiate for rearrange;
-        freeList.Clear();
-        signList.Clear();
-        bearList.Clear();
-        diaryList.Clear();
+        bubbleStickerList.Clear();
+        recordingStickerList.Clear();
+        recordingSignList.Clear();
+        bubbleGunStickerList.Clear();
+        bubbleFreeStickerList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
@@ -66,21 +68,25 @@ public class UI_StickerRepository : MonoBehaviour
                 texture.LoadImage(byteTexture);
 
 
-                if (allFiles[i].Contains("Free"))
+                if (allFiles[i].Contains("BubbleSticker"))
                 {
-                    freeList.Add(allFiles[i]);
+                    bubbleStickerList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("Sign"))
+                else if (allFiles[i].Contains("RecordingSticker"))
                 {
-                    signList.Add(allFiles[i]);
+                    recordingStickerList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("Bear"))
+                else if (allFiles[i].Contains("RecordingSign"))
                 {
-                    bearList.Add(allFiles[i]);
+                    recordingSignList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("Diary"))
+                else if (allFiles[i].Contains("BubbleGun"))
                 {
-                    diaryList.Add(allFiles[i]);
+                    bubbleGunStickerList.Add(allFiles[i]);
+                }
+                else if (allFiles[i].Contains("BubbleFree"))
+                {
+                    bubbleFreeStickerList.Add(allFiles[i]);
                 }
                 else
                 {
@@ -103,7 +109,7 @@ public class UI_StickerRepository : MonoBehaviour
             ui_RecordSubStickers[i].gameObject.SetActive(false);
             if (anyList2 != null)
             {
-                ui_RecordSubStickers[i].gameObject.SetActive(true);    
+                ui_RecordSubStickers[i].gameObject.SetActive(true);
                 ui_RecordSubStickers[i].texture = null;
             }
         }
