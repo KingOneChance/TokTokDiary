@@ -90,8 +90,8 @@ public class Func_SaveSticker : MonoBehaviour
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum);
                 break;
             case StickerType.SignSticker:
-                nowNum = Manager_Main.Instance.GetAudioStickerNum(recordingSignFolder);
-                Manager_Main.Instance.SetAudioStickerNum();
+                nowNum = Manager_Main.Instance.GetSignStickerNum(recordingSignFolder);
+                Manager_Main.Instance.SetSignStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum);
                 break;
             case StickerType.FreeSticker:
