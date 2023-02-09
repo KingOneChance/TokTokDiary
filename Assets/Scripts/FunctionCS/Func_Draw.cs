@@ -31,6 +31,7 @@ namespace FreeDraw
         [SerializeField] private bool internalClick = false;
 
         [SerializeField] private bool isDragSticker = false;
+        [SerializeField] private bool isDiaryScene = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
 
@@ -80,6 +81,7 @@ namespace FreeDraw
                         SData_NodeData temp = new SData_NodeData();
                         internalClick = true;
                         GameObject obj = Instantiate(linePrefab);
+                        obj.tag = "Line";
                         tempOBJ = obj;
                         line = obj.GetComponent<LineRenderer>();
                         col = obj.GetComponent<EdgeCollider2D>();
@@ -96,6 +98,7 @@ namespace FreeDraw
                         temp.position = obj.transform.position;
                         temp.rotation = obj.transform.rotation.eulerAngles;
                         temp.scale = obj.transform.localScale;
+                        if (isDiaryScene == true)
                         Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
                     }
                     //during drag
