@@ -68,15 +68,3 @@ public enum AccessoryType
     HeadBand,
     None
 }
-public enum BubbleStickerType
-{
-    Green_Turtle,
-    Green_TrueSeal,
-    Green_Grampus,
-    Pink_Turtle,
-    Pink_TrueSeal,
-    Pink_Grampus,
-    Blue_Turtle,
-    Blue_TrueSeal,
-    Blue_Grampus
-}

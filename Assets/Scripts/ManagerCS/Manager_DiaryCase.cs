@@ -49,11 +49,9 @@ public class Manager_DiaryCase : MonoBehaviour
                 Debug.Log(fileName);
             }
 
-            byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-
             diaryDataList.Add(new Data_Diary(selectedProfileName, fileName, 1));
 
-            
+            byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
 
             if (byteTexture.Length > 0)
             {

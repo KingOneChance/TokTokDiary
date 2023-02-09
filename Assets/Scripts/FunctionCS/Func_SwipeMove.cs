@@ -12,7 +12,7 @@ public class Func_SwipeMove : MonoBehaviour
     private float[] scrollpageValues = null;
 
     private float valueDistance = 0;
-    private int currentSticker = 0;
+    [SerializeField] private int currentSticker = 0;
     public int CurrentSticker { get { return currentSticker; } private set { } }
     private int maxPage = 0;
     private float startTouchX = 0f;
@@ -32,7 +32,7 @@ public class Func_SwipeMove : MonoBehaviour
         maxPage = transform.childCount;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SetScrollBarValue(0);
     }

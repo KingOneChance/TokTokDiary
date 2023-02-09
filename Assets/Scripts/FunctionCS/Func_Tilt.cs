@@ -10,13 +10,14 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-    [SerializeField] private bool isSwipeDown = false;
-    [SerializeField] private bool isProgress = false;
 
     private Color myInitColor = new Vector4(255, 255, 255, 255);
     private Vector3 angle = new Vector3(0, 0, 1);
     private Vector3 FirstPoint = Vector3.zero;
     private Vector3 SecondPoint = Vector3.zero;
+
+    private bool isSwipeDown = false;
+    private bool isProgress = false;
 
     private void Start()
     {
