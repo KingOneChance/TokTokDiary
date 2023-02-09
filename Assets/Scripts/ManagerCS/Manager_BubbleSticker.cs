@@ -1,8 +1,10 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager_BubbleSticker : Func_SaveSticker
 {
+    private BubbleStickerType bubbleStickerType;
     #region SerializeField
     [Header("========== ±âº» UI ==========")]
     [SerializeField] private Button BackButton = null;
@@ -116,15 +118,15 @@ public class Manager_BubbleSticker : Func_SaveSticker
     {
         switch (color)
         {
-            case "Yellow":
+            case "Green":
                 defaultBucketColor.color = ColorBuckets[0].color;
                 break;
 
-            case "Orange":
+            case "Pink":
                 defaultBucketColor.color = ColorBuckets[1].color;
                 break;
 
-            case "Purple":
+            case "Blue":
                 defaultBucketColor.color = ColorBuckets[2].color;
                 break;
         }
@@ -133,6 +135,24 @@ public class Manager_BubbleSticker : Func_SaveSticker
     public void OnClick_SaveBubbleSticker()
     {
         OnClick_SaveImgae(StickerType.BubbleSticker);
+        // StickerDesign.CurrentSticker : 0 -> turtle, 1 -> trueseal, 2 -> grampus
+
+        switch (StickerDesign.CurrentSticker)
+        {
+            case 0:
+                
+                break;
+
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+        }
+
+        
     }
 
     protected override void OnClick_SaveImgae(StickerType stickerType)

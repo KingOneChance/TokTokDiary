@@ -10,6 +10,7 @@ public class Func_SwipeMove : MonoBehaviour
     [SerializeField] private float swipeDistance = 50.0f;
 
     private float[] scrollpageValues = null;
+
     private float valueDistance = 0;
     private int currentSticker = 0;
     public int CurrentSticker { get { return currentSticker; } private set { } }
