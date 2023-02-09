@@ -25,14 +25,15 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [SerializeField] private RawImage bubbleHedgehogBelly = null;
     [SerializeField] private RawImage bubbleHedgehogHead = null;
     [SerializeField] private RawImage bubbleHedgehogArmLeg = null;
-    [SerializeField] private GameObject bubbleHedgehogAccPalmtree = null;
-    [SerializeField] private GameObject bubbleHedgehogAccVolleyball = null;
-    [SerializeField] private GameObject bubbleHedgehogAccHeadBand = null;
-    [SerializeField] private GameObject bubbleHedgehogAccCon = null;
     [SerializeField] private RawImage bubbleHedgehogOriginBody = null;
     [SerializeField] private RawImage bubbleHedgehogOriginBelly = null;
     [SerializeField] private RawImage bubbleHedgehogOriginHead = null;
     [SerializeField] private RawImage bubbleHedgehogOriginArmLeg = null;
+    [SerializeField] private GameObject bubbleHedgehogAccPalmtree = null;
+    [SerializeField] private GameObject bubbleHedgehogAccVolleyball = null;
+    [SerializeField] private GameObject bubbleHedgehogAccHeadBand = null;
+    [SerializeField] private GameObject bubbleHedgehogAccCon = null;
+    [SerializeField] private GameObject bubbleHedgehogOriginStage = null;
 
     [Header("===TemporarySaveImage===")]
     [SerializeField] private RawImage tempHedgehog = null;
@@ -68,8 +69,10 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     private void Start()
     {
         beforeHogRect = bubbleHedgehogCapture.GetComponent<RectTransform>();
-        startXPos = bubbleHedgehogCapture.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
-        startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
+       // startXPos = bubbleHedgehogCapture.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
+       // startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
+        startXPos = beforeHogRect.rect.position.x + 960;
+        startYPos = beforeHogRect.rect.position.y + 540;
         widthValue = (int)beforeHogRect.rect.width;
         heightValue = (int)beforeHogRect.rect.height;
         nextButton.SetActive(false);
@@ -252,18 +255,30 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         switch (type)
         {
             case AccessoryType.VolleyBall:
+                if (buttonHead[1].isOn)
+                    bubbleHedgehogAccPalmtree.SetActive(true);
                 bubbleHedgehogAccVolleyball.SetActive(true);
                 break;
             case AccessoryType.HeadPalmtree:
+                if (buttonBelly[1].isOn) 
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccPalmtree.SetActive(true);
                 break;
             case AccessoryType.HeadBand:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccHeadBand.SetActive(true);
                 break;
             case AccessoryType.Con:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccCon.SetActive(true);
                 break;
             case AccessoryType.None:
+                if (buttonBelly[1].isOn)
+                    bubbleHedgehogAccVolleyball.SetActive(true);
+                if (buttonHead[1].isOn)
+                    bubbleHedgehogAccPalmtree.SetActive(true);
                 Debug.Log("There is no accessory");
                 break;
 
@@ -272,7 +287,6 @@ public class Func_BubbleBearCtrl : MonoBehaviour
                 break;
         }
     }
-
     public bool IsSelected(SelectHedgehogState part)
     {
         switch (part)
@@ -297,6 +311,8 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     public void SaveTempHedgeHog()
     {
         StartCoroutine(Co_ScreenShotFrame());
+        //if(bubbleHedgehogOriginStage.activeSelf==false)
+       // bubbleHedgehogOriginStage.SetActive(true);
     }
     private IEnumerator Co_ScreenShotFrame()
     {

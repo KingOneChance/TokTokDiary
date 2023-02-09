@@ -38,10 +38,18 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject sceneNext = null;
     [SerializeField] private GameObject restartAll = null;
 
+    [SerializeField] private GameObject hedgehogStage = null;
+
     [Header("===StageUI===")]
     [SerializeField] private RawImage Ui_Stage1 = null;
     [SerializeField] private RawImage Ui_Stage2 = null;
     [SerializeField] private RawImage Ui_Stage3 = null;
+    [SerializeField] private GameObject Ui_Process1On = null;
+    [SerializeField] private GameObject Ui_Process2On = null;
+    [SerializeField] private GameObject Ui_Process3On = null;
+    [SerializeField] private GameObject Ui_Process1Off = null;
+    [SerializeField] private GameObject Ui_Process2Off = null;
+    [SerializeField] private GameObject Ui_Process3Off = null;
     [SerializeField] private Color stageColor;
 
     [Header("===Scripts===")]
@@ -228,9 +236,9 @@ public class Manager_BubbleBear : MonoBehaviour
         {
             if (bubbleBearCtrl.canMoveToAudio)
             {
-                bubbleBearCtrl.SaveTempHedgeHog();
-                nowState = NowStateInAudio.Audio;
-                StageUIChange(2);
+                hedgehogStage.SetActive(false);
+                StartCoroutine(Co_SetActiveCheck());
+              
             }
             else
             {
@@ -340,22 +348,39 @@ public class Manager_BubbleBear : MonoBehaviour
         switch (num)
         {
             case 1:
-                Ui_Stage1.color = new Color(255f, 255f, 255f, 1.0f);
-                Ui_Stage2.color = stageColor;
-                Ui_Stage3.color = stageColor;
+                Ui_Process1On.SetActive(true);
+                Ui_Process2On.SetActive(false);
+                Ui_Process3On.SetActive(false);
+                Ui_Process1Off.SetActive(false);
+                Ui_Process2Off.SetActive(true);
+                Ui_Process3Off.SetActive(true);
                 break;
 
             case 2:
-                Ui_Stage1.color = stageColor;
-                Ui_Stage2.color = new Color(255f, 255f, 255f, 1.0f);
-                Ui_Stage3.color = stageColor;
+                Ui_Process1On.SetActive(false);
+                Ui_Process2On.SetActive(true);
+                Ui_Process3On.SetActive(false);
+                Ui_Process1Off.SetActive(true);
+                Ui_Process2Off.SetActive(false);
+                Ui_Process3Off.SetActive(true);
                 break;
 
             case 3:
-                Ui_Stage1.color = stageColor;
-                Ui_Stage2.color = stageColor;
-                Ui_Stage3.color = new Color(255f, 255f, 255f, 1.0f);
+                Ui_Process1On.SetActive(false);
+                Ui_Process2On.SetActive(false);
+                Ui_Process3On.SetActive(true);
+                Ui_Process1Off.SetActive(true);
+                Ui_Process2Off.SetActive(true);
+                Ui_Process3Off.SetActive(false);
                 break;
         }
+    }
+
+    IEnumerator Co_SetActiveCheck()
+    {
+        yield return new WaitForEndOfFrame();
+        bubbleBearCtrl.SaveTempHedgeHog();
+        nowState = NowStateInAudio.Audio;
+        StageUIChange(2);
     }
 }
