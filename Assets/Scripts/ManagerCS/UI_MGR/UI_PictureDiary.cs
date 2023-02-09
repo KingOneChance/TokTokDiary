@@ -85,19 +85,19 @@ public class UI_PictureDiary : MonoBehaviour
     #region Road Sticker Button
     public void OnClick_WaffleRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.freeList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleStickerList);
     }
     public void OnClick_AudioRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.signList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.recordingStickerList);
     }
     public void OnClick_WeatherRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bearList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleGunStickerList);
     }
     public void OnClick_DiaryRepository()
     {
-        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.diaryList);
+        LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleFreeStickerList);
     }
     #endregion
     public void LoadLocalStickerInventory(List<string> anyList)

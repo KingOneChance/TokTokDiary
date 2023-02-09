@@ -53,10 +53,13 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     [Header("===NextButton===")]
     [SerializeField] private GameObject nextButton;
 
-    private bool isSelectedBody = false;
-    private bool isSelectedBelly = false;
-    private bool isSelectedHead = false;
-    private bool isSelectedArmLeg = false;
+    [SerializeField] private bool isSelectedBody = false;
+    [SerializeField] private bool isSelectedBelly = false;
+    [SerializeField] private bool isSelectedHead = false;
+    [SerializeField] private bool isSelectedArmLeg = false;
+    [SerializeField] private int nowHeadNum = -1;
+    [SerializeField] private int nowBellyNum = -1;
+
 
     public Sprite nowSprite { get; private set; }
     //new ver
@@ -69,8 +72,8 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     private void Start()
     {
         beforeHogRect = bubbleHedgehogCapture.GetComponent<RectTransform>();
-       // startXPos = bubbleHedgehogCapture.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
-       // startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
+        // startXPos = bubbleHedgehogCapture.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
+        // startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
         startXPos = beforeHogRect.rect.position.x + 960;
         startYPos = beforeHogRect.rect.position.y + 540;
         widthValue = (int)beforeHogRect.rect.width;
@@ -101,50 +104,65 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     }
     public void OnClick_ButtonBelly1()
     {
+        nowBellyNum = 0;
         ToggleAlphaChange(buttonBelly);
         nowBellySprite = buttonBelly[0].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
-        AccessoryChange(AccessoryType.VolleyBall);  //ball
+        if (isSelectedHead == false)
+            AccessoryChange(AccessoryType.VolleyBall);  //ball
+        else
+            AccessoryChange(AccessoryType.VolleyBall,nowHeadNum);  //ball
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonBelly2()
     {
+        nowBellyNum = 1;
         ToggleAlphaChange(buttonBelly);
         nowBellySprite = buttonBelly[1].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
-        AccessoryChange(AccessoryType.None);  //no accessory
+        if (isSelectedHead == false)
+            AccessoryChange(AccessoryType.None);  //no accessory
+        else
+            AccessoryChange(AccessoryType.VolleyBall, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonBelly3()
     {
+        nowBellyNum = 2;
         ToggleAlphaChange(buttonBelly);
         nowBellySprite = buttonBelly[2].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
-        AccessoryChange(AccessoryType.None);  //no accessory
+        if (isSelectedHead == false)
+            AccessoryChange(AccessoryType.None);  //no accessory
+        else
+            AccessoryChange(AccessoryType.VolleyBall, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonHead1()
     {
+        nowHeadNum = 0;
         ToggleAlphaChange(buttonHead);
         nowHeadSprite = buttonHead[0].image.sprite;
         bubbleHedgehogHead.texture = nowHeadSprite.texture;
-        AccessoryChange(AccessoryType.HeadPalmtree);  //HeadPalmtree
+        AccessoryChange(AccessoryType.HeadPalmtree,nowBellyNum);  //HeadPalmtree
         if (isSelectedHead != true) isSelectedHead = true;
     }
     public void OnClick_ButtonHead2()
     {
+        nowHeadNum = 1;
         ToggleAlphaChange(buttonHead);
         nowHeadSprite = buttonHead[1].image.sprite;
         bubbleHedgehogHead.texture = nowHeadSprite.texture;
-        AccessoryChange(AccessoryType.Con);  //Con
+        AccessoryChange(AccessoryType.Con, nowBellyNum); //Con
         if (isSelectedHead != true) isSelectedHead = true;
     }
     public void OnClick_ButtonHead3()
     {
+        nowHeadNum = 2;
         ToggleAlphaChange(buttonHead);
         nowHeadSprite = buttonHead[2].image.sprite;
         bubbleHedgehogHead.texture = nowHeadSprite.texture;
-        AccessoryChange(AccessoryType.HeadBand);  //HeadBand
+        AccessoryChange(AccessoryType.HeadBand, nowBellyNum);  //HeadBand
         if (isSelectedHead != true) isSelectedHead = true;
     }
     public void OnClick_ButtonArmLeg1()
@@ -178,7 +196,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     {
         int randomSkin = Random.Range(0, 50); //2ÆÛ¼¾Æ®
 
-        if(randomSkin ==1) //origin skin
+        if (randomSkin == 1) //origin skin
         {
             AccessoryChange(AccessoryType.None);
             buttonBody[randomSkin].isOn = true;
@@ -197,40 +215,47 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         else
         {
             int body, belly, head, amrleg;
+          
             body = Random.Range(0, 3);
+            belly = Random.Range(0, 3);
+            head = Random.Range(0, 3);
+            amrleg = Random.Range(0, 3);
+            nowBellyNum = belly;
+            nowHeadNum = head;
+
             ToggleAlphaChange(buttonBody);
             nowBodySprite = buttonBody[body].image.sprite;
+         //   buttonBody[body].isOn = true;
             bubbleHedgehogBody.texture = nowBodySprite.texture;
             if (isSelectedBody != true) isSelectedBody = true;
 
-            belly = Random.Range(0, 3);
+
             ToggleAlphaChange(buttonBelly);
             nowBellySprite = buttonBelly[belly].image.sprite;
+           // buttonBelly[belly].isOn = true;
             bubbleHedgehogBelly.texture = nowBellySprite.texture;
-            if (belly == 0) AccessoryChange(AccessoryType.VolleyBall); //ball
-            else if (belly == 1) AccessoryChange(AccessoryType.None);  //none
-            else if (belly == 2) AccessoryChange(AccessoryType.None);  //none
+            if (belly == 0) AccessoryChange(AccessoryType.VolleyBall, head); //ball
+            else if (belly == 1) AccessoryChange(AccessoryType.None, head);  //none
+            else if (belly == 2) AccessoryChange(AccessoryType.None, head);  //none
             if (isSelectedBelly != true) isSelectedBelly = true;
 
-            head = Random.Range(0, 3);
+
             ToggleAlphaChange(buttonHead);
             nowHeadSprite = buttonHead[head].image.sprite;
+          //  buttonHead[head].isOn = true;
             bubbleHedgehogHead.texture = nowHeadSprite.texture;
-            if (belly == 0) AccessoryChange(AccessoryType.HeadPalmtree);    //HeadPalmtree
-            else if (belly == 1) AccessoryChange(AccessoryType.Con);        //Con
-            else if (belly == 2) AccessoryChange(AccessoryType.HeadBand);   //HeadBand
+            if (head == 0) AccessoryChange(AccessoryType.HeadPalmtree, body);    //HeadPalmtree
+            else if (head == 1) AccessoryChange(AccessoryType.Con, body);        //Con
+            else if (head == 2) AccessoryChange(AccessoryType.HeadBand, body);   //HeadBand
             if (isSelectedHead != true) isSelectedHead = true;
 
-            amrleg = Random.Range(0, 3);
+
             ToggleAlphaChange(buttonArmLeg);
             nowArmLegSprite = buttonArmLeg[amrleg].image.sprite;
+         //   buttonArmLeg[amrleg].isOn = true;
             bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
             if (isSelectedArmLeg != true) isSelectedArmLeg = true;
 
-            buttonBody[body].isOn = true;
-            buttonBelly[body].isOn = true;
-            buttonHead[body].isOn = true;
-            buttonArmLeg[body].isOn = true;
         }
         canMoveToAudio = true;
         nextButton.SetActive(true);
@@ -246,7 +271,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
             else toggles[i].image.color = new Color(255, 255, 255, 1);
         }
     }
-    private void AccessoryChange(AccessoryType type)
+    private void AccessoryChange(AccessoryType type, int boddy = -1, int head = -1)
     {
         bubbleHedgehogAccPalmtree.SetActive(false);
         bubbleHedgehogAccVolleyball.SetActive(false);
@@ -255,30 +280,36 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         switch (type)
         {
             case AccessoryType.VolleyBall:
-                if (buttonHead[1].isOn)
-                    bubbleHedgehogAccPalmtree.SetActive(true);
                 bubbleHedgehogAccVolleyball.SetActive(true);
+                if (head == 0)
+                    bubbleHedgehogAccPalmtree.SetActive(true);
+                else if (head == 1)
+                    bubbleHedgehogAccHeadBand.SetActive(true);
+                else if (head == 2)
+                    bubbleHedgehogAccCon.SetActive(true);
                 break;
             case AccessoryType.HeadPalmtree:
-                if (buttonBelly[1].isOn) 
+                if (boddy == 0)
                     bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccPalmtree.SetActive(true);
                 break;
             case AccessoryType.HeadBand:
-                if (buttonBelly[1].isOn)
+                if (boddy == 0)
                     bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccHeadBand.SetActive(true);
                 break;
             case AccessoryType.Con:
-                if (buttonBelly[1].isOn)
+                if (boddy == 0)
                     bubbleHedgehogAccVolleyball.SetActive(true);
                 bubbleHedgehogAccCon.SetActive(true);
                 break;
             case AccessoryType.None:
-                if (buttonBelly[1].isOn)
-                    bubbleHedgehogAccVolleyball.SetActive(true);
-                if (buttonHead[1].isOn)
+                if (head == 0)
                     bubbleHedgehogAccPalmtree.SetActive(true);
+                else if (head == 1)
+                    bubbleHedgehogAccHeadBand.SetActive(true);
+                else if (head == 2)
+                    bubbleHedgehogAccCon.SetActive(true);
                 Debug.Log("There is no accessory");
                 break;
 
@@ -312,7 +343,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     {
         StartCoroutine(Co_ScreenShotFrame());
         //if(bubbleHedgehogOriginStage.activeSelf==false)
-       // bubbleHedgehogOriginStage.SetActive(true);
+        // bubbleHedgehogOriginStage.SetActive(true);
     }
     private IEnumerator Co_ScreenShotFrame()
     {
