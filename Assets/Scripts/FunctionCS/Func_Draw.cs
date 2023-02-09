@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 namespace FreeDraw
 {
     public class Func_Draw : MonoBehaviour
@@ -34,6 +35,7 @@ namespace FreeDraw
         [SerializeField] private bool isDiaryScene = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
 
         private float currentPenWidth = 0f;
 
@@ -62,6 +64,7 @@ namespace FreeDraw
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
+            func_TodayFeelingImage = FindObjectOfType<Func_TodayFeelingImage>();
         }
 
         private void Start()
@@ -75,51 +78,55 @@ namespace FreeDraw
             {
                 if (CheckArea() == true)
                 {
-                    //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
-                    if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
+                    if (!func_TodayFeelingImage.ActiveTodayFeelingMenu())
                     {
-                        SData_NodeData temp = new SData_NodeData();
-                        internalClick = true;
-                        GameObject obj = Instantiate(linePrefab);
-                        obj.tag = "Line";
-                        tempOBJ = obj;
-                        line = obj.GetComponent<LineRenderer>();
-                        col = obj.GetComponent<EdgeCollider2D>();
-                        obj.transform.position = Vector3.zero;
-                        line.startColor = curColor;
-                        line.endColor = curColor;
-                        line.startWidth = currentPenWidth;
-                        line.endWidth = currentPenWidth;
-                        line.positionCount = 1;
-                        points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
-                        line.SetPosition(0, points[0]);
-
-
-                        temp.position = obj.transform.position;
-                        temp.rotation = obj.transform.rotation.eulerAngles;
-                        temp.scale = obj.transform.localScale;
-                        if (isDiaryScene == true)
-                        Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
-                    }
-                    //during drag
-                    else if (Input.GetMouseButton(0) && internalClick == true)
-                    {
-                        Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                   /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                        //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
+                        if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
                         {
-                            return;
-                        }*/
-                        points.Add(pos);
-                        line.positionCount++;
-                        line.SetPosition(line.positionCount - 1, pos);
-                        col.points = points.ToArray();
+                            SData_NodeData temp = new SData_NodeData();
+                            internalClick = true;
+                            GameObject obj = Instantiate(linePrefab);
+                            obj.tag = "Line";
+                            tempOBJ = obj;
+                            line = obj.GetComponent<LineRenderer>();
+                            col = obj.GetComponent<EdgeCollider2D>();
+                            obj.transform.position = Vector3.zero;
+                            line.startColor = curColor;
+                            line.endColor = curColor;
+                            line.startWidth = currentPenWidth;
+                            line.endWidth = currentPenWidth;
+                            line.positionCount = 1;
+                            points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
+                            line.SetPosition(0, points[0]);
+
+
+                            temp.position = obj.transform.position;
+                            temp.rotation = obj.transform.rotation.eulerAngles;
+                            temp.scale = obj.transform.localScale;
+                            if (isDiaryScene == true)
+                                Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
+                        }
+                        //during drag
+                        else if (Input.GetMouseButton(0) && internalClick == true)
+                        {
+                            Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                            /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                                 {
+                                     return;
+                                 }*/
+                            points.Add(pos);
+                            line.positionCount++;
+                            line.SetPosition(line.positionCount - 1, pos);
+                            col.points = points.ToArray();
+                        }
+                        //end drag
+                        else if (Input.GetMouseButtonUp(0))
+                        {
+                            if (isDragSticker == true) Destroy(tempOBJ);
+                            points.Clear();
+                        }
                     }
-                    //end drag
-                    else if (Input.GetMouseButtonUp(0))
-                    {
-                        if (isDragSticker == true) Destroy(tempOBJ);
-                        points.Clear();
-                    }
+                    
                 }
                 else internalClick = false;
             }
