@@ -1526,7 +1526,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Angry
         m_Mode: 1
         m_Arguments:
@@ -1873,7 +1873,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Calm
         m_Mode: 1
         m_Arguments:
@@ -5728,19 +5728,19 @@ RectTransform:
   m_GameObject: {fileID: 459767429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527136330}
   - {fileID: 1297975707}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 7993371125704136079}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459767431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6267,7 +6267,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Happy
         m_Mode: 1
         m_Arguments:
@@ -6622,7 +6622,7 @@ RectTransform:
   - {fileID: 1011704558}
   - {fileID: 867687979}
   m_Father: {fileID: 7993371125704136079}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11553,7 +11553,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Excited
         m_Mode: 1
         m_Arguments:
@@ -12654,7 +12654,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281902031
 GameObject:
@@ -15246,7 +15246,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: TodayFeeling_Menu
         m_Mode: 1
         m_Arguments:
@@ -16716,7 +16716,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Sad
         m_Mode: 1
         m_Arguments:
@@ -17617,7 +17617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1729917610
 MonoBehaviour:
@@ -21299,7 +21299,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116987573
 GameObject:
@@ -22909,33 +22909,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1292630004}
     - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: Change_Image_Sad
-      value: 
-      objectReference: {fileID: 21300000, guid: 37e7d8c1de2502d4f81c6014dd57915a, type: 3}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: TodayFeelingMenu
-      value: 
-      objectReference: {fileID: 1297975706}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: Change_Image_Calm
-      value: 
-      objectReference: {fileID: 21300000, guid: 3499b009d10c68a41a09e0e0343e7694, type: 3}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: Change_Image_Angry
-      value: 
-      objectReference: {fileID: 21300000, guid: aada62512900bad42a9997d1e9f39b6b, type: 3}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: Change_Image_Happy
-      value: 
-      objectReference: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: Change_Image_Excited
-      value: 
-      objectReference: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
-    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-      propertyPath: func_TodayFeelingImage
-      value: 
-      objectReference: {fileID: 804669447}
+      propertyPath: isDiaryScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4095744915355600559, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: m_Name
       value: DrawRenderCamera
@@ -23599,7 +23575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621129, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6218628758852621129, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24399,9 +24375,10 @@ RectTransform:
   - {fileID: 636564036}
   - {fileID: 1034301097}
   - {fileID: 1292630003}
+  - {fileID: 459767430}
   - {fileID: 574320455}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

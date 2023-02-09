@@ -26,6 +26,8 @@ public class Func_Record : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText = null;
     [SerializeField] private GameObject timerBox = null;
     [SerializeField] private bool timerRun = false;
+    [SerializeField] private float limitedMinutes = 5;
+    private float limitedSeconds;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class Func_Record : MonoBehaviour
         audioNum = 0;
         auidPlayNum = 1;
         timerBox.SetActive(false);
+        limitedSeconds = limitedMinutes * 60;
         timerRun = false;
     }
 
@@ -147,6 +150,11 @@ public class Func_Record : MonoBehaviour
         {
             time += Time.deltaTime;
             yield return null;
+            if(time > limitedSeconds)
+            {
+                OnClick_Save(); 
+                yield break;
+            }
             timerText.text = time.ToString("F2");
         }
     }

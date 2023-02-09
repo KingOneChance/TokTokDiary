@@ -40,6 +40,14 @@ public class Func_BubbleBearSign : MonoBehaviour
         heightValue = (int)beforeSignRect.rect.height;
         //   Debug.Log(startXPos);
     }
+    public void CancelSign()
+    {
+        GameObject[] cancelList = GameObject.FindGameObjectsWithTag("Line");
+        for(int i = 0; i < cancelList.Length; i++)
+        {
+            Destroy(cancelList[i]);
+        }
+    }
 
     public void SetImage()
     {
