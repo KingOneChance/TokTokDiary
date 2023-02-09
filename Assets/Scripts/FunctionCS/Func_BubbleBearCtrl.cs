@@ -111,7 +111,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         if (isSelectedHead == false)
             AccessoryChange(AccessoryType.VolleyBall);  //ball
         else
-            AccessoryChange(AccessoryType.VolleyBall,nowHeadNum);  //ball
+            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);  //ball
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonBelly2()
@@ -123,7 +123,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         if (isSelectedHead == false)
             AccessoryChange(AccessoryType.None);  //no accessory
         else
-            AccessoryChange(AccessoryType.VolleyBall, nowHeadNum);
+            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonBelly3()
@@ -135,7 +135,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         if (isSelectedHead == false)
             AccessoryChange(AccessoryType.None);  //no accessory
         else
-            AccessoryChange(AccessoryType.VolleyBall, nowHeadNum);
+            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonHead1()
@@ -144,7 +144,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         ToggleAlphaChange(buttonHead);
         nowHeadSprite = buttonHead[0].image.sprite;
         bubbleHedgehogHead.texture = nowHeadSprite.texture;
-        AccessoryChange(AccessoryType.HeadPalmtree,nowBellyNum);  //HeadPalmtree
+        AccessoryChange(AccessoryType.HeadPalmtree, nowBellyNum);  //HeadPalmtree
         if (isSelectedHead != true) isSelectedHead = true;
     }
     public void OnClick_ButtonHead2()
@@ -215,7 +215,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         else
         {
             int body, belly, head, amrleg;
-          
+
             body = Random.Range(0, 3);
             belly = Random.Range(0, 3);
             head = Random.Range(0, 3);
@@ -225,34 +225,30 @@ public class Func_BubbleBearCtrl : MonoBehaviour
 
             ToggleAlphaChange(buttonBody);
             nowBodySprite = buttonBody[body].image.sprite;
-         //   buttonBody[body].isOn = true;
             bubbleHedgehogBody.texture = nowBodySprite.texture;
             if (isSelectedBody != true) isSelectedBody = true;
 
 
             ToggleAlphaChange(buttonBelly);
             nowBellySprite = buttonBelly[belly].image.sprite;
-           // buttonBelly[belly].isOn = true;
             bubbleHedgehogBelly.texture = nowBellySprite.texture;
-            if (belly == 0) AccessoryChange(AccessoryType.VolleyBall, head); //ball
-            else if (belly == 1) AccessoryChange(AccessoryType.None, head);  //none
-            else if (belly == 2) AccessoryChange(AccessoryType.None, head);  //none
+            if (belly == 0) AccessoryChange(AccessoryType.VolleyBall, belly, head); //ball
+            else if (belly == 1) AccessoryChange(AccessoryType.None, belly, head);  //none
+            else if (belly == 2) AccessoryChange(AccessoryType.None, belly, head);  //none
             if (isSelectedBelly != true) isSelectedBelly = true;
 
 
             ToggleAlphaChange(buttonHead);
             nowHeadSprite = buttonHead[head].image.sprite;
-          //  buttonHead[head].isOn = true;
             bubbleHedgehogHead.texture = nowHeadSprite.texture;
-            if (head == 0) AccessoryChange(AccessoryType.HeadPalmtree, body);    //HeadPalmtree
-            else if (head == 1) AccessoryChange(AccessoryType.Con, body);        //Con
-            else if (head == 2) AccessoryChange(AccessoryType.HeadBand, body);   //HeadBand
+            if (head == 0) AccessoryChange(AccessoryType.HeadPalmtree, belly);    //HeadPalmtree
+            else if (head == 1) AccessoryChange(AccessoryType.Con, belly);        //Con
+            else if (head == 2) AccessoryChange(AccessoryType.HeadBand, belly);   //HeadBand
             if (isSelectedHead != true) isSelectedHead = true;
 
 
             ToggleAlphaChange(buttonArmLeg);
             nowArmLegSprite = buttonArmLeg[amrleg].image.sprite;
-         //   buttonArmLeg[amrleg].isOn = true;
             bubbleHedgehogArmLeg.texture = nowArmLegSprite.texture;
             if (isSelectedArmLeg != true) isSelectedArmLeg = true;
 
