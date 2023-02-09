@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; 
 namespace FreeDraw
 {
     public class Func_Draw : MonoBehaviour
@@ -17,14 +18,18 @@ namespace FreeDraw
         [SerializeField] EdgeCollider2D col;
         List<Vector2> points = new List<Vector2>();
 
+        [Header("그리기 범위")]
         [SerializeField] private float drawingAreaMaxX = 0f;
         [SerializeField] private float drawingAreaMinX = 0f;
         [SerializeField] private float drawingAreaMaxY = 0f;
         [SerializeField] private float drawingAreaMinY = 0f;
+
+        [Header("쓰기 범위")]
         [SerializeField] private float writingAreaMaxX = 0f;
         [SerializeField] private float writingAreaMinX = 0f;
         [SerializeField] private float writingAreaMaxY = 0f;
         [SerializeField] private float writingAreaMinY = 0f;
+
         [SerializeField] private Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
@@ -33,6 +38,8 @@ namespace FreeDraw
         [SerializeField] private bool isDragSticker = false;
         private GameObject tempOBJ;
         [SerializeField] private bool onObject;
+
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
 
         private float currentPenWidth = 0f;
 
@@ -67,58 +74,77 @@ namespace FreeDraw
         {
             currentPenWidth = 0.3f;
         }
-
-        private void Update()
+        public void Update()
         {
-            if (onObject == false)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (CheckArea() == true)
+                if (EventSystem.current.IsPointerOverGameObject())
                 {
-                    //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
-                    if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
-                    {
-                        SData_NodeData temp = new SData_NodeData();
-                        internalClick = true;
-                        GameObject obj = Instantiate(linePrefab);
-                        tempOBJ = obj;
-                        line = obj.GetComponent<LineRenderer>();
-                        col = obj.GetComponent<EdgeCollider2D>();
-                        obj.transform.position = Vector3.zero;
-                        line.startColor = curColor;
-                        line.endColor = curColor;
-                        line.startWidth = currentPenWidth;
-                        line.endWidth = currentPenWidth;
-                        line.positionCount = 1;
-                        points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
-                        line.SetPosition(0, points[0]);
+                    func_TodayFeelingImage.Image_Excited();
+                    func_TodayFeelingImage.Image_Happy();
+                    func_TodayFeelingImage.Image_Calm();
+                    func_TodayFeelingImage.Image_Sad();
+                    func_TodayFeelingImage.Image_Angry();
+                    func_TodayFeelingImage.TodayFeeling_Menu();
+                    Debug.Log("이게눌림?");
+                    
+                    return;
+                }
+                else
+                {
+                    
 
-
-                        temp.position = obj.transform.position;
-                        temp.rotation = obj.transform.rotation.eulerAngles;
-                        temp.scale = obj.transform.localScale;
-                        Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
-                    }
-                    //during drag
-                    else if (Input.GetMouseButton(0) && internalClick == true)
+                    if (onObject == false)
                     {
-                        Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                   /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                        if (CheckArea() == true)
                         {
-                            return;
-                        }*/
-                        points.Add(pos);
-                        line.positionCount++;
-                        line.SetPosition(line.positionCount - 1, pos);
-                        col.points = points.ToArray();
-                    }
-                    //end drag
-                    else if (Input.GetMouseButtonUp(0))
-                    {
-                        if (isDragSticker == true) Destroy(tempOBJ);
-                        points.Clear();
+                            //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
+                            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
+                            {
+                                SData_NodeData temp = new SData_NodeData();
+                                internalClick = true;
+                                GameObject obj = Instantiate(linePrefab);
+                                tempOBJ = obj;
+                                line = obj.GetComponent<LineRenderer>();
+                                col = obj.GetComponent<EdgeCollider2D>();
+                                obj.transform.position = Vector3.zero;
+                                line.startColor = curColor;
+                                line.endColor = curColor;
+                                line.startWidth = currentPenWidth;
+                                line.endWidth = currentPenWidth;
+                                line.positionCount = 1;
+                                points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
+                                line.SetPosition(0, points[0]);
+
+
+                                temp.position = obj.transform.position;
+                                temp.rotation = obj.transform.rotation.eulerAngles;
+                                temp.scale = obj.transform.localScale;
+                                Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
+                            }
+                            //during drag
+                            else if (Input.GetMouseButton(0) && internalClick == true)
+                            {
+                                Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                                /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                                     {
+                                         return;
+                                     }*/
+                                points.Add(pos);
+                                line.positionCount++;
+                                line.SetPosition(line.positionCount - 1, pos);
+                                col.points = points.ToArray();
+                            }
+                            //end drag
+                            else if (Input.GetMouseButtonUp(0))
+                            {
+                                if (isDragSticker == true) Destroy(tempOBJ);
+                                points.Clear();
+                            }
+                        }
+                        else internalClick = false;
                     }
                 }
-                else internalClick = false;
             }
         }
         public void MMMMMM()
@@ -207,7 +233,7 @@ namespace FreeDraw
                     curColor = new Color32(30, 30, 30, 255);
                     break;
                 case ColorType.Eraser:
-                    curColor = new Color32(255, 255, 255, 255);
+                    curColor = new Color32(0, 0, 0, 0);
                     break;
             }
         }
