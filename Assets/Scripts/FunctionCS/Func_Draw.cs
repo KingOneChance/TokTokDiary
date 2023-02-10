@@ -126,6 +126,7 @@ namespace FreeDraw
                             points.Clear();
                         }
                  //   }
+
                 }
                 else internalClick = false;
             }
