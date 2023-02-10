@@ -109,7 +109,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowBellySprite = buttonBelly[0].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
         if (isSelectedHead == false)
-            AccessoryChange(AccessoryType.VolleyBall);  //ball
+            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum);  //ball
         else
             AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);  //ball
         if (isSelectedBelly != true) isSelectedBelly = true;
@@ -121,9 +121,9 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowBellySprite = buttonBelly[1].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
         if (isSelectedHead == false)
-            AccessoryChange(AccessoryType.None);  //no accessory
+            AccessoryChange(AccessoryType.None, nowBellyNum);  //no accessory
         else
-            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);
+            AccessoryChange(AccessoryType.None, nowBellyNum, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonBelly3()
@@ -133,9 +133,9 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nowBellySprite = buttonBelly[2].image.sprite;
         bubbleHedgehogBelly.texture = nowBellySprite.texture;
         if (isSelectedHead == false)
-            AccessoryChange(AccessoryType.None);  //no accessory
+            AccessoryChange(AccessoryType.None, nowBellyNum);  //no accessory
         else
-            AccessoryChange(AccessoryType.VolleyBall, nowBellyNum, nowHeadNum);
+            AccessoryChange(AccessoryType.None, nowBellyNum, nowHeadNum);
         if (isSelectedBelly != true) isSelectedBelly = true;
     }
     public void OnClick_ButtonHead1()

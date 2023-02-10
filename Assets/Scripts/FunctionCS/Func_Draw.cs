@@ -78,7 +78,7 @@ namespace FreeDraw
             {
                 if (CheckArea() == true)
                 {
-                    if (!func_TodayFeelingImage.ActiveTodayFeelingMenu())
+                    if(true)// if (!func_TodayFeelingImage.ActiveTodayFeelingMenu())
                     {
                         //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
                         if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
