@@ -35,7 +35,7 @@ public class Func_BubbleBearSave : Func_SaveSticker
     //    SaveAll();
 
         saveTemp = hogTempImage;
-        saveFileName = "RecordingSign";
+        saveFileName = "RecordingSticker";
         widthValue = 660;
         heightValue = 1000;
         SaveTexture(StickerType.AudioSticker);

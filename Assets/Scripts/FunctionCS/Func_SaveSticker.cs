@@ -17,7 +17,7 @@ public class Func_SaveSticker : MonoBehaviour
     [Header("Save path")]
     [SerializeField] protected string saveFileName = "";
     [SerializeField] protected RawImage saveTemp = null;
-    [SerializeField] protected Color backGroundColor ;
+    [SerializeField] protected Color backGroundColor;
     private string bubbleGunStikcerFolder = "BubbleGunSticker";
     private string bubbleStickerFolder = "BubbleSticker";
     private string audioStickerFolder = "RecordingSticker";
@@ -65,7 +65,7 @@ public class Func_SaveSticker : MonoBehaviour
 
         SaveTexture(stickerType);
     }
-    protected virtual void SaveTexture(StickerType stickerType, string name =null)
+    protected virtual void SaveTexture(StickerType stickerType, string name = null)
     {
         int nowNum;
         switch (stickerType)
@@ -87,12 +87,12 @@ public class Func_SaveSticker : MonoBehaviour
             case StickerType.AudioSticker:
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum,1);
                 break;
             case StickerType.SignSticker:
                 nowNum = Manager_Main.Instance.GetSignStickerNum(recordingSignFolder);
                 Manager_Main.Instance.SetSignStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum,1);
                 break;
             case StickerType.FreeSticker:
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
@@ -112,49 +112,62 @@ public class Func_SaveSticker : MonoBehaviour
     }
 
 
-    protected virtual void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
+    protected virtual void SaveTextureToPng(Texture texture, string directoryPath, string fileName, int test = 0)
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
 
         RenderTexture currentRenderTexture = RenderTexture.active;
-        RenderTexture copiedRenderTexture = new RenderTexture(texture.width, texture.height, 0);
+        RenderTexture copiedRenderTexture = new RenderTexture(widthValue, heightValue, 0);
 
         Graphics.Blit(texture, copiedRenderTexture);
         RenderTexture.active = copiedRenderTexture;
 
-        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
-        texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
+        Texture2D texture2D = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
+        texture2D.ReadPixels(new Rect(0, 0, widthValue, heightValue), 0, 0);
         texture2D.Apply();
 
         //
-        Debug.Log("BGC 22: " + backGroundColor);
-        Texture2D newTex = new Texture2D(widthValue, heightValue);
-        for (int x = 0; x < widthValue; x++)
+        if (test == 0)
         {
-            for (int y = 0; y < heightValue; y++)
+            Debug.Log("BGC 22: " + backGroundColor);
+            Texture2D newTex = new Texture2D(widthValue, heightValue);
+            for (int x = 0; x < widthValue; x++)
             {
-                Color pixelColor = texture2D.GetPixel(x, y);
-                if (pixelColor != backGroundColor)
+                for (int y = 0; y < heightValue; y++)
                 {
-                    newTex.SetPixel(x, y, pixelColor);
-                }
-                else
-                {
-                    newTex.SetPixel(x, y, Color.clear);
+                    Color pixelColor = texture2D.GetPixel(x, y);
+                    if (pixelColor != backGroundColor)
+                    {
+                        newTex.SetPixel(x, y, pixelColor);
+                    }
+                    else
+                    {
+                        newTex.SetPixel(x, y, Color.clear);
+                    }
                 }
             }
+            newTex.Apply();
+            saveTemp.texture = newTex;
+            //
+
+            RenderTexture.active = currentRenderTexture;
+
+            // byte[] texturePNGBytes = texture2D.EncodeToPNG();
+            byte[] texturePNGBytes = newTex.EncodeToPNG();
+            string filePath = directoryPath + fileName + ".png";
+
+            File.WriteAllBytes(filePath, texturePNGBytes);
         }
-        newTex.Apply();
-        saveTemp.texture = newTex;
-        //
+        else
+        {
+            RenderTexture.active = currentRenderTexture;
 
-        RenderTexture.active = currentRenderTexture;
+            byte[] texturePNGBytes = texture2D.EncodeToPNG();
+            string filePath = directoryPath + fileName + ".png";
 
-       // byte[] texturePNGBytes = texture2D.EncodeToPNG();
-        byte[] texturePNGBytes = newTex.EncodeToPNG();
-        string filePath = directoryPath + fileName + ".png";
+            File.WriteAllBytes(filePath, texturePNGBytes);
+        }
 
-        File.WriteAllBytes(filePath, texturePNGBytes);
     }
 }
