@@ -41,7 +41,8 @@ public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         gameObject.transform.position = myPos.transform.position;
         //change canvas when drag sign on hedgehog sticker
     }
-    public void LoadFinishCanvas()
+    //It is called by OnCollisionEnter2D function
+    public void LoadFinishCanvas() 
     {
         manager_BubbleBear.MoveCheckToFinishCanvas();
     }

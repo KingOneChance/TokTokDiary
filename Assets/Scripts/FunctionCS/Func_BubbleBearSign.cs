@@ -13,6 +13,7 @@ public class Func_BubbleBearSign : MonoBehaviour
     [Header("===ShowOject===")]
     [SerializeField] private RawImage hedgehogShow = null;
     [SerializeField] private RawImage signShow = null;
+    [SerializeField] private GameObject backGroundShow = null;
 
 
     [Header("===DrawCamera===")]
@@ -40,6 +41,7 @@ public class Func_BubbleBearSign : MonoBehaviour
         heightValue = (int)beforeSignRect.rect.height;
         //   Debug.Log(startXPos);
     }
+
     public void CancelSign()
     {
         GameObject[] cancelList = GameObject.FindGameObjectsWithTag("Line");
@@ -57,6 +59,7 @@ public class Func_BubbleBearSign : MonoBehaviour
 
     public void SaveTempSign()
     {
+        backGroundShow.SetActive(false);
         StartCoroutine(Co_ScreenShotFrame());
     }
     private IEnumerator Co_ScreenShotFrame()
@@ -95,5 +98,7 @@ public class Func_BubbleBearSign : MonoBehaviour
 
         drawCam.gameObject.SetActive(false);
         manager_bubble.MoveSignToCheckCanvas();
+
+        backGroundShow.SetActive(true);
     }
 }
