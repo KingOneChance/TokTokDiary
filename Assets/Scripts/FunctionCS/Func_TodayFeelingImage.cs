@@ -31,10 +31,18 @@ namespace FreeDraw
         {
             if(!func_TodayFeelingImage.ActiveTodayFeelingMenu())
             {
-                Debug.Log("메뉴가 꺼져있어용은 자식에서 판단해용");
-                Draw();
+                if (CheckArea() == true)
+                {
+                    Draw();
+                }
+                
+                else
+                {
+                    internalClick = false;
+                }
             }
         }
+
         public void Image_Excited()
         {
             ThisImage.sprite = Change_Image_Excited;
@@ -51,6 +59,7 @@ namespace FreeDraw
         {
             ThisImage.sprite = Change_Image_Calm;
             TodayFeelingMenu.SetActive(false);
+            
         }
     
         public void Image_Sad()
