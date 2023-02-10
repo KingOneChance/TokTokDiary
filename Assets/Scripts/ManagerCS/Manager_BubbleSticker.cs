@@ -22,10 +22,15 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private RawImage defaultBucketColor = null;
 
+    [Header("========== 저장패널 버튼 ==========")]
+    [SerializeField] private Button[] savePanelButtons = null;
     #endregion
 
-    private bool isDefaultBottleSelected = false;
+    #region AnotherVariables
+    [SerializeField] private bool isDefaultBottleSelected = false;
     private int PanelIdx = 0;
+    private int colorType = 0;
+    #endregion
 
     protected override void Start()
     {
@@ -33,20 +38,141 @@ public class Manager_BubbleSticker : Func_SaveSticker
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         PanelIdx = 0;
         BackButton.gameObject.SetActive(false);
+        NextButton.gameObject.SetActive(true);
+        NextButton.interactable = true;
+        savePanelButtons[0].gameObject.SetActive(true);
+        savePanelButtons[1].gameObject.SetActive(false);
+        myTilt.enabled = false;
+        myPos.transform.position = bucketPos[0].transform.position;
+
         for (int i = 0; i < Panels.Length; i++)
         {
             Panels[i].SetActive(false);
         }
         Panels[0].SetActive(true);
-        myTilt.enabled = false;
-        myPos.transform.position = bucketPos[0].transform.position;
+
         for (int i = 0; i < ColorButtons.Length; i++)
         {
             ColorButtons[i].interactable = false;
+        }
+
+        isDefaultBottleSelected = false;
+        InitDefaultBucket();
+    }
+
+    private void DecideDesignAndColor()
+    {
+        switch (PanelIdx)
+        {
+            case 0:
+                BubbleSicker.texture = StickerDesignArr[StickerDesign.CurrentSticker].texture;
+                break;
+
+            case 1:
+                if (defaultBucketColor.color == ColorBuckets[0].color)
+                {
+                    colorType = 1;
+                }
+                else if (defaultBucketColor.color == ColorBuckets[1].color)
+                {
+                    colorType = 2;
+                }
+                else if (defaultBucketColor.color == ColorBuckets[2].color)
+                {
+                    colorType = 3;
+                }
+
+                string file = "";
+                // StickerDesign.CurrentSticker : 0 -> turtle, 1 -> trueseal, 2 -> grampus
+                // colorType : 0 -> green, 1 -> pink, 2 -> blue
+                switch (StickerDesign.CurrentSticker)
+                {
+                    case 0:
+                        switch (colorType)
+                        {
+                            case 1:
+                                file = "TurtleGreen";
+                                break;
+
+                            case 2:
+                                file = "TurtlepPink";
+                                break;
+
+                            case 3:
+                                file = "TurtleBlue";
+                                break;
+                        }
+                        break;
+
+                    case 1:
+                        switch (colorType)
+                        {
+                            case 1:
+                                file = "TrueSealGreen";
+                                break;
+
+                            case 2:
+                                file = "TrueSealPink";
+                                break;
+
+                            case 3:
+                                file = "TrueSealBlue";
+                                break;
+                        }
+                        break;
+
+                    case 2:
+                        switch (colorType)
+                        {
+                            case 1:
+                                file = "GrampusGreen";
+                                break;
+
+                            case 2:
+                                file = "GrampusPink";
+                                break;
+
+                            case 3:
+                                file = "GrampusBlue";
+                                break;
+                        }
+                        break;
+                }
+                GetBubbleStickerImage(file);
+
+                break;
+        }
+    }
+
+    private void GetBubbleStickerImage(string fileName)
+    {
+        Texture2D texture = Resources.Load<Texture2D>("FinishedDesigns/" + fileName);
+        BubbleSicker.texture = texture;
+    }
+
+    private void InitDefaultBucket()
+    {
+        myPos.transform.position = bucketPos[0].transform.position;
+        myTilt.enabled = false;
+        myTilt.ResetBucket();
+        myPos.transform.localEulerAngles = Vector3.zero;
+        for (int i = 0; i < ColorButtons.Length; i++)
+        {
+            ColorButtons[i].interactable = false;
+        }
+    }
+
+    private void PlaceDefaultBucket()
+    {
+        myPos.transform.position = bucketPos[1].transform.position;
+        myTilt.enabled = true;
+        for (int i = 0; i < ColorButtons.Length; i++)
+        {
+            ColorButtons[i].interactable = true;
         }
     }
 
@@ -73,42 +199,16 @@ public class Manager_BubbleSticker : Func_SaveSticker
         else NextButton.interactable = false;
     }
 
-    private void DecideDesignAndColor()
-    {
-        switch (PanelIdx)
-        {
-            case 0:
-                BubbleSicker.texture = StickerDesignArr[StickerDesign.CurrentSticker].texture;
-                break;
-
-            case 1:
-                BubbleSicker.color = defaultBucketColor.color;
-                break;
-        }
-    }
-
     public void OnClick_DefaultBottle()
     {
         isDefaultBottleSelected = !isDefaultBottleSelected;
         if (isDefaultBottleSelected == true)
         {
-            myPos.transform.position = bucketPos[1].transform.position;
-            myTilt.enabled = true;
-            for (int i = 0; i < ColorButtons.Length; i++)
-            {
-                ColorButtons[i].interactable = true;
-            }
+            PlaceDefaultBucket();
         }
         else
         {
-            myPos.transform.position = bucketPos[0].transform.position;
-            myTilt.enabled = false;
-            myTilt.ResetBucket();
-            myPos.transform.localEulerAngles = Vector3.zero;
-            for (int i = 0; i < ColorButtons.Length; i++)
-            {
-                ColorButtons[i].interactable = false;
-            }
+            InitDefaultBucket();
         }
     }
 
@@ -116,15 +216,15 @@ public class Manager_BubbleSticker : Func_SaveSticker
     {
         switch (color)
         {
-            case "Yellow":
+            case "Green":
                 defaultBucketColor.color = ColorBuckets[0].color;
                 break;
 
-            case "Orange":
+            case "Pink":
                 defaultBucketColor.color = ColorBuckets[1].color;
                 break;
 
-            case "Purple":
+            case "Blue":
                 defaultBucketColor.color = ColorBuckets[2].color;
                 break;
         }

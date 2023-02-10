@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Func_CalendarController : MonoBehaviour
 {
     const int _totalDateNum = 42;
-    private DateTime _dateTime;
 
     [SerializeField] private GameObject _item;
     [SerializeField] private GameObject _itemSticker;
@@ -16,15 +15,17 @@ public class Func_CalendarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _monthStrText;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
+    private DateTime _dateTime;
+
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     private string myName = "";
 
     private void OnEnable()
     {
-        
+        Init();
     }
 
-    private void Start()
+    private void Init()
     {
         Vector3 startPos = _item.transform.localPosition;
         _dateItems.Clear();
