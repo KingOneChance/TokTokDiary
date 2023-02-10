@@ -21,9 +21,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private RawImage[] ColorBuckets = null;
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private RawImage defaultBucketColor = null;
-
-    [Header("========== 저장패널 버튼 ==========")]
-    [SerializeField] private Button[] savePanelButtons = null;
     #endregion
 
     #region AnotherVariables
@@ -44,8 +41,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
         BackButton.gameObject.SetActive(false);
         NextButton.gameObject.SetActive(true);
         NextButton.interactable = true;
-        savePanelButtons[0].gameObject.SetActive(true);
-        savePanelButtons[1].gameObject.SetActive(false);
         myTilt.enabled = false;
         myPos.transform.position = bucketPos[0].transform.position;
 
@@ -181,21 +176,25 @@ public class Manager_BubbleSticker : Func_SaveSticker
         DecideDesignAndColor();
         BackButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
+        NextButton.interactable = false;
         Panels[PanelIdx + 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
         PanelIdx++;
-        NextButton.interactable = false;
     }
 
     public void OnClick_BackBtn()
     {
-        if (PanelIdx == 1) NextButton.interactable = true;
+        if(PanelIdx == 2) InitDefaultBucket();
         NextButton.gameObject.SetActive(true);
         if (PanelIdx - 1 == 0) BackButton.gameObject.SetActive(false);
         Panels[PanelIdx - 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
         PanelIdx--;
-        if (PanelIdx == 0) NextButton.interactable = true;
+        if (PanelIdx == 0)
+        {
+            NextButton.interactable = true;
+            InitDefaultBucket();
+        }
         else NextButton.interactable = false;
     }
 
@@ -230,7 +229,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
         }
     }
 
-    public void OnClick_SaveBubbleSticker()
+    public void SaveBubbleSticker()
     {
         OnClick_SaveImgae(StickerType.BubbleSticker);
     }
