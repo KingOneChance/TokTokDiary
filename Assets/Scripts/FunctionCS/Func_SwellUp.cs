@@ -9,6 +9,7 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] Button SwellUpButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
+    
 
     private bool isProgress = false;
 
@@ -18,6 +19,7 @@ public class Func_SwellUp : MonoBehaviour
     {
         isProgress = false;
         SkipButton.gameObject.SetActive(true);
+        NextButton.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -31,9 +33,7 @@ public class Func_SwellUp : MonoBehaviour
     {
         if(curIdx == 3)
         {
-            Bomb();
-            SwellUpButton.interactable = false;
-            NextButton.interactable = true;
+            Invoke(nameof(Bomb), 3f);
             return;
         }
         curIdx++;
@@ -42,7 +42,9 @@ public class Func_SwellUp : MonoBehaviour
 
     private void Bomb()
     {
+        Debug.Log("ลอมü");
         SwellUpImg.rectTransform.localScale = Vector3.zero;
+        SwellUpButton.interactable = false;
     }
 
     private IEnumerator SwellUp()
@@ -64,6 +66,5 @@ public class Func_SwellUp : MonoBehaviour
     {
         Bomb();
         SwellUpButton.interactable = false;
-        NextButton.interactable = true;
     }
 }

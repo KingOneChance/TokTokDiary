@@ -238,5 +238,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
     protected override void OnClick_SaveImgae(StickerType stickerType)
     {
         base.OnClick_SaveImgae(stickerType);
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Scripting;
+using Unity.VisualScripting;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -198,6 +199,44 @@ public class Manager_Main : MonoBehaviour
             getDiaryNum = allFiles.Length;
             return getDiaryNum;
         }
+    }
+
+    /// <summary>
+    /// If the sticker already exists,
+    /// 5 is added to the number of times the sticker can be used, 
+    /// and if the sticker does not exist, 
+    /// the value of 5 is added as a new key.
+    /// </summary>
+    /// <param name="stickerName"></param>
+    public void SaveStickerNumberOfTimesAvailable(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName))
+        {
+            PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 5);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(stickerName, 5);
+        }
+    }
+
+    /// <summary>
+    /// First, check if the key of the sticker you want to use exists,
+    /// return it if it does not exist,
+    /// and if it exists,
+    /// subtract 1 from the key value and save it.
+    /// </summary>
+    /// <param name="stickerName"></param>
+    public void UseStickerNumberOfTimesAvailable(string stickerName)
+    {
+        if(PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
+        if (PlayerPrefs.GetInt(stickerName) == 0)
+            PlayerPrefs.DeleteKey(stickerName);
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;
