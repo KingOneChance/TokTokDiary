@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] RawImage previewImg = null;
 
     [SerializeField] List<Texture2D> diaryList = new List<Texture2D>();
+    [SerializeField] List<Data_Diary> diaryDataList = new List<Data_Diary>();
     [SerializeField] private string selectedProfileName = "";
     [SerializeField] private string selectedProfilPath = "";
 
@@ -30,26 +32,52 @@ public class Manager_DiaryCase : MonoBehaviour
     {
         selectedProfileName = profileName[idx - 1].text;
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/" + "Diary";
-        CheckDiaryFiles();
+        AddDiaryFiles();
         panels[0].SetActive(false);
         panels[1].SetActive(true);
     }
 
-    private void CheckDiaryFiles()
+    private void AddDiaryFiles()
     {
         string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories);
 
         for (int i = 0; i < allFiles.Length; i++)
         {
+            string fileName = Path.GetFileNameWithoutExtension(allFiles[i]);
+            if (int.Parse(fileName.Split('-')[1]) > 1)
+            {
+                Debug.Log(fileName);
+            }
+
+            diaryDataList.Add(new Data_Diary(selectedProfileName, fileName, 1));
+
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
 
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
-                texture.LoadImage(byteTexture);
+                texture.LoadImage(byteTexture);                
                 diaryList.Add(texture);
             }
         }
-        previewImg.texture = diaryList[0];
+    }
+
+    public void OnClick_BackButton()
+    {
+        diaryList.Clear();
+        selectedProfilPath = "";
+        selectedProfileName = "";
+
+    }
+
+    private void ShowPreviewDiary()
+    {
+        DateTime today = DateTime.Now;
+        
+        for(int i = 0; i < diaryList.Count; i++)
+        {
+            //if(diaryList[i] != null)
+        }
+        previewImg.texture = diaryList[1];
     }
 }
