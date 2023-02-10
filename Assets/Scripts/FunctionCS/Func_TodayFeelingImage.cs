@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 namespace FreeDraw
 {
-    public class Func_TodayFeelingImage : MonoBehaviour
+    public class Func_TodayFeelingImage : Func_Draw
     {
         [SerializeField] public Sprite Change_Image_Excited;
         [SerializeField] public Sprite Change_Image_Happy;
@@ -14,28 +13,26 @@ namespace FreeDraw
         [SerializeField] public Sprite Change_Image_Sad;
         [SerializeField] public Sprite Change_Image_Angry;
         [SerializeField] public GameObject TodayFeelingMenu = null;
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
+
         static Image ThisImage;
-    
-        private void Start()
+
+        private void Awake()
+        {
+            func_TodayFeelingImage = FindObjectOfType<Func_TodayFeelingImage>();
+        }
+        private new void Start()
         {
             ThisImage = GetComponent<Image>();
+            base.Start();
         }
     
-        public void Update()
+        private void Update()
         {
-            if (Input.touchCount > 0)
+            if(!func_TodayFeelingImage.ActiveTodayFeelingMenu())
             {
-                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                    return;
-                else
-                {
-                    Image_Excited();
-                    Image_Happy();
-                    Image_Calm();
-                    Image_Sad();
-                    Image_Angry();
-                    TodayFeeling_Menu();
-                }
+                Debug.Log("메뉴가 꺼져있어용은 자식에서 판단해용");
+                Draw();
             }
         }
         public void Image_Excited()
