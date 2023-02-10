@@ -68,7 +68,7 @@ public class UI_PictureDiary : MonoBehaviour
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
-        Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
+       // Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
 
         //¹Ù´Ã »óÅÂ
         NiddleState = NiddleType.None;
@@ -82,7 +82,7 @@ public class UI_PictureDiary : MonoBehaviour
         before = new TextMeshProUGUI();
     }
 
-    #region Road Sticker Button
+   /* #region Road Sticker Button
     public void OnClick_WaffleRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleStickerList);
@@ -121,7 +121,7 @@ public class UI_PictureDiary : MonoBehaviour
             }
         }
     }
-
+*/
     public void OnClick_NativeCameraOnBtn()
     {
         TakePicture(CallBack);

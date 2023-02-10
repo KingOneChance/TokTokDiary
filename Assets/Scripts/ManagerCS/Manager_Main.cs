@@ -33,6 +33,7 @@ public class Manager_Main : MonoBehaviour
     [Header("UIManager")]
     //����
     [SerializeField] private UI_Main ui_Main = null;
+
     public UI_Main UI_Main { get { return ui_Main; } }
     [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
@@ -57,7 +58,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setFreeStickerNum = 0;
     [SerializeField] private int setDiaryNum = 0;
 
-    int recordStickerNum;
+ 
 
     #endregion
 
@@ -84,13 +85,6 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_EDITOR_WIN
-
-#else
-       string[] allFiles = Directory.GetFiles(Application.persistentDataPath + "/RecordSticker/", "*.png", SearchOption.TopDirectoryOnly);
-
-        recordStickerNum = allFiles.Length/2;
-#endif
     }
     private void Update()
     {
@@ -107,6 +101,7 @@ public class Manager_Main : MonoBehaviour
     {
         if (!ui_StickerRepositoryPrefab.activeSelf)
             ui_StickerRepositoryPrefab.SetActive(true);
+        UI_StickerRepository.OnClick_RepositoryOpen();
     }
     public void OnClick_StickerRepositoryOff()
     {
