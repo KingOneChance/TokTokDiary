@@ -6,10 +6,19 @@ using System.IO;
 
 public class UI_StickerRepository : MonoBehaviour
 {
+    [SerializeField] Button on = null;
     [Header("===StickerButtons===")]
-    [SerializeField] private Button[] ui_StickerBtns = null;
+    // [SerializeField] private Button[] ui_StickerBtns = null;
+    //토글 버튼들
+    [SerializeField] private Toggle[] ui_StickerBtns = null;
     [Header("===Stickers===")]
-    [SerializeField] private RawImage[] ui_Stickers = null;
+    // 기본으로 깔리는 비눗방울
+    [SerializeField] private List<RawImage> basicStickers = null;
+    [SerializeField] private Texture basicTextrue = null;
+    //부모 위치
+    [SerializeField] private GameObject ui_myParent = null;
+    //비눗방을 프리팹 
+    [SerializeField] GameObject stickerPrefab = null;
     [SerializeField] private RawImage[] ui_RecordSubStickers = null;
 
     public List<string> bubbleStickerList = new List<string>();
@@ -23,7 +32,10 @@ public class UI_StickerRepository : MonoBehaviour
     private void Start()
     {
         path = Application.persistentDataPath;
+
+
     }
+
     public void OnClick_BubbleStickerRepository()
     {
         LoadLocalSticker(bubbleStickerList);
@@ -94,25 +106,65 @@ public class UI_StickerRepository : MonoBehaviour
                 }
             }
         }
+
     }
+    RawImage go;
+    List<RawImage> MakingObj = new List<RawImage>();
     /// <summary>
     /// This function is purpose to fill Repository 
     /// </summary>
     /// <param name="anyList">Insert anyList without signlist</param>
     /// <param name="anyList2">Insert signList</param>
-    public void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
+    private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
-        //initiate raw images's texture
-        for (int i = 0; i < ui_Stickers.Length; i++)
+        
+        if (anyList.Count < 12)
         {
-            ui_Stickers[i].texture = null;
-            ui_RecordSubStickers[i].gameObject.SetActive(false);
-            if (anyList2 != null)
+            for (int i = basicStickers.Count-1; i > 11; --i)
+            {
+                basicStickers[i].texture = basicTextrue;
+                Destroy(basicStickers[i].gameObject);
+                basicStickers.RemoveAt(i);
+            }
+            for (int i = 0; i < MakingObj.Count; i++)
+            {
+                Destroy(MakingObj[i].gameObject);
+                MakingObj.RemoveAt(i);
+            }
+/*            Debug.Log(basicStickers.Count);
+            Debug.Log(MakingObj.Count);*/
+        }
+        
+        MakingObj.Clear();
+        if (anyList.Count - 8 > 0)
+        {
+            Debug.Log(anyList.Count);
+            int makingRawImage = anyList.Count - 9;
+            int makingLine = makingRawImage / 4 + 1;
+            for (int k = 0; k < (makingLine); k++)
+            {
+                for(int i= 0; i< 4; i++)
+                {
+                    go = Instantiate(stickerPrefab, ui_myParent.transform).GetComponent<RawImage>();
+                    MakingObj.Add(go);
+                    basicStickers.Add(go);
+                }
+            }
+
+        }
+
+        //initiate raw images's texture
+
+        for (int i = 0; i < basicStickers.Count; i++)
+        {
+            basicStickers[i].texture = basicTextrue;
+            /*if (anyList2 != null)
             {
                 ui_RecordSubStickers[i].gameObject.SetActive(true);
                 ui_RecordSubStickers[i].texture = null;
-            }
+            }*/
         }
+
         //Fill in the raw image's texture
         for (int i = 0; i < anyList.Count; i++)
         {
@@ -123,7 +175,7 @@ public class UI_StickerRepository : MonoBehaviour
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
 
-                ui_Stickers[i].texture = texture;
+                basicStickers[i].texture = texture;
             }
             if (anyList2 != null)
             {

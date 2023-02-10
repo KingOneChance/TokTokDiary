@@ -27,6 +27,16 @@ public class Func_Record : MonoBehaviour
     [SerializeField] private GameObject timerBox = null;
     [SerializeField] private bool timerRun = false;
     [SerializeField] private float limitedMinutes = 5;
+
+    [Header("===ListenEff===")]
+    [SerializeField] private GameObject leftHearing1 = null;
+    [SerializeField] private GameObject leftHearing2 = null;
+    [SerializeField] private GameObject leftHearing3 = null;
+    [SerializeField] private GameObject rightHearing1 = null;
+    [SerializeField] private GameObject rightHearing2 = null;
+    [SerializeField] private GameObject rightHearing3 = null;
+
+
     private float limitedSeconds;
 
     private void Start()
@@ -63,6 +73,8 @@ public class Func_Record : MonoBehaviour
     {
         playSouce.clip = newClip;
         playSouce.Play();
+        //Listening eff start
+        StartCoroutine(Co_ListenEff());
     }
     public void OnClick_PlayInFinish()
     {
@@ -150,12 +162,68 @@ public class Func_Record : MonoBehaviour
         {
             time += Time.deltaTime;
             yield return null;
-            if(time > limitedSeconds)
+            if (time > limitedSeconds)
             {
-                OnClick_Save(); 
+                OnClick_Save();
                 yield break;
             }
-            timerText.text = time.ToString("F2");
+            if (time % 60 < 10)
+                timerText.text = (int)(time / 60) + ":0" + (int)(time % 60);
+            else
+                timerText.text = (int)(time / 60) + ":" + (int)(time % 60);
+
         }
+    }
+    IEnumerator Co_ListenEff()
+    {
+        float playTime = 0;
+        Debug.Log("사운드 이펙트 재생");
+        while (playTime <= time)
+        {
+            playTime += Time.deltaTime;
+            leftHearing1.SetActive(true);
+            rightHearing1.SetActive(true);
+
+            leftHearing2.SetActive(false);
+            rightHearing2.SetActive(false);
+
+            leftHearing3.SetActive(false);
+            rightHearing3.SetActive(false);
+            if (playSouce.isPlaying == false) break;
+            yield return new WaitForSeconds(0.5f);
+            playTime += 0.5f;
+
+            leftHearing1.SetActive(true);
+            rightHearing1.SetActive(true);
+
+            leftHearing2.SetActive(true);
+            rightHearing2.SetActive(true);
+
+            leftHearing3.SetActive(false);
+            rightHearing3.SetActive(false);
+            if (playSouce.isPlaying == false) break;
+            yield return new WaitForSeconds(0.5f);
+            playTime += 0.5f;
+
+            leftHearing1.SetActive(true);
+            rightHearing1.SetActive(true);
+
+            leftHearing2.SetActive(true);
+            rightHearing2.SetActive(true);
+
+            leftHearing3.SetActive(true);
+            rightHearing3.SetActive(true);
+            if (playSouce.isPlaying == false) break;
+            yield return new WaitForSeconds(0.5f);
+            playTime += 0.5f;
+        }
+        leftHearing1.SetActive(false);
+        rightHearing1.SetActive(false);
+
+        leftHearing2.SetActive(false);
+        rightHearing2.SetActive(false);
+
+        leftHearing3.SetActive(false);
+        rightHearing3.SetActive(false);
     }
 }

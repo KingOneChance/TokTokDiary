@@ -21,5 +21,4 @@ public class Func_ToBeSticker : MonoBehaviour
 
         //厚窗规匡 葛记 积己
     }
-
 }

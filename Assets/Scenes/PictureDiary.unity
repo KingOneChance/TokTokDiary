@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -2397,7 +2397,7 @@ GameObject:
   - component: {fileID: 180099341}
   - component: {fileID: 180099340}
   m_Layer: 5
-  m_Name: ReCordingBtn
+  m_Name: S_ReCordingBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,7 +2417,7 @@ RectTransform:
   m_Children:
   - {fileID: 28193352}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2467,19 +2467,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180099341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_AudioRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &180099341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,7 +3128,7 @@ GameObject:
   - component: {fileID: 259673591}
   - component: {fileID: 259673590}
   m_Layer: 5
-  m_Name: BubbleGunStickerBtn
+  m_Name: S_BubbleGunStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3210,19 +3198,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 259673591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_WeatherRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &259673591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3797,7 +3773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -4850,7 +4826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -7052,7 +7028,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -7098,10 +7074,10 @@ RectTransform:
   - {fileID: 1699844148}
   - {fileID: 7993371126385170008}
   - {fileID: 7993371126956839781}
-  - {fileID: 945676389}
-  - {fileID: 180099339}
   - {fileID: 1389530194}
   - {fileID: 1735196287}
+  - {fileID: 945676389}
+  - {fileID: 180099339}
   - {fileID: 259673589}
   - {fileID: 1418457691}
   - {fileID: 469776531}
@@ -10128,7 +10104,7 @@ GameObject:
   - component: {fileID: 945676391}
   - component: {fileID: 945676390}
   m_Layer: 5
-  m_Name: BubbleStickerBtn
+  m_Name: S_BubbleStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10148,7 +10124,7 @@ RectTransform:
   m_Children:
   - {fileID: 1695880416}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -10198,19 +10174,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 945676391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_WaffleRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &945676391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12640,7 +12604,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -14154,7 +14118,7 @@ RectTransform:
   m_Children:
   - {fileID: 642292863}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -14493,7 +14457,7 @@ GameObject:
   - component: {fileID: 1418457693}
   - component: {fileID: 1418457692}
   m_Layer: 5
-  m_Name: FreeStickerBtn
+  m_Name: S_FreeStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14563,19 +14527,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1418457693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_DiaryRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1418457693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14732,7 +14684,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -15073,7 +15025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -15449,7 +15401,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -16091,7 +16043,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -17960,7 +17912,7 @@ RectTransform:
   m_Children:
   - {fileID: 1798528735}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -21597,6 +21549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116387888}
   - component: {fileID: 2116387887}
+  - component: {fileID: 2116387889}
   m_Layer: 0
   m_Name: PictureDiaryManager
   m_TagString: Untagged
@@ -21631,6 +21584,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116387889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116387886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui_Stikcers: []
+  soapBubble: {fileID: 0}
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
@@ -24006,18 +23973,8 @@ PrefabInstance:
       objectReference: {fileID: 1237402944}
     m_RemovedComponents:
     - {fileID: 6218628760045598220, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+    - {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
---- !u!114 &6218628760045598224 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-  m_PrefabInstance: {fileID: 6218628760045598222}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6604929974173447498
 GameObject:
   m_ObjectHideFlags: 0

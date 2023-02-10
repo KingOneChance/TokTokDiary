@@ -301,7 +301,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         popUpImage.SetActive(true);
     }
-    //Canvas change "saveCanvas" to "checkCanvas"
+    //Canvas change "signCanvas" to "checkCanvas"
     public void MoveSignToCheckCanvas()
     {
         signCanvas.SetActive(false);
@@ -329,7 +329,6 @@ public class Manager_BubbleBear : MonoBehaviour
 
         bubbleBearSave.TextureChange();
     }
-
     #endregion
     //Initiate Button to OriginState.
     private void InitAfterRecordButton()

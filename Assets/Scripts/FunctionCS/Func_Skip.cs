@@ -7,10 +7,9 @@ public class Func_Skip : MonoBehaviour
 {
     [SerializeField] RawImage[] checkImages = null;
 
-    private List<RawImage> checkList = new List<RawImage>();
-
     private Color middleColor = new Color(0, 0, 0, 180f / 255f);
     private Color cleanColor = new Color(1, 1, 1, 1);
+    private Color Nothing = new Color(255 / 255, 255 / 255, 255 / 255, 0);
 
     Func_GunCollision func_GunCollision = null;
     private void Start()
@@ -18,13 +17,13 @@ public class Func_Skip : MonoBehaviour
         func_GunCollision = FindObjectOfType<Func_GunCollision>();
     }
 
-    public void OnClick_SkipRound()
+    public void OnClick_SkipRoundOne()
     {
         for(int i = 0; i < checkImages.Length; i++)
         {
             if(checkImages[i].color == middleColor)
-            {
-                checkList.Add(checkImages[i]);
+            { 
+                func_GunCollision.whiteList.Add(checkImages[i]);
             }
         }
         StartCoroutine(WaitlittleTime());
@@ -33,10 +32,31 @@ public class Func_Skip : MonoBehaviour
 
     IEnumerator WaitlittleTime()
     {
-        for (int i = 0; i < checkList.Count; i++)
+        for (int i = 0; i < func_GunCollision.whiteList.Count; i++)
         {
-            checkList[i].color = cleanColor;
+            func_GunCollision.whiteList[i].color = cleanColor;
             yield return new WaitForSeconds(0.3f);
+        }
+    }
+    public void OnClick_SkipRoundTwo()
+    {
+        for (int i = 0; i < func_GunCollision.whiteList.Count; i++)
+        {
+            if (checkImages[i].color == cleanColor) 
+            {
+                func_GunCollision.cleanList.Add(checkImages[i]);
+            }
+        }
+        StartCoroutine(WaitlittleTimePop());
+
+    }
+    IEnumerator WaitlittleTimePop()
+    {
+        for (int i = 0; i < func_GunCollision.cleanList.Count; i++)
+        { yield return new WaitForSeconds(0.3f);
+            func_GunCollision.cleanList[i].color = Nothing ;
+            func_GunCollision.cleanList[i].gameObject.GetComponent<RawImage>().texture = null;
+           
         }
         func_GunCollision.RoundFinish();
     }
