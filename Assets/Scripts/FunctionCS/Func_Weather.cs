@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class Func_Weather : MonoBehaviour
 {
     [Header("날씨 버튼")]
-    [SerializeField] public Button Button_Shiny;
-    [SerializeField] public Button Button_Cloudy;
-    [SerializeField] public Button Button_Rainy;
-    [SerializeField] public Button Button_Snowy;
+    [SerializeField] public Toggle Button_Shiny;
+    [SerializeField] public Toggle Button_Cloudy;
+    [SerializeField] public Toggle Button_Rainy;
+    [SerializeField] public Toggle Button_Snowy;
 
     [Header("기본 이미지")]
     [SerializeField] public Image Image_Shiny;
@@ -28,73 +28,73 @@ public class Func_Weather : MonoBehaviour
     [SerializeField] public Sprite Origin_Cloudy;
     [SerializeField] public Sprite Origin_Rainy;
     [SerializeField] public Sprite Origin_Snowy;
-
-    private bool ImageChanged = false;
     
     private void Update()
     {
-         Button_Shiny.onClick.AddListener(ChangeImage_Shiny);
-         Button_Cloudy.onClick.AddListener(ChangeImage_Cloudy);
-         Button_Rainy.onClick.AddListener(ChangeImage_Rainy);
-         Button_Snowy.onClick.AddListener(ChangeImage_Snowy);
+         Button_Shiny.onValueChanged.AddListener(ChangeImage_Shiny);
+         Button_Cloudy.onValueChanged.AddListener(ChangeImage_Cloudy);
+         Button_Rainy.onValueChanged.AddListener(ChangeImage_Rainy);
+         Button_Snowy.onValueChanged.AddListener(ChangeImage_Snowy);
     }
 
-   public void ChangeImage_Shiny()
+   public void ChangeImage_Shiny(bool isOn)
     {
-        if (!ImageChanged)
+        if (isOn)
         {
             Image_Shiny.sprite = Sprite_Shiny;
-            ImageChanged = true;
+            Image_Cloudy.sprite = Origin_Cloudy;
+            Image_Rainy.sprite = Origin_Rainy;
+            Image_Snowy.sprite = Origin_Snowy;
         }
 
         else
         {
             Image_Shiny.sprite = Origin_Shiny;
-            ImageChanged = false;
         }
-        
     }
-   public void ChangeImage_Cloudy()
+   public void ChangeImage_Cloudy(bool isOn)
    {
-        if (!ImageChanged)
+        if (isOn)
         {
             Image_Cloudy.sprite = Sprite_Cloudy;
-            ImageChanged = true;
+            Image_Shiny.sprite = Origin_Shiny;
+            Image_Rainy.sprite = Origin_Rainy;
+            Image_Snowy.sprite = Origin_Snowy;
         }
 
         else
         {
             Image_Cloudy.sprite = Origin_Cloudy;
-            ImageChanged = false;
-        }
-        
+        }    
    }
-   public void ChangeImage_Rainy()
+   public void ChangeImage_Rainy(bool isOn)
    {
-        if (!ImageChanged)
+        if (isOn)
         {
             Image_Rainy.sprite = Sprite_Rainy;
-            ImageChanged = true;
+            Image_Shiny.sprite = Origin_Shiny;
+            Image_Cloudy.sprite = Origin_Cloudy;
+            Image_Snowy.sprite = Origin_Snowy;
         }
 
         else
         {
             Image_Rainy.sprite = Origin_Rainy;
-            ImageChanged = false;
         }
     }
-   public void ChangeImage_Snowy()
+   public void ChangeImage_Snowy(bool isOn)
    {
-        if (!ImageChanged)
+        if (isOn)
         {
             Image_Snowy.sprite = Sprite_Snowy;
-            ImageChanged = true;
+            Image_Shiny.sprite = Origin_Shiny;
+            Image_Cloudy.sprite = Origin_Cloudy;
+            Image_Rainy.sprite = Origin_Rainy;
         }
 
         else
         {
             Image_Snowy.sprite = Origin_Snowy;
-            ImageChanged = false;
         }
     }
 }

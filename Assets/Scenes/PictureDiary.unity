@@ -881,17 +881,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30178109}
   m_CullTransparentMesh: 1
---- !u!114 &30939877 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-  m_PrefabInstance: {fileID: 4095744915378150475}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &48303432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 67537945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1201,7 +1190,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1223,21 +1212,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 67537948}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2036859603}
-        m_TargetAssemblyTypeName: Func_Weather, Assembly-CSharp
-        m_MethodName: ChangeImage_Shiny
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1 &78760723
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,7 +4485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dceedd4967de9dd4580bd445f25d0856, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b90f90ee1a52a624b866c5a7c45a697b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5979,20 +5960,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459767429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -9.6999}
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527136330}
-  - {fileID: 1297975707}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459767431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6032,7 +6012,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &459767433
 Canvas:
   m_ObjectHideFlags: 0
@@ -6042,7 +6022,7 @@ Canvas:
   m_GameObject: {fileID: 459767429}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 1359955307}
   m_PlaneDistance: 0.3001
   m_PixelPerfect: 0
@@ -7802,7 +7782,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 673378344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -7812,7 +7792,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7834,21 +7814,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 673378347}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2036859603}
-        m_TargetAssemblyTypeName: Func_Weather, Assembly-CSharp
-        m_MethodName: ChangeImage_Snowy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1 &678331727
 GameObject:
   m_ObjectHideFlags: 0
@@ -9039,7 +9011,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1527136330}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9116,6 +9088,7 @@ MonoBehaviour:
   isDragSticker: 0
   isDiaryScene: 1
   onObject: 0
+  func_TodayFeelingImage: {fileID: 804669447}
   Change_Image_Excited: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
   Change_Image_Happy: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
   Change_Image_Calm: {fileID: 21300000, guid: 3499b009d10c68a41a09e0e0343e7694, type: 3}
@@ -9513,7 +9486,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1527136330}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11506,7 +11479,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 30939877}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
           m_MethodName: MMMMMM
           m_Mode: 1
@@ -11522,7 +11495,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 30939877}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
           m_MethodName: NNNNN
           m_Mode: 1
@@ -13348,7 +13321,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30939877}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FreeDraw.Func_Draw, Assembly-CSharp
         m_MethodName: ControllPenWidth
         m_Mode: 1
@@ -13571,12 +13544,12 @@ RectTransform:
   - {fileID: 160973986}
   - {fileID: 1672472427}
   - {fileID: 119525461}
-  m_Father: {fileID: 459767430}
-  m_RootOrder: 1
+  m_Father: {fileID: 1527136330}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 277.9, y: -354.89996}
+  m_AnchoredPosition: {x: 564, y: 0}
   m_SizeDelta: {x: 880, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297975708
@@ -14024,7 +13997,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359955305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15661,11 +15634,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527136329}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1297975707}
   - {fileID: 804669444}
   - {fileID: 852942944}
   m_Father: {fileID: 459767430}
@@ -15673,7 +15647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -285.9, y: -354.9}
+  m_AnchoredPosition: {x: -291, y: -348}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527136331
@@ -16365,7 +16339,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1595984010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -16375,13 +16349,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.49803922}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -16397,21 +16371,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1595984013}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2036859603}
-        m_TargetAssemblyTypeName: Func_Weather, Assembly-CSharp
-        m_MethodName: ChangeImage_Cloudy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1 &1609910751
 GameObject:
   m_ObjectHideFlags: 0
@@ -19478,7 +19444,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1837424576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -19488,7 +19454,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -19510,21 +19476,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1837424579}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2036859603}
-        m_TargetAssemblyTypeName: Func_Weather, Assembly-CSharp
-        m_MethodName: ChangeImage_Rainy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1 &1846122279
 GameObject:
   m_ObjectHideFlags: 0
@@ -21473,6 +21431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036859602}
   - component: {fileID: 2036859603}
+  - component: {fileID: 2036859604}
   m_Layer: 5
   m_Name: Weathers
   m_TagString: Untagged
@@ -21532,6 +21491,19 @@ MonoBehaviour:
   Origin_Cloudy: {fileID: 21300000, guid: 256cc35b7fdc64d40a7255e0bb288aaf, type: 3}
   Origin_Rainy: {fileID: 21300000, guid: 7de476f1ba12b3841bcff4d6882221a1, type: 3}
   Origin_Snowy: {fileID: 21300000, guid: 79eb2f47dd24a2145aba8d8f299f7b47, type: 3}
+--- !u!114 &2036859604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036859601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &2043944008
 GameObject:
   m_ObjectHideFlags: 0
@@ -23714,7 +23686,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: DrawRenderCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
 --- !u!1 &4360024350584166632
 GameObject:

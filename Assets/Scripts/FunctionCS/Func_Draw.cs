@@ -34,6 +34,7 @@ namespace FreeDraw
         [SerializeField] protected bool isDiaryScene = false;
         private GameObject tempOBJ;
         [SerializeField] protected bool onObject;
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
 
         private float currentPenWidth = 0f;
 
@@ -52,6 +53,7 @@ namespace FreeDraw
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
+            func_TodayFeelingImage = GetComponentInChildren<Func_TodayFeelingImage>();
         }
 
         protected void Start()
@@ -76,7 +78,6 @@ namespace FreeDraw
             //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
             if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
             {
-                Debug.Log("그리기는 부모에서 그려용");
                 SData_NodeData temp = new SData_NodeData();
                 internalClick = true;
                 GameObject obj = Instantiate(linePrefab);
@@ -130,9 +131,7 @@ namespace FreeDraw
             onObject = false;
         }
 
-      
-
-        public bool CheckArea()
+        protected bool CheckArea()
         {
             if (isCircleFrame == false)
             {
