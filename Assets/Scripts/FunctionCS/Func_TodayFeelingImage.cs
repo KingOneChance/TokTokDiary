@@ -72,5 +72,9 @@ namespace FreeDraw
         {
             TodayFeelingMenu.SetActive(true);
         }
+        public bool ActiveTodayFeelingMenu()
+        {
+            return TodayFeelingMenu.activeSelf;
+        }
     }
 }
