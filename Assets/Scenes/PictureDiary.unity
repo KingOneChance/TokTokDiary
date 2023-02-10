@@ -887,7 +887,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4095744915378150475}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
   m_Name: 
@@ -1141,7 +1141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -14.399879, y: 9.599984}
+  m_AnchoredPosition: {x: -14.399902, y: 9.599976}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &67537948
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -1603,7 +1603,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Angry
         m_Mode: 1
         m_Arguments:
@@ -1950,7 +1950,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Calm
         m_Mode: 1
         m_Arguments:
@@ -2416,7 +2416,7 @@ GameObject:
   - component: {fileID: 180099341}
   - component: {fileID: 180099340}
   m_Layer: 5
-  m_Name: ReCordingBtn
+  m_Name: S_ReCordingBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2436,7 +2436,7 @@ RectTransform:
   m_Children:
   - {fileID: 28193352}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2486,19 +2486,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180099341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_AudioRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &180099341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3159,7 +3147,7 @@ GameObject:
   - component: {fileID: 259673591}
   - component: {fileID: 259673590}
   m_Layer: 5
-  m_Name: BubbleGunStickerBtn
+  m_Name: S_BubbleGunStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3229,19 +3217,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 259673591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_WeatherRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &259673591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3816,7 +3792,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -4869,7 +4845,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -5867,9 +5843,9 @@ Canvas:
   m_GameObject: {fileID: 459767429}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1359955307}
+  m_PlaneDistance: 0.3001
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5877,7 +5853,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &469249531
 GameObject:
@@ -6344,7 +6320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Happy
         m_Mode: 1
         m_Arguments:
@@ -7072,7 +7048,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -7118,10 +7094,10 @@ RectTransform:
   - {fileID: 1699844148}
   - {fileID: 7993371126385170008}
   - {fileID: 7993371126956839781}
-  - {fileID: 945676389}
-  - {fileID: 180099339}
   - {fileID: 1389530194}
   - {fileID: 1735196287}
+  - {fileID: 945676389}
+  - {fileID: 180099339}
   - {fileID: 259673589}
   - {fileID: 1418457691}
   - {fileID: 469776531}
@@ -7577,7 +7553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 345.6, y: 9.6000185}
+  m_AnchoredPosition: {x: 345.6, y: 9.600006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &673378347
@@ -8924,12 +8900,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81493802a3e54b438a8b90a9e433303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCircleFrame: 0
+  circleSize: 0
+  linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
+  Pen_Width: {fileID: 1292630004}
+  line: {fileID: 0}
+  curColor: {r: 0, g: 0, b: 0, a: 1}
+  col: {fileID: 0}
+  drawingAreaMaxX: 8.31
+  drawingAreaMinX: -3.7
+  drawingAreaMaxY: 3.6
+  drawingAreaMinY: -1.8
+  writingAreaMaxX: 7
+  writingAreaMinX: -1.3
+  writingAreaMaxY: -2.2
+  writingAreaMinY: -4.2
+  mainCam: {fileID: 1359955307}
+  internalClick: 0
+  isDragSticker: 0
+  isDiaryScene: 1
+  onObject: 0
   Change_Image_Excited: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
   Change_Image_Happy: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
   Change_Image_Calm: {fileID: 21300000, guid: 3499b009d10c68a41a09e0e0343e7694, type: 3}
   Change_Image_Sad: {fileID: 21300000, guid: 37e7d8c1de2502d4f81c6014dd57915a, type: 3}
   Change_Image_Angry: {fileID: 21300000, guid: aada62512900bad42a9997d1e9f39b6b, type: 3}
   TodayFeelingMenu: {fileID: 1297975706}
+  func_TodayFeelingImage: {fileID: 0}
 --- !u!1 &830152175
 GameObject:
   m_ObjectHideFlags: 0
@@ -10134,7 +10131,7 @@ GameObject:
   - component: {fileID: 945676391}
   - component: {fileID: 945676390}
   m_Layer: 5
-  m_Name: BubbleStickerBtn
+  m_Name: S_BubbleStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10154,7 +10151,7 @@ RectTransform:
   m_Children:
   - {fileID: 1695880416}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -10204,19 +10201,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 945676391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_WaffleRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &945676391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11707,7 +11692,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Excited
         m_Mode: 1
         m_Arguments:
@@ -12646,7 +12631,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -14160,7 +14145,7 @@ RectTransform:
   m_Children:
   - {fileID: 642292863}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -14499,7 +14484,7 @@ GameObject:
   - component: {fileID: 1418457693}
   - component: {fileID: 1418457692}
   m_Layer: 5
-  m_Name: FreeStickerBtn
+  m_Name: S_FreeStickerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14569,19 +14554,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1418457693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1241245000}
-        m_TargetAssemblyTypeName: UI_PictureDiary, Assembly-CSharp
-        m_MethodName: OnClick_DiaryRepository
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1418457693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14738,7 +14711,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -15079,7 +15052,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -15455,7 +15428,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -15552,7 +15525,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: TodayFeeling_Menu
         m_Mode: 1
         m_Arguments:
@@ -16096,7 +16069,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6218628760045598224}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Func_ToBeSticker, Assembly-CSharp
         m_MethodName: OnClick_InventorySticker
         m_Mode: 3
@@ -16146,7 +16119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 105.599976, y: 9.6000185}
+  m_AnchoredPosition: {x: 105.599976, y: 9.600006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1595984013
@@ -17023,7 +16996,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804669447}
-        m_TargetAssemblyTypeName: Func_TodayFeelingImage, Assembly-CSharp
+        m_TargetAssemblyTypeName: FreeDraw.Func_TodayFeelingImage, Assembly-CSharp
         m_MethodName: Image_Sad
         m_Mode: 1
         m_Arguments:
@@ -17938,7 +17911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75600556ee9170498044c9fe573dce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  func_Draw: {fileID: 30939877}
+  func_Draw: {fileID: 804669447}
   Transparency: 1
 --- !u!1 &1735196286
 GameObject:
@@ -17973,7 +17946,7 @@ RectTransform:
   m_Children:
   - {fileID: 1798528735}
   m_Father: {fileID: 636564036}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -19259,7 +19232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225.6, y: 9.6}
+  m_AnchoredPosition: {x: 225.6, y: 9.600006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1837424579
@@ -21604,6 +21577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116387888}
   - component: {fileID: 2116387887}
+  - component: {fileID: 2116387889}
   m_Layer: 0
   m_Name: PictureDiaryManager
   m_TagString: Untagged
@@ -21638,6 +21612,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116387889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116387886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui_Stikcers: []
+  soapBubble: {fileID: 0}
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
@@ -23237,6 +23225,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4095744915355600557, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 190
+      objectReference: {fileID: 0}
     - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: mainCam
       value: 
@@ -23245,6 +23237,10 @@ PrefabInstance:
       propertyPath: Pen_Width
       value: 
       objectReference: {fileID: 1292630004}
+    - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: isDiaryScene
       value: 1
@@ -24004,18 +24000,8 @@ PrefabInstance:
       objectReference: {fileID: 1237402944}
     m_RemovedComponents:
     - {fileID: 6218628760045598220, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+    - {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
---- !u!114 &6218628760045598224 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6218628760045598224, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
-  m_PrefabInstance: {fileID: 6218628760045598222}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f44184ac5b264db39ce2f909055d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6604929974173447498
 GameObject:
   m_ObjectHideFlags: 0
