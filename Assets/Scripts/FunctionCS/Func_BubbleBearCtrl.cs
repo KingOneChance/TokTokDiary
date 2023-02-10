@@ -75,7 +75,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         // startXPos = bubbleHedgehogCapture.gameObject.transform.position.x + beforeHogRect.rect.position.x + 960;
         // startYPos = bubbleHedgehogCapture.gameObject.transform.position.y + beforeHogRect.rect.position.y + 540;
         startXPos = beforeHogRect.rect.position.x + 960;
-        startYPos = beforeHogRect.rect.position.y + 540;
+        startYPos = beforeHogRect.rect.position.y + 540-150;
         widthValue = (int)beforeHogRect.rect.width;
         heightValue = (int)beforeHogRect.rect.height;
         nextButton.SetActive(false);
