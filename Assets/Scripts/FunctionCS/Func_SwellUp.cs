@@ -14,12 +14,10 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] private GameObject curPanel = null;
     [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
-    private bool isProgress = false;
     private int curIdx = 0;
 
     private void OnEnable()
     {
-        isProgress = false;
         SkipButton.gameObject.SetActive(true);
         NextButton.gameObject.SetActive(false);
     }
@@ -35,11 +33,8 @@ public class Func_SwellUp : MonoBehaviour
     {
         if(curIdx == 3)
         {
-            for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
-            {
-                eff_GetBubbleSticker[i].Play();
-            }
-            Invoke(nameof(Bomb), 3f);
+            SwellUpImg.rectTransform.localScale = Vector3.zero;
+            StartCoroutine(CO_Bomb());
             return;
         }
         curIdx++;
@@ -48,8 +43,6 @@ public class Func_SwellUp : MonoBehaviour
 
     public void Bomb()
     {
-        Debug.Log("ลอมü");
-        SwellUpImg.rectTransform.localScale = Vector3.zero;
         SwellUpButton.interactable = false;
         curPanel.SetActive(false);
         GetBubbleStickerPanel.SetActive(true);
@@ -73,11 +66,18 @@ public class Func_SwellUp : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        SwellUpImg.rectTransform.localScale = Vector3.zero;
+        StartCoroutine(CO_Bomb());
+    }
+
+
+    private IEnumerator CO_Bomb()
+    {
         for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
         {
             eff_GetBubbleSticker[i].Play();
         }
-        Invoke(nameof(Bomb), 6f);
+        yield return new WaitUntil(() => !eff_GetBubbleSticker[0].isPlaying);
+        Bomb();
     }
-
 }

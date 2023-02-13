@@ -84,10 +84,31 @@ public class Manager_Main : MonoBehaviour
 
     #endregion
 
-
-
     private void Start()
     {
+        SetResolution(); // Init Resolution
+    }
+
+    public void SetResolution()
+    {
+        int setWidth = 1920; // Resoulution Width
+        int setHeight = 1080; // Resoulution Height
+
+        int deviceWidth = Screen.width; // Device Width
+        int deviceHeight = Screen.height; // Device Height
+
+        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true);
+
+        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // Device resolution > (1920 / 1080)
+        {
+            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // new Width
+            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // new Rect
+        }
+        else // Device resolution < (1920 / 1080)
+        {
+            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // new Height
+            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // new Rect
+        }
     }
     private void Update()
     {

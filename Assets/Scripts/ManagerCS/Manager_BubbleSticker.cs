@@ -27,6 +27,8 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private bool isDefaultBottleSelected = false;
     private int PanelIdx = 0;
     private int colorType = 0;
+    private bool isSelectColor = false;
+    public bool IsSelectColor { get { return isSelectColor; } private set { } }
     #endregion
 
     protected override void Start()
@@ -37,6 +39,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void Init()
     {
+        isSelectColor = false;
         PanelIdx = 0;
         BackButton.gameObject.SetActive(false);
         NextButton.gameObject.SetActive(true);
@@ -151,6 +154,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     private void InitDefaultBucket()
     {
+        isSelectColor = false;
         myPos.transform.position = bucketPos[0].transform.position;
         myTilt.enabled = false;
         myTilt.ResetBucket();
@@ -227,6 +231,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 defaultBucketColor.color = ColorBuckets[2].color;
                 break;
         }
+        isSelectColor = true;
     }
 
     public void SaveBubbleSticker()
@@ -237,6 +242,5 @@ public class Manager_BubbleSticker : Func_SaveSticker
     protected override void OnClick_SaveImgae(StickerType stickerType)
     {
         base.OnClick_SaveImgae(stickerType);
-        
     }
 }
