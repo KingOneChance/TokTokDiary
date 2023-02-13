@@ -302,7 +302,7 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfileOverWrite.gameObject.SetActive(false);
     }
-
+    //저장
     public void OnClick_SaveProfile()
     {
 
@@ -380,7 +380,9 @@ public class UI_PictureDiary : MonoBehaviour
         overWriteImage.texture = null;
         overWriteNickName.text = null;
         ui_ProfileOverWrite.gameObject.SetActive(false);
-        ui_ProfilePick.gameObject.SetActive(true);
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(true);
+
     } // x 버튼 , 취소버튼
     public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
     {

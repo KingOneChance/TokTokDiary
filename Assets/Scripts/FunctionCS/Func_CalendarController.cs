@@ -20,9 +20,13 @@ public class Func_CalendarController : MonoBehaviour
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     private string myName = "";
 
+    Manager_DiaryCase manager_DiaryCase;
+
     private void OnEnable()
     {
         Init();
+        manager_DiaryCase = FindObjectOfType<Manager_DiaryCase>();
+
     }
 
     private void Init()
@@ -40,12 +44,13 @@ public class Func_CalendarController : MonoBehaviour
             item.transform.localScale = Vector3.one;
             item.transform.localRotation = Quaternion.identity;
             item.transform.localPosition = new Vector3((i % 7) * 36 + startPos.x, startPos.y - (i / 7) * 30, startPos.z);
+        
             _dateItems.Add(item);
         }
 
         CreateCalendar();
     }
-
+    TextMeshProUGUI label = null;
     private void CreateCalendar()
     {
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
@@ -101,7 +106,7 @@ public class Func_CalendarController : MonoBehaviour
 
         for (int i = 0; i < _totalDateNum; i++)
         {
-            TextMeshProUGUI label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
+            /*TextMeshProUGUI*/ label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
             GameObject dateObj = _dateItems[i].gameObject;
             _dateItems[i].SetActive(false);
 
@@ -176,6 +181,6 @@ public class Func_CalendarController : MonoBehaviour
     public void OnClick_Date()
     {
         // If there is a diary for that date, the corresponding diary file is displayed in preview.
-
+       // Debug.Log()
     }
 }
