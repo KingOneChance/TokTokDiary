@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Func_GunCollision : MonoBehaviour
 {
+    //°ËÀº ºñ´°¹æ¿ïµé
     [SerializeField] private RawImage[] blacks = null;
+    //
     [SerializeField] private RawImage stickerBackGround = null;
     [SerializeField] private RawImage BackGroundSticker = null;
     [SerializeField] private Button skipOneRoundBtn = null;
@@ -16,8 +18,9 @@ public class Func_GunCollision : MonoBehaviour
     private Color cleanColor = new Color(255/255, 255 / 255, 255 / 255, 255 / 255);
     private Color Nothing = new Color(255 / 255, 255 / 255, 255 / 255, 0);
 
-    bool allClear = false;
-    bool allPop = false;
+    public bool allClear = false;
+    public bool allPop = false;
+
     List<RawImage> blackList = new List<RawImage>();
     public List<RawImage> whiteList = new List<RawImage>();
     public List<RawImage> cleanList = new List<RawImage>();
@@ -74,6 +77,8 @@ public class Func_GunCollision : MonoBehaviour
         }
 
     }
+    //½ºÅµ
+
     public void OnClickSticker()
     {
         stickerBackGround.gameObject.SetActive(true);
@@ -82,6 +87,7 @@ public class Func_GunCollision : MonoBehaviour
     }
     IEnumerator DisappearSticker()
     {
+        skipTwoRoundBtn.gameObject.SetActive(false);
         yield return new WaitForSeconds(10f);
         stickerBackGround.gameObject.SetActive(false);
     }
@@ -90,7 +96,7 @@ public class Func_GunCollision : MonoBehaviour
     {
         BackGroundSticker.gameObject.SetActive(false);
         ui_BubbleBubbleGun.TobeSticker();
-        skipOneRoundBtn.gameObject.SetActive(false);
+        skipTwoRoundBtn.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -98,6 +104,10 @@ public class Func_GunCollision : MonoBehaviour
         {
             allPop = true;
             skipOneRoundBtn.gameObject.SetActive(false);
+        }
+        if (cleanList.Count == 0)
+        {
+            RoundFinish();
         }
     }
 }

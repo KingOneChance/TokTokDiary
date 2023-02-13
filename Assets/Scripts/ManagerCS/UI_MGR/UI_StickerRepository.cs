@@ -131,8 +131,7 @@ public class UI_StickerRepository : MonoBehaviour
                 Destroy(MakingObj[i].gameObject);
                 MakingObj.RemoveAt(i);
             }
-/*            Debug.Log(basicStickers.Count);
-            Debug.Log(MakingObj.Count);*/
+
         }
         
         MakingObj.Clear();
