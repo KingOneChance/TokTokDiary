@@ -71,6 +71,7 @@ public class Func_Record : MonoBehaviour
     //After record
     public void OnClick_Play()
     {
+        if (playSouce.isPlaying == true) return;
         playSouce.clip = newClip;
         playSouce.Play();
         //Listening eff start
@@ -157,7 +158,6 @@ public class Func_Record : MonoBehaviour
     {
         time = 0f;
         yield return null;
-        Debug.Log("코루틴 시작");
         while (timerRun == true)
         {
             time += Time.deltaTime;
@@ -171,7 +171,6 @@ public class Func_Record : MonoBehaviour
                 timerText.text = (int)(time / 60) + ":0" + (int)(time % 60);
             else
                 timerText.text = (int)(time / 60) + ":" + (int)(time % 60);
-
         }
     }
     IEnumerator Co_ListenEff()
