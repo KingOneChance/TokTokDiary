@@ -71,11 +71,19 @@ public class Func_Record : MonoBehaviour
     //After record
     public void OnClick_Play()
     {
-        if (playSouce.isPlaying == true) return;
-        playSouce.clip = newClip;
-        playSouce.Play();
-        //Listening eff start
-        StartCoroutine(Co_ListenEff());
+        if (playSouce.isPlaying == true)
+        {
+            playSouce.Stop();
+            return;
+        }
+        else
+        {
+            playSouce.clip = newClip;
+            playSouce.Play();
+            //Listening eff start
+            StartCoroutine(Co_ListenEff());
+        }
+ 
     }
     public void OnClick_PlayInFinish()
     {
