@@ -137,7 +137,8 @@ public class Func_SaveSticker : MonoBehaviour
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-
+        widthValue = widthValue / 7;
+        heightValue = heightValue / 7;
         RenderTexture currentRenderTexture = RenderTexture.active;
         RenderTexture copiedRenderTexture = new RenderTexture(widthValue, heightValue, 0);
 
@@ -176,7 +177,7 @@ public class Func_SaveSticker : MonoBehaviour
 
             // byte[] texturePNGBytes = texture2D.EncodeToPNG();
             byte[] texturePNGBytes = newTex.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".png";
+            string filePath = directoryPath + fileName + ".jpg";
 
             File.WriteAllBytes(filePath, texturePNGBytes);
         }
@@ -185,7 +186,7 @@ public class Func_SaveSticker : MonoBehaviour
             RenderTexture.active = currentRenderTexture;
 
             byte[] texturePNGBytes = texture2D.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".png";
+            string filePath = directoryPath + fileName + ".jpg";
 
             File.WriteAllBytes(filePath, texturePNGBytes);
         }
