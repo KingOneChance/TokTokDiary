@@ -86,7 +86,7 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        SetResolution(); // Init Resolution
+        //SetResolution(); // Init Resolution
     }
 
     public void SetResolution()
@@ -143,7 +143,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getBubbleGunStickerNum = allFiles.Length;
             return getBubbleGunStickerNum;
         }
@@ -157,7 +157,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getBubbleStickerNum = allFiles.Length;
             return getBubbleStickerNum;
         }
@@ -171,7 +171,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getAudioStickerNum = allFiles.Length;
             return getAudioStickerNum;
         }
@@ -185,7 +185,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getSignStickerNum = allFiles.Length;
             return getSignStickerNum;
         }
@@ -213,7 +213,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getFreeStickerNum = allFiles.Length;
             return getFreeStickerNum;
         }
@@ -227,7 +227,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
             getDiaryNum = allFiles.Length;
             return getDiaryNum;
         }
