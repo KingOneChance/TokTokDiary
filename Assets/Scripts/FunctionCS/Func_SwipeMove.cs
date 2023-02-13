@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +7,12 @@ public class Func_SwipeMove : MonoBehaviour
     [SerializeField] private Scrollbar scrollBar = null;
     [SerializeField] private float swipeTime = 0.2f;
     [SerializeField] private float swipeDistance = 50.0f;
-
-    private float[] scrollpageValues = null;
-
-    private float valueDistance = 0;
     [SerializeField] private int currentSticker = 0;
+
     public int CurrentSticker { get { return currentSticker; } private set { } }
     private int maxPage = 0;
+    private float[] scrollpageValues = null;
+    private float valueDistance = 0;
     private float startTouchX = 0f;
     private float endTouchX = 0f;
     private bool isSwipeMode = false;
@@ -35,6 +33,7 @@ public class Func_SwipeMove : MonoBehaviour
     private void OnEnable()
     {
         SetScrollBarValue(0);
+        StartCoroutine(OnSwipeOneStep(currentSticker));
     }
 
     public void SetScrollBarValue(int index)

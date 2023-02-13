@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Scripting;
+using Unity.VisualScripting;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -83,10 +84,31 @@ public class Manager_Main : MonoBehaviour
 
     #endregion
 
-
-
     private void Start()
     {
+        SetResolution(); // Init Resolution
+    }
+
+    public void SetResolution()
+    {
+        int setWidth = 1920; // Resoulution Width
+        int setHeight = 1080; // Resoulution Height
+
+        int deviceWidth = Screen.width; // Device Width
+        int deviceHeight = Screen.height; // Device Height
+
+        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true);
+
+        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // Device resolution > (1920 / 1080)
+        {
+            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // new Width
+            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // new Rect
+        }
+        else // Device resolution < (1920 / 1080)
+        {
+            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // new Height
+            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // new Rect
+        }
     }
     private void Update()
     {
@@ -209,6 +231,44 @@ public class Manager_Main : MonoBehaviour
             getDiaryNum = allFiles.Length;
             return getDiaryNum;
         }
+    }
+
+    /// <summary>
+    /// If the sticker already exists,
+    /// 5 is added to the number of times the sticker can be used, 
+    /// and if the sticker does not exist, 
+    /// the value of 5 is added as a new key.
+    /// </summary>
+    /// <param name="stickerName"></param>
+    public void SaveStickerNumberOfTimesAvailable(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName))
+        {
+            PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 5);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(stickerName, 5);
+        }
+    }
+
+    /// <summary>
+    /// First, check if the key of the sticker you want to use exists,
+    /// return it if it does not exist,
+    /// and if it exists,
+    /// subtract 1 from the key value and save it.
+    /// </summary>
+    /// <param name="stickerName"></param>
+    public void UseStickerNumberOfTimesAvailable(string stickerName)
+    {
+        if(PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
+        if (PlayerPrefs.GetInt(stickerName) == 0)
+            PlayerPrefs.DeleteKey(stickerName);
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;

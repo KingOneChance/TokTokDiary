@@ -82,20 +82,20 @@ public class UI_PictureDiary : MonoBehaviour
         before = new TextMeshProUGUI();
     }
 
-   /* #region Road Sticker Button
-    public void OnClick_WaffleRepository()
+    #region Road Sticker Button
+    public void OnClick_BSRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleStickerList);
     }
-    public void OnClick_AudioRepository()
+    public void OnClick_RecordingRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.recordingStickerList);
     }
-    public void OnClick_WeatherRepository()
+    public void OnClick_BGRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleGunStickerList);
     }
-    public void OnClick_DiaryRepository()
+    public void OnClick_BFRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleFreeStickerList);
     }
@@ -121,7 +121,7 @@ public class UI_PictureDiary : MonoBehaviour
             }
         }
     }
-*/
+
     public void OnClick_NativeCameraOnBtn()
     {
         TakePicture(CallBack);
@@ -302,7 +302,7 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfileOverWrite.gameObject.SetActive(false);
     }
-
+    //저장
     public void OnClick_SaveProfile()
     {
 
@@ -380,7 +380,9 @@ public class UI_PictureDiary : MonoBehaviour
         overWriteImage.texture = null;
         overWriteNickName.text = null;
         ui_ProfileOverWrite.gameObject.SetActive(false);
-        ui_ProfilePick.gameObject.SetActive(true);
+        ui_ProfilePick.gameObject.SetActive(false);
+        ui_ProfileMain.gameObject.SetActive(true);
+
     } // x 버튼 , 취소버튼
     public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
     {
