@@ -39,7 +39,7 @@ public class Manager_DiaryCase : MonoBehaviour
 
     private void AddDiaryFiles()
     {
-        string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.jpg", SearchOption.AllDirectories);
+        string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories);
         int num = 1;
         for (int i = 0; i < allFiles.Length; i++)
         {
@@ -69,7 +69,7 @@ public class Manager_DiaryCase : MonoBehaviour
 
     }
 
-    private void ShowPreviewDiary()
+    public void ShowPreviewDiary()
     {
         DateTime today = DateTime.Now;
         

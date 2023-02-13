@@ -20,6 +20,8 @@ public class Func_CalendarController : MonoBehaviour
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     private string myName = "";
 
+    private List<int> days = null;
+
     Manager_DiaryCase manager_DiaryCase;
 
     private void OnEnable()
@@ -51,6 +53,7 @@ public class Func_CalendarController : MonoBehaviour
         CreateCalendar();
     }
     TextMeshProUGUI label = null;
+    //date = 0;
     private void CreateCalendar()
     {
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
@@ -132,6 +135,7 @@ public class Func_CalendarController : MonoBehaviour
                     if (checkToday == true && label.text == _dateTime.Day.ToString())
                         _dateItems[i].GetComponent<Button>().Select();
 
+                    days.Add(date);
                     date++;
                 }
             }
@@ -181,6 +185,8 @@ public class Func_CalendarController : MonoBehaviour
     public void OnClick_Date()
     {
         // If there is a diary for that date, the corresponding diary file is displayed in preview.
-       // Debug.Log()
+        Debug.Log(_yearNumText.text + "" +_monthNumText.text +" "+ days);
+        
+
     }
 }
