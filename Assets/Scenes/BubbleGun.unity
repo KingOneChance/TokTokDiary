@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 16b4008a7e76ce4489bbccda189e36b1, type: 3}
+  m_Texture: {fileID: 2800000, guid: 3a52695d442297845baa814f4fab2f7e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2488,7 +2488,7 @@ GameObject:
   - component: {fileID: 810216393}
   - component: {fileID: 810216395}
   m_Layer: 5
-  m_Name: Slide
+  m_Name: YellowDuck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2511,7 +2511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: 0}
+  m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &810216393
@@ -2534,7 +2534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 436d42533432899468b829734c2f2966, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5f9b773559e46fd4695f3099d58bf91f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2855,7 +2855,7 @@ GameObject:
   - component: {fileID: 1001669553}
   - component: {fileID: 1001669555}
   m_Layer: 5
-  m_Name: YellowHorse
+  m_Name: Lbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2878,7 +2878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001669553
@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 98e32f950974bbb498db149f66930269, type: 3}
+  m_Texture: {fileID: 2800000, guid: b42f5573332594448b8c471fbd189b65, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3502,7 +3502,7 @@ GameObject:
   - component: {fileID: 1197956322}
   - component: {fileID: 1197956324}
   m_Layer: 5
-  m_Name: Swing
+  m_Name: HedgeHog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3548,7 +3548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3688a1a10281333419f89713fa9932b8, type: 3}
+  m_Texture: {fileID: 2800000, guid: afe9da83e0ec7834f83eeb4a304f9f0d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4173,9 +4173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickers:
-  - {fileID: 1573284069, guid: 3688a1a10281333419f89713fa9932b8, type: 3}
-  - {fileID: -257519499, guid: 436d42533432899468b829734c2f2966, type: 3}
-  - {fileID: 1830401789, guid: 98e32f950974bbb498db149f66930269, type: 3}
+  - {fileID: 21300000, guid: c8aee6b899bae2945ae2793d0a8dd083, type: 3}
+  - {fileID: 21300000, guid: 5f9b773559e46fd4695f3099d58bf91f, type: 3}
+  - {fileID: 21300000, guid: 3eb71f4a2cbc56043a8130b8cdc17528, type: 3}
   blacks:
   - {fileID: 1654014843}
   - {fileID: 850800974}
