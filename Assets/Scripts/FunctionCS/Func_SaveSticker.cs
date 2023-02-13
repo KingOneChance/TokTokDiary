@@ -60,8 +60,29 @@ public class Func_SaveSticker : MonoBehaviour
 
         texture.ReadPixels(rect, 0, 0);
         texture.Apply();
+        //
+        Debug.Log("BGC : " + backGroundColor);
+        Texture2D newTex = new Texture2D(widthValue, heightValue);
+        for (int x = 0; x < widthValue; x++)
+        {
+            for (int y = 0; y < heightValue; y++)
+            {
+                Color pixelColor = texture.GetPixel(x, y);
+                if (pixelColor != backGroundColor)
+                {
+                    newTex.SetPixel(x, y, pixelColor);
+                }
+                else
+                {
+                    newTex.SetPixel(x, y, Color.clear);
+                }
+            }
+        }
+        newTex.Apply();
+        //
+        saveTemp.texture = newTex;
 
-        saveTemp.texture = texture;
+      //  saveTemp.texture = texture;
 
         SaveTexture(stickerType);
     }

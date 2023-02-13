@@ -17,6 +17,6 @@ public class Manager_FreeSticker : Func_SaveSticker
     }
     public void OnClick_Save()
     {
-        OnClick_SaveImgae(StickerType.FreeSticker);
+        base.OnClick_SaveImgae(StickerType.FreeSticker);
     }
 }
