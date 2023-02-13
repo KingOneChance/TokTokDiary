@@ -9,15 +9,17 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] Button SwellUpButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-
-    private bool isProgress = false;
+    [SerializeField] private Manager_BubbleSticker manager_bs;
+    [SerializeField] private GameObject GetBubbleStickerPanel = null;
+    [SerializeField] private GameObject curPanel = null;
+    [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
     private int curIdx = 0;
 
     private void OnEnable()
     {
-        isProgress = false;
         SkipButton.gameObject.SetActive(true);
+        NextButton.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -31,18 +33,20 @@ public class Func_SwellUp : MonoBehaviour
     {
         if(curIdx == 3)
         {
-            Bomb();
-            SwellUpButton.interactable = false;
-            NextButton.interactable = true;
+            SwellUpImg.rectTransform.localScale = Vector3.zero;
+            StartCoroutine(CO_Bomb());
             return;
         }
         curIdx++;
         StartCoroutine(SwellUp());
     }
 
-    private void Bomb()
+    public void Bomb()
     {
-        SwellUpImg.rectTransform.localScale = Vector3.zero;
+        SwellUpButton.interactable = false;
+        curPanel.SetActive(false);
+        GetBubbleStickerPanel.SetActive(true);
+        manager_bs.SaveBubbleSticker();
     }
 
     private IEnumerator SwellUp()
@@ -62,8 +66,18 @@ public class Func_SwellUp : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        SwellUpImg.rectTransform.localScale = Vector3.zero;
+        StartCoroutine(CO_Bomb());
+    }
+
+
+    private IEnumerator CO_Bomb()
+    {
+        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+        {
+            eff_GetBubbleSticker[i].Play();
+        }
+        yield return new WaitUntil(() => !eff_GetBubbleSticker[0].isPlaying);
         Bomb();
-        SwellUpButton.interactable = false;
-        NextButton.interactable = true;
     }
 }

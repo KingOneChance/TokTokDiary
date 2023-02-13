@@ -10,6 +10,7 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private Button[] ColorButtons = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
+    [SerializeField] private Manager_BubbleSticker bsManager = null;
 
     private Color myInitColor = new Vector4(255, 255, 255, 255);
     private Vector3 angle = new Vector3(0, 0, 1);
@@ -32,6 +33,7 @@ public class Func_Tilt : MonoBehaviour
 
     private void Update()
     {
+        if (bsManager.IsSelectColor == false) return;
         if (Manager_UserInput.touchCount > 0)
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
