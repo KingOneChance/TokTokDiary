@@ -177,7 +177,7 @@ public class Func_SaveSticker : MonoBehaviour
 
             // byte[] texturePNGBytes = texture2D.EncodeToPNG();
             byte[] texturePNGBytes = newTex.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".jpg";
+            string filePath = directoryPath + fileName + ".png";
 
             File.WriteAllBytes(filePath, texturePNGBytes);
         }
@@ -186,7 +186,7 @@ public class Func_SaveSticker : MonoBehaviour
             RenderTexture.active = currentRenderTexture;
 
             byte[] texturePNGBytes = texture2D.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".jpg";
+            string filePath = directoryPath + fileName + ".png";
 
             File.WriteAllBytes(filePath, texturePNGBytes);
         }
