@@ -59,7 +59,8 @@ public enum NowStateInAudio
     Make,
     Audio,
     Sign,
-    Attatch
+    Attatch,
+    Done,
 }
 public enum AccessoryType
 {

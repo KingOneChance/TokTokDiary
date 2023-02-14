@@ -299,7 +299,8 @@ public class Manager_BubbleBear : MonoBehaviour
     //This is PopUp Function 
     public void OnClick_HomePopUp()
     {
-        popUpImage.SetActive(true);
+        if (nowState == NowStateInAudio.Make || nowState==NowStateInAudio.Done) SceneManager.LoadScene("StickerFactory");
+        else popUpImage.SetActive(true);
     }
     //Canvas change "signCanvas" to "checkCanvas"
     public void MoveSignToCheckCanvas()
@@ -326,6 +327,7 @@ public class Manager_BubbleBear : MonoBehaviour
         checkCanvas.SetActive(false);
         restartAll.SetActive(true);
         sceneBefore.SetActive(false);
+        nowState = NowStateInAudio.Done;
 
         bubbleBearSave.TextureChange();
     }
