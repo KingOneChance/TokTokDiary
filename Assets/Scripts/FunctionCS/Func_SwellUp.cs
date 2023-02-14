@@ -1,20 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Func_SwellUp : MonoBehaviour
 {
-    [SerializeField] RawImage SwellUpImg = null;
-    [SerializeField] Button SwellUpButton = null;
+    [SerializeField] private RawImage SwellUpImg = null;
+    [SerializeField] private Button SwellUpButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
     [SerializeField] private Manager_BubbleSticker manager_bs;
+    private GameObject backGround = null;
     [SerializeField] private GameObject GetBubbleStickerPanel = null;
     [SerializeField] private GameObject curPanel = null;
     [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
     private int curIdx = 0;
+
+    private void Start()
+    {
+        backGround = manager_bs.BackGround;
+    }
 
     private void OnEnable()
     {
@@ -70,14 +78,20 @@ public class Func_SwellUp : MonoBehaviour
         StartCoroutine(CO_Bomb());
     }
 
-
     private IEnumerator CO_Bomb()
     {
         for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
         {
             eff_GetBubbleSticker[i].Play();
         }
-        yield return new WaitUntil(() => !eff_GetBubbleSticker[0].isPlaying);
+
+        yield return new WaitForSeconds(4f);
+
+        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+        {
+            eff_GetBubbleSticker[i].Clear(true);
+        }
+
         Bomb();
     }
 }

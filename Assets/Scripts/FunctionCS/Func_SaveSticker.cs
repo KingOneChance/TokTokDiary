@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 
 /// <summary>
 /// you need to prepare 2 things,
@@ -18,6 +19,7 @@ public class Func_SaveSticker : MonoBehaviour
     [SerializeField] protected string saveFileName = "";
     [SerializeField] protected RawImage saveTemp = null;
     [SerializeField] protected Color backGroundColor;
+
     private string bubbleGunStikcerFolder = "BubbleGunSticker";
     private string bubbleStickerFolder = "BubbleSticker";
     private string audioStickerFolder = "RecordingSticker";
@@ -25,6 +27,7 @@ public class Func_SaveSticker : MonoBehaviour
     private string freeStickerFolder = "BubbleFreeSticker";
     private string diaryFolder = "Diary";
     protected string savePath = "";
+    protected bool isSaveDone = true;
 
     [Tooltip("startXPos and startYPos 's start postion from left of bottom")]
     [Header("Save position of screen")]
@@ -50,10 +53,10 @@ public class Func_SaveSticker : MonoBehaviour
         //test
         StartCoroutine(Co_ScreenShotFrame(stickerType));
     }
+
     protected virtual IEnumerator Co_ScreenShotFrame(StickerType stickerType)
     {
         yield return new WaitForEndOfFrame();
-
         Texture2D texture = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
 
         Rect rect = new Rect(startXPos, startYPos, widthValue, heightValue);
@@ -111,7 +114,6 @@ public class Func_SaveSticker : MonoBehaviour
         }
     }
 
-
     protected virtual void SaveTextureToPng(Texture texture, string directoryPath, string fileName, int test = 0)
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
@@ -154,20 +156,21 @@ public class Func_SaveSticker : MonoBehaviour
             RenderTexture.active = currentRenderTexture;
 
             // byte[] texturePNGBytes = texture2D.EncodeToPNG();
-            byte[] textureJPGBytes = newTex.EncodeToJPG();
-            string filePath = directoryPath + fileName + ".jpg";
+            byte[] texturePNGBytes = newTex.EncodeToPNG();
+            string filePath = directoryPath + fileName + ".png";
 
-            File.WriteAllBytes(filePath, textureJPGBytes);
+            File.WriteAllBytes(filePath, texturePNGBytes);
         }
         else
         {
             RenderTexture.active = currentRenderTexture;
 
-            byte[] textureJPGBytes = texture2D.EncodeToJPG();
-            string filePath = directoryPath + fileName + ".jpg";
+            byte[] texturePNGBytes = texture2D.EncodeToPNG();
+            string filePath = directoryPath + fileName + ".png";
 
-            File.WriteAllBytes(filePath, textureJPGBytes);
+            File.WriteAllBytes(filePath, texturePNGBytes);
         }
 
+        isSaveDone = true;
     }
 }
