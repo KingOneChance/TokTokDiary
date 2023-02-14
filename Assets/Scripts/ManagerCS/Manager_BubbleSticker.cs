@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,26 +11,24 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private Button NextButton = null;
     [SerializeField] private GameObject[] Panels = null;
     [SerializeField] private RawImage BubbleSicker = null;
+    public GameObject BackGround = null;
 
     [Header("========== 도안 선택 ==========")]
     [SerializeField] private RawImage[] StickerDesignArr = null;
     [SerializeField] private Func_SwipeMove StickerDesign = null;
 
     [Header("========== 기울이기 ==========")]
-    [SerializeField] private Func_Tilt myTilt = null;
-    [SerializeField] private RectTransform[] bucketPos = null;
-    [SerializeField] private RectTransform myPos = null;
-    [SerializeField] private RawImage[] ColorBuckets = null;
-    [SerializeField] private Button[] ColorButtons = null;
-    [SerializeField] private RawImage defaultBucketColor = null;
+    [SerializeField] private Func_Tilt[] colorBucketTitlts = null;
+    [SerializeField] private RectTransform placePos = null;
+    [SerializeField] private RectTransform[] colorBucketsRect = null;
+    [SerializeField] private RectTransform[] colorBucketsInitPos = null;
+    [SerializeField] private Toggle[] colorBucketToggles = null;
     #endregion
 
     #region AnotherVariables
-    [SerializeField] private bool isDefaultBottleSelected = false;
     private int PanelIdx = 0;
-    private int colorType = 0;
-    private bool isSelectColor = false;
-    public bool IsSelectColor { get { return isSelectColor; } private set { } }
+    [SerializeField] private int colorType = 0;
+
     #endregion
 
     protected override void Start()
@@ -39,13 +39,16 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void Init()
     {
-        isSelectColor = false;
         PanelIdx = 0;
+        colorType = 0;
         BackButton.gameObject.SetActive(false);
         NextButton.gameObject.SetActive(true);
         NextButton.interactable = true;
-        myTilt.enabled = false;
-        myPos.transform.position = bucketPos[0].transform.position;
+
+        for(int i = 0; i < colorBucketTitlts.Length; ++i)
+        {
+            colorBucketTitlts[i].enabled = false;
+        }
 
         for (int i = 0; i < Panels.Length; i++)
         {
@@ -53,13 +56,12 @@ public class Manager_BubbleSticker : Func_SaveSticker
         }
         Panels[0].SetActive(true);
 
-        for (int i = 0; i < ColorButtons.Length; i++)
+        for (int i = 0; i < colorBucketToggles.Length; i++)
         {
-            ColorButtons[i].interactable = false;
+            colorBucketToggles[i].interactable = false;
         }
 
-        isDefaultBottleSelected = false;
-        InitDefaultBucket();
+        ActiveColortBucket(false);
     }
 
     private void DecideDesignAndColor()
@@ -71,19 +73,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 break;
 
             case 1:
-                if (defaultBucketColor.color == ColorBuckets[0].color)
-                {
-                    colorType = 1;
-                }
-                else if (defaultBucketColor.color == ColorBuckets[1].color)
-                {
-                    colorType = 2;
-                }
-                else if (defaultBucketColor.color == ColorBuckets[2].color)
-                {
-                    colorType = 3;
-                }
-
                 string file = "";
                 // StickerDesign.CurrentSticker : 0 -> turtle, 1 -> trueseal, 2 -> grampus
                 // colorType : 0 -> green, 1 -> pink, 2 -> blue
@@ -152,26 +141,23 @@ public class Manager_BubbleSticker : Func_SaveSticker
         BubbleSicker.texture = texture;
     }
 
-    private void InitDefaultBucket()
+    public void ActiveColortBucket(bool active)
     {
-        isSelectColor = false;
-        myPos.transform.position = bucketPos[0].transform.position;
-        myTilt.enabled = false;
-        myTilt.ResetBucket();
-        myPos.transform.localEulerAngles = Vector3.zero;
-        for (int i = 0; i < ColorButtons.Length; i++)
+        for (int i = 0; i < colorBucketToggles.Length; i++)
         {
-            ColorButtons[i].interactable = false;
+            colorBucketToggles[i].interactable = active;
+        }
+        for (int i = 0; i < colorBucketToggles.Length; i++)
+        {
+            colorBucketToggles[i].interactable = active;
         }
     }
 
-    private void PlaceDefaultBucket()
+    private void ReadyColorBucket()
     {
-        myPos.transform.position = bucketPos[1].transform.position;
-        myTilt.enabled = true;
-        for (int i = 0; i < ColorButtons.Length; i++)
+        for (int i = 0; i < colorBucketToggles.Length; i++)
         {
-            ColorButtons[i].interactable = true;
+            colorBucketToggles[i].interactable = true;
         }
     }
 
@@ -188,7 +174,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_BackBtn()
     {
-        if(PanelIdx == 2) InitDefaultBucket();
+        if(PanelIdx == 2) ActiveColortBucket(false);
         NextButton.gameObject.SetActive(true);
         if (PanelIdx - 1 == 0) BackButton.gameObject.SetActive(false);
         Panels[PanelIdx - 1].SetActive(true);
@@ -197,22 +183,9 @@ public class Manager_BubbleSticker : Func_SaveSticker
         if (PanelIdx == 0)
         {
             NextButton.interactable = true;
-            InitDefaultBucket();
+            ActiveColortBucket(false);
         }
         else NextButton.interactable = false;
-    }
-
-    public void OnClick_DefaultBottle()
-    {
-        isDefaultBottleSelected = !isDefaultBottleSelected;
-        if (isDefaultBottleSelected == true)
-        {
-            PlaceDefaultBucket();
-        }
-        else
-        {
-            InitDefaultBucket();
-        }
     }
 
     public void OnClick_SelectColor(string color)
@@ -220,27 +193,49 @@ public class Manager_BubbleSticker : Func_SaveSticker
         switch (color)
         {
             case "Green":
-                defaultBucketColor.color = ColorBuckets[0].color;
+                colorType = 1;
                 break;
 
             case "Pink":
-                defaultBucketColor.color = ColorBuckets[1].color;
+                colorType = 2;
                 break;
 
             case "Blue":
-                defaultBucketColor.color = ColorBuckets[2].color;
+                colorType = 3;
                 break;
         }
-        isSelectColor = true;
+        for(int i = 0; i < colorBucketToggles.Length; ++i)
+        {
+            if (colorBucketToggles[i].isOn == true)
+            {
+                colorBucketTitlts[i].enabled = true;
+                colorBucketsRect[i].position = placePos.position;
+            }
+            else
+            {
+                colorBucketTitlts[i].enabled = false;
+                colorBucketsRect[i].position = colorBucketsInitPos[i].position;
+                colorBucketsRect[i].localEulerAngles = Vector3.zero;
+            }
+        }
     }
 
     public void SaveBubbleSticker()
     {
+        BackGround.SetActive(false);
         OnClick_SaveImgae(StickerType.BubbleSticker);
     }
 
     protected override void OnClick_SaveImgae(StickerType stickerType)
     {
+        StartCoroutine(SaveProcess(stickerType));
+    }
+
+    IEnumerator SaveProcess(StickerType stickerType)
+    {
         base.OnClick_SaveImgae(stickerType);
+        isSaveDone = false;
+        yield return new WaitUntil(() => isSaveDone == true);
+        BackGround.SetActive(true);
     }
 }

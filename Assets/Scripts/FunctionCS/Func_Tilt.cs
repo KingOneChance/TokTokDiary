@@ -4,15 +4,12 @@ using UnityEngine.UI;
 
 public class Func_Tilt : MonoBehaviour
 {
-    [SerializeField] private RectTransform tiltObj = null;
     [SerializeField] private Slider progressBar = null;
-    [SerializeField] private RawImage myImage = null;
-    [SerializeField] private Button[] ColorButtons = null;
+    [SerializeField] private Toggle[] ColorBucketToggles = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-    [SerializeField] private Manager_BubbleSticker bsManager = null;
 
-    private Color myInitColor = new Vector4(255, 255, 255, 255);
+    private RectTransform tiltObj = null;
     private Vector3 angle = new Vector3(0, 0, 1);
     private Vector3 FirstPoint = Vector3.zero;
     private Vector3 SecondPoint = Vector3.zero;
@@ -22,6 +19,7 @@ public class Func_Tilt : MonoBehaviour
 
     private void Start()
     {
+        tiltObj = GetComponent<RectTransform>();
         SkipButton.gameObject.SetActive(false);
     }
 
@@ -33,7 +31,6 @@ public class Func_Tilt : MonoBehaviour
 
     private void Update()
     {
-        if (bsManager.IsSelectColor == false) return;
         if (Manager_UserInput.touchCount > 0)
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
@@ -56,17 +53,17 @@ public class Func_Tilt : MonoBehaviour
         if (isSwipeDown == true)
         {
             TiltDown();
-            for (int i = 0; i < ColorButtons.Length; ++i)
+            for (int i = 0; i < ColorBucketToggles.Length; ++i)
             {
-                ColorButtons[i].interactable = false;
+                ColorBucketToggles[i].interactable = false;
             }
         }
         else
         {
             TiltUp();
-            for (int i = 0; i < ColorButtons.Length; ++i)
+            for (int i = 0; i < ColorBucketToggles.Length; ++i)
             {
-                ColorButtons[i].interactable = true;
+                ColorBucketToggles[i].interactable = true;
             }
         }
     }
@@ -75,18 +72,18 @@ public class Func_Tilt : MonoBehaviour
     {
         SkipButton.gameObject.SetActive(true);
         isProgress = true;
-        for(int i = 0; i < ColorButtons.Length; ++i)
+        for(int i = 0; i < ColorBucketToggles.Length; ++i)
         {
-            ColorButtons[i].interactable = false;
+            ColorBucketToggles[i].interactable = false;
         }
         while (true)
         {
             if (isProgress == false)
             {
                 SkipButton.gameObject.SetActive(false);
-                for (int i = 0; i < ColorButtons.Length; ++i)
+                for (int i = 0; i < ColorBucketToggles.Length; ++i)
                 {
-                    ColorButtons[i].interactable = true;
+                    ColorBucketToggles[i].interactable = true;
                 }
                 yield break;
             }
@@ -98,9 +95,9 @@ public class Func_Tilt : MonoBehaviour
                 TiltUp();
                 NextButton.interactable = true;
                 progressBar.value = 0f;
-                for (int i = 0; i < ColorButtons.Length; ++i)
+                for (int i = 0; i < ColorBucketToggles.Length; ++i)
                 {
-                    ColorButtons[i].interactable = true;
+                    ColorBucketToggles[i].interactable = true;
                 }
                 yield break;
 
@@ -129,11 +126,6 @@ public class Func_Tilt : MonoBehaviour
         {
             tiltObj.localEulerAngles = Vector3.zero;
         }
-    }
-
-    public void ResetBucket()
-    {
-        myImage.color = myInitColor;
     }
 
     public void OnClick_SkipButton() => progressBar.value = 1f;
