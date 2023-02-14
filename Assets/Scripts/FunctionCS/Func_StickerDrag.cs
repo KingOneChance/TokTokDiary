@@ -14,11 +14,10 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
 
     [SerializeField] private bool isClickMe = false;
 
-    private RectTransform rectTransform = null;
 
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        //this is purposed for prevent drawing on stickers
         func_draw = FindObjectOfType<Func_Draw>();
         del_DrawStop = func_draw.StopDraw;
 
