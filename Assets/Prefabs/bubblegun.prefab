@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8734917952201854710}
   - component: {fileID: 8734917952201854711}
   - component: {fileID: 8734917952201854708}
-  m_Layer: 0
+  - component: {fileID: 972847948}
+  m_Layer: 5
   m_Name: bubblegun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8734917952201854709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6617503589584894373}
@@ -921,7 +922,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.03
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4825,6 +4826,55 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &972847948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734917952201854709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77061f3155ffe7441931e63110274da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blacks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  stickerBackGround: {fileID: 0}
+  BackGroundSticker: {fileID: 0}
+  skipOneRoundBtn: {fileID: 0}
+  skipTwoRoundBtn: {fileID: 0}
+  allClear: 0
+  allPop: 0
+  whiteList: []
+  cleanList: []
 --- !u!1 &8734917952385149061
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,7 +4886,7 @@ GameObject:
   - component: {fileID: 6617503589584894373}
   - component: {fileID: 7289388574634069073}
   - component: {fileID: 5126349848219218966}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BubbleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4852,7 +4902,7 @@ RectTransform:
   m_GameObject: {fileID: 8734917952385149061}
   m_LocalRotation: {x: -0.34180155, y: -0.9247125, z: -0.058095954, w: 0.15717335}
   m_LocalPosition: {x: 0, y: 0, z: -5.02}
-  m_LocalScale: {x: 1.8031652, y: 2, z: 1.0577313}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8734917952201854710}
