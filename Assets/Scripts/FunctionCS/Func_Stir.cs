@@ -9,7 +9,6 @@ public class Func_Stir : MonoBehaviour
     [SerializeField] private Button stickButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-
     private float radius = 0;
     private float deg = 0;
     private float stirSpeed = 0;
@@ -19,8 +18,7 @@ public class Func_Stir : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(myRect.anchoredPosition);
-        radius = Screen.height / 5;
+        radius = 30f;
         stirSpeed = 500f;
     }
 
@@ -50,7 +48,7 @@ public class Func_Stir : MonoBehaviour
                 rad = Mathf.Deg2Rad * (deg);
                 xCoord = radius * Mathf.Cos(rad);
                 yCoord = radius * Mathf.Sin(rad);
-                //myRect. = myRect.anchoredPosition + new Vector2(-1 * xCoord, yCoord);
+                myRect.anchoredPosition = myRect.anchoredPosition + new Vector2(-1 * xCoord, yCoord);
             }
             else
             {
