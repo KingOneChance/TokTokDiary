@@ -14,7 +14,8 @@ namespace FreeDraw
         [SerializeField] public Sprite Change_Image_Angry;
         [SerializeField] public GameObject TodayFeelingMenu = null;
         [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
-
+        [SerializeField] public GameObject Helper;
+            
         static Image ThisImage;
 
         private void Awake()
@@ -26,10 +27,10 @@ namespace FreeDraw
             ThisImage = GetComponent<Image>();
             base.Start();
         }
-    
+
         private void Update()
         {
-            if(!func_TodayFeelingImage.ActiveTodayFeelingMenu())
+            if (!func_TodayFeelingImage.ActiveTodayFeelingMenu() || Helper.activeSelf)
             {
                 if (CheckArea() == true)
                 {

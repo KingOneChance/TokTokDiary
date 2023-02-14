@@ -14,6 +14,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
     [SerializeField] private GameObject Select3 = null;
     [SerializeField] private GameObject Select4 = null;
     [SerializeField] private GameObject HelperMenu = null;
+    [SerializeField] private GameObject StopButton = null;
     bool TurnPopWindows = false;
 
     public void OnClick_Select1()
@@ -82,8 +83,23 @@ public class Func_HelperGuideDrag : MonoBehaviour
         if (TurnPopWindows == true)
         {
             HelperMenu.SetActive(false);
+            StopButton.SetActive(false);
         }
-        
+
+    }
+
+    public void OnClick_HelpMenu()
+    {
+        HelperMenu.SetActive(true);
+        StopButton.SetActive(true);
+        Debug.Log("ÇïÇÁ¸Þ´ºÄÑÁü?");
+
+        if (!HelperMenu.activeSelf)
+        {
+            HelperMenu.SetActive(false);
+            StopButton.SetActive(false);
+            Debug.Log("²¨Áü?");
+        }
     }
     WaitForFixedUpdate time = new WaitForFixedUpdate();
     IEnumerator Select_1()
