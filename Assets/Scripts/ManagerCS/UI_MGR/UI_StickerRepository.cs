@@ -59,7 +59,7 @@ public class UI_StickerRepository : MonoBehaviour
 
     public void OnClick_RepositoryOpen()
     {
-        string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
+        string[] allFiles = Directory.GetFiles(path, "*.jpg", SearchOption.AllDirectories);
         if (allFiles.Length == bubbleStickerList.Count + recordingStickerList.Count + recordingSignList.Count + bubbleGunStickerList.Count + bubbleFreeStickerList.Count)
         {
             return;

@@ -154,19 +154,19 @@ public class Func_SaveSticker : MonoBehaviour
             RenderTexture.active = currentRenderTexture;
 
             // byte[] texturePNGBytes = texture2D.EncodeToPNG();
-            byte[] texturePNGBytes = newTex.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".png";
+            byte[] textureJPGBytes = newTex.EncodeToJPG();
+            string filePath = directoryPath + fileName + ".jpg";
 
-            File.WriteAllBytes(filePath, texturePNGBytes);
+            File.WriteAllBytes(filePath, textureJPGBytes);
         }
         else
         {
             RenderTexture.active = currentRenderTexture;
 
-            byte[] texturePNGBytes = texture2D.EncodeToPNG();
-            string filePath = directoryPath + fileName + ".png";
+            byte[] textureJPGBytes = texture2D.EncodeToJPG();
+            string filePath = directoryPath + fileName + ".jpg";
 
-            File.WriteAllBytes(filePath, texturePNGBytes);
+            File.WriteAllBytes(filePath, textureJPGBytes);
         }
 
     }

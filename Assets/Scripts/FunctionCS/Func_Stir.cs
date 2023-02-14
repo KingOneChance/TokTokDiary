@@ -5,19 +5,29 @@ using UnityEngine.UI;
 public class Func_Stir : MonoBehaviour
 {
     [SerializeField] private RectTransform myRect = null;
+    [SerializeField] private RectTransform stickInitPos = null;
     [SerializeField] private Button stickButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
-    [SerializeField] private float radius = 0;
-    [SerializeField] private float deg = 0;
-    [SerializeField] private float stirSpeed = 0;
-    [SerializeField] private int stirCount = 0;
+
+    private float radius = 0;
+    private float deg = 0;
+    private float stirSpeed = 0;
+    private int stirCount = 0;
 
     public void OnClick_BubbleStick() => StartCoroutine(Stir());
+
+    private void Start()
+    {
+        Debug.Log(myRect.anchoredPosition);
+        radius = Screen.height / 5;
+        stirSpeed = 500f;
+    }
 
     private void OnEnable()
     {
         stickButton.enabled = true;
+        myRect.position = stickInitPos.position;
         SkipButton.gameObject.SetActive(true);
     }
 
@@ -29,15 +39,18 @@ public class Func_Stir : MonoBehaviour
     private IEnumerator Stir()
     {
         stickButton.enabled = false;
+        float rad = 0f;
+        float xCoord = 0f;
+        float yCoord = 0f;
         while (true)
         {
             deg -= Time.deltaTime * stirSpeed;
             if (deg > -360)
             {
-                float rad = Mathf.Deg2Rad * (deg);
-                float x = radius * Mathf.Sin(rad);
-                float y = radius * Mathf.Cos(rad);
-                myRect.transform.position = transform.position + new Vector3(x, y);
+                rad = Mathf.Deg2Rad * (deg);
+                xCoord = radius * Mathf.Cos(rad);
+                yCoord = radius * Mathf.Sin(rad);
+                //myRect. = myRect.anchoredPosition + new Vector2(-1 * xCoord, yCoord);
             }
             else
             {

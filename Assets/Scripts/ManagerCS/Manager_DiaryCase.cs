@@ -40,7 +40,7 @@ public class Manager_DiaryCase : MonoBehaviour
     private void AddDiaryFiles()
     {
         string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories);
-
+        int num = 1;
         for (int i = 0; i < allFiles.Length; i++)
         {
             string fileName = Path.GetFileNameWithoutExtension(allFiles[i]);
@@ -49,8 +49,7 @@ public class Manager_DiaryCase : MonoBehaviour
                 Debug.Log(fileName);
             }
 
-            diaryDataList.Add(new Data_Diary(selectedProfileName, fileName, 1));
-
+           // diaryDataList.Add(new Data_Diary(selectedProfileName, fileName, 1));
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
 
             if (byteTexture.Length > 0)
@@ -70,7 +69,7 @@ public class Manager_DiaryCase : MonoBehaviour
 
     }
 
-    private void ShowPreviewDiary()
+    public void ShowPreviewDiary()
     {
         DateTime today = DateTime.Now;
         
@@ -78,6 +77,8 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             //if(diaryList[i] != null)
         }
-        previewImg.texture = diaryList[1];
+        previewImg.texture = diaryList[0];
+        Debug.Log(previewImg.texture.name);
     }
+
 }
