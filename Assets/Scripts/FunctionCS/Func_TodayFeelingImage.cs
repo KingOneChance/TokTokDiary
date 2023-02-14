@@ -13,11 +13,11 @@ namespace FreeDraw
         [SerializeField] public Sprite Change_Image_Sad;
         [SerializeField] public Sprite Change_Image_Angry;
         [SerializeField] public GameObject TodayFeelingMenu = null;
-        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
         [SerializeField] public GameObject Helper;
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
+        [SerializeField] private bool stickerMaking = false;
             
         static Image ThisImage;
-
         private void Awake()
         {
             func_TodayFeelingImage = FindObjectOfType<Func_TodayFeelingImage>();
@@ -32,7 +32,7 @@ namespace FreeDraw
         {
             if (!func_TodayFeelingImage.ActiveTodayFeelingMenu() || Helper.activeSelf)
             {
-                if (CheckArea() == true)
+                if (CheckArea() == true&& stickerMaking==false)
                 {
                     Draw();
                 }
