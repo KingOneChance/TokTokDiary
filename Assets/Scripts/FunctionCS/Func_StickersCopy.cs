@@ -19,12 +19,12 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
-        drawObject = FindObjectOfType<Func_TodayFeelingImage>();    
+        drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
     }
     public void OnClick_MakeClone()
     {
-      
+
 
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -39,11 +39,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameObject newSticker = Instantiate(mySticker,myGrandPa.transform);
+        GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
         newSticker.AddComponent<Func_DragObject>();
+        newSticker.AddComponent<Func_DetectAttach>();
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
+        newSticker.transform.localScale *= 2;//new Vector3(220 / 160f, 220 / 160f, 220 / 160f);
         myRectTransform.position = myPos.transform.position;
 
         //nodedata plus
@@ -59,5 +61,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
+
+        //gameObject.transform.localScale = Vector3.one;
     }
 }

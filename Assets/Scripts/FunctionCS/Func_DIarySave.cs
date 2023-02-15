@@ -11,7 +11,7 @@ public class Func_DIarySave : Func_SaveSticker
         //calculate all position
         saveImageRect = saveImage.GetComponent<RectTransform>();
         startXPos = saveImageRect.rect.position.x + 960 + 244;
-        startYPos = saveImageRect.rect.position.y + 540 + 2;
+        startYPos = saveImageRect.rect.position.y + 540;
         widthValue = (int)saveImageRect.rect.width;
         heightValue = (int)saveImageRect.rect.height;
     }
