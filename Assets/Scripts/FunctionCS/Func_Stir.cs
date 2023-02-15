@@ -57,7 +57,7 @@ public class Func_Stir : MonoBehaviour
                 stirCount++;
                 if(stirCount == 3)
                 {
-                    NextButton.interactable = true;
+                    NextButton.gameObject.SetActive(true);
                     stickButton.enabled = false;
                 }
                 yield break;
@@ -68,7 +68,7 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
-        NextButton.interactable = true;
+        NextButton.gameObject.SetActive(true);
         stickButton.enabled = false;
     }
 }
