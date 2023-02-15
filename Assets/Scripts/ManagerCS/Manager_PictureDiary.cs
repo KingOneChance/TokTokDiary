@@ -19,6 +19,5 @@ public partial class Manager_PictureDiary : MonoBehaviour
     //되돌리기에서 오브젝트 삭제하기 위한 함수 
     public void DestroySomthing(GameObject gameObject) => Destroy(gameObject);
     #endregion
-
     public void OnClick_MakeManagerNull() => Manager_Main.Instance.LeaveAtPictureDiaryScene();
 }
