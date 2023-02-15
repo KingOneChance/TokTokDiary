@@ -3,32 +3,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Func_CalendarController : MonoBehaviour
 {
     const int _totalDateNum = 42;
 
     [SerializeField] private GameObject _item;
-    [SerializeField] private GameObject _itemSticker;
+    public List<GameObject> stickers = new List<GameObject>();
     [SerializeField] private TextMeshProUGUI _yearNumText;
     [SerializeField] private TextMeshProUGUI _monthNumText;
     [SerializeField] private TextMeshProUGUI _monthStrText;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
+
+    [SerializeField] TextMeshProUGUI[] preViewDate = null;
 
     private DateTime _dateTime;
 
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     private string myName = "";
 
-    private List<int> days = null;
+    private List<int> days = new List<int>();
 
     Manager_DiaryCase manager_DiaryCase;
 
+
     private void OnEnable()
     {
-        Init();
         manager_DiaryCase = FindObjectOfType<Manager_DiaryCase>();
-
+        Init();
+        ShowPreviewDate( manager_DiaryCase.previewImg.texture);
     }
 
     private void Init()
@@ -49,20 +53,26 @@ public class Func_CalendarController : MonoBehaviour
         
             _dateItems.Add(item);
         }
-
+        stickers.AddRange(GameObject.FindGameObjectsWithTag("DiarySticker"));
         CreateCalendar();
+       
     }
+    
     TextMeshProUGUI label = null;
     //date = 0;
     private void CreateCalendar()
     {
+        for (int i = 0; i < stickers.Count; i++)
+        {
+            stickers[i].gameObject.SetActive(false);
+        }
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
         int index = GetDays(firstDay.DayOfWeek);
         bool checkToday = false;
         int date = 0;
 
         _yearNumText.text = _dateTime.Year.ToString();
-        _monthNumText.text = _dateTime.Month.ToString() + " 월 ";
+        _monthNumText.text = _dateTime.Month.ToString()/* + " 월 "*/;
 
         switch (_dateTime.Month)
         {
@@ -105,7 +115,7 @@ public class Func_CalendarController : MonoBehaviour
         }
 
         if (_yearNumText.text == DateTime.Now.Year.ToString() &&
-           _monthNumText.text == DateTime.Now.Month.ToString() + " 월 ") checkToday = true;
+           _monthNumText.text == DateTime.Now.Month.ToString() /*+ " 월 "*/) checkToday = true;
 
         for (int i = 0; i < _totalDateNum; i++)
         {
@@ -140,6 +150,9 @@ public class Func_CalendarController : MonoBehaviour
                 }
             }
         }
+       
+
+        TurnOnSticker();
     }
 
     private int GetDays(DayOfWeek day)
@@ -161,32 +174,99 @@ public class Func_CalendarController : MonoBehaviour
     public void OnClick_YearPrev()
     {
         _dateTime = _dateTime.AddYears(-1);
+
         CreateCalendar();
+
     }
 
     public void OnClick_YearNext()
     {
         _dateTime = _dateTime.AddYears(1);
+
         CreateCalendar();
+
     }
 
     public void OnClick_MonthPrev()
     {
         _dateTime = _dateTime.AddMonths(-1);
+
         CreateCalendar();
+
     }
 
     public void OnClick_MonthNext()
     {
         _dateTime = _dateTime.AddMonths(1);
+
         CreateCalendar();
+
     }
 
     public void OnClick_Date()
     {
-        // If there is a diary for that date, the corresponding diary file is displayed in preview.
-        Debug.Log(_yearNumText.text + "" +_monthNumText.text +" "+ days);
-        
+        string nowDay = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
 
+        manager_DiaryCase.previewText.gameObject.SetActive(false);
+
+        string fileName = _yearNumText.text + "_" + _monthNumText.text + "_" + nowDay;
+
+        if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName+"-1"))
+        {
+            manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesDictionary[fileName + "-1"];
+        }
+        else
+        {
+            manager_DiaryCase.previewImg.texture = null;
+            manager_DiaryCase.previewText.gameObject.SetActive(true);
+        }
+        for(int i=0; i < manager_DiaryCase.allFilesList.Count; i++)
+        {
+            if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesList[i])
+            {
+                manager_DiaryCase.presentNum = i;
+            }
+        }
     }
+    private void TurnOnSticker()
+    {
+        Debug.Log("확인용");
+        string fileName = "";
+
+        for (int k = 0; k < manager_DiaryCase.allFiles.Count; k++)
+        {
+            fileName = manager_DiaryCase.allFiles[k].Split("\\")[1].Split(".")[0].Split("-")[0];
+
+            string year = fileName.Split("_")[0];
+            string month = fileName.Split("_")[1];
+            string day = fileName.Split("_")[2];
+
+            for (int i = 0; i < stickers.Count; i++)
+            {
+                if (day == stickers[i].transform.parent.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text &&
+                    _yearNumText.text == year && _monthNumText.text == month)
+                {
+                    stickers[i].gameObject.SetActive(true);
+                }
+            }
+
+        }
+    }
+    public void ShowPreviewDate(Texture texture)
+    {
+        Debug.Log(texture.name);
+        if (texture == null)
+        {
+            preViewDate[0].text = "년";
+            preViewDate[1].text = "월";
+            preViewDate[2].text = "일";
+        }
+        else
+        {
+            preViewDate[0].text = texture.name.Split("-")[0].Split("_")[0] + "년";
+            preViewDate[1].text = texture.name.Split("-")[0].Split("_")[1] + "월";
+            preViewDate[2].text = texture.name.Split("-")[0].Split("_")[2] + "일";
+        }
+    }
+
 }

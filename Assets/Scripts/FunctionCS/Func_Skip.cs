@@ -31,7 +31,7 @@ public class Func_Skip : MonoBehaviour
             {
                 func_GunCollision.whiteList[i].color = cleanColor;
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0f);
         }
 
         func_GunCollision.whiteList.Clear();
@@ -49,7 +49,7 @@ public class Func_Skip : MonoBehaviour
             {
                 func_GunCollision.cleanList[i].color = Nothing;
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         func_GunCollision.cleanList.Clear();         
