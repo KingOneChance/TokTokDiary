@@ -11,6 +11,10 @@ public class Func_ToBeSticker : MonoBehaviour
     [SerializeField] private RawImage soapBubble = null;
 
     private Vector2 mousePos = Vector2.zero;
+
+
+
+
     public void OnClick_InventorySticker(int stickerNum)
     {
         Debug.Log("´­¸²");

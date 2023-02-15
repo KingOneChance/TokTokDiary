@@ -8,77 +8,125 @@ using UnityEngine.UI;
 
 public class Manager_DiaryCase : MonoBehaviour
 {
-    [SerializeField] RawImage[] profiles = null;
     [SerializeField] GameObject[] panels = null;
+    [Header("프로필 고르기")]
+    [SerializeField] RawImage[] profiles = null;
     [SerializeField] Button[] profileButton = null;
     [SerializeField] TextMeshProUGUI[] profileName = null;
 
-    [SerializeField] RawImage previewImg = null;
+    [Header("날짜고르기")]
+    [SerializeField] public RawImage previewImg = null;
+    [SerializeField] public TextMeshProUGUI previewText = null;
 
-    [SerializeField] List<Texture2D> diaryList = new List<Texture2D>();
-    [SerializeField] List<Data_Diary> diaryDataList = new List<Data_Diary>();
+    public Dictionary<string, Texture> allFilesDictionary = new Dictionary<string, Texture>();
+    public List<Texture> allFilesList = new List<Texture>();
     [SerializeField] private string selectedProfileName = "";
     [SerializeField] private string selectedProfilPath = "";
 
+
+
+    Func_CalendarController func_CalendarController;
+
+    public int presentNum = 0;
     private void Start()
     {
         for (int i = 0; i < profiles.Length; i++)
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
+        func_CalendarController = FindObjectOfType<Func_CalendarController>();
+
+       
     }
 
     public void OnClick_Profile(int idx)
     {
         selectedProfileName = profileName[idx - 1].text;
-        selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/" + "Diary";
+        selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
         AddDiaryFiles();
         panels[0].SetActive(false);
         panels[1].SetActive(true);
+        
     }
-
+    public List<string> allFiles = new List<string>();
     private void AddDiaryFiles()
     {
-        string[] allFiles = Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories);
-        int num = 1;
-        for (int i = 0; i < allFiles.Length; i++)
+
+        allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.TopDirectoryOnly));
+
+        string filename = "";
+        if (allFiles.Count == 0)
         {
-            string fileName = Path.GetFileNameWithoutExtension(allFiles[i]);
-            if (int.Parse(fileName.Split('-')[1]) > 1)
-            {
-                Debug.Log(fileName);
-            }
+            previewText.text = "일기가 없습니다";
+            return;
+        }
+        previewText.gameObject.SetActive(false);
 
-           // diaryDataList.Add(new Data_Diary(selectedProfileName, fileName, 1));
+
+        for (int i = 0; i < allFiles.Count; i++)
+        {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-
+            filename = allFiles[i].Split("\\")[1].Split(".")[0];
+            Debug.Log(filename);
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
-                texture.LoadImage(byteTexture);                
-                diaryList.Add(texture);
+                texture.LoadImage(byteTexture);
+                if (allFilesDictionary.ContainsKey(filename))
+                {
+                    continue;
+                }
+                allFilesDictionary.Add(filename, texture);
+                allFilesList.Add(texture);
             }
         }
+        presentNum = allFiles.Count-1;
+        ShowPreviewDiary();
     }
 
     public void OnClick_BackButton()
     {
-        diaryList.Clear();
+        allFilesDictionary.Clear();
         selectedProfilPath = "";
         selectedProfileName = "";
-
+        previewImg.texture = null;
     }
 
     public void ShowPreviewDiary()
     {
-        DateTime today = DateTime.Now;
-        
-        for(int i = 0; i < diaryList.Count; i++)
+        DateTime today = DateTime.Today;
+
+        string month = today.Month.ToString();
+        string year = today.Year.ToString();
+        string day = today.Day.ToString();
+
+        string fileName = year + "_" + month + "_" + day;
+
+        if (allFilesDictionary.ContainsKey(fileName+"-1"))
         {
-            //if(diaryList[i] != null)
+            previewImg.texture = allFilesDictionary[fileName+"-1"];
         }
-        previewImg.texture = diaryList[0];
-        Debug.Log(previewImg.texture.name);
+        
+    }
+    public void OnClick_PrevDiary()
+    {
+        presentNum--;
+        if (presentNum < 0)
+        {
+            presentNum = 0;
+            return;
+        }
+        previewImg.texture = allFilesList[presentNum];
+    }
+    public void OnClick_NextDiary()
+    {
+        presentNum++;
+        if (presentNum > allFiles.Count-1)
+        {
+            presentNum = allFiles.Count-1;
+        }
+        previewImg.texture = allFilesList[presentNum];
     }
 
+    
 }

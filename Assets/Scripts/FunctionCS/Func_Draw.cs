@@ -9,16 +9,10 @@ namespace FreeDraw
         [Header("===Frame shape check===")]
         [SerializeField] protected bool isCircleFrame = false;
         [SerializeField] protected float circleSize;
-
-        [SerializeField] GameObject linePrefab;
-        [SerializeField] public Button Pen_WidthLarge;
-        [SerializeField] public Button Pen_WidthMedium;
-        [SerializeField] public Button Pen_WidthSmall;
+        [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
-        public Color curColor = Color.black;
+        [SerializeField] GameObject linePrefab;
         [SerializeField] EdgeCollider2D col;
-        List<Vector2> points = new List<Vector2>();
-
         [SerializeField] protected float drawingAreaMaxX = 0f;
         [SerializeField] protected float drawingAreaMinX = 0f;
         [SerializeField] protected float drawingAreaMaxY = 0f;
@@ -31,14 +25,14 @@ namespace FreeDraw
 
         [Header("===InitialClickPoisitionCheck===")]
         [SerializeField] protected bool internalClick = false;
-
         [SerializeField] protected bool isDragSticker = false;
         [SerializeField] protected bool isDiaryScene = false;
-        private GameObject tempOBJ;
         [SerializeField] protected bool onObject;
         [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
-
-        public float currentPenWidth = 0f;
+        List<Vector2> points = new List<Vector2>();
+        public Color curColor = Color.black;
+        private GameObject tempOBJ;
+        private float currentPenWidth = 0f;
 
     //    const float Min_Pen_Width = 0.1f;
     //    const float Max_Pen_Width = 1.0f;
@@ -60,7 +54,7 @@ namespace FreeDraw
 
         protected void Start()
         {
-            LargeWidthBtn();
+            currentPenWidth = 0.3f;
         }
 
         private void Update()
@@ -75,18 +69,6 @@ namespace FreeDraw
             }
         }
 
-        public void LargeWidthBtn()
-        {
-            currentPenWidth = 0.3f;
-        }
-        public void MediumWidthBtn()
-        {
-            currentPenWidth = 0.2f;
-        }
-        public void SmallWidthBtn()
-        {
-            currentPenWidth = 0.1f;
-        }
         protected void Draw()
         {
             //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
@@ -164,7 +146,7 @@ namespace FreeDraw
 
                     else
                     {
-                        currentPenWidth = 0.3f;
+                        currentPenWidth = Pen_Width.value;
                     }
 
                     return true;
@@ -223,6 +205,11 @@ namespace FreeDraw
                     curColor = new Color32(255, 255, 255, 255);
                     break;
             }
+        }
+
+        public void ControllPenWidth()
+        {
+            currentPenWidth = Pen_Width.value;
         }
     }
 }
