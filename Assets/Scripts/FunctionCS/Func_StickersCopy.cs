@@ -19,9 +19,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
-        drawObject = GetComponent<Func_TodayFeelingImage>();    
+        drawObject = FindObjectOfType<Func_TodayFeelingImage>();    
         myRectTransform = GetComponent<RectTransform>();
-        startTransform.position = myRectTransform.position;
     }
     public void OnClick_MakeClone()
     {
@@ -30,6 +29,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        drawObject.IsStickerMaking(true);
         gameObject.transform.SetParent(myGrandPa.transform);
     }
     public void OnDrag(PointerEventData eventData)
@@ -42,10 +42,22 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         GameObject newSticker = Instantiate(mySticker,myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
-
-        
+        newSticker.AddComponent<Func_DragObject>();
+        Destroy(newSticker.GetComponent<Func_StickersCopy>());
         myRectTransform.position = myPos.transform.position;
 
+        //nodedata plus
+        SData_NodeData temp = new SData_NodeData();
+        RectTransform tempRect = new RectTransform();
+
+        tempRect = newSticker.GetComponent<RectTransform>();
+        temp.position = tempRect.position;
+        temp.rotation = tempRect.rotation.eulerAngles;
+        temp.scale = tempRect.localScale;
+        Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, newSticker);
+        //
+
         gameObject.transform.SetParent(myParents.transform);
+        drawObject.IsStickerMaking(false);
     }
 }
