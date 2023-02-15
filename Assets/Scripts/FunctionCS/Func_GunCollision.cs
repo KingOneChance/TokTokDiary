@@ -7,15 +7,23 @@ public class Func_GunCollision : MonoBehaviour
 {
     //°ËÀº ºñ´°¹æ¿ïµé
     [SerializeField] private RawImage[] blacks = null;
+    //´õ·¯¿î ºñ´°¹æ¿ïµé
+    [SerializeField] private Sprite[] dirtyImages = null;
+    //Áß°£ ºñ´°¹æ¿ïµé
+    [SerializeField] private Sprite[] middleImages = null;
+    //±ú²ýÇÑ ºñ´°¹æ¿ïµé
+    [SerializeField] private Sprite[] claenImages = null;
+
     //
     [SerializeField] private RawImage stickerBackGround = null;
+    [SerializeField] private Image stickerBackGroundImage = null;
+    [SerializeField] private Image Restart = null;
+    [SerializeField] private Image sticerRepository = null;
+
     [SerializeField] private RawImage BackGroundSticker = null;
     [SerializeField] private Button skipOneRoundBtn = null;
     [SerializeField] private Button skipTwoRoundBtn = null;
 
-    private Color dirtyColor = new Color(0, 0, 0, 255 / 255);
-    private Color middleColor = new Color(0, 0, 0, 180f / 255f);
-    private Color cleanColor = new Color(255/255, 255 / 255, 255 / 255, 255 / 255);
     private Color Nothing = new Color(255 / 255, 255 / 255, 255 / 255, 0);
 
     public bool allClear = false;
@@ -28,6 +36,7 @@ public class Func_GunCollision : MonoBehaviour
     Func_BubbleGunSave func_BubbleGunSave = null;
     UI_BubbleBubbleGun ui_BubbleBubbleGun = null;
 
+    private int randNum = 0;
     private void Start()
     {
         for(int i = 0; i < blacks.Length; i++)
@@ -39,33 +48,47 @@ public class Func_GunCollision : MonoBehaviour
 
         func_BubbleGunSave = FindObjectOfType<Func_BubbleGunSave>();
         ui_BubbleBubbleGun = FindObjectOfType<UI_BubbleBubbleGun>();
+
+        for(int i = 0; i < blacks.Length; i++)
+        {
+            randNum = Random.Range(0, dirtyImages.Length);
+            blacks[i].texture = dirtyImages[randNum].texture;
+        }
+    }
+    public void AllPopChange()
+    {
+        allPop = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<RawImage>().color == dirtyColor)
+        if (collision.gameObject.GetComponent<RawImage>().texture.name.Contains("dirty"))
         {
-            collision.gameObject.GetComponent<RawImage>().color = middleColor;
+            Debug.Log(collision.gameObject.GetComponent<RawImage>().texture.name);
+            ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             blackList.Remove(collision.gameObject.GetComponent<RawImage>());
             if (blackList.Count == 0)
             {
                 allClear = true;
             }
         }
-        else if (collision.gameObject.GetComponent<RawImage>().color == middleColor && allClear == true)
+        else if (collision.gameObject.GetComponent<RawImage>().texture.name.Contains("messy") && allClear == true)
         {
-            collision.gameObject.GetComponent<RawImage>().color = cleanColor;
+            ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             whiteList.Remove(collision.gameObject.GetComponent<RawImage>());
             if(whiteList.Count <= 10 && skipOneRoundBtn.gameObject.activeSelf == false)
             {
                 skipOneRoundBtn.gameObject.SetActive(true);
             }
         }
-        else if(collision.gameObject.GetComponent<RawImage>().color == cleanColor && allPop == true)
+        else if(collision.gameObject.GetComponent<RawImage>().texture.name.Contains("clean") && allPop == true)
         {
-            collision.gameObject.GetComponent<RawImage>().color = Nothing;
-            collision.gameObject.GetComponent<RawImage>().texture = null;
+            Debug.Log(collision.gameObject.GetComponent<RawImage>().texture.name);
+            Debug.Log(collision.gameObject);
+            ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
+            
             cleanList.Remove(collision.gameObject.GetComponent<RawImage>());
+            collision.gameObject.GetComponent<RawImage>().color = Nothing;
             if (cleanList.Count <= 10 && skipTwoRoundBtn.gameObject.activeSelf == false)
             {
                 skipTwoRoundBtn.gameObject.SetActive(true);
@@ -77,27 +100,62 @@ public class Func_GunCollision : MonoBehaviour
         }
 
     }
-    //½ºÅµ
+    public void ChangeImage(string textureName, GameObject go)
+    {
+        string bubbleState = textureName.Split("_")[0];
+        string bubbleColor = textureName.Split("_")[1];
 
+        switch (bubbleState)
+        {
+            case "dirty":
+                Debug.Log(middleImages.Length);
+                for(int i =0; i< middleImages.GetLength(0); i++)
+                {
+                    if (middleImages[i].name.Contains(bubbleColor))
+                    { 
+                        go.GetComponent<RawImage>().texture = middleImages[i].texture;
+                        break;
+                    }
+                }
+                break;
+            case "messy":
+                for (int i = 0; i < claenImages.Length; i++)
+                {
+                    if (claenImages[i].name.Contains(bubbleColor))
+                    {                     
+                        go.GetComponent<RawImage>().texture = claenImages[i].texture;
+                        break;
+                    }
+                }
+                break;
+
+        }
+    }
+    public void RoundFinish()
+    {
+        ui_BubbleBubbleGun.TobeSticker();
+        BackGroundSticker.gameObject.SetActive(false);
+        skipTwoRoundBtn.gameObject.SetActive(false);
+        Debug.Log(ui_BubbleBubbleGun.randImages.Length);
+    }
     public void OnClickSticker()
     {
+        for(int i =0; i < ui_BubbleBubbleGun.randImages.Length; i++)
+        {
+            ui_BubbleBubbleGun.randImages[i].gameObject.SetActive(false);
+        }
+        
         stickerBackGround.gameObject.SetActive(true);
         StartCoroutine(DisappearSticker());
         func_BubbleGunSave.SaveBubbleGun();
     }
     IEnumerator DisappearSticker()
     {
-        skipTwoRoundBtn.gameObject.SetActive(false);
         yield return new WaitForSeconds(10f);
-        stickerBackGround.gameObject.SetActive(false);
+        stickerBackGroundImage.gameObject.SetActive(false);
     }
 
-    public void RoundFinish()
-    {
-        BackGroundSticker.gameObject.SetActive(false);
-        ui_BubbleBubbleGun.TobeSticker();
-        skipTwoRoundBtn.gameObject.SetActive(false);
-    }
+   
     private void Update()
     {
         if (whiteList.Count == 0)
