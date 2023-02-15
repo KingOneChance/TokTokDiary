@@ -4,17 +4,19 @@ using UnityEngine.UI;
 
 public class Func_Stir : MonoBehaviour
 {
+    [SerializeField] private Toggle[] beakersMixGreen = null;
+    [SerializeField] private Toggle[] beakersMixPink = null;
+    [SerializeField] private Toggle[] beakersMixBlue = null;
     [SerializeField] private RectTransform myRect = null;
     [SerializeField] private RectTransform stickInitPos = null;
     [SerializeField] private Button stickButton = null;
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
+    [SerializeField] private Manager_BubbleSticker bsManager = null;
     private float radius = 0;
     private float deg = 0;
     private float stirSpeed = 0;
     private int stirCount = 0;
-
-    public void OnClick_BubbleStick() => StartCoroutine(Stir());
 
     private void Start()
     {
@@ -24,6 +26,26 @@ public class Func_Stir : MonoBehaviour
 
     private void OnEnable()
     {
+        for(int i = 0; i < 4; i++)
+        {
+            beakersMixGreen[i].gameObject.SetActive(false);
+            beakersMixPink[i].gameObject.SetActive(false);
+            beakersMixBlue[i].gameObject.SetActive(false);
+        }
+        switch (bsManager.ColorType)
+        {
+            case 1:
+                beakersMixGreen[0].gameObject.SetActive(true);
+                break;
+
+            case 2:
+                beakersMixPink[0].gameObject.SetActive(true);
+                break;
+
+            case 3:
+                beakersMixBlue[0].gameObject.SetActive(true);
+                break;
+        }
         stickButton.enabled = true;
         myRect.position = stickInitPos.position;
         SkipButton.gameObject.SetActive(true);
@@ -55,7 +77,8 @@ public class Func_Stir : MonoBehaviour
                 deg = 0;
                 stickButton.enabled = true;
                 stirCount++;
-                if(stirCount == 3)
+                MixProcess(bsManager.ColorType, stirCount);
+                if (stirCount == 3)
                 {
                     NextButton.gameObject.SetActive(true);
                     stickButton.enabled = false;
@@ -65,6 +88,38 @@ public class Func_Stir : MonoBehaviour
             yield return null;
         }
     }
+
+    public void MixProcess(int type, int idx)
+    {
+        switch (type)
+        {
+            case 1:
+                beakersMixGreen[idx].isOn = true;
+                for(int i = 0; i < 4; ++i)
+                {
+                    beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
+                }
+                break;
+
+            case 2:
+                beakersMixGreen[idx].isOn = true;
+                for (int i = 0; i < 4; ++i)
+                {
+                    beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
+                }
+                break;
+
+            case 3:
+                beakersMixGreen[idx].isOn = true;
+                for (int i = 0; i < 4; ++i)
+                {
+                    beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
+                }
+                break;
+        }
+    }
+
+    public void OnClick_BubbleStick() => StartCoroutine(Stir());
 
     public void OnClick_SkipButton()
     {

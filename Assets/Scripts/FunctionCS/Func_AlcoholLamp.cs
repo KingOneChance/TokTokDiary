@@ -3,10 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Func_AlcoholLamp : Func_BasicDrag
+public class Func_AlcoholLamp : Func_DragAndDrop
 {
-    [SerializeField] private RectTransform alcoholLampInitRect = null;
-    [SerializeField] private RectTransform myDestinationPos = null;
     [SerializeField] private Image[] alcoholLampSolutions = null;
     [SerializeField] private RawImage[] beakerImg = null;
     [SerializeField] private RawImage[] colorBeakerImg = null;
@@ -14,13 +12,9 @@ public class Func_AlcoholLamp : Func_BasicDrag
     [SerializeField] private RawImage paintCase = null;
     [SerializeField] private Button paintCaseButton = null;
     [SerializeField] private Manager_BubbleSticker bsManager = null;
-    private bool isAlcoholampDone = false;
 
-    private void OnEnable()
+    private new void OnEnable()
     {
-        Start();
-        isAlcoholampDone = false;
-        myRect.position = alcoholLampInitRect.position;
         alcoholLampPosImg.color = Vector4.one;
         bsManager.ActiveColortBucket(false);
         bsManager.InitColorBucket();
@@ -33,27 +27,14 @@ public class Func_AlcoholLamp : Func_BasicDrag
         StopAllCoroutines();
     }
 
-    public override void OnDrag(PointerEventData eventData)
-    {
-        if (isAlcoholampDone == true) return;
-        base.OnDrag(eventData);
-    }
-
     public override void OnEndDrag(PointerEventData eventData)
     {
-        if (isAlcoholampDone == true) return;
         base.OnEndDrag(eventData);
         if (Vector3.Distance(myDestinationPos.position, myRect.position) < 100f)
         {
-            myRect.position = myDestinationPos.position;
-            isAlcoholampDone = true;
             StopCoroutine(CO_BlinkBlink(alcoholLampPosImg));
             StartCoroutine(CO_FillSolution());
             alcoholLampPosImg.color = Vector4.one;
-        }
-        else
-        {
-            myRect.position = alcoholLampInitRect.position;
         }
     }
 
@@ -62,7 +43,7 @@ public class Func_AlcoholLamp : Func_BasicDrag
         float fadeAmount = 0;
         while (true)
         {
-            if(isAlcoholampDone == true)
+            if (isDropDone == true)
             {
                 blinkImage.color = Vector4.one;
                 yield break;
@@ -72,7 +53,7 @@ public class Func_AlcoholLamp : Func_BasicDrag
                 fadeAmount -= 0.1f;
                 yield return new WaitForFixedUpdate();
                 blinkImage.color = new Color(1, 1, 1, fadeAmount);
-            } 
+            }
             while (fadeAmount < 1.0f)
             {
                 fadeAmount += 0.1f;
@@ -137,20 +118,19 @@ public class Func_AlcoholLamp : Func_BasicDrag
         }
 
         int repeatCount = 0;
-        for (int i = 0; i < 3; i++)
+
+        while (true)
         {
-            while (true)
+            if (alcoholLampSolutions[2].fillAmount >= 1f)
             {
-                if (alcoholLampSolutions[2].fillAmount >= 1f)
-                {
-                    alcoholLampSolutions[2].fillAmount = 0f;
-                    repeatCount++;
-                    break;
-                }
-                alcoholLampSolutions[2].fillAmount += 0.01f;
-                yield return new WaitForFixedUpdate();
-            } 
+                alcoholLampSolutions[2].fillAmount = 0f;
+                repeatCount++;
+                break;
+            }
+            alcoholLampSolutions[2].fillAmount += 0.01f;
+            yield return new WaitForFixedUpdate();
         }
+
         alcoholLampSolutions[0].fillAmount = 0f;
         alcoholLampSolutions[1].fillAmount = 0f;
         beakerImg[0].gameObject.SetActive(false);

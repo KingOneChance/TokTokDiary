@@ -1,11 +1,14 @@
 using System.Collections;
+using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Func_Tilt : MonoBehaviour
 {
     [SerializeField] private Toggle[] ColorBucketToggles = null;
     [SerializeField] private RawImage beakerSolutionImg = null;
+    [SerializeField] private RawImage[] colorBeakerImg = null;
     [SerializeField] private RectTransform beakerSolutionImgPos = null;
     [SerializeField] private RectTransform beakerSolutionImgInitPos = null;
     [SerializeField] private Button SkipButton = null;
@@ -17,7 +20,7 @@ public class Func_Tilt : MonoBehaviour
     private Vector3 SecondPoint = Vector3.zero;
 
     private bool isSwipeDown = false;
-    [SerializeField] private bool isSolutionFall = false;
+    private bool isSolutionFall = false;
 
     private void Start()
     {
@@ -116,9 +119,35 @@ public class Func_Tilt : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             } 
         }
+        colorBeakerImg[0].gameObject.SetActive(false);
+        CheckColor(gameObject.name);
         isSwipeDown = false;
         isSolutionFall = false;
         NextButton.gameObject.SetActive(true);
+    }
+
+    private void CheckColor(string name)
+    {
+        switch (name)
+        {
+            case "GreenBeaker":
+                colorBeakerImg[1].gameObject.SetActive(true);
+                colorBeakerImg[2].gameObject.SetActive(false);
+                colorBeakerImg[3].gameObject.SetActive(false);
+                break;
+
+            case "PinkBeaker":
+                colorBeakerImg[2].gameObject.SetActive(true);
+                colorBeakerImg[1].gameObject.SetActive(false);
+                colorBeakerImg[3].gameObject.SetActive(false);
+                break;
+
+            case "BlueBeaker":
+                colorBeakerImg[3].gameObject.SetActive(true);
+                colorBeakerImg[1].gameObject.SetActive(false);
+                colorBeakerImg[2].gameObject.SetActive(false);
+                break;
+        }
     }
 
     //public void OnClick_SkipButton() => progressBar.value = 1f;

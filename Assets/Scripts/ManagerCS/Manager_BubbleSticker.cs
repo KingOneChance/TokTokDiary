@@ -23,11 +23,13 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private RectTransform[] colorBucketsRect = null;
     [SerializeField] private RectTransform[] colorBucketsInitPos = null;
     [SerializeField] private Toggle[] colorBucketToggles = null;
+    [SerializeField] private RawImage[] colorBeakersImgs = null;
     #endregion
 
     #region AnotherVariables
     private int PanelIdx = 0;
-    private int colorType = 0;
+    [SerializeField] private int colorType = 0;
+    public int ColorType { get { return colorType; } private set { } }
 
     #endregion
 
@@ -156,6 +158,37 @@ public class Manager_BubbleSticker : Func_SaveSticker
         Panels[PanelIdx].SetActive(false);
         PanelIdx++;
         NextButton.gameObject.SetActive(false);
+        InitPanel();
+    }
+
+    private void InitPanel()
+    {
+        switch (PanelIdx)
+        {
+            case 0:
+
+                break;
+
+            case 1:
+                colorBeakersImgs[0].gameObject.SetActive(true);
+                colorBeakersImgs[1].gameObject.SetActive(false);
+                colorBeakersImgs[2].gameObject.SetActive(false);
+                colorBeakersImgs[3].gameObject.SetActive(false);
+                colorBeakersImgs[4].gameObject.SetActive(false);
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+        }
     }
 
     public void OnClick_BackBtn()
