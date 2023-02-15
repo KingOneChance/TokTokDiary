@@ -257,6 +257,8 @@ public class UI_PictureDiary : MonoBehaviour
     //프로필 메인
     public void OnClick_OpenProfileButton()
     {
+       new WaitForEndOfFrame();
+
         ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
