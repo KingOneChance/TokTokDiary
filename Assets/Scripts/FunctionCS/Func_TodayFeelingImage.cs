@@ -30,7 +30,7 @@ namespace FreeDraw
 
         private void Update()
         {
-            if (!func_TodayFeelingImage.ActiveTodayFeelingMenu() || Helper.activeSelf)
+            if (!func_TodayFeelingImage.ActiveTodayFeelingMenu())
             {
                 if (CheckArea() == true)
                 {
