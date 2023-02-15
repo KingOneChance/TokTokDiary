@@ -11,7 +11,9 @@ namespace FreeDraw
         [SerializeField] protected float circleSize;
 
         [SerializeField] GameObject linePrefab;
-        [SerializeField] public Slider Pen_Width;
+        [SerializeField] public Button Pen_WidthLarge;
+        [SerializeField] public Button Pen_WidthMedium;
+        [SerializeField] public Button Pen_WidthSmall;
         [SerializeField] public LineRenderer line = null;
         public Color curColor = Color.black;
         [SerializeField] EdgeCollider2D col;
@@ -36,7 +38,7 @@ namespace FreeDraw
         [SerializeField] protected bool onObject;
         [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
 
-        private float currentPenWidth = 0f;
+        public float currentPenWidth = 0f;
 
     //    const float Min_Pen_Width = 0.1f;
     //    const float Max_Pen_Width = 1.0f;
@@ -58,7 +60,7 @@ namespace FreeDraw
 
         protected void Start()
         {
-            currentPenWidth = 0.3f;
+            LargeWidthBtn();
         }
 
         private void Update()
@@ -73,6 +75,18 @@ namespace FreeDraw
             }
         }
 
+        public void LargeWidthBtn()
+        {
+            currentPenWidth = 0.3f;
+        }
+        public void MediumWidthBtn()
+        {
+            currentPenWidth = 0.2f;
+        }
+        public void SmallWidthBtn()
+        {
+            currentPenWidth = 0.1f;
+        }
         protected void Draw()
         {
             //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
@@ -150,7 +164,7 @@ namespace FreeDraw
 
                     else
                     {
-                        currentPenWidth = Pen_Width.value;
+                        currentPenWidth = 0.3f;
                     }
 
                     return true;
@@ -209,11 +223,6 @@ namespace FreeDraw
                     curColor = new Color32(255, 255, 255, 255);
                     break;
             }
-        }
-
-        public void ControllPenWidth()
-        {
-            currentPenWidth = Pen_Width.value;
         }
     }
 }
