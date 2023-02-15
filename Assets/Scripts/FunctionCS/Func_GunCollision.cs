@@ -56,7 +56,7 @@ public class Func_GunCollision : MonoBehaviour
         {
             collision.gameObject.GetComponent<RawImage>().color = cleanColor;
             whiteList.Remove(collision.gameObject.GetComponent<RawImage>());
-            if(whiteList.Count <= 14 && skipOneRoundBtn.gameObject.activeSelf == false)
+            if(whiteList.Count <= 10 && skipOneRoundBtn.gameObject.activeSelf == false)
             {
                 skipOneRoundBtn.gameObject.SetActive(true);
             }
@@ -66,7 +66,7 @@ public class Func_GunCollision : MonoBehaviour
             collision.gameObject.GetComponent<RawImage>().color = Nothing;
             collision.gameObject.GetComponent<RawImage>().texture = null;
             cleanList.Remove(collision.gameObject.GetComponent<RawImage>());
-            if (cleanList.Count <= 14 && skipTwoRoundBtn.gameObject.activeSelf == false)
+            if (cleanList.Count <= 10 && skipTwoRoundBtn.gameObject.activeSelf == false)
             {
                 skipTwoRoundBtn.gameObject.SetActive(true);
             }

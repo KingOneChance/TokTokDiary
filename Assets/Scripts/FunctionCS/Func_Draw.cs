@@ -9,14 +9,10 @@ namespace FreeDraw
         [Header("===Frame shape check===")]
         [SerializeField] protected bool isCircleFrame = false;
         [SerializeField] protected float circleSize;
-
-        [SerializeField] GameObject linePrefab;
         [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
-        public Color curColor = Color.black;
+        [SerializeField] GameObject linePrefab;
         [SerializeField] EdgeCollider2D col;
-        List<Vector2> points = new List<Vector2>();
-
         [SerializeField] protected float drawingAreaMaxX = 0f;
         [SerializeField] protected float drawingAreaMinX = 0f;
         [SerializeField] protected float drawingAreaMaxY = 0f;
@@ -29,13 +25,13 @@ namespace FreeDraw
 
         [Header("===InitialClickPoisitionCheck===")]
         [SerializeField] protected bool internalClick = false;
-
         [SerializeField] protected bool isDragSticker = false;
         [SerializeField] protected bool isDiaryScene = false;
-        private GameObject tempOBJ;
         [SerializeField] protected bool onObject;
         [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
-
+        List<Vector2> points = new List<Vector2>();
+        public Color curColor = Color.black;
+        private GameObject tempOBJ;
         private float currentPenWidth = 0f;
 
     //    const float Min_Pen_Width = 0.1f;

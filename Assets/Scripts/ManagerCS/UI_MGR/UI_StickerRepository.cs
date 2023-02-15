@@ -32,8 +32,6 @@ public class UI_StickerRepository : MonoBehaviour
     private void Start()
     {
         path = Application.persistentDataPath;
-
-
     }
 
     public void OnClick_BubbleStickerRepository()
