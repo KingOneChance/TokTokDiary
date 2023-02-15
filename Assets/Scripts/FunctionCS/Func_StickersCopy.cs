@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using FreeDraw;
-
+using UnityEngine.UI;
 public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("===copy object===")]
@@ -12,6 +12,10 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private GameObject myGrandPa = null;
     [SerializeField] private GameObject myPos = null;
     [SerializeField] private Func_TodayFeelingImage drawObject = null;
+    [Header("===Texture===")]
+    [SerializeField] private RawImage mainSticker = null;
+    [SerializeField] private RawImage signSticker = null;
+
     private RectTransform myRectTransform;
     private RectTransform copyRectTransform;
     private RectTransform startTransform;
@@ -43,7 +47,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
         newSticker.AddComponent<Func_DragObject>();
-        newSticker.AddComponent<Func_DetectAttach>();
+        newSticker.AddComponent<Func_DetectOnSticker>();
+
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
         newSticker.transform.localScale *= 2;//new Vector3(220 / 160f, 220 / 160f, 220 / 160f);
         myRectTransform.position = myPos.transform.position;
