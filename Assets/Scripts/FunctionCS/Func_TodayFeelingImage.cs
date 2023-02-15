@@ -13,11 +13,11 @@ namespace FreeDraw
         [SerializeField] public Sprite Change_Image_Sad;
         [SerializeField] public Sprite Change_Image_Angry;
         [SerializeField] public GameObject TodayFeelingMenu = null;
-        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
         [SerializeField] public GameObject Helper;
-            
-        static Image ThisImage;
+        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
+        [SerializeField] private bool stickerMaking = false;
 
+        static Image ThisImage;
         private void Awake()
         {
             func_TodayFeelingImage = FindObjectOfType<Func_TodayFeelingImage>();
@@ -32,49 +32,57 @@ namespace FreeDraw
         {
             if (!func_TodayFeelingImage.ActiveTodayFeelingMenu() || Helper.activeSelf)
             {
-                if (CheckArea() == true)
+                if (CheckArea() == true && stickerMaking == false)
                 {
                     Draw();
                 }
-                
+
                 else
                 {
                     internalClick = false;
                 }
             }
         }
+        public void IsStickerMaking(bool state)
+        {
+            if (state == true) 
+                stickerMaking = true;
+            else
+                stickerMaking = false;
+        }
+
 
         public void Image_Excited()
         {
             ThisImage.sprite = Change_Image_Excited;
             TodayFeelingMenu.SetActive(false);
         }
-    
+
         public void Image_Happy()
         {
             ThisImage.sprite = Change_Image_Happy;
             TodayFeelingMenu.SetActive(false);
         }
-    
+
         public void Image_Calm()
         {
             ThisImage.sprite = Change_Image_Calm;
             TodayFeelingMenu.SetActive(false);
-            
+
         }
-    
+
         public void Image_Sad()
         {
             ThisImage.sprite = Change_Image_Sad;
             TodayFeelingMenu.SetActive(false);
         }
-    
+
         public void Image_Angry()
         {
             ThisImage.sprite = Change_Image_Angry;
             TodayFeelingMenu.SetActive(false);
         }
-    
+
         public void TodayFeeling_Menu()
         {
             TodayFeelingMenu.SetActive(true);
