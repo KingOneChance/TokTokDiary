@@ -15,6 +15,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     private new void OnEnable()
     {
+        base.OnEnable();
         alcoholLampPosImg.color = Vector4.one;
         bsManager.ActiveColortBucket(false);
         bsManager.InitColorBucket();

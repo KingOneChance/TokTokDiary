@@ -30,7 +30,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
     private int PanelIdx = 0;
     [SerializeField] private int colorType = 0;
     public int ColorType { get { return colorType; } private set { } }
-
+    private string file = "";
     #endregion
 
     protected override void Start()
@@ -69,7 +69,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 break;
 
             case 1:
-                string file = "";
+                file = "";
                 // StickerDesign.CurrentSticker : 0 -> turtle, 1 -> trueseal, 2 -> grampus
                 // colorType : 0 -> green, 1 -> pink, 2 -> blue
                 switch (StickerDesign.CurrentSticker)
@@ -203,6 +203,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
             NextButton.gameObject.SetActive(true);
             ActiveColortBucket(false);
         }
+        InitPanel();
     }
 
     public void OnClick_SelectColor(string color)
@@ -260,6 +261,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     IEnumerator SaveProcess(StickerType stickerType)
     {
+        saveFileName = file;
         base.OnClick_SaveImgae(stickerType);
         isSaveDone = false;
         yield return new WaitUntil(() => isSaveDone == true);
