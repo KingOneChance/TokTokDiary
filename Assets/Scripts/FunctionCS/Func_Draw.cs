@@ -21,6 +21,10 @@ namespace FreeDraw
         [SerializeField] protected float writingAreaMinX = 0f;
         [SerializeField] protected float writingAreaMaxY = 0f;
         [SerializeField] protected float writingAreaMinY = 0f;
+        [SerializeField] protected float titleAreaMaxX = 0f;
+        [SerializeField] protected float titleAreaMinX = 0f;
+        [SerializeField] protected float titleAreaMaxY = 0f;
+        [SerializeField] protected float titleAreaMinY = 0f;
         [SerializeField] protected Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
@@ -136,10 +140,14 @@ namespace FreeDraw
                 if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
                     curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY ||
                     curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
-                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY ||
+                    curTouchPos.x < titleAreaMaxX && curTouchPos.y < titleAreaMaxY &&
+                    curTouchPos.x > titleAreaMinX && curTouchPos.y > titleAreaMinY)
                 {
                     if (curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
-                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                        curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY ||
+                        curTouchPos.x < titleAreaMaxX && curTouchPos.y < titleAreaMaxY &&
+                        curTouchPos.x > titleAreaMinX && curTouchPos.y > titleAreaMinY)
                     {
                         currentPenWidth = 0.05f;
                     }

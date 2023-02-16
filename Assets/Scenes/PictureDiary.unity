@@ -14081,6 +14081,10 @@ MonoBehaviour:
   writingAreaMinX: -1.3
   writingAreaMaxY: -2.2
   writingAreaMinY: -4.2
+  titleAreaMaxX: 5
+  titleAreaMinX: 0
+  titleAreaMaxY: 4.5
+  titleAreaMinY: 3.8
   mainCam: {fileID: 1359955307}
   internalClick: 0
   isDragSticker: 0
@@ -35978,6 +35982,7 @@ MonoBehaviour:
   bubbleStickerList: []
   recordingStickerList: []
   recordingSignList: []
+  recordingFileList: []
   bubbleGunStickerList: []
   bubbleFreeStickerList: []
 --- !u!1 &2116987573
