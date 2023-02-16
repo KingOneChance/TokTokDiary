@@ -5619,14 +5619,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: cfa5b3da4bb36554b8b0e73e40dcec0d, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -13042,7 +13042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &751904790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24068,14 +24068,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 93cafe9df6b45c94989e965fef81c534, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -24668,7 +24668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35823,6 +35823,7 @@ GameObject:
   - component: {fileID: 2116387888}
   - component: {fileID: 2116387887}
   - component: {fileID: 2116387889}
+  - component: {fileID: 2116387890}
   m_Layer: 0
   m_Name: PictureDiaryManager
   m_TagString: Untagged
@@ -35871,6 +35872,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui_Stikcers: []
   soapBubble: {fileID: 1034301098}
+--- !u!114 &2116387890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116387886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b8b76bb37f5524eb7a7e078ac8edc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainStickers:
+  - {fileID: 1425523917}
+  - {fileID: 1022845173}
+  - {fileID: 1935584531}
+  - {fileID: 335846538}
+  - {fileID: 376608626}
+  - {fileID: 1793396629}
+  - {fileID: 686247863}
+  - {fileID: 975221185}
+  - {fileID: 2069775677}
+  - {fileID: 1628774431}
+  - {fileID: 218923}
+  - {fileID: 669524827}
+  signStickers:
+  - {fileID: 304002934}
+  - {fileID: 839050170}
+  - {fileID: 1057081443}
+  - {fileID: 923612941}
+  - {fileID: 1523923273}
+  - {fileID: 947458677}
+  - {fileID: 622904789}
+  - {fileID: 1784517981}
+  - {fileID: 1389338389}
+  - {fileID: 1017696183}
+  - {fileID: 2008800316}
+  - {fileID: 2107987768}
+  mainTextrue: {fileID: 0}
+  signTextrue: {fileID: 0}
+  ui_myParent: {fileID: 0}
+  stickerPrefab: {fileID: 0}
+  ui_RecordSubStickers: []
+  bubbleStickerList: []
+  recordingStickerList: []
+  recordingSignList: []
+  bubbleGunStickerList: []
+  bubbleFreeStickerList: []
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
