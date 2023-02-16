@@ -129,7 +129,6 @@ public class UI_StickerRepository : MonoBehaviour
                 Destroy(MakingObj[i].gameObject);
                 MakingObj.RemoveAt(i);
             }
-
         }
         
         MakingObj.Clear();
