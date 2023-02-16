@@ -69,13 +69,12 @@ public class Manager_DiaryCase : MonoBehaviour
             {
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
+                texture.name = filename;
                 if (allFilesDictionary.ContainsKey(filename))
                 {
                     continue;
                 }
                 allFilesDictionary.Add(filename, texture);
-                allFilesTexture.Add(texture);
-                allFilesNames.Add(filename);
             }
         }
         presentNum = allFiles.Count-1;
@@ -130,13 +129,6 @@ public class Manager_DiaryCase : MonoBehaviour
         previewImg.texture = allFilesTexture[presentNum];
     }
 
-    public void ShowPreviewDate(Texture fileTexture)
-    {
-        for (int i = 0; i < allFilesTexture.Count; i++)
-        {
 
-        }
-
-    }
 
 }
