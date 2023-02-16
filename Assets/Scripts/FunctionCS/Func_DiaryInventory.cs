@@ -12,13 +12,10 @@ public class Func_DiaryInventory : MonoBehaviour
     // 기본으로 깔리는 이미지
     [SerializeField] private List<RawImage> mainStickers = null;
     [SerializeField] private List<RawImage> signStickers = null;
-    [SerializeField] private Texture mainTextrue ;
-    [SerializeField] private Texture signTextrue ;
     //부모 위치
     [SerializeField] private GameObject ui_myParent = null;
     //비눗방을 프리팹 
     [SerializeField] private GameObject stickerPrefab = null;
-    [SerializeField] private RawImage[] ui_RecordSubStickers = null;
 
     public List<string> bubbleStickerList = new List<string>();
     public List<string> recordingStickerList = new List<string>();
@@ -38,10 +35,10 @@ public class Func_DiaryInventory : MonoBehaviour
     {
         LoadLocalSticker(bubbleStickerList);
     }
-    public void OnClick_RecordingStickerRepository() //사실상 쓸일 없음
-    {
-        LoadLocalSticker(recordingStickerList);
-    }
+    /* public void OnClick_RecordingStickerRepository() //사실상 쓸일 없음
+     {
+         LoadLocalSticker(recordingStickerList);
+     }*/
     public void OnClick_RecordFileRepository()
     {
         LoadLocalSticker(recordingStickerList, recordingSignList);
@@ -117,15 +114,26 @@ public class Func_DiaryInventory : MonoBehaviour
     /// <param name="anyList2">Insert signList</param>
     private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
+        for (int i = 0; i < mainStickers.Count;i++)
+        {
+            if (mainStickers[i].gameObject.activeSelf == false) break; //메인스티커나 서명 스티커 하나만 꺼져도 꺼져있는 상태
+            mainStickers[i].texture = null;
+            signStickers[i].texture = null;
+            mainStickers[i].color = new Color(255, 255, 255, 0);
+            signStickers[i].color = new Color(255, 255, 255, 0); //메인, 서명 스티커 텍스쳐 빼고 투명화
+        }
+
+
         //12이상 채워진 텍스쳐들 삭제하는 로직
         if (anyList.Count < 12)
         {
             for (int i = mainStickers.Count - 1; i > 11; --i)
             {
+
                 mainStickers[i].texture = null;
                 signStickers[i].texture = null;
-                mainStickers[i].color = new Color(255,255,255,0);
-                signStickers[i].color = new Color(255,255,255,0); //메인, 서명 스티커 텍스쳐 빼고 투명화
+                mainStickers[i].color = new Color(255, 255, 255, 0);
+                signStickers[i].color = new Color(255, 255, 255, 0); //메인, 서명 스티커 텍스쳐 빼고 투명화
 
                 mainStickers[i].gameObject.SetActive(false); //끄기
             }
@@ -139,8 +147,8 @@ public class Func_DiaryInventory : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     GameObject temp = Instantiate(stickerPrefab, ui_myParent.transform);
-                    temp.transform.TryGetComponent<RawImage>(out newMainSticker);
-                    temp.transform.GetChild(0).TryGetComponent<RawImage>(out newSignSticker);
+                    temp.transform.GetChild(1).TryGetComponent<RawImage>(out newMainSticker);
+                    temp.transform.GetChild(1).transform.GetChild(0).TryGetComponent<RawImage>(out newSignSticker);
                     mainStickers.Add(newMainSticker);
                     signStickers.Add(newSignSticker);
                 }
@@ -157,7 +165,7 @@ public class Func_DiaryInventory : MonoBehaviour
                 texture.LoadImage(byteTexture);
 
                 mainStickers[i].texture = texture;
-                mainStickers[i].color = new Color(255,255,255,255);
+                mainStickers[i].color = new Color(255, 255, 255, 255);
             }
             if (anyList2 != null)
             {
@@ -169,7 +177,6 @@ public class Func_DiaryInventory : MonoBehaviour
 
                     signStickers[i].texture = texture2;
                     signStickers[i].color = new Color(255, 255, 255, 255);
-
                 }
             }
         }
