@@ -73,5 +73,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         // Use Sticker
         Manager_Main.Instance.UseSticker(stickerName);
         //gameObject.transform.localScale = Vector3.one;
+
+        Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
     }
 }
