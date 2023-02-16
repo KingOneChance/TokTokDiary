@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Manager_Audio : MonoBehaviour
@@ -216,5 +217,32 @@ public class Manager_Audio : MonoBehaviour
             Debug.LogError("No Exist AudioSourceComponent Please Check");
             return;
         }        
+    }
+
+    public void PlayLocalSound(string ClipName, GameObject ObjToPlaySound, bool playLoop)
+    {
+        // Check AudioSource Component and set loop
+        AudioSource audioSource = null;
+        if (ObjToPlaySound.TryGetComponent(out AudioSource source))
+        {
+            audioSource = source;
+            audioSource.playOnAwake = false;
+            audioSource.loop = playLoop;
+            audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            // Check AudioClip to play And PlaySound
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+        else
+        {
+            ObjToPlaySound.AddComponent<AudioSource>();
+            audioSource = ObjToPlaySound.GetComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = playLoop;
+            audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            // Check AudioClip to play And PlaySound
+            audioSource.PlayOneShot(audioSource.clip);
+            Debug.LogError("No Exist AudioSourceComponent Please Check");
+            return;
+        }
     }
 }
