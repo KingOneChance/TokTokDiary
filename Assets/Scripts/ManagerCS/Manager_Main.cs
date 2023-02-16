@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Scripting;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -44,6 +45,13 @@ public class Manager_Main : MonoBehaviour
 
     [field: SerializeField]
     [SerializeField] public GameObject ui_StickerRepositoryPrefab { get; private set; }
+
+    [Header("AudioManager")]
+    #region Audio Management
+    private Manager_Audio _AudioManager = null;
+    private void InitAudioManager() => _AudioManager = GetComponent<Manager_Audio>();
+    public Manager_Audio GetAudio() => _AudioManager;
+    #endregion
 
     [Header("===NumberOfStickers===")]
     [SerializeField] private int getBubbleGunStickerNum = 0;
@@ -86,30 +94,9 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        //SetResolution(); // Init Resolution
+        InitAudioManager();
     }
 
-    public void SetResolution()
-    {
-        int setWidth = 1920; // Resoulution Width
-        int setHeight = 1080; // Resoulution Height
-
-        int deviceWidth = Screen.width; // Device Width
-        int deviceHeight = Screen.height; // Device Height
-
-        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true);
-
-        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // Device resolution > (1920 / 1080)
-        {
-            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // new Width
-            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // new Rect
-        }
-        else // Device resolution < (1920 / 1080)
-        {
-            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // new Height
-            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // new Rect
-        }
-    }
     private void Update()
     {
         // Check user input every frame
