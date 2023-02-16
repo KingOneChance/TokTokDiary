@@ -3731,7 +3731,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116387890}
+        m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
+        m_MethodName: OnClick_RecordFileRepository
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &183142551
 GameObject:
@@ -5075,7 +5087,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116387890}
+        m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
+        m_MethodName: OnClick_BubbleGunStickerRepository
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &270915064
 GameObject:
@@ -16384,7 +16408,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116387890}
+        m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
+        m_MethodName: OnClick_BubbleFreeStickerRepository
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &947458675
 GameObject:
@@ -17644,8 +17680,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 644943307}
   m_HandleRect: {fileID: 644943306}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.5952381
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24011,7 +24047,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116387890}
+        m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
+        m_MethodName: OnClick_BubbleFreeStickerRepository
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1425523915
 GameObject:
@@ -34532,6 +34580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2043944009}
   - component: {fileID: 2043944010}
+  - component: {fileID: 2043944011}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -34595,6 +34644,20 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 40}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &2043944011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043944008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &2044433970
 GameObject:
   m_ObjectHideFlags: 0
@@ -35910,11 +35973,8 @@ MonoBehaviour:
   - {fileID: 1017696183}
   - {fileID: 2008800316}
   - {fileID: 2107987768}
-  mainTextrue: {fileID: 0}
-  signTextrue: {fileID: 0}
-  ui_myParent: {fileID: 0}
-  stickerPrefab: {fileID: 0}
-  ui_RecordSubStickers: []
+  ui_myParent: {fileID: 2043944008}
+  stickerPrefab: {fileID: 1466256424}
   bubbleStickerList: []
   recordingStickerList: []
   recordingSignList: []

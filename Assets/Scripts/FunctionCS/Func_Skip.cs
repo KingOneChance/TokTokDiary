@@ -28,6 +28,7 @@ public class Func_Skip : MonoBehaviour
             if (checkImages[i].texture.name.Contains("messy"))
             {
                 func_GunCollision.ChangeImage(checkImages[i].texture.name, checkImages[i].gameObject);
+                //이펙트 및 스킵 사운드
             }
             yield return new WaitForSeconds(0f);
         }
@@ -42,15 +43,18 @@ public class Func_Skip : MonoBehaviour
     }
     IEnumerator WaitlittleTimePop()
     {
-        for (int i = 0; i < func_GunCollision.cleanList.Count; i++)
+        while(func_GunCollision.cleanList.Count != 0)
         {
-            if (func_GunCollision.cleanList[i].texture.name.Contains("clean"))
+            int randnum =Random.Range(0, func_GunCollision.cleanList.Count);
+            
+            if (func_GunCollision.cleanList[randnum].texture.name.Contains("clean") && func_GunCollision.cleanList[randnum].gameObject.activeSelf== true)
             {
-                func_GunCollision.cleanList[i].color = Nothing;
+                func_GunCollision.cleanList[randnum].color = Nothing;
+                func_GunCollision.cleanList.RemoveAt(randnum);
+                //이펙트 및 비눗방울 터지는 사운드
             }
             yield return new WaitForSeconds(0.2f);
         }
-
         func_GunCollision.cleanList.Clear();         
         func_GunCollision.RoundFinish();
         
