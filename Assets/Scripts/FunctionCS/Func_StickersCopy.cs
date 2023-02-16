@@ -16,15 +16,18 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private RawImage mainSticker = null;
     [SerializeField] private RawImage signSticker = null;
 
+    
     private RectTransform myRectTransform;
     private RectTransform copyRectTransform;
     private RectTransform startTransform;
     private Vector2 mousePos = Vector2.zero;
+    private string stickerName = "";
 
     private void Start()
     {
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
+        stickerName = GetComponent<RawImage>().texture != null ? GetComponent<RawImage>().texture.name : "";
     }
     public void OnClick_MakeClone()
     {
@@ -67,6 +70,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
+        // Use Sticker
+        Manager_Main.Instance.UseSticker(stickerName);
         //gameObject.transform.localScale = Vector3.one;
     }
 }
