@@ -11,7 +11,8 @@ namespace FreeDraw
         [SerializeField] protected float circleSize;
         [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
-        [SerializeField] GameObject linePrefab;
+        [SerializeField] protected GameObject linePrefab;
+        [SerializeField] protected GameObject obj;
         [SerializeField] EdgeCollider2D col;
         [SerializeField] protected float drawingAreaMaxX = 0f;
         [SerializeField] protected float drawingAreaMinX = 0f;
@@ -49,7 +50,7 @@ namespace FreeDraw
                 onObject = false;
         }
 
-        private void Awake()
+        protected void Awake()
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
@@ -61,7 +62,7 @@ namespace FreeDraw
             currentPenWidth = 0.3f;
         }
 
-        private void Update()
+        protected void Update()
         {
             if (onObject == false)
             {
@@ -80,7 +81,7 @@ namespace FreeDraw
             {
                 SData_NodeData temp = new SData_NodeData();
                 internalClick = true;
-                GameObject obj = Instantiate(linePrefab);
+                obj = Instantiate(linePrefab);
                 obj.tag = "Line";
                 tempOBJ = obj;
                 line = obj.GetComponent<LineRenderer>();
