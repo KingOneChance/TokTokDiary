@@ -55,7 +55,20 @@ public class Func_CalendarController : MonoBehaviour
         }
         stickers.AddRange(GameObject.FindGameObjectsWithTag("DiarySticker"));
         CreateCalendar();
-       
+
+        DateTime today = DateTime.Today;
+
+        string todayMonth = today.Month.ToString();
+        string todayYear = today.Year.ToString();
+        string todayDay = today.Day.ToString();
+        string year = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[0];
+        string month = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[1];
+        string day = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[2];
+        if (todayYear == year && todayMonth == month && todayDay == day)
+        {
+            ShowPreviewDate(year, month, day );
+        }
+        
     }
     
     TextMeshProUGUI label = null;
@@ -153,6 +166,7 @@ public class Func_CalendarController : MonoBehaviour
        
 
         TurnOnSticker();
+ 
     }
 
     private int GetDays(DayOfWeek day)
@@ -252,10 +266,17 @@ public class Func_CalendarController : MonoBehaviour
 
         }
     }
-    
-    private void ShowPrevieDate()
+    //preview에있는 이미지
+    public void ShowPreviewDate(string year, string month, string day)
     {
+      /*  year = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[0];
+        month = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[1];
+        day = manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[2];
+*/
+        preViewDate[0].text = year;
+        preViewDate[1].text = month;
+        preViewDate[2].text = day;
+        
 
-        //preViewDate[0].text = ;
     }
 }

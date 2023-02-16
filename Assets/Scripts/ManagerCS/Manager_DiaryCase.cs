@@ -75,6 +75,7 @@ public class Manager_DiaryCase : MonoBehaviour
                     continue;
                 }
                 allFilesDictionary.Add(filename, texture);
+                allFilesTexture.Add(texture);
             }
         }
         presentNum = allFiles.Count-1;
@@ -91,19 +92,12 @@ public class Manager_DiaryCase : MonoBehaviour
 
     public void ShowPreviewDiary()
     {
-        DateTime today = DateTime.Today;
+         int lastDiary = allFiles.Count - 1;
 
-        string month = today.Month.ToString();
-        string year = today.Year.ToString();
-        string day = today.Day.ToString();
-
-        string fileName = year + "_" + month + "_" + day;
-
-
-        if (allFilesDictionary.ContainsKey(fileName+"-1"))
+        /*if (allFilesDictionary[lastDiary].)
         {
-            previewImg.texture = allFilesDictionary[fileName+"-1"];
-        }
+            previewImg.texture = allFilesDictionary[fileName+"-2"];
+        }*/
         
     }
     public void OnClick_PrevDiary()
@@ -115,9 +109,10 @@ public class Manager_DiaryCase : MonoBehaviour
             return;
         }
         previewImg.texture = allFilesTexture[presentNum];
-/*        func_CalendarController.preViewDate[0].text = ;
-        func_CalendarController.preViewDate[1].text = ;
-        func_CalendarController.preViewDate[2].text = ;*/
+        string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
+        string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
+        string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        func_CalendarController.ShowPreviewDate(year, month, day);
     }
     public void OnClick_NextDiary()
     {
@@ -127,6 +122,11 @@ public class Manager_DiaryCase : MonoBehaviour
             presentNum = allFiles.Count-1;
         }
         previewImg.texture = allFilesTexture[presentNum];
+        string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
+        string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
+        string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        Debug.Log(year + month + day);
+        func_CalendarController.ShowPreviewDate(year, month, day);
     }
 
 
