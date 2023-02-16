@@ -12,6 +12,7 @@ public class Func_DiaryInventory : MonoBehaviour
     // 기본으로 깔리는 이미지
     [SerializeField] private List<RawImage> mainStickers = null;
     [SerializeField] private List<RawImage> signStickers = null;
+    [SerializeField] private List<string> recordFileName = null;
     //부모 위치
     [SerializeField] private GameObject ui_myParent = null;
     //비눗방을 프리팹 
@@ -57,6 +58,14 @@ public class Func_DiaryInventory : MonoBehaviour
         {
             return;
         }
+        string[] allRecord = Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories);
+        if(allRecord.Length!=0)
+        {
+            foreach (string file in allRecord)
+            {
+                recordFileName.Add(file);
+            }
+        }
         //List Initiate for rearrange;
         bubbleStickerList.Clear();
         recordingStickerList.Clear();
@@ -100,7 +109,6 @@ public class Func_DiaryInventory : MonoBehaviour
                 }
             }
         }
-
     }
 
     RawImage newMainSticker, newSignSticker;
