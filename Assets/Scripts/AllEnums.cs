@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum StickerType
 {
+    None,
     BubbleGunSticker,
     FreeSticker,
-    AudioSticker,
+    RecordSticker,
     SignSticker,
     BubbleSticker,
     Diary

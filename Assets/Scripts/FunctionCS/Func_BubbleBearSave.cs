@@ -26,7 +26,7 @@ public class Func_BubbleBearSave : Func_SaveSticker
     //It will be called when the sign image drop on the hedgehog image
     public void SaveAll()
     {
-        base.OnClick_SaveImgae(StickerType.AudioSticker);
+        base.OnClick_SaveImgae(StickerType.RecordSticker);
     }
     public void TextureChange()
     {
@@ -38,7 +38,7 @@ public class Func_BubbleBearSave : Func_SaveSticker
         saveFileName = "RecordingSticker";
         widthValue = 660;
         heightValue = 1000;
-        SaveTexture(StickerType.AudioSticker);
+        SaveTexture(StickerType.RecordSticker);
 
         saveTemp = signTempImage;
         saveFileName = "RecordingSign";

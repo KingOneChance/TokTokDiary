@@ -107,7 +107,7 @@ public class Func_SaveSticker : MonoBehaviour
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleStickerFolder}/", saveFileName);
                 Manager_Main.Instance.SaveSticker(saveFileName);
                 break;
-            case StickerType.AudioSticker:
+            case StickerType.RecordSticker:
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum,1);
