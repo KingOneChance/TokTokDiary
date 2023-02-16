@@ -25,20 +25,21 @@ public enum ColorType
     Black,
     Eraser
 }
-public enum NiddleType
+public enum MouseType
 {
     None,
-    Niddle
-}
-public enum SoupBubbleType
-{
-    Soap,
-    Attached
+    Niddle,
+    BubbleStick,
 }
 public enum StickType
 {
     None,
     Stick
+}
+public enum SoupBubbleType
+{
+    Soap,
+    Attached
 }
 public enum CreateStickerState
 {
@@ -69,4 +70,14 @@ public enum AccessoryType
     HeadPalmtree,
     HeadBand,
     None
+}
+public enum SoundType
+{ 
+    BubbleBear, 
+    BubbleSticker,
+    BubbleGun,
+    DiaryCase,
+    Common, 
+    FreeSticker,
+    Touch
 }

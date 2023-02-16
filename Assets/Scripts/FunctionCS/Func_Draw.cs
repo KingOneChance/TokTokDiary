@@ -146,7 +146,7 @@ namespace FreeDraw
 
                     else
                     {
-                        currentPenWidth = Pen_Width.value;
+                        currentPenWidth = 0.3f;
                     }
 
                     return true;
