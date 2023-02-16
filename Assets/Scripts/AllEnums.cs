@@ -71,3 +71,13 @@ public enum AccessoryType
     HeadBand,
     None
 }
+public enum SoundType
+{ 
+    BubbleBear, 
+    BubbleSticker,
+    BubbleGun,
+    DiaryCase,
+    Common, 
+    FreeSticker,
+    Touch
+}
