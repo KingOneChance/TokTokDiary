@@ -130,7 +130,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleGunStickerNum = allFiles.Length;
             return getBubbleGunStickerNum;
         }
@@ -144,7 +144,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleStickerNum = allFiles.Length;
             return getBubbleStickerNum;
         }

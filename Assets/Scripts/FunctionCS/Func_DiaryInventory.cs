@@ -20,6 +20,7 @@ public class Func_DiaryInventory : MonoBehaviour
     public List<string> bubbleStickerList = new List<string>();
     public List<string> recordingStickerList = new List<string>();
     public List<string> recordingSignList = new List<string>();
+    public List<string> recordingFileList = new List<string>();
     public List<string> bubbleGunStickerList = new List<string>();
     public List<string> bubbleFreeStickerList = new List<string>();
 
@@ -29,16 +30,13 @@ public class Func_DiaryInventory : MonoBehaviour
     {
         path = Application.persistentDataPath;
         RepositoryListOpen(); //그림일기씬 오픈시 실행
+        OnClick_BubbleFreeStickerRepository(); //처음 인벤토리 오픈
     }
 
     public void OnClick_BubbleStickerRepository()
     {
         LoadLocalSticker(bubbleStickerList);
     }
-    /* public void OnClick_RecordingStickerRepository() //사실상 쓸일 없음
-     {
-         LoadLocalSticker(recordingStickerList);
-     }*/
     public void OnClick_RecordFileRepository()
     {
         LoadLocalSticker(recordingStickerList, recordingSignList);
@@ -65,6 +63,7 @@ public class Func_DiaryInventory : MonoBehaviour
         recordingSignList.Clear();
         bubbleGunStickerList.Clear();
         bubbleFreeStickerList.Clear();
+        recordingFileList.Clear(); //wav file
         for (int i = 0; i < allFiles.Length; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);

@@ -147,7 +147,7 @@ public class Func_SaveSticker : MonoBehaviour
         Graphics.Blit(texture, copiedRenderTexture);
         RenderTexture.active = copiedRenderTexture;
 
-        Texture2D texture2D = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
+        Texture2D texture2D = new Texture2D(widthValue, heightValue, TextureFormat.ARGB32, false);
         texture2D.ReadPixels(new Rect(0, 0, widthValue, heightValue), 0, 0);
         texture2D.Apply();
 
