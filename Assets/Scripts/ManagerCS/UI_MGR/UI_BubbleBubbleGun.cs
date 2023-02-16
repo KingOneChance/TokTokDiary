@@ -13,8 +13,10 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     [SerializeField] private RawImage[] blacks = null;
     //마우스 커서 이미지
     [SerializeField] private Texture2D bubbleStickImage = null;
+
     //충돌처리해주는 이미지
     [SerializeField] private RawImage followImage = null;
+    [SerializeField] private GameObject followObject = null;
 
     //마지막 획득 스티커
     [SerializeField] private Image sticker = null;
@@ -42,6 +44,7 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     void Update()
     {
         followImage.transform.position = Input.mousePosition;
+        followObject.transform.position = Input.mousePosition;
     }
     //restart버튼
     public void OnClick_Restart()
@@ -51,7 +54,7 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     public void TobeSticker()
     {
         randImages[randStickerNum].gameObject.GetComponent<Button>().interactable = true;
-       // func_GunCollision.OnClickSticker();
+       //func_GunCollision.OnClickSticker();
     }
 
 }

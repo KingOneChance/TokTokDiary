@@ -7,11 +7,10 @@ public class Func_Skip : MonoBehaviour
 {
     [SerializeField] RawImage[] checkImages = null;
 
-    private Color middleColor = new Color(0, 0, 0, 180f / 255f);
-    private Color cleanColor = new Color(1, 1, 1, 1);
+
     private Color Nothing = new Color(255 / 255, 255 / 255, 255 / 255, 0);
 
-    Func_GunCollision func_GunCollision = null;
+    private Func_GunCollision func_GunCollision = null;
     private void Start()
     {
         func_GunCollision = FindObjectOfType<Func_GunCollision>();
@@ -20,22 +19,22 @@ public class Func_Skip : MonoBehaviour
     public void OnClick_SkipRoundOne()
     {   
         StartCoroutine(WaitlittleTime());
-        
     }
 
     IEnumerator WaitlittleTime()
     {
-        for (int i = 0; i < func_GunCollision.whiteList.Count; i++)
+        for (int i = 0; i < checkImages.Length; i++)
         {
-            if (func_GunCollision.whiteList[i].color == middleColor)
+            if (checkImages[i].texture.name.Contains("messy"))
             {
-                func_GunCollision.whiteList[i].color = cleanColor;
+                func_GunCollision.ChangeImage(checkImages[i].texture.name, checkImages[i].gameObject);
             }
             yield return new WaitForSeconds(0f);
         }
 
         func_GunCollision.whiteList.Clear();
-        func_GunCollision.allPop = true;
+        func_GunCollision.AllPopChange();
+
     }
     public void OnClick_SkipRoundTwo()
     {
@@ -45,7 +44,7 @@ public class Func_Skip : MonoBehaviour
     {
         for (int i = 0; i < func_GunCollision.cleanList.Count; i++)
         {
-            if (func_GunCollision.cleanList[i].color == cleanColor)
+            if (func_GunCollision.cleanList[i].texture.name.Contains("clean"))
             {
                 func_GunCollision.cleanList[i].color = Nothing;
             }

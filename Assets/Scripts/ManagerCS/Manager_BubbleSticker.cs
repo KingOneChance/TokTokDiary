@@ -23,11 +23,13 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private RectTransform[] colorBucketsRect = null;
     [SerializeField] private RectTransform[] colorBucketsInitPos = null;
     [SerializeField] private Toggle[] colorBucketToggles = null;
+    [SerializeField] private RawImage[] colorBeakersImgs = null;
     #endregion
 
     #region AnotherVariables
     private int PanelIdx = 0;
     [SerializeField] private int colorType = 0;
+    public int ColorType { get { return colorType; } private set { } }
 
     #endregion
 
@@ -43,7 +45,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
         colorType = 0;
         BackButton.gameObject.SetActive(false);
         NextButton.gameObject.SetActive(true);
-        NextButton.interactable = true;
 
         for(int i = 0; i < colorBucketTitlts.Length; ++i)
         {
@@ -55,11 +56,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
             Panels[i].SetActive(false);
         }
         Panels[0].SetActive(true);
-
-        for (int i = 0; i < colorBucketToggles.Length; i++)
-        {
-            colorBucketToggles[i].interactable = false;
-        }
 
         ActiveColortBucket(false);
     }
@@ -153,39 +149,60 @@ public class Manager_BubbleSticker : Func_SaveSticker
         }
     }
 
-    private void ReadyColorBucket()
-    {
-        for (int i = 0; i < colorBucketToggles.Length; i++)
-        {
-            colorBucketToggles[i].interactable = true;
-        }
-    }
-
     public void OnClick_NextBtn()
     {
         DecideDesignAndColor();
         BackButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
-        NextButton.interactable = false;
         Panels[PanelIdx + 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
         PanelIdx++;
+        NextButton.gameObject.SetActive(false);
+        InitPanel();
+    }
+
+    private void InitPanel()
+    {
+        switch (PanelIdx)
+        {
+            case 0:
+
+                break;
+
+            case 1:
+                colorBeakersImgs[0].gameObject.SetActive(true);
+                colorBeakersImgs[1].gameObject.SetActive(false);
+                colorBeakersImgs[2].gameObject.SetActive(false);
+                colorBeakersImgs[3].gameObject.SetActive(false);
+                colorBeakersImgs[4].gameObject.SetActive(false);
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+        }
     }
 
     public void OnClick_BackBtn()
     {
         if(PanelIdx == 2) ActiveColortBucket(false);
-        NextButton.gameObject.SetActive(true);
         if (PanelIdx - 1 == 0) BackButton.gameObject.SetActive(false);
         Panels[PanelIdx - 1].SetActive(true);
         Panels[PanelIdx].SetActive(false);
         PanelIdx--;
         if (PanelIdx == 0)
         {
-            NextButton.interactable = true;
+            NextButton.gameObject.SetActive(true);
             ActiveColortBucket(false);
         }
-        else NextButton.interactable = false;
     }
 
     public void OnClick_SelectColor(string color)
@@ -217,6 +234,16 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 colorBucketsRect[i].position = colorBucketsInitPos[i].position;
                 colorBucketsRect[i].localEulerAngles = Vector3.zero;
             }
+        }
+    }
+
+    public void InitColorBucket()
+    {
+        for (int i = 0; i < colorBucketTitlts.Length; i++)
+        {
+            colorBucketTitlts[i].enabled = false;
+            colorBucketsRect[i].position = colorBucketsInitPos[i].position;
+            colorBucketsRect[i].localEulerAngles = Vector3.zero;
         }
     }
 

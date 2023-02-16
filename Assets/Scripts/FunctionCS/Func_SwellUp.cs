@@ -9,25 +9,17 @@ public class Func_SwellUp : MonoBehaviour
 {
     [SerializeField] private RawImage SwellUpImg = null;
     [SerializeField] private Button SwellUpButton = null;
-    [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
     [SerializeField] private Manager_BubbleSticker manager_bs;
-    private GameObject backGround = null;
     [SerializeField] private GameObject GetBubbleStickerPanel = null;
     [SerializeField] private GameObject curPanel = null;
     [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
     private int curIdx = 0;
 
-    private void Start()
-    {
-        backGround = manager_bs.BackGround;
-    }
-
     private void OnEnable()
     {
         SkipButton.gameObject.SetActive(true);
-        NextButton.gameObject.SetActive(false);
     }
 
     private void OnDisable()
