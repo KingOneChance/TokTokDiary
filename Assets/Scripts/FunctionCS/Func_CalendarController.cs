@@ -16,7 +16,7 @@ public class Func_CalendarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _monthStrText;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
-    [SerializeField] TextMeshProUGUI[] preViewDate = null;
+    [SerializeField] public TextMeshProUGUI[] preViewDate = null;
 
     private DateTime _dateTime;
 
@@ -32,7 +32,7 @@ public class Func_CalendarController : MonoBehaviour
     {
         manager_DiaryCase = FindObjectOfType<Manager_DiaryCase>();
         Init();
-        ShowPreviewDate( manager_DiaryCase.previewImg.texture);
+
     }
 
     private void Init()
@@ -220,17 +220,17 @@ public class Func_CalendarController : MonoBehaviour
             manager_DiaryCase.previewImg.texture = null;
             manager_DiaryCase.previewText.gameObject.SetActive(true);
         }
-        for(int i=0; i < manager_DiaryCase.allFilesList.Count; i++)
+        for(int i=0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
-            if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesList[i])
+            if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesTexture[i])
             {
                 manager_DiaryCase.presentNum = i;
             }
         }
     }
+    //일기가 있는 날짜에 스티커 켜주기
     private void TurnOnSticker()
     {
-        Debug.Log("확인용");
         string fileName = "";
 
         for (int k = 0; k < manager_DiaryCase.allFiles.Count; k++)
@@ -252,21 +252,5 @@ public class Func_CalendarController : MonoBehaviour
 
         }
     }
-    public void ShowPreviewDate(Texture texture)
-    {
-        Debug.Log(texture.name);
-        if (texture == null)
-        {
-            preViewDate[0].text = "년";
-            preViewDate[1].text = "월";
-            preViewDate[2].text = "일";
-        }
-        else
-        {
-            preViewDate[0].text = texture.name.Split("-")[0].Split("_")[0] + "년";
-            preViewDate[1].text = texture.name.Split("-")[0].Split("_")[1] + "월";
-            preViewDate[2].text = texture.name.Split("-")[0].Split("_")[2] + "일";
-        }
-    }
-
+    
 }

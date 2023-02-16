@@ -19,11 +19,10 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] public TextMeshProUGUI previewText = null;
 
     public Dictionary<string, Texture> allFilesDictionary = new Dictionary<string, Texture>();
-    public List<Texture> allFilesList = new List<Texture>();
+    public List<Texture> allFilesTexture = new List<Texture>();
+    public List<string> allFilesNames = new List<string>();
     [SerializeField] private string selectedProfileName = "";
     [SerializeField] private string selectedProfilPath = "";
-
-
 
     Func_CalendarController func_CalendarController;
 
@@ -34,9 +33,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
-        func_CalendarController = FindObjectOfType<Func_CalendarController>();
-
-       
+        func_CalendarController = FindObjectOfType<Func_CalendarController>();   
     }
 
     public void OnClick_Profile(int idx)
@@ -52,7 +49,7 @@ public class Manager_DiaryCase : MonoBehaviour
     private void AddDiaryFiles()
     {
 
-        allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.TopDirectoryOnly));
+        allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories));
 
         string filename = "";
         if (allFiles.Count == 0)
@@ -77,7 +74,8 @@ public class Manager_DiaryCase : MonoBehaviour
                     continue;
                 }
                 allFilesDictionary.Add(filename, texture);
-                allFilesList.Add(texture);
+                allFilesTexture.Add(texture);
+                allFilesNames.Add(filename);
             }
         }
         presentNum = allFiles.Count-1;
@@ -102,6 +100,7 @@ public class Manager_DiaryCase : MonoBehaviour
 
         string fileName = year + "_" + month + "_" + day;
 
+
         if (allFilesDictionary.ContainsKey(fileName+"-1"))
         {
             previewImg.texture = allFilesDictionary[fileName+"-1"];
@@ -116,7 +115,10 @@ public class Manager_DiaryCase : MonoBehaviour
             presentNum = 0;
             return;
         }
-        previewImg.texture = allFilesList[presentNum];
+        previewImg.texture = allFilesTexture[presentNum];
+/*        func_CalendarController.preViewDate[0].text = ;
+        func_CalendarController.preViewDate[1].text = ;
+        func_CalendarController.preViewDate[2].text = ;*/
     }
     public void OnClick_NextDiary()
     {
@@ -125,8 +127,16 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             presentNum = allFiles.Count-1;
         }
-        previewImg.texture = allFilesList[presentNum];
+        previewImg.texture = allFilesTexture[presentNum];
     }
 
-    
+    public void ShowPreviewDate(Texture fileTexture)
+    {
+        for (int i = 0; i < allFilesTexture.Count; i++)
+        {
+
+        }
+
+    }
+
 }
