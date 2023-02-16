@@ -2538,6 +2538,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8734917952201854708, guid: 653c2044f8772bd45a7acba6e8bf31c8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 754
+      objectReference: {fileID: 0}
     - target: {fileID: 8734917952201854709, guid: 653c2044f8772bd45a7acba6e8bf31c8, type: 3}
       propertyPath: m_Name
       value: bubblegun
@@ -3335,6 +3339,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a1e5aec7018f981458a315c553eb70ee, type: 3}
   - {fileID: 21300000, guid: 83444aa5069aecf4b841721736e1f73a, type: 3}
   stickerBackGround: {fileID: 1090409418}
+  stickerBackGroundImage: {fileID: 0}
+  Restart: {fileID: 0}
+  sticerRepository: {fileID: 0}
   BackGroundSticker: {fileID: 808301622}
   skipOneRoundBtn: {fileID: 739914023}
   skipTwoRoundBtn: {fileID: 2114462582}
