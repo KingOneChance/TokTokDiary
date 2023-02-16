@@ -67,6 +67,7 @@ public class Func_GunCollision : MonoBehaviour
             Debug.Log(collision.gameObject.GetComponent<RawImage>().texture.name);
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             blackList.Remove(collision.gameObject.GetComponent<RawImage>());
+            //닦이는 사운드 및 이펙트
             if (blackList.Count == 0)
             {
                 allClear = true;
@@ -76,19 +77,19 @@ public class Func_GunCollision : MonoBehaviour
         {
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             whiteList.Remove(collision.gameObject.GetComponent<RawImage>());
-            if(whiteList.Count <= 10 && skipOneRoundBtn.gameObject.activeSelf == false)
+            //닦이는 사운드 및 이펙트
+            if (whiteList.Count <= 10 && skipOneRoundBtn.gameObject.activeSelf == false)
             {
                 skipOneRoundBtn.gameObject.SetActive(true);
             }
         }
         else if(collision.gameObject.GetComponent<RawImage>().texture.name.Contains("clean") && allPop == true)
         {
-            Debug.Log(collision.gameObject.GetComponent<RawImage>().texture.name);
-            Debug.Log(collision.gameObject);
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             
             cleanList.Remove(collision.gameObject.GetComponent<RawImage>());
             collision.gameObject.GetComponent<RawImage>().color = Nothing;
+            //이펙트 및 터지는 사운드
             if (cleanList.Count <= 10 && skipTwoRoundBtn.gameObject.activeSelf == false)
             {
                 skipTwoRoundBtn.gameObject.SetActive(true);
@@ -136,7 +137,7 @@ public class Func_GunCollision : MonoBehaviour
         ui_BubbleBubbleGun.TobeSticker();
         BackGroundSticker.gameObject.SetActive(false);
         skipTwoRoundBtn.gameObject.SetActive(false);
-        Debug.Log(ui_BubbleBubbleGun.randImages.Length);
+
     }
     public void OnClickSticker()
     {

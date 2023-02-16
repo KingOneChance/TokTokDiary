@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using FreeDraw;
-
+using UnityEngine.UI;
 public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("===copy object===")]
@@ -12,19 +12,26 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private GameObject myGrandPa = null;
     [SerializeField] private GameObject myPos = null;
     [SerializeField] private Func_TodayFeelingImage drawObject = null;
+    [Header("===Texture===")]
+    [SerializeField] private RawImage mainSticker = null;
+    [SerializeField] private RawImage signSticker = null;
+
+    
     private RectTransform myRectTransform;
     private RectTransform copyRectTransform;
     private RectTransform startTransform;
     private Vector2 mousePos = Vector2.zero;
+    private string stickerName = "";
 
     private void Start()
     {
-        drawObject = FindObjectOfType<Func_TodayFeelingImage>();    
+        drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
+        stickerName = GetComponent<RawImage>().texture != null ? GetComponent<RawImage>().texture.name : "";
     }
     public void OnClick_MakeClone()
     {
-      
+
 
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -39,11 +46,14 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameObject newSticker = Instantiate(mySticker,myGrandPa.transform);
+        GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
         newSticker.AddComponent<Func_DragObject>();
+        newSticker.AddComponent<Func_DetectOnSticker>();
+
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
+        newSticker.transform.localScale *= 2;//new Vector3(220 / 160f, 220 / 160f, 220 / 160f);
         myRectTransform.position = myPos.transform.position;
 
         //nodedata plus
@@ -59,5 +69,9 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
+
+        // Use Sticker
+        Manager_Main.Instance.UseSticker(stickerName);
+        //gameObject.transform.localScale = Vector3.one;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Scripting;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -44,6 +45,13 @@ public class Manager_Main : MonoBehaviour
 
     [field: SerializeField]
     [SerializeField] public GameObject ui_StickerRepositoryPrefab { get; private set; }
+
+    [Header("AudioManager")]
+    #region Audio Management
+    private Manager_Audio _AudioManager = null;
+    private void InitAudioManager() => _AudioManager = GetComponent<Manager_Audio>();
+    public Manager_Audio GetAudio() => _AudioManager;
+    #endregion
 
     [Header("===NumberOfStickers===")]
     [SerializeField] private int getBubbleGunStickerNum = 0;
@@ -86,30 +94,9 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        //SetResolution(); // Init Resolution
+        InitAudioManager();
     }
 
-    public void SetResolution()
-    {
-        int setWidth = 1920; // Resoulution Width
-        int setHeight = 1080; // Resoulution Height
-
-        int deviceWidth = Screen.width; // Device Width
-        int deviceHeight = Screen.height; // Device Height
-
-        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true);
-
-        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // Device resolution > (1920 / 1080)
-        {
-            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // new Width
-            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // new Rect
-        }
-        else // Device resolution < (1920 / 1080)
-        {
-            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // new Height
-            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // new Rect
-        }
-    }
     private void Update()
     {
         // Check user input every frame
@@ -143,7 +130,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleGunStickerNum = allFiles.Length;
             return getBubbleGunStickerNum;
         }
@@ -157,7 +144,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleStickerNum = allFiles.Length;
             return getBubbleStickerNum;
         }
@@ -240,7 +227,7 @@ public class Manager_Main : MonoBehaviour
     /// the value of 5 is added as a new key.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void SaveStickerNumberOfTimesAvailable(string stickerName)
+    public void SaveSticker(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName))
         {
@@ -249,6 +236,7 @@ public class Manager_Main : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt(stickerName, 5);
+            Debug.Log("Current Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
         }
     }
 
@@ -259,7 +247,7 @@ public class Manager_Main : MonoBehaviour
     /// subtract 1 from the key value and save it.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void UseStickerNumberOfTimesAvailable(string stickerName)
+    public void UseSticker(string stickerName)
     {
         if(PlayerPrefs.HasKey(stickerName) == false)
         {
@@ -269,6 +257,18 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
         if (PlayerPrefs.GetInt(stickerName) == 0)
             PlayerPrefs.DeleteKey(stickerName);
+        Debug.Log("Current Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
+    }
+
+    public void ReturnSticker(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 1);
+        Debug.Log("Current Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;

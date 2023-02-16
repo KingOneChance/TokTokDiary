@@ -18,7 +18,7 @@ public class UI_StickerRepository : MonoBehaviour
     //부모 위치
     [SerializeField] private GameObject ui_myParent = null;
     //비눗방을 프리팹 
-    [SerializeField] GameObject stickerPrefab = null;
+    [SerializeField] private GameObject stickerPrefab = null;
     [SerializeField] private RawImage[] ui_RecordSubStickers = null;
 
     public List<string> bubbleStickerList = new List<string>();

@@ -62,6 +62,9 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] GameObject soupImage = null;
 
+    [SerializeField] private MouseType MouseState;
+    public MouseType MouseStateInfo { get { return MouseState; } }
+
     private void Start()
     {
 
@@ -71,9 +74,7 @@ public class UI_PictureDiary : MonoBehaviour
        // Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
 
         //¹Ù´Ã »óÅÂ
-        NiddleState = NiddleType.None;
-        //ºñ´°¹æ¿ï ½ºÆ¼Ä¿ »óÅÂ
-        SoupState = SoupBubbleType.Soap;
+        MouseState = MouseType.None;
 
         foreach (string device in Microphone.devices)
         {
@@ -214,58 +215,35 @@ public class UI_PictureDiary : MonoBehaviour
     #region NiddleBtn , StickBtn
     public void OnClick_NiddleBtn()
     {
-        if (!isNiddleClicked)
+        if (MouseState!=MouseType.Niddle)
         {
             Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
             isNiddleClicked = true;
-            NiddleState = NiddleType.Niddle;
+            MouseState = MouseType.Niddle;
         }
         else
         {
             Cursor.SetCursor(default, hotSpot, cursorMode);
             isNiddleClicked = false;
-            NiddleState = NiddleType.None;
+            MouseState = MouseType.None;
         }
     }
     public void OnClick_BubbleStick()
     {
-        if (!isStickClicked)
+        if (MouseState != MouseType.BubbleStick)
         {
             Cursor.SetCursor(ui_StickImage, hotSpot, cursorMode);
             isStickClicked = true;
-            StickState = StickType.Stick;
+            MouseState = MouseType.BubbleStick;
         }
         else
         {
             Cursor.SetCursor(default, hotSpot, cursorMode);
             isStickClicked = false;
-            StickState = StickType.None;
+            MouseState = MouseType.None;
         }
     }
 
-
-    private NiddleType NiddleState;
-    public NiddleType NiddleStateInfo { get { return NiddleState; } }
-    private SoupBubbleType SoupState;
-    public SoupBubbleType SoupStateInfo { get { return SoupState; } }
-
-    private StickType StickState;
-    public StickType StickStateInfo { get { return StickState; } }
-    public void OnClick_Pop()
-    {
-        if (NiddleState == NiddleType.Niddle && SoupState == SoupBubbleType.Soap)
-        {
-            Debug.Log("Æã");
-            soupImage.GetComponent<Func_StickerDrag>().enabled = false;
-            SoupState = SoupBubbleType.Attached;
-        }
-        if (SoupState == SoupBubbleType.Attached && StickState == StickType.Stick)
-        {
-            soupImage.GetComponent<Func_StickerDrag>().enabled = true;
-            SoupState = SoupBubbleType.Soap;
-            Debug.Log("¶¼Á³Áê?");
-        }
-    }
     #endregion
 
     #region Profile
@@ -279,6 +257,8 @@ public class UI_PictureDiary : MonoBehaviour
     //ÇÁ·ÎÇÊ ¸ÞÀÎ
     public void OnClick_OpenProfileButton()
     {
+       new WaitForEndOfFrame();
+
         ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
