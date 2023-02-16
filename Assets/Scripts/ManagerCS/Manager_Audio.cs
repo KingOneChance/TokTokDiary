@@ -228,9 +228,13 @@ public class Manager_Audio : MonoBehaviour
             audioSource = source;
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
-            audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(audioSource.clip);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(audioSource.clip); 
+            }
         }
         else
         {
@@ -238,9 +242,13 @@ public class Manager_Audio : MonoBehaviour
             audioSource = ObjToPlaySound.GetComponent<AudioSource>();
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
-            audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
+            audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(audioSource.clip);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
             Debug.LogError("No Exist AudioSourceComponent Please Check");
             return;
         }
