@@ -32,7 +32,6 @@ namespace FreeDraw
         [SerializeField] protected bool isDragSticker = false;
         [SerializeField] protected bool isDiaryScene = false;
         [SerializeField] protected bool onObject;
-        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
         List<Vector2> points = new List<Vector2>();
         public Color curColor = Color.black;
         private GameObject tempOBJ;
@@ -53,7 +52,6 @@ namespace FreeDraw
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
-            func_TodayFeelingImage = GetComponentInChildren<Func_TodayFeelingImage>();
         }
 
         protected void Start()
