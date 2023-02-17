@@ -12,10 +12,13 @@ public class Func_AlcoholLamp : Func_DragAndDrop
     [SerializeField] private RawImage paintCase = null;
     [SerializeField] private Button paintCaseButton = null;
     [SerializeField] private Manager_BubbleSticker bsManager = null;
+    [SerializeField] private GameObject alcoholLampDragGuide = null;
+    [SerializeField] private GameObject[] colorBeakerPoppingGuideLine = null;
 
     private new void OnEnable()
     {
         base.OnEnable();
+        alcoholLampDragGuide.SetActive(true);
         alcoholLampPosImg.color = Vector4.one;
         bsManager.ActiveColorBucket(false);
         bsManager.InitColorBucket();
@@ -36,6 +39,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             StopCoroutine(CO_BlinkBlink(alcoholLampPosImg));
             StartCoroutine(CO_FillSolution());
             alcoholLampPosImg.color = Vector4.one;
+            alcoholLampDragGuide.SetActive(false);
         }
     }
 
@@ -114,7 +118,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             {
                 break;
             }
-            alcoholLampSolutions[1].fillAmount += 0.01f;
+            alcoholLampSolutions[1].fillAmount += 0.02f;
             yield return new WaitForFixedUpdate();
         }
 
@@ -128,7 +132,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
                 repeatCount++;
                 break;
             }
-            alcoholLampSolutions[2].fillAmount += 0.01f;
+            alcoholLampSolutions[2].fillAmount += 0.03f;
             yield return new WaitForFixedUpdate();
         }
 
@@ -138,6 +142,10 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         beakerImg[1].gameObject.SetActive(true);
         bsManager.ActiveColorBucket(true);
         paintCaseButton.interactable = true;
+        for (int i = 0; i < colorBeakerPoppingGuideLine.Length; i++)
+        {
+            colorBeakerPoppingGuideLine[i].gameObject.SetActive(true);
+        }
         StartCoroutine(CO_BlinkBlink(colorBeakerImg));
         yield break;
     }

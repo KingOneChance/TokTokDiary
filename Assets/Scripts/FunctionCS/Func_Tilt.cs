@@ -11,7 +11,6 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private RawImage[] colorBeakerImg = null;
     [SerializeField] private RectTransform beakerSolutionImgPos = null;
     [SerializeField] private RectTransform beakerSolutionImgInitPos = null;
-    [SerializeField] private Button SkipButton = null;
     [SerializeField] private Button NextButton = null;
 
     private RectTransform tiltObj = null;
@@ -25,7 +24,6 @@ public class Func_Tilt : MonoBehaviour
     private void Start()
     {
         tiltObj = GetComponent<RectTransform>();
-        SkipButton.gameObject.SetActive(false);
     }
 
     private void OnEnable()

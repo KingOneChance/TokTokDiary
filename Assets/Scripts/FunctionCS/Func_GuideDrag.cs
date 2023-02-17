@@ -10,6 +10,7 @@ public class Func_GuideDrag : MonoBehaviour
     [SerializeField] private RectTransform 도착지 = null;
     [SerializeField] private float 손가락이동속도 = 0f;
     [SerializeField] private int runCount = 0;
+    [SerializeField] private bool isLeft = false;
 
     private void OnEnable()
     {
@@ -21,14 +22,26 @@ public class Func_GuideDrag : MonoBehaviour
     WaitForFixedUpdate time = new WaitForFixedUpdate();
     IEnumerator Co_GuideDrag(int runCnt)
     {
+        int direction = isLeft == true ? 1 : -1;
         손가락.position = 출발지.position;
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < runCnt; i++)
         {
-            while (손가락.position.x > 도착지.position.x)//i<  50 )
+            if (direction == 1)
             {
-                손가락.position = new Vector2(손가락.position.x - 0.1f * 손가락이동속도, 손가락.position.y);
-                yield return time;
+                while (손가락.position.x > 도착지.position.x)//i<  50 )
+                {
+                    손가락.position = new Vector2(손가락.position.x - 0.1f * 손가락이동속도 * direction, 손가락.position.y);
+                    yield return time;
+                }
+            }
+            else
+            {
+                while (손가락.position.x < 도착지.position.x)//i<  50 )
+                {
+                    손가락.position = new Vector2(손가락.position.x - 0.1f * 손가락이동속도 * direction, 손가락.position.y);
+                    yield return time;
+                }
             }
             손가락.position = 출발지.position;
         }

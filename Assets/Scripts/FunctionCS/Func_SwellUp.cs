@@ -81,6 +81,7 @@ public class Func_SwellUp : MonoBehaviour
 
     private void Bomb()
     {
+        backButton.gameObject.SetActive(false);
         swellUpImg.rectTransform.localScale = Vector3.zero;
         StartCoroutine(CO_Bomb());
     }

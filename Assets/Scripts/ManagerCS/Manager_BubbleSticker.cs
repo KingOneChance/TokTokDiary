@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,11 +24,13 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private RectTransform[] colorBucketsInitPos = null;
     [SerializeField] private Toggle[] colorBucketToggles = null;
     [SerializeField] private RawImage[] colorBeakersImgs = null;
+    [SerializeField] private GameObject colorBeakersTiltGuideLine = null;
     #endregion
 
     #region AnotherVariables
+    private bool isTouchColorBeaker = false;
     private int PanelIdx = 0;
-    [SerializeField] private int colorType = 0;
+    private int colorType = 0;
     public int ColorType { get { return colorType; } private set { } }
     private string file = "";
     #endregion
@@ -159,10 +160,10 @@ public class Manager_BubbleSticker : Func_SaveSticker
         panels[PanelIdx].SetActive(false);
         PanelIdx++;
         nextButton.gameObject.SetActive(false);
-        InitPanel();
+        InitCurPanel();
     }
 
-    private void InitPanel()
+    private void InitCurPanel()
     {
         switch (PanelIdx)
         {
@@ -176,6 +177,9 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 colorBeakersImgs[2].gameObject.SetActive(false);
                 colorBeakersImgs[3].gameObject.SetActive(false);
                 colorBeakersImgs[4].gameObject.SetActive(false);
+                colorBeakersTiltGuideLine.SetActive(false);
+                isTouchColorBeaker = false;
+                nextButton.gameObject.SetActive(false);
                 break;
 
             case 2:
@@ -204,7 +208,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
             nextButton.gameObject.SetActive(true);
             ActiveColorBucket(false);
         }
-        InitPanel();
+        InitCurPanel();
     }
 
     public void OnClick_SelectColor(string color)
@@ -236,6 +240,12 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 colorBucketsRect[i].position = colorBucketsInitPos[i].position;
                 colorBucketsRect[i].localEulerAngles = Vector3.zero;
             }
+        }
+
+        if (isTouchColorBeaker == false)
+        {
+            isTouchColorBeaker = true;
+            colorBeakersTiltGuideLine.SetActive(true);
         }
     }
 

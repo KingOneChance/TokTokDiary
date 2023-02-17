@@ -13,6 +13,7 @@ public class Func_Stir : MonoBehaviour
     [SerializeField] private Button NextButton = null;
     [SerializeField] private Button SkipButton = null;
     [SerializeField] private Manager_BubbleSticker bsManager = null;
+    [SerializeField] private GameObject bubbleStickGuide = null;
     private float radius = 0;
     private float deg = 0;
     private float stirSpeed = 0;
@@ -26,7 +27,8 @@ public class Func_Stir : MonoBehaviour
 
     private void OnEnable()
     {
-        for(int i = 0; i < 4; i++)
+        bubbleStickGuide.SetActive(true);
+        for (int i = 0; i < 4; i++)
         {
             beakersMixGreen[i].gameObject.SetActive(false);
             beakersMixPink[i].gameObject.SetActive(false);
@@ -81,6 +83,7 @@ public class Func_Stir : MonoBehaviour
                 if (stirCount == 3)
                 {
                     NextButton.gameObject.SetActive(true);
+                    SkipButton.gameObject.SetActive(false);
                     stickButton.enabled = false;
                 }
                 myRect.position = stickInitPos.position;
@@ -125,6 +128,7 @@ public class Func_Stir : MonoBehaviour
     public void OnClick_SkipButton()
     {
         NextButton.gameObject.SetActive(true);
+
         stickButton.enabled = false;
     }
 }
