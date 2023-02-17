@@ -16,6 +16,13 @@ namespace FreeDraw
         [SerializeField] public GameObject TodayFeelingMenu = null;
         [SerializeField] public GameObject Helper;
         [SerializeField] private bool stickerMaking = false;
+        [SerializeField] public LineRenderer lineRenderer; // 라인 렌더러 컴포넌트를 가리키는 변수
+
+        public void OnButtonClick()
+        {
+            lineRenderer.startWidth = 1.0f; // 라인 렌더러의 시작 너비를 1로 설정
+            lineRenderer.endWidth = 1.0f; // 라인 렌더러의 끝 너비를 1로 설정
+        }
 
         static Image ThisImage;
      
