@@ -7,7 +7,13 @@ using UnityEngine.UI;
 public class Func_FreeStickerDraw : Func_Draw
 {
     [SerializeField] private Transform LinesParent = null;
+    [SerializeField] private float currentPenWidth = 0f;
+    [SerializeField] private LineRenderer lineRenderer;
 
+    protected new void Start()
+    {
+        
+    }
     protected new void Update()
     {
         base.Update();
@@ -17,4 +23,21 @@ public class Func_FreeStickerDraw : Func_Draw
         }
     }
 
+    public void OnClick_WidthLarge()
+    {
+        lineRenderer.startWidth = 0.3f;
+        lineRenderer.endWidth = 0.3f;
+    }
+
+    public void OnClick_WidthMedium()
+    {
+        lineRenderer.startWidth = 0.2f;
+        lineRenderer.endWidth = 0.2f;
+    }
+
+    public void OnClick_WidthSmall()
+    {
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+    }
 }
