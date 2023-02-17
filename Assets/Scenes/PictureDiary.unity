@@ -326,6 +326,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
   signSticker: {fileID: 2008800316}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &218922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5962,6 +5963,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
   signSticker: {fileID: 923612941}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &335846537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7136,6 +7138,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
   signSticker: {fileID: 1523923273}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &376608625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11599,6 +11602,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
   signSticker: {fileID: 2107987768}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &669524826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12371,6 +12375,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
   signSticker: {fileID: 622904789}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &686247862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14090,7 +14095,6 @@ MonoBehaviour:
   isDragSticker: 0
   isDiaryScene: 1
   onObject: 0
-  func_TodayFeelingImage: {fileID: 804669447}
   curColor: {r: 0, g: 0, b: 0, a: 1}
   Change_Image_Excited: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
   Change_Image_Happy: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
@@ -14099,7 +14103,6 @@ MonoBehaviour:
   Change_Image_Angry: {fileID: 21300000, guid: aada62512900bad42a9997d1e9f39b6b, type: 3}
   TodayFeelingMenu: {fileID: 1297975706}
   Helper: {fileID: 2063448193}
-  func_TodayFeelingImage: {fileID: 804669447}
   stickerMaking: 0
 --- !u!1 &808884760
 GameObject:
@@ -16415,7 +16418,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2116387890}
         m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
-        m_MethodName: OnClick_BubbleFreeStickerRepository
+        m_MethodName: OnClick_BubbleStickerRepository
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16683,6 +16686,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
   signSticker: {fileID: 1784517981}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &975221184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18330,6 +18334,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
   signSticker: {fileID: 839050170}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1022845172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24217,6 +24222,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
   signSticker: {fileID: 304002934}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1425523921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27064,6 +27070,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
   signSticker: {fileID: 1017696183}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1628774430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29811,6 +29818,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
   signSticker: {fileID: 947458677}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1793396628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32357,6 +32365,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
   signSticker: {fileID: 1057081443}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1935584530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35141,6 +35150,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
   signSticker: {fileID: 1389338389}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &2069775676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36012,6 +36022,7 @@ MonoBehaviour:
   recordingFileList: []
   bubbleGunStickerList: []
   bubbleFreeStickerList: []
+  nowStickerType: 0
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
