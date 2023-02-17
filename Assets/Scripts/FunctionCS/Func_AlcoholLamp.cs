@@ -17,7 +17,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
     {
         base.OnEnable();
         alcoholLampPosImg.color = Vector4.one;
-        bsManager.ActiveColortBucket(false);
+        bsManager.ActiveColorBucket(false);
         bsManager.InitColorBucket();
         paintCaseButton.interactable = false;
         StartCoroutine(CO_BlinkBlink(alcoholLampPosImg));
@@ -136,7 +136,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         alcoholLampSolutions[1].fillAmount = 0f;
         beakerImg[0].gameObject.SetActive(false);
         beakerImg[1].gameObject.SetActive(true);
-        bsManager.ActiveColortBucket(true);
+        bsManager.ActiveColorBucket(true);
         paintCaseButton.interactable = true;
         StartCoroutine(CO_BlinkBlink(colorBeakerImg));
         yield break;

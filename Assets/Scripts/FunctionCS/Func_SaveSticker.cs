@@ -40,6 +40,7 @@ public class Func_SaveSticker : MonoBehaviour
     protected RectTransform saveImageRect = null;
     protected virtual void Start()
     {
+        backGroundColor = Camera.main.backgroundColor;
         savePath = Application.persistentDataPath;
         //calculate all position
         saveImageRect = saveImage.GetComponent<RectTransform>();
@@ -48,6 +49,7 @@ public class Func_SaveSticker : MonoBehaviour
         widthValue = (int)saveImageRect.rect.width;
         heightValue = (int)saveImageRect.rect.height;
     }
+
     protected virtual void OnClick_SaveImgae(StickerType stickerType)
     {
         //test
@@ -57,7 +59,7 @@ public class Func_SaveSticker : MonoBehaviour
     protected virtual IEnumerator Co_ScreenShotFrame(StickerType stickerType)
     {
         yield return new WaitForEndOfFrame();
-        Texture2D texture = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
+        Texture2D texture = new Texture2D(widthValue, heightValue, TextureFormat.ARGB32, false);
 
         Rect rect = new Rect(startXPos, startYPos, widthValue, heightValue);
 
@@ -142,8 +144,8 @@ public class Func_SaveSticker : MonoBehaviour
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-        widthValue = widthValue / 7;
-        heightValue = heightValue / 7;
+        widthValue = texture.width;
+        heightValue = texture.height;
         RenderTexture currentRenderTexture = RenderTexture.active;
         RenderTexture copiedRenderTexture = new RenderTexture(widthValue, heightValue, 0);
 

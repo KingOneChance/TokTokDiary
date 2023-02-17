@@ -83,9 +83,10 @@ public class Func_Stir : MonoBehaviour
                     NextButton.gameObject.SetActive(true);
                     stickButton.enabled = false;
                 }
+                myRect.position = stickInitPos.position;
                 yield break;
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
