@@ -95,6 +95,18 @@ public class Manager_Main : MonoBehaviour
     private void Start()
     {
         InitAudioManager();
+        // Exist isFirst value
+        if (PlayerPrefs.HasKey("IsFirst") == true)
+        {
+            return;
+        }
+        // No Exist isFirst value
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetString("IsFirst", "No");
+            PlayerPrefs.Save();
+        }
     }
 
     private void Update()
@@ -237,6 +249,8 @@ public class Manager_Main : MonoBehaviour
         {
             PlayerPrefs.SetInt(stickerName, 5);
         }
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     /// <summary>
@@ -256,6 +270,20 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
         if (PlayerPrefs.GetInt(stickerName) == 0)
             PlayerPrefs.DeleteKey(stickerName);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
+    }
+
+    public void ReturnSticker(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 1);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;

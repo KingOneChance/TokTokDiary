@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Func_SwellUpDrag : Func_DragAndDrop
 {
-    [SerializeField] GameObject[] SwellUpPanels = null;
-    [SerializeField] Func_SwellUpDrag[] func_SwellUpDrags = null;
+    [SerializeField] private GameObject[] SwellUpPanels = null;
+    [SerializeField] private Func_SwellUpDrag[] func_SwellUpDrags = null;
+    [SerializeField] private Button skipButton = null;
     private bool isDragDone = false;
     public bool IsDragDone { get { return isDragDone; } private set { } }
 
@@ -15,6 +15,7 @@ public class Func_SwellUpDrag : Func_DragAndDrop
         isDragDone = false;
         SwellUpPanels[0].SetActive(true);
         SwellUpPanels[1].SetActive(false);
+        skipButton.gameObject.SetActive(false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -36,5 +37,6 @@ public class Func_SwellUpDrag : Func_DragAndDrop
         }
         SwellUpPanels[0].SetActive(false);
         SwellUpPanels[1].SetActive(true);
+        skipButton.gameObject.SetActive(true);
     }
 }

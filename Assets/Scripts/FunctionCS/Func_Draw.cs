@@ -62,14 +62,14 @@ namespace FreeDraw
 
         protected void Update()
         {
-            if (onObject == false)
+         /*   if (onObject == false)
             {
                 if (CheckArea() == true)
                 {
                     Draw();
                 }
                 else internalClick = false;
-            }
+            }*/
         }
 
         protected void Draw()

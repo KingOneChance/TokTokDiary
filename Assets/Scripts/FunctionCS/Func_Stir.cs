@@ -83,9 +83,10 @@ public class Func_Stir : MonoBehaviour
                     NextButton.gameObject.SetActive(true);
                     stickButton.enabled = false;
                 }
+                myRect.position = stickInitPos.position;
                 yield break;
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -95,25 +96,25 @@ public class Func_Stir : MonoBehaviour
         {
             case 1:
                 beakersMixGreen[idx].isOn = true;
-                for(int i = 0; i < 4; ++i)
+                for(int i = 0; i < beakersMixGreen.Length; ++i)
                 {
                     beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
                 }
                 break;
 
             case 2:
-                beakersMixGreen[idx].isOn = true;
-                for (int i = 0; i < 4; ++i)
+                beakersMixPink[idx].isOn = true;
+                for (int i = 0; i < beakersMixPink.Length; ++i)
                 {
-                    beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
+                    beakersMixPink[i].gameObject.SetActive(beakersMixPink[i].isOn);
                 }
                 break;
 
             case 3:
-                beakersMixGreen[idx].isOn = true;
-                for (int i = 0; i < 4; ++i)
+                beakersMixBlue[idx].isOn = true;
+                for (int i = 0; i < beakersMixBlue.Length; ++i)
                 {
-                    beakersMixGreen[i].gameObject.SetActive(beakersMixGreen[i].isOn);
+                    beakersMixBlue[i].gameObject.SetActive(beakersMixBlue[i].isOn);
                 }
                 break;
         }
