@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class Manager_Audio : MonoBehaviour
 {
     private Manager_Audio() { }
-    [SerializeField] Data_Audios DiaryCaseSounds = null;
+    [SerializeField] Data_Audios DiarySounds = null;
     [SerializeField] Data_Audios BubbleGunSounds = null;
     [SerializeField] Data_Audios BubbleBearSounds = null;
     [SerializeField] Data_Audios BubbleStickerSounds = null;
@@ -13,7 +14,7 @@ public class Manager_Audio : MonoBehaviour
     [SerializeField] Data_Audios TouchSounds = null;
     [SerializeField] Data_Audios CommonSounds = null;
 
-    private Dictionary<string, AudioClip> DiaryCaseClips = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> DiaryClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleGunClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleBearClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleStickerClips = new Dictionary<string, AudioClip>();
@@ -23,13 +24,13 @@ public class Manager_Audio : MonoBehaviour
 
     private void Awake()
     {
-        AddAllClipsToDic(DiaryCaseSounds);
-        AddAllClipsToDic(BubbleGunSounds);
-        AddAllClipsToDic(BubbleBearSounds);
-        AddAllClipsToDic(BubbleStickerSounds);
-        AddAllClipsToDic(FreeStickerSounds);
-        AddAllClipsToDic(TouchSounds);
-        AddAllClipsToDic(CommonSounds);
+        //AddAllClipsToDic(DiarySounds);
+        //AddAllClipsToDic(BubbleGunSounds);
+        //AddAllClipsToDic(BubbleBearSounds);
+        //AddAllClipsToDic(BubbleStickerSounds);
+        //AddAllClipsToDic(FreeStickerSounds);
+        //AddAllClipsToDic(TouchSounds);
+        //AddAllClipsToDic(CommonSounds);
     }
 
     /// <summary>
@@ -40,10 +41,10 @@ public class Manager_Audio : MonoBehaviour
     {
         switch (obj.soundType)
         {
-            case SoundType.DiaryCase:
+            case SoundType.Diary:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    DiaryCaseClips.Add(DiaryCaseSounds.Sounds[i].name, DiaryCaseSounds.Sounds[i]);
+                    DiaryClips.Add(DiarySounds.Sounds[i].name, DiarySounds.Sounds[i]);
                 }
                 break;
 
@@ -64,7 +65,7 @@ public class Manager_Audio : MonoBehaviour
             case SoundType.BubbleSticker:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    BubbleStickerClips.Add(BubbleBearSounds.Sounds[i].name, BubbleBearSounds.Sounds[i]);
+                    BubbleStickerClips.Add(BubbleStickerSounds.Sounds[i].name, BubbleStickerSounds.Sounds[i]);
                 }
                 break;
 
@@ -97,10 +98,10 @@ public class Manager_Audio : MonoBehaviour
     {
         switch (obj.soundType)
         {
-            case SoundType.DiaryCase:
+            case SoundType.Diary:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    DiaryCaseClips.Clear();
+                    DiaryClips.Clear();
                 }
                 break;
 
@@ -159,8 +160,8 @@ public class Manager_Audio : MonoBehaviour
                 curdic = FreeStickerClips;
                 break;
 
-            case SoundType.DiaryCase:
-                curdic = DiaryCaseClips;
+            case SoundType.Diary:
+                curdic = DiaryClips;
                 break;
 
             case SoundType.Touch:
@@ -192,7 +193,7 @@ public class Manager_Audio : MonoBehaviour
         else return curdic;
     }
 
-    public void PlaySound(string ClipName, SoundType soundType,GameObject ObjToPlaySound, bool playLoop)
+    public void PlaySound(string ClipName, SoundType soundType,GameObject ObjToPlaySound, bool playLoop, bool overLap)
     {
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
@@ -203,7 +204,17 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
             // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(GetClip(soundType, ClipName));
+            if(overLap == true)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
+            }
         }
         else
         {
@@ -212,14 +223,21 @@ public class Manager_Audio : MonoBehaviour
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
-            // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(GetClip(soundType, ClipName));
-            Debug.LogError("No Exist AudioSourceComponent Please Check");
-            return;
+            if (overLap == true)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
+            }
         }        
     }
 
-    public void PlayLocalSound(string ClipName, GameObject ObjToPlaySound, bool playLoop)
+    public void PlayLocalSound(string ClipName, GameObject ObjToPlaySound, bool playLoop, bool overLap)
     {
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
@@ -231,9 +249,16 @@ public class Manager_Audio : MonoBehaviour
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if (overLap == true)
             {
-                audioSource.PlayOneShot(audioSource.clip); 
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
             }
         }
         else
@@ -245,11 +270,32 @@ public class Manager_Audio : MonoBehaviour
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if (overLap == true)
             {
                 audioSource.PlayOneShot(audioSource.clip);
             }
-            Debug.LogError("No Exist AudioSourceComponent Please Check");
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
+            }
+        }
+    }
+
+    public void StopPlaySound(GameObject stopPlaySoundObj)
+    {
+        // Check AudioSource Component and set loop
+        AudioSource audioSource = null;
+        if (stopPlaySoundObj.TryGetComponent(out AudioSource source))
+        {
+            audioSource = source;
+            audioSource.Stop();
+        }
+        else
+        {
+            Debug.LogError("There is No AudioSource Component to stop");
             return;
         }
     }

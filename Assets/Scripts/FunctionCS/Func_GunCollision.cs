@@ -68,6 +68,7 @@ public class Func_GunCollision : MonoBehaviour
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             blackList.Remove(collision.gameObject.GetComponent<RawImage>());
             //닦이는 사운드 및 이펙트
+            Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, collision.gameObject, false, true);
             if (blackList.Count == 0)
             {
                 allClear = true;
@@ -78,6 +79,7 @@ public class Func_GunCollision : MonoBehaviour
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             whiteList.Remove(collision.gameObject.GetComponent<RawImage>());
             //닦이는 사운드 및 이펙트
+            Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, collision.gameObject, false, true);
             if (whiteList.Count <= 10 && skipOneRoundBtn.gameObject.activeSelf == false)
             {
                 skipOneRoundBtn.gameObject.SetActive(true);
@@ -90,6 +92,7 @@ public class Func_GunCollision : MonoBehaviour
             cleanList.Remove(collision.gameObject.GetComponent<RawImage>());
             collision.gameObject.GetComponent<RawImage>().color = Nothing;
             //이펙트 및 터지는 사운드
+            Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, collision.gameObject, false, true);
             if (cleanList.Count <= 10 && skipTwoRoundBtn.gameObject.activeSelf == false)
             {
                 skipTwoRoundBtn.gameObject.SetActive(true);
@@ -129,7 +132,6 @@ public class Func_GunCollision : MonoBehaviour
                     }
                 }
                 break;
-
         }
     }
     public void RoundFinish()

@@ -22,7 +22,11 @@ public class Func_FreeStickerDraw : Func_Draw
             {
                 Draw();
             }
-            else internalClick = false;
+            else
+            {
+                internalClick = false;
+                Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
+            }
         }
         if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
         {

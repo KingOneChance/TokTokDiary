@@ -9,13 +9,20 @@ public class Func_CalendarController : MonoBehaviour
 {
     const int _totalDateNum = 42;
 
+
     [SerializeField] private GameObject _item;
+    [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
+
+    [SerializeField] private GameObject _itemParent;
+    //해당 날짜에 일기장이 있을때 TURN ON되는 스티커들 
     public List<GameObject> stickers = new List<GameObject>();
+
+    //달력에 년도, 월 일
     [SerializeField] private TextMeshProUGUI _yearNumText;
     [SerializeField] private TextMeshProUGUI _monthNumText;
     [SerializeField] private TextMeshProUGUI _monthStrText;
-    [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
+    //프리뷰 년도 월 일
     [SerializeField] public TextMeshProUGUI[] preViewDate = null;
 
     private DateTime _dateTime;
@@ -25,7 +32,7 @@ public class Func_CalendarController : MonoBehaviour
 
     private List<int> days = new List<int>();
 
-    Manager_DiaryCase manager_DiaryCase;
+    [SerializeField] Manager_DiaryCase manager_DiaryCase;
 
 
     private void OnEnable()
@@ -45,34 +52,45 @@ public class Func_CalendarController : MonoBehaviour
         for (int i = 1; i < _totalDateNum; i++)
         {
             GameObject item = Instantiate(_item);
+            //item.GetComponent<Button>().onClick.AddListener(() => OnClick_Date());
             item.name = "Date" + (i + 1).ToString();
-            item.transform.SetParent(_item.transform.parent);
+            item.transform.SetParent(_itemParent.transform);
             item.transform.localScale = Vector3.one;
             item.transform.localRotation = Quaternion.identity;
             item.transform.localPosition = new Vector3((i % 7) * 36 + startPos.x, startPos.y - (i / 7) * 30, startPos.z);
-        
+
             _dateItems.Add(item);
         }
-        stickers.AddRange(GameObject.FindGameObjectsWithTag("DiarySticker"));
+
         CreateCalendar();
-       
+
+        string year = manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[0];
+        string month = manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[1];
+        string day = manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[2];
+        ShowPreviewDate(year, month, day);
+        //마지막 파일의 날짜에 검은색 테두리만들기
+        for (int i = _dateItems.Count; i > 0; --i)
+        {
+            if (_dateItems[i - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[2]
+                && _dateItems[i - 1].transform.GetChild(1).GetChild(0).gameObject.activeSelf == true)
+            {
+                _dateItems[i - 1].GetComponent<Button>().Select();
+            }
+
+        }
     }
-    
+
     TextMeshProUGUI label = null;
     //date = 0;
     private void CreateCalendar()
     {
-        for (int i = 0; i < stickers.Count; i++)
-        {
-            stickers[i].gameObject.SetActive(false);
-        }
+
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
         int index = GetDays(firstDay.DayOfWeek);
-        bool checkToday = false;
         int date = 0;
 
         _yearNumText.text = _dateTime.Year.ToString();
-        _monthNumText.text = _dateTime.Month.ToString()/* + " 월 "*/;
+        _monthNumText.text = _dateTime.Month.ToString();//* + " 월 "*//*;
 
         switch (_dateTime.Month)
         {
@@ -114,12 +132,9 @@ public class Func_CalendarController : MonoBehaviour
                 break;
         }
 
-        if (_yearNumText.text == DateTime.Now.Year.ToString() &&
-           _monthNumText.text == DateTime.Now.Month.ToString() /*+ " 월 "*/) checkToday = true;
-
         for (int i = 0; i < _totalDateNum; i++)
         {
-            /*TextMeshProUGUI*/ label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
+            label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
             GameObject dateObj = _dateItems[i].gameObject;
             _dateItems[i].SetActive(false);
 
@@ -142,17 +157,20 @@ public class Func_CalendarController : MonoBehaviour
                         label.color = Color.red;
                     }
 
-                    if (checkToday == true && label.text == _dateTime.Day.ToString())
-                        _dateItems[i].GetComponent<Button>().Select();
-
                     days.Add(date);
                     date++;
                 }
             }
         }
-       
+        stickers.AddRange(GameObject.FindGameObjectsWithTag("DiarySticker"));
+
+        for (int i = 0; i < stickers.Count; i++)
+        {
+            stickers[i].gameObject.SetActive(false);
+        }
 
         TurnOnSticker();
+
     }
 
     private int GetDays(DayOfWeek day)
@@ -205,26 +223,51 @@ public class Func_CalendarController : MonoBehaviour
 
     public void OnClick_Date()
     {
+
         string nowDay = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
 
-        manager_DiaryCase.previewText.gameObject.SetActive(false);
+ 
+        int m = int.Parse(_monthNumText.text);
 
-        string fileName = _yearNumText.text + "_" + _monthNumText.text + "_" + nowDay;
+        string mm = "";
 
-        if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName+"-1"))
+        if (m < 10) mm = "0" + m;
+        else mm = m.ToString();
+
+        if (int.Parse(nowDay) < 10) nowDay = "0" + nowDay;
+
+        string fileName = int.Parse(_yearNumText.text) + "_" + mm + "_" + nowDay;
+        Debug.Log(fileName + "-1");
+
+        //if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName + "-1"))
+        for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
-            manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesDictionary[fileName + "-1"];
+            if (manager_DiaryCase.allFilesTexture[i].name == fileName + "-1")
+            {
+                manager_DiaryCase.previewText.gameObject.SetActive(false);
+                // manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesDictionary[fileName + "-1"];
+                manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesTexture[i];
+                int year = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[0]);
+                int month = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[1]);
+                int day = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[2]);
+                Debug.Log(year +" "+ month + " " + day);
+                ShowPreviewDate(year.ToString(), month.ToString(), day.ToString());
+                break;
+            }
+            else
+            {
+                manager_DiaryCase.previewImg.texture = null;
+                manager_DiaryCase.previewText.gameObject.SetActive(true);
+                ShowPreviewDate("", "", "");
+            }
         }
-        else
-        {
-            manager_DiaryCase.previewImg.texture = null;
-            manager_DiaryCase.previewText.gameObject.SetActive(true);
-        }
-        for(int i=0; i < manager_DiaryCase.allFilesTexture.Count; i++)
+
+        for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
             if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesTexture[i])
             {
                 manager_DiaryCase.presentNum = i;
+
             }
         }
     }
@@ -243,19 +286,83 @@ public class Func_CalendarController : MonoBehaviour
 
             for (int i = 0; i < stickers.Count; i++)
             {
-                if (day == stickers[i].transform.parent.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text &&
-                    _yearNumText.text == year && _monthNumText.text == month)
+                if (int.Parse(day) == int.Parse(stickers[i].transform.parent.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text) &&
+                    int.Parse(_yearNumText.text) == int.Parse(year) && int.Parse(_monthNumText.text) == int.Parse(month))
                 {
                     stickers[i].gameObject.SetActive(true);
                 }
             }
-
         }
     }
-    
-    private void ShowPrevieDate()
+    //preview에있는 이미지의 이름을 가지고 날짜를 바꿔준다
+    public void ShowPreviewDate(string year, string month, string day)
     {
+        preViewDate[0].text = year;
+        preViewDate[1].text = month;
+        preViewDate[2].text = day;
 
-        //preViewDate[0].text = ;
     }
+
+    public void ChangeCalender()
+    {
+        //연도가 같을때
+        if (int.Parse(preViewDate[0].text) == int.Parse(_yearNumText.text))
+        {
+            //연도가 같고 프리뷰 월이 달력 월보다 작을때
+            if (int.Parse(preViewDate[1].text) < int.Parse(_monthNumText.text))
+            {
+                while (int.Parse(preViewDate[1].text) != int.Parse(_monthNumText.text))
+                {
+
+                    OnClick_MonthPrev();
+                }
+            }
+            //연도가 같고 프리뷰 월이 달력 월보다 클때
+            else if (int.Parse(preViewDate[1].text) > int.Parse(_monthNumText.text))
+            {
+                while (int.Parse(preViewDate[1].text) != int.Parse(_monthNumText.text))
+                {
+
+                    OnClick_MonthNext();
+                }
+            }
+
+        }
+        //프리뷰 연도가 달력 연도보다 낮을때
+        else if (int.Parse(preViewDate[0].text) < int.Parse(_yearNumText.text))
+        {
+            while (int.Parse(preViewDate[0].text) != int.Parse(_yearNumText.text))
+            {
+                OnClick_YearPrev();
+            }
+            while (int.Parse(preViewDate[1].text) != int.Parse(_monthNumText.text))
+            {
+                OnClick_MonthNext();
+            }
+        }
+        //프리뷰 연도가 달력 연도보다 높을때
+        else if (int.Parse(preViewDate[0].text) > int.Parse(_yearNumText.text))
+        {
+            while (int.Parse(preViewDate[0].text) != int.Parse(_yearNumText.text))
+            {
+                OnClick_YearNext();
+            }
+            while (int.Parse(preViewDate[1].text) != int.Parse(_monthNumText.text))
+            {
+                OnClick_MonthPrev();
+            }
+        }
+
+        for (int i = 0; i < _dateItems.Count; i++)
+        {
+            if (_dateItems[i].transform.GetChild(1).GetChild(0).gameObject.activeSelf == true
+                && int.Parse(preViewDate[2].text) == int.Parse(_dateItems[i].transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text))
+            {
+                _dateItems[i].GetComponent<Button>().Select();
+                break;
+            }
+        }
+    }
+
+
 }

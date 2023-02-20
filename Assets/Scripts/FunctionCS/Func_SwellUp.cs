@@ -25,13 +25,9 @@ public class Func_SwellUp : MonoBehaviour
         stickerInBubbleImg.gameObject.SetActive(false);
         helperGuideClick.gameObject.SetActive(true);
         helperGuideClick.GetComponent<RectTransform>().position = helperGuideClicInitPos.position;
-    }
-
-    private void OnDisable()
-    {
+        swellUpButton.interactable = true;
         curIdx = 0;
         swellUpImg.rectTransform.localScale = Vector3.zero;
-        swellUpButton.interactable = true;
     }
 
     public void OnClick_SwellUp()
@@ -42,7 +38,7 @@ public class Func_SwellUp : MonoBehaviour
             return;
         }
         curIdx++;
-        StartCoroutine(SwellUp());
+        StartCoroutine(CO_SwellUp(curIdx));
     }
 
     public void SaveProcess()
@@ -54,32 +50,37 @@ public class Func_SwellUp : MonoBehaviour
         manager_bs.SaveBubbleSticker();
     }
 
-    private IEnumerator SwellUp()
+    private IEnumerator CO_SwellUp(int idx)
     {
         helperGuideClick.gameObject.SetActive(false);
         swellUpButton.interactable = false;
         while (true)
         {
-            if (swellUpImg.rectTransform.localScale.x >= curIdx)
+            if (swellUpImg.rectTransform.localScale.x >= idx)
             {
-                if (curIdx == 3)
+                if (idx == 3)
                 {
                     stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
                     stickerInBubbleImg.gameObject.SetActive(true);
                     helperGuideClick.GetComponent<RectTransform>().position = helperGuideClickMovePos.position;
+                    yield break;
                 }
                 swellUpButton.interactable = true;
                 helperGuideClick.gameObject.SetActive(true);
                 yield break;
             }
-            swellUpImg.rectTransform.localScale += 0.02f * curIdx * Vector3.one;
+            swellUpImg.rectTransform.localScale += 0.02f * idx * Vector3.one;
             yield return null;
         }
     }
 
-    public void OnClick_SkipButton() => Bomb();
+    public void OnClick_SkipButton()
+    {
+        swellUpButton.interactable = false;
+        StartCoroutine(CO_SwellUp(3));
+    }
 
-    private void Bomb()
+    public void OnClick_SwellUpBubble()
     {
         backButton.gameObject.SetActive(false);
         swellUpImg.rectTransform.localScale = Vector3.zero;
@@ -88,6 +89,7 @@ public class Func_SwellUp : MonoBehaviour
 
     private IEnumerator CO_Bomb()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
         for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
         {
             eff_GetBubbleSticker[i].Play();
