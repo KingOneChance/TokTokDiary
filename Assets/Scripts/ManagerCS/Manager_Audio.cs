@@ -5,7 +5,7 @@ using UnityEngine;
 public class Manager_Audio : MonoBehaviour
 {
     private Manager_Audio() { }
-    [SerializeField] Data_Audios DiaryCaseSounds = null;
+    [SerializeField] Data_Audios DiarySounds = null;
     [SerializeField] Data_Audios BubbleGunSounds = null;
     [SerializeField] Data_Audios BubbleBearSounds = null;
     [SerializeField] Data_Audios BubbleStickerSounds = null;
@@ -13,7 +13,7 @@ public class Manager_Audio : MonoBehaviour
     [SerializeField] Data_Audios TouchSounds = null;
     [SerializeField] Data_Audios CommonSounds = null;
 
-    private Dictionary<string, AudioClip> DiaryCaseClips = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> DiaryClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleGunClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleBearClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleStickerClips = new Dictionary<string, AudioClip>();
@@ -23,7 +23,7 @@ public class Manager_Audio : MonoBehaviour
 
     private void Awake()
     {
-        AddAllClipsToDic(DiaryCaseSounds);
+        AddAllClipsToDic(DiarySounds);
         AddAllClipsToDic(BubbleGunSounds);
         AddAllClipsToDic(BubbleBearSounds);
         AddAllClipsToDic(BubbleStickerSounds);
@@ -40,10 +40,10 @@ public class Manager_Audio : MonoBehaviour
     {
         switch (obj.soundType)
         {
-            case SoundType.DiaryCase:
+            case SoundType.Diary:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    DiaryCaseClips.Add(DiaryCaseSounds.Sounds[i].name, DiaryCaseSounds.Sounds[i]);
+                    DiaryClips.Add(DiarySounds.Sounds[i].name, DiarySounds.Sounds[i]);
                 }
                 break;
 
@@ -97,10 +97,10 @@ public class Manager_Audio : MonoBehaviour
     {
         switch (obj.soundType)
         {
-            case SoundType.DiaryCase:
+            case SoundType.Diary:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    DiaryCaseClips.Clear();
+                    DiaryClips.Clear();
                 }
                 break;
 
@@ -159,8 +159,8 @@ public class Manager_Audio : MonoBehaviour
                 curdic = FreeStickerClips;
                 break;
 
-            case SoundType.DiaryCase:
-                curdic = DiaryCaseClips;
+            case SoundType.Diary:
+                curdic = DiaryClips;
                 break;
 
             case SoundType.Touch:
