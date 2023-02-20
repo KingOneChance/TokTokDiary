@@ -90,6 +90,7 @@ public class Manager_BubbleBear : MonoBehaviour
 
     public void OnClick_ButtonNext()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton" ,SoundType.Common, gameObject, false, true);
         toggleBoddy.SetActive(false);
         toggleBelly.SetActive(false);
         toggleHead.SetActive(false);
@@ -159,6 +160,7 @@ public class Manager_BubbleBear : MonoBehaviour
     }
     public void OnClick_ButtonBefore()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         toggleBoddy.SetActive(false);
         toggleBelly.SetActive(false);
         toggleHead.SetActive(false);

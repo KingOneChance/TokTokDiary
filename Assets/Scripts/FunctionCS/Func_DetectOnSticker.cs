@@ -29,18 +29,19 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
     {
         if (ui_PictureDiary.MouseStateInfo == MouseType.Niddle)
         {
-            func_DragObject.enabled = false;
+            func_DragObject.enabled = false; 
             bubble.gameObject.SetActive(false);
+            Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
         }
         else if (ui_PictureDiary.MouseStateInfo == MouseType.BubbleStick)
         {
             func_DragObject.enabled = true;
             bubble.gameObject.SetActive(true);
+            Manager_Main.Instance.GetAudio().PlaySound("BubbleStick", SoundType.Diary, gameObject, false, false);
         }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         OnClick_MouseType();
     }
-  
 }

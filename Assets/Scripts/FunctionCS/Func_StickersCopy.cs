@@ -71,7 +71,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                     if (func_DiaryInventory.GetNowType() == StickerType.RecordSticker)
                     {
                         string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
-                        Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false);
+                        Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
