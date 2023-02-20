@@ -326,6 +326,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
   signSticker: {fileID: 2008800316}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &218922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,7 +1885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3871,7 +3872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5643,7 +5644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5962,6 +5963,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
   signSticker: {fileID: 923612941}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &335846537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7136,6 +7138,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
   signSticker: {fileID: 1523923273}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &376608625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8110,7 +8113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9105,7 +9108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11599,6 +11602,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
   signSticker: {fileID: 2107987768}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &669524826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12219,7 +12223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12371,6 +12375,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
   signSticker: {fileID: 622904789}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &686247862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13066,7 +13071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &751904790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14072,6 +14077,7 @@ MonoBehaviour:
   Pen_Width: {fileID: 1292630004}
   line: {fileID: 0}
   linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
+  obj: {fileID: 0}
   col: {fileID: 0}
   drawingAreaMaxX: 8.31
   drawingAreaMinX: -3.7
@@ -14081,12 +14087,15 @@ MonoBehaviour:
   writingAreaMinX: -1.3
   writingAreaMaxY: -2.2
   writingAreaMinY: -4.2
+  titleAreaMaxX: 5
+  titleAreaMinX: 0
+  titleAreaMaxY: 4.5
+  titleAreaMinY: 3.8
   mainCam: {fileID: 1359955307}
   internalClick: 0
   isDragSticker: 0
   isDiaryScene: 1
   onObject: 0
-  func_TodayFeelingImage: {fileID: 804669447}
   curColor: {r: 0, g: 0, b: 0, a: 1}
   Change_Image_Excited: {fileID: 21300000, guid: 23df111507973624a936db391ccd00ac, type: 3}
   Change_Image_Happy: {fileID: 21300000, guid: da1d74e9f4b872d43b63d3f7ad51400c, type: 3}
@@ -14095,7 +14104,6 @@ MonoBehaviour:
   Change_Image_Angry: {fileID: 21300000, guid: aada62512900bad42a9997d1e9f39b6b, type: 3}
   TodayFeelingMenu: {fileID: 1297975706}
   Helper: {fileID: 2063448193}
-  func_TodayFeelingImage: {fileID: 804669447}
   stickerMaking: 0
 --- !u!1 &808884760
 GameObject:
@@ -16411,7 +16419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2116387890}
         m_TargetAssemblyTypeName: Func_DiaryInventory, Assembly-CSharp
-        m_MethodName: OnClick_BubbleFreeStickerRepository
+        m_MethodName: OnClick_BubbleStickerRepository
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16679,6 +16687,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
   signSticker: {fileID: 1784517981}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &975221184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17856,7 +17865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18326,6 +18335,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
   signSticker: {fileID: 839050170}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1022845172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20301,7 +20311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22695,7 +22705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24213,6 +24223,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
   signSticker: {fileID: 304002934}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1425523921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26782,7 +26793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -27060,6 +27071,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
   signSticker: {fileID: 1017696183}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1628774430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29807,6 +29819,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
   signSticker: {fileID: 947458677}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1793396628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31089,7 +31102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32353,6 +32366,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
   signSticker: {fileID: 1057081443}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &1935584530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35137,6 +35151,7 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
   signSticker: {fileID: 1389338389}
+  func_DiaryInventory: {fileID: 0}
 --- !u!114 &2069775676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35892,7 +35907,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &2116387887
 MonoBehaviour:
@@ -35973,13 +35988,42 @@ MonoBehaviour:
   - {fileID: 1017696183}
   - {fileID: 2008800316}
   - {fileID: 2107987768}
+  mainStickersBack:
+  - {fileID: 751904792}
+  - {fileID: 866498136}
+  - {fileID: 225069323}
+  - {fileID: 1822483183}
+  - {fileID: 1075414800}
+  - {fileID: 1755600210}
+  - {fileID: 220354902}
+  - {fileID: 341505722}
+  - {fileID: 1968599170}
+  - {fileID: 537591966}
+  - {fileID: 843180088}
+  - {fileID: 122262546}
+  signStickersBack:
+  - {fileID: 1130620246}
+  - {fileID: 802202963}
+  - {fileID: 1216925304}
+  - {fileID: 672956928}
+  - {fileID: 160782330}
+  - {fileID: 1033780928}
+  - {fileID: 787448874}
+  - {fileID: 1605000211}
+  - {fileID: 302531754}
+  - {fileID: 1283238028}
+  - {fileID: 1973754036}
+  - {fileID: 635060899}
+  recordFileName: []
   ui_myParent: {fileID: 2043944008}
   stickerPrefab: {fileID: 1466256424}
   bubbleStickerList: []
   recordingStickerList: []
   recordingSignList: []
+  recordingFileList: []
   bubbleGunStickerList: []
   bubbleFreeStickerList: []
+  nowStickerType: 0
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
@@ -36474,7 +36518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -37908,6 +37952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+    - {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
 --- !u!1 &4360024350584166632
 GameObject:

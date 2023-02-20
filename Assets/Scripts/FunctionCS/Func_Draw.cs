@@ -11,7 +11,8 @@ namespace FreeDraw
         [SerializeField] protected float circleSize;
         [SerializeField] public Slider Pen_Width;
         [SerializeField] public LineRenderer line = null;
-        [SerializeField] GameObject linePrefab;
+        [SerializeField] protected GameObject linePrefab;
+        [SerializeField] protected GameObject obj;
         [SerializeField] EdgeCollider2D col;
         [SerializeField] protected float drawingAreaMaxX = 0f;
         [SerializeField] protected float drawingAreaMinX = 0f;
@@ -21,6 +22,10 @@ namespace FreeDraw
         [SerializeField] protected float writingAreaMinX = 0f;
         [SerializeField] protected float writingAreaMaxY = 0f;
         [SerializeField] protected float writingAreaMinY = 0f;
+        [SerializeField] protected float titleAreaMaxX = 0f;
+        [SerializeField] protected float titleAreaMinX = 0f;
+        [SerializeField] protected float titleAreaMaxY = 0f;
+        [SerializeField] protected float titleAreaMinY = 0f;
         [SerializeField] protected Camera mainCam = null; 
 
         [Header("===InitialClickPoisitionCheck===")]
@@ -28,7 +33,6 @@ namespace FreeDraw
         [SerializeField] protected bool isDragSticker = false;
         [SerializeField] protected bool isDiaryScene = false;
         [SerializeField] protected bool onObject;
-        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
         List<Vector2> points = new List<Vector2>();
         public Color curColor = Color.black;
         private GameObject tempOBJ;
@@ -45,11 +49,10 @@ namespace FreeDraw
                 onObject = false;
         }
 
-        private void Awake()
+        protected void Awake()
         {
             mainCam = Camera.main;
             line = GetComponent<LineRenderer>();
-            func_TodayFeelingImage = GetComponentInChildren<Func_TodayFeelingImage>();
         }
 
         protected void Start()
@@ -57,16 +60,16 @@ namespace FreeDraw
             currentPenWidth = 0.3f;
         }
 
-        private void Update()
+        protected void Update()
         {
-            if (onObject == false)
+         /*   if (onObject == false)
             {
                 if (CheckArea() == true)
                 {
                     Draw();
                 }
                 else internalClick = false;
-            }
+            }*/
         }
 
         protected void Draw()
@@ -76,7 +79,7 @@ namespace FreeDraw
             {
                 SData_NodeData temp = new SData_NodeData();
                 internalClick = true;
-                GameObject obj = Instantiate(linePrefab);
+                obj = Instantiate(linePrefab);
                 obj.tag = "Line";
                 tempOBJ = obj;
                 line = obj.GetComponent<LineRenderer>();
@@ -136,10 +139,14 @@ namespace FreeDraw
                 if (curTouchPos.x < drawingAreaMaxX && curTouchPos.y < drawingAreaMaxY &&
                     curTouchPos.x > drawingAreaMinX && curTouchPos.y > drawingAreaMinY ||
                     curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
-                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY ||
+                    curTouchPos.x < titleAreaMaxX && curTouchPos.y < titleAreaMaxY &&
+                    curTouchPos.x > titleAreaMinX && curTouchPos.y > titleAreaMinY)
                 {
                     if (curTouchPos.x < writingAreaMaxX && curTouchPos.y < writingAreaMaxY &&
-                    curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY)
+                        curTouchPos.x > writingAreaMinX && curTouchPos.y > writingAreaMinY ||
+                        curTouchPos.x < titleAreaMaxX && curTouchPos.y < titleAreaMaxY &&
+                        curTouchPos.x > titleAreaMinX && curTouchPos.y > titleAreaMinY)
                     {
                         currentPenWidth = 0.05f;
                     }
@@ -211,5 +218,5 @@ namespace FreeDraw
         {
             currentPenWidth = Pen_Width.value;
         }
-    }
+    }    
 }

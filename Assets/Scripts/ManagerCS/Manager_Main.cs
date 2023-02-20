@@ -95,6 +95,18 @@ public class Manager_Main : MonoBehaviour
     private void Start()
     {
         InitAudioManager();
+        // Exist isFirst value
+        if (PlayerPrefs.HasKey("IsFirst") == true)
+        {
+            return;
+        }
+        // No Exist isFirst value
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetString("IsFirst", "No");
+            PlayerPrefs.Save();
+        }
     }
 
     private void Update()
@@ -130,7 +142,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleGunStickerNum = allFiles.Length;
             return getBubbleGunStickerNum;
         }
@@ -144,7 +156,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleStickerNum = allFiles.Length;
             return getBubbleStickerNum;
         }
@@ -227,7 +239,7 @@ public class Manager_Main : MonoBehaviour
     /// the value of 5 is added as a new key.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void SaveStickerNumberOfTimesAvailable(string stickerName)
+    public void SaveSticker(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName))
         {
@@ -237,6 +249,8 @@ public class Manager_Main : MonoBehaviour
         {
             PlayerPrefs.SetInt(stickerName, 5);
         }
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     /// <summary>
@@ -246,7 +260,7 @@ public class Manager_Main : MonoBehaviour
     /// subtract 1 from the key value and save it.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void UseStickerNumberOfTimesAvailable(string stickerName)
+    public void UseSticker(string stickerName)
     {
         if(PlayerPrefs.HasKey(stickerName) == false)
         {
@@ -256,6 +270,20 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
         if (PlayerPrefs.GetInt(stickerName) == 0)
             PlayerPrefs.DeleteKey(stickerName);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
+    }
+
+    public void ReturnSticker(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 1);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,15 +6,16 @@ public class Manager_BubbleSticker : Func_SaveSticker
 {
     #region SerializeField
     [Header("========== 기본 UI ==========")]
-    [SerializeField] private Button BackButton = null;
-    [SerializeField] private Button NextButton = null;
-    [SerializeField] private GameObject[] Panels = null;
-    [SerializeField] private RawImage BubbleSicker = null;
+    [SerializeField] private Button backButton = null;
+    [SerializeField] private Button nextButton = null;
+    [SerializeField] private GameObject[] panels = null;
+    [SerializeField] private RawImage bubbleSicker = null;
+    public RawImage BubbleSticker { get { return bubbleSicker; } private set { } } 
     public GameObject BackGround = null;
 
     [Header("========== 도안 선택 ==========")]
-    [SerializeField] private RawImage[] StickerDesignArr = null;
-    [SerializeField] private Func_SwipeMove StickerDesign = null;
+    [SerializeField] private RawImage[] stickerDesignArr = null;
+    [SerializeField] private Func_SwipeMove stickerDesign = null;
 
     [Header("========== 기울이기 ==========")]
     [SerializeField] private Func_Tilt[] colorBucketTitlts = null;
@@ -24,13 +24,15 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private RectTransform[] colorBucketsInitPos = null;
     [SerializeField] private Toggle[] colorBucketToggles = null;
     [SerializeField] private RawImage[] colorBeakersImgs = null;
+    [SerializeField] private GameObject colorBeakersTiltGuideLine = null;
     #endregion
 
     #region AnotherVariables
+    private bool isTouchColorBeaker = false;
     private int PanelIdx = 0;
-    [SerializeField] private int colorType = 0;
+    private int colorType = 0;
     public int ColorType { get { return colorType; } private set { } }
-
+    private string file = "";
     #endregion
 
     protected override void Start()
@@ -43,21 +45,21 @@ public class Manager_BubbleSticker : Func_SaveSticker
     {
         PanelIdx = 0;
         colorType = 0;
-        BackButton.gameObject.SetActive(false);
-        NextButton.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(true);
 
         for(int i = 0; i < colorBucketTitlts.Length; ++i)
         {
             colorBucketTitlts[i].enabled = false;
         }
 
-        for (int i = 0; i < Panels.Length; i++)
+        for (int i = 0; i < panels.Length; i++)
         {
-            Panels[i].SetActive(false);
+            panels[i].SetActive(false);
         }
-        Panels[0].SetActive(true);
+        panels[0].SetActive(true);
 
-        ActiveColortBucket(false);
+        ActiveColorBucket(false);
     }
 
     private void DecideDesignAndColor()
@@ -65,14 +67,14 @@ public class Manager_BubbleSticker : Func_SaveSticker
         switch (PanelIdx)
         {
             case 0:
-                BubbleSicker.texture = StickerDesignArr[StickerDesign.CurrentSticker].texture;
+                bubbleSicker.texture = stickerDesignArr[stickerDesign.CurrentSticker].texture;
                 break;
 
             case 1:
-                string file = "";
+                file = "";
                 // StickerDesign.CurrentSticker : 0 -> turtle, 1 -> trueseal, 2 -> grampus
                 // colorType : 0 -> green, 1 -> pink, 2 -> blue
-                switch (StickerDesign.CurrentSticker)
+                switch (stickerDesign.CurrentSticker)
                 {
                     case 0:
                         switch (colorType)
@@ -134,10 +136,10 @@ public class Manager_BubbleSticker : Func_SaveSticker
     private void GetBubbleStickerImage(string fileName)
     {
         Texture2D texture = Resources.Load<Texture2D>("FinishedDesigns/" + fileName);
-        BubbleSicker.texture = texture;
+        bubbleSicker.texture = texture;
     }
 
-    public void ActiveColortBucket(bool active)
+    public void ActiveColorBucket(bool active)
     {
         for (int i = 0; i < colorBucketToggles.Length; i++)
         {
@@ -152,16 +154,16 @@ public class Manager_BubbleSticker : Func_SaveSticker
     public void OnClick_NextBtn()
     {
         DecideDesignAndColor();
-        BackButton.gameObject.SetActive(true);
-        if (PanelIdx + 1 == Panels.Length - 1) NextButton.gameObject.SetActive(false);
-        Panels[PanelIdx + 1].SetActive(true);
-        Panels[PanelIdx].SetActive(false);
+        backButton.gameObject.SetActive(true);
+        if (PanelIdx + 1 == panels.Length - 1) nextButton.gameObject.SetActive(false);
+        panels[PanelIdx + 1].SetActive(true);
+        panels[PanelIdx].SetActive(false);
         PanelIdx++;
-        NextButton.gameObject.SetActive(false);
-        InitPanel();
+        nextButton.gameObject.SetActive(false);
+        InitCurPanel();
     }
 
-    private void InitPanel()
+    private void InitCurPanel()
     {
         switch (PanelIdx)
         {
@@ -175,6 +177,9 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 colorBeakersImgs[2].gameObject.SetActive(false);
                 colorBeakersImgs[3].gameObject.SetActive(false);
                 colorBeakersImgs[4].gameObject.SetActive(false);
+                colorBeakersTiltGuideLine.SetActive(false);
+                isTouchColorBeaker = false;
+                nextButton.gameObject.SetActive(false);
                 break;
 
             case 2:
@@ -193,16 +198,17 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_BackBtn()
     {
-        if(PanelIdx == 2) ActiveColortBucket(false);
-        if (PanelIdx - 1 == 0) BackButton.gameObject.SetActive(false);
-        Panels[PanelIdx - 1].SetActive(true);
-        Panels[PanelIdx].SetActive(false);
+        if(PanelIdx == 2) ActiveColorBucket(false);
+        if (PanelIdx - 1 == 0) backButton.gameObject.SetActive(false);
+        panels[PanelIdx - 1].SetActive(true);
+        panels[PanelIdx].SetActive(false);
         PanelIdx--;
         if (PanelIdx == 0)
         {
-            NextButton.gameObject.SetActive(true);
-            ActiveColortBucket(false);
+            nextButton.gameObject.SetActive(true);
+            ActiveColorBucket(false);
         }
+        InitCurPanel();
     }
 
     public void OnClick_SelectColor(string color)
@@ -235,6 +241,12 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 colorBucketsRect[i].localEulerAngles = Vector3.zero;
             }
         }
+
+        if (isTouchColorBeaker == false)
+        {
+            isTouchColorBeaker = true;
+            colorBeakersTiltGuideLine.SetActive(true);
+        }
     }
 
     public void InitColorBucket()
@@ -260,6 +272,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     IEnumerator SaveProcess(StickerType stickerType)
     {
+        saveFileName = file;
         base.OnClick_SaveImgae(stickerType);
         isSaveDone = false;
         yield return new WaitUntil(() => isSaveDone == true);

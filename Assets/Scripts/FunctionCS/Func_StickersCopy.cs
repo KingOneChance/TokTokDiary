@@ -15,16 +15,22 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [Header("===Texture===")]
     [SerializeField] private RawImage mainSticker = null;
     [SerializeField] private RawImage signSticker = null;
+    [Header("===Scripts===")]
+    [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
+
 
     private RectTransform myRectTransform;
     private RectTransform copyRectTransform;
     private RectTransform startTransform;
     private Vector2 mousePos = Vector2.zero;
+    private string stickerName = "";
 
     private void Start()
     {
+        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
+        stickerName = GetComponent<RawImage>().texture != null ? GetComponent<RawImage>().texture.name : "";
     }
     public void OnClick_MakeClone()
     {
@@ -48,9 +54,30 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         copyRectTransform = myRectTransform;
         newSticker.AddComponent<Func_DragObject>();
         newSticker.AddComponent<Func_DetectOnSticker>();
-
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
-        newSticker.transform.localScale *= 2;//new Vector3(220 / 160f, 220 / 160f, 220 / 160f);
+        newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
+        switch(func_DiaryInventory.GetNowType())
+        {
+            case StickerType.BubbleSticker:
+                break;
+            case StickerType.BubbleGunSticker:
+                break;
+            case StickerType.FreeSticker:
+                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
+                break;
+            case StickerType.RecordSticker:
+                newSticker.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    if (func_DiaryInventory.GetNowType() == StickerType.RecordSticker)
+                    {
+                        string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
+                        Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false);
+                    }
+                });
+                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
+                break;
+        }
+
         myRectTransform.position = myPos.transform.position;
 
         //nodedata plus
@@ -63,10 +90,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         temp.scale = tempRect.localScale;
         Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, newSticker);
         //
-
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
-        //gameObject.transform.localScale = Vector3.one;
+        // Use Sticker
+        Manager_Main.Instance.UseSticker(stickerName);
+        //   Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
+        //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
+
     }
 }

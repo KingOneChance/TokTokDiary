@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Func_SwipeMove : MonoBehaviour
 {
+    [SerializeField] private RawImage twinkleImg = null;
     [SerializeField] private Scrollbar scrollBar = null;
     [SerializeField] private float swipeTime = 0.2f;
     [SerializeField] private float swipeDistance = 50.0f;
@@ -34,6 +35,7 @@ public class Func_SwipeMove : MonoBehaviour
     {
         SetScrollBarValue(0);
         StartCoroutine(OnSwipeOneStep(currentSticker));
+        StartCoroutine(Twinkle());
     }
 
     public void SetScrollBarValue(int index)
@@ -97,5 +99,25 @@ public class Func_SwipeMove : MonoBehaviour
         }
 
         isSwipeMode = false;
+    }
+
+    private IEnumerator Twinkle()
+    {
+        float fadeAmount = 0;
+        while (true)
+        {
+            while (fadeAmount > 0f)
+            {
+                fadeAmount -= 0.1f;
+                yield return new WaitForFixedUpdate();
+                twinkleImg.color = new Color(1, 1, 1, fadeAmount);
+            }
+            while (fadeAmount < 1.0f)
+            {
+                fadeAmount += 0.1f;
+                yield return new WaitForFixedUpdate();
+                twinkleImg.color = new Color(1, 1, 1, fadeAmount);
+            }
+        }
     }
 }

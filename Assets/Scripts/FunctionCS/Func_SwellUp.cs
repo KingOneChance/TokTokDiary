@@ -1,17 +1,19 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Func_SwellUp : MonoBehaviour
 {
-    [SerializeField] private RawImage SwellUpImg = null;
-    [SerializeField] private Button SwellUpButton = null;
-    [SerializeField] private Button SkipButton = null;
+    [SerializeField] private Func_HelperGuideClick helperGuideClick = null;
+    [SerializeField] private RectTransform helperGuideClickMovePos = null;
+    [SerializeField] private RectTransform helperGuideClicInitPos = null;
+    [SerializeField] private RawImage swellUpImg = null;
+    [SerializeField] private RawImage stickerInBubbleImg = null;
+    [SerializeField] private Button swellUpButton = null;
+    [SerializeField] private Button skipButton = null;
+    [SerializeField] private Button backButton = null;
     [SerializeField] private Manager_BubbleSticker manager_bs;
-    [SerializeField] private GameObject GetBubbleStickerPanel = null;
+    [SerializeField] private GameObject getBubbleStickerPanel = null;
     [SerializeField] private GameObject curPanel = null;
     [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
@@ -19,54 +21,72 @@ public class Func_SwellUp : MonoBehaviour
 
     private void OnEnable()
     {
-        SkipButton.gameObject.SetActive(true);
+        skipButton.gameObject.SetActive(true);
+        stickerInBubbleImg.gameObject.SetActive(false);
+        helperGuideClick.gameObject.SetActive(true);
+        helperGuideClick.GetComponent<RectTransform>().position = helperGuideClicInitPos.position;
     }
 
     private void OnDisable()
     {
         curIdx = 0;
-        SwellUpImg.rectTransform.localScale = Vector3.zero;
-        SwellUpButton.interactable = true;
+        swellUpImg.rectTransform.localScale = Vector3.zero;
+        swellUpButton.interactable = true;
     }
 
     public void OnClick_SwellUp()
     {
         if(curIdx == 3)
         {
-            SwellUpImg.rectTransform.localScale = Vector3.zero;
-            StartCoroutine(CO_Bomb());
+            swellUpButton.interactable = false;
             return;
         }
         curIdx++;
-        StartCoroutine(SwellUp());
+        StartCoroutine(CO_SwellUp(curIdx));
     }
 
-    public void Bomb()
+    public void SaveProcess()
     {
-        SwellUpButton.interactable = false;
+        StartCoroutine(CO_Bomb());
+        swellUpButton.interactable = false;
         curPanel.SetActive(false);
-        GetBubbleStickerPanel.SetActive(true);
+        getBubbleStickerPanel.SetActive(true);
         manager_bs.SaveBubbleSticker();
     }
 
-    private IEnumerator SwellUp()
+    private IEnumerator CO_SwellUp(int idx)
     {
-        SwellUpButton.interactable = false;
+        helperGuideClick.gameObject.SetActive(false);
+        swellUpButton.interactable = false;
         while (true)
         {
-            if (SwellUpImg.rectTransform.localScale.x >= curIdx)
+            if (swellUpImg.rectTransform.localScale.x >= idx)
             {
-                SwellUpButton.interactable = true;
+                if (idx == 3)
+                {
+                    stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
+                    stickerInBubbleImg.gameObject.SetActive(true);
+                    helperGuideClick.GetComponent<RectTransform>().position = helperGuideClickMovePos.position;
+                }
+                swellUpButton.interactable = true;
+                helperGuideClick.gameObject.SetActive(true);
                 yield break;
             }
-            SwellUpImg.rectTransform.localScale += 0.02f * curIdx * Vector3.one;
+            swellUpImg.rectTransform.localScale += 0.02f * idx * Vector3.one;
             yield return null;
         }
     }
 
     public void OnClick_SkipButton()
     {
-        SwellUpImg.rectTransform.localScale = Vector3.zero;
+        swellUpButton.interactable = false;
+        StartCoroutine(CO_SwellUp(3));
+    }
+
+    private void Bomb()
+    {
+        backButton.gameObject.SetActive(false);
+        swellUpImg.rectTransform.localScale = Vector3.zero;
         StartCoroutine(CO_Bomb());
     }
 
@@ -84,6 +104,11 @@ public class Func_SwellUp : MonoBehaviour
             eff_GetBubbleSticker[i].Clear(true);
         }
 
-        Bomb();
+        SaveProcess();
+    }
+
+    private IEnumerator Co_Fluffy()
+    {
+        yield return null;
     }
 }

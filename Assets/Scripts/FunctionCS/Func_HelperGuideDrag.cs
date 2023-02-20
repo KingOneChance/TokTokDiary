@@ -9,7 +9,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
     [SerializeField] private RectTransform 손가락 = null;
     [SerializeField] private RectTransform 출발지 = null;
     [SerializeField] private RectTransform 도착지 = null;
-    [SerializeField] public GameObject Select1 = null;
+    [SerializeField] private GameObject Select1 = null;
     [SerializeField] private GameObject Select2 = null;
     [SerializeField] private GameObject Select3 = null;
     [SerializeField] private GameObject Select4 = null;

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Func_CalendarController : MonoBehaviour
 {
-    const int _totalDateNum = 42;
+    /*const int _totalDateNum = 42;
 
     
     [SerializeField] private GameObject _item; 
@@ -22,7 +22,7 @@ public class Func_CalendarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _monthNumText;
     [SerializeField] private TextMeshProUGUI _monthStrText;
     
-
+    //프리뷰 년도 월 일
     [SerializeField] public TextMeshProUGUI[] preViewDate = null;
 
     private DateTime _dateTime;
@@ -91,7 +91,7 @@ public class Func_CalendarController : MonoBehaviour
         int date = 0;
 
         _yearNumText.text = _dateTime.Year.ToString();
-        _monthNumText.text = _dateTime.Month.ToString()/* + " 월 "*/;
+        _monthNumText.text = _dateTime.Month.ToString()*//* + " 월 "*//*;
 
         switch (_dateTime.Month)
         {
@@ -136,7 +136,7 @@ public class Func_CalendarController : MonoBehaviour
         for (int i = 0; i < _totalDateNum; i++)
         {
             
-            /*TextMeshProUGUI*/
+            *//*TextMeshProUGUI*//*
             label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
             GameObject dateObj = _dateItems[i].gameObject;
             _dateItems[i].SetActive(false);
@@ -364,5 +364,5 @@ public class Func_CalendarController : MonoBehaviour
                 _dateItems[i].GetComponent<Button>().Select();
             }
         }
-    }
+    }*/
 }

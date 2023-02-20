@@ -140,7 +140,4 @@ public class Manager_DiaryCase : MonoBehaviour
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }*/
-
-
-
 }

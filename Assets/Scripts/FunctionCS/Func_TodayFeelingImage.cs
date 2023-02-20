@@ -7,6 +7,7 @@ namespace FreeDraw
 {
     public class Func_TodayFeelingImage : Func_Draw
     {
+
         [SerializeField] public Sprite Change_Image_Excited;
         [SerializeField] public Sprite Change_Image_Happy;
         [SerializeField] public Sprite Change_Image_Calm;
@@ -14,14 +15,17 @@ namespace FreeDraw
         [SerializeField] public Sprite Change_Image_Angry;
         [SerializeField] public GameObject TodayFeelingMenu = null;
         [SerializeField] public GameObject Helper;
-        [SerializeField] private Func_TodayFeelingImage func_TodayFeelingImage = null;
         [SerializeField] private bool stickerMaking = false;
+        [SerializeField] public LineRenderer lineRenderer; // 라인 렌더러 컴포넌트를 가리키는 변수
+
+        public void OnButtonClick()
+        {
+            lineRenderer.startWidth = 1.0f; // 라인 렌더러의 시작 너비를 1로 설정
+            lineRenderer.endWidth = 1.0f; // 라인 렌더러의 끝 너비를 1로 설정
+        }
 
         static Image ThisImage;
-        private void Awake()
-        {
-            func_TodayFeelingImage = FindObjectOfType<Func_TodayFeelingImage>();
-        }
+     
         private new void Start()
         {
             ThisImage = GetComponent<Image>();
@@ -30,7 +34,7 @@ namespace FreeDraw
 
         private void Update()
         {
-            if (!func_TodayFeelingImage.ActiveTodayFeelingMenu() || Helper.activeSelf)
+            if (!ActiveTodayFeelingMenu() || Helper.activeSelf)
             {
                 if (CheckArea() == true && stickerMaking == false)
                 {
