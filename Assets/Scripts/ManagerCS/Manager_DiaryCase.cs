@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Manager_DiaryCase : MonoBehaviour
 {
-    [SerializeField] GameObject[] panels = null;
+    /*[SerializeField] GameObject[] panels = null;
     [Header("프로필 고르기")]
     [SerializeField] RawImage[] profiles = null;
     [SerializeField] Button[] profileButton = null;
@@ -24,7 +24,7 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private string selectedProfileName = "";
     [SerializeField] private string selectedProfilPath = "";
 
-    Func_CalendarController func_CalendarController;
+    [SerializeField] Func_CalendarController func_CalendarController;
 
     public int presentNum = 0;
     private void Start()
@@ -33,24 +33,31 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
-        func_CalendarController = FindObjectOfType<Func_CalendarController>();   
-    }
 
+    }
+    
     public void OnClick_Profile(int idx)
     {
+
         selectedProfileName = profileName[idx - 1].text;
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
         AddDiaryFiles();
-        panels[0].SetActive(false);
-        panels[1].SetActive(true);
-        
+        if (allFiles.Count > 0)
+        {
+            panels[0].SetActive(false);
+            panels[1].SetActive(true);
+        }
+        else
+        {
+            Debug.Log("일기가 없습니다");
+        }
     }
     public List<string> allFiles = new List<string>();
     private void AddDiaryFiles()
     {
 
         allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories));
-
+        
         string filename = "";
         if (allFiles.Count == 0)
         {
@@ -63,8 +70,8 @@ public class Manager_DiaryCase : MonoBehaviour
         for (int i = 0; i < allFiles.Count; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-            filename = allFiles[i].Split("\\")[1].Split(".")[0];
-            Debug.Log(filename);
+            
+            filename = allFiles[i].Split('\\')[1].Split(".")[0];
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
@@ -75,13 +82,24 @@ public class Manager_DiaryCase : MonoBehaviour
                     continue;
                 }
                 allFilesDictionary.Add(filename, texture);
+
                 allFilesTexture.Add(texture);
             }
         }
         presentNum = allFiles.Count-1;
-        ShowPreviewDiary();
-    }
 
+        ShowPreviewDiary();
+        for(int i = 0; i < allFilesTexture.Count; i++)
+        {
+            Debug.Log(allFilesTexture[i].name);
+        }
+    }
+    //처음 들어갔을때 가장 최근일기 띄워주는 함수
+    public void ShowPreviewDiary()
+    {
+        previewImg.texture = allFilesTexture[allFiles.Count - 1];
+    }
+    //뒤로가기버튼
     public void OnClick_BackButton()
     {
         allFilesDictionary.Clear();
@@ -90,16 +108,7 @@ public class Manager_DiaryCase : MonoBehaviour
         previewImg.texture = null;
     }
 
-    public void ShowPreviewDiary()
-    {
-         int lastDiary = allFiles.Count - 1;
-
-        /*if (allFilesDictionary[lastDiary].)
-        {
-            previewImg.texture = allFilesDictionary[fileName+"-2"];
-        }*/
-        
-    }
+   //이전 일기장으로 연결해주는 버튼함수
     public void OnClick_PrevDiary()
     {
         presentNum--;
@@ -113,7 +122,9 @@ public class Manager_DiaryCase : MonoBehaviour
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
         func_CalendarController.ShowPreviewDate(year, month, day);
+        func_CalendarController.ChangeCalender();
     }
+    //다음일기장으로 연결해주는 버튼함수
     public void OnClick_NextDiary()
     {
         presentNum++;
@@ -125,9 +136,10 @@ public class Manager_DiaryCase : MonoBehaviour
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
-        Debug.Log(year + month + day);
+
         func_CalendarController.ShowPreviewDate(year, month, day);
-    }
+        func_CalendarController.ChangeCalender();
+    }*/
 
 
 
