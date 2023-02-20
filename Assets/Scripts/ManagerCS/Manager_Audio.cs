@@ -24,13 +24,13 @@ public class Manager_Audio : MonoBehaviour
 
     private void Awake()
     {
-        AddAllClipsToDic(DiarySounds);
-        AddAllClipsToDic(BubbleGunSounds);
-        AddAllClipsToDic(BubbleBearSounds);
-        AddAllClipsToDic(BubbleStickerSounds);
-        AddAllClipsToDic(FreeStickerSounds);
-        AddAllClipsToDic(TouchSounds);
-        AddAllClipsToDic(CommonSounds);
+        //AddAllClipsToDic(DiarySounds);
+        //AddAllClipsToDic(BubbleGunSounds);
+        //AddAllClipsToDic(BubbleBearSounds);
+        //AddAllClipsToDic(BubbleStickerSounds);
+        //AddAllClipsToDic(FreeStickerSounds);
+        //AddAllClipsToDic(TouchSounds);
+        //AddAllClipsToDic(CommonSounds);
     }
 
     /// <summary>
