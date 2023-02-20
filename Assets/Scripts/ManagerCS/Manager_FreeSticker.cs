@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 namespace FreeDraw
 {
     public class Manager_FreeSticker : Func_SaveSticker
@@ -11,7 +13,14 @@ namespace FreeDraw
         [SerializeField] public GameObject Result = null;
         [SerializeField] public GameObject lineRendererPrefab;
         [SerializeField] private GameObject Lines = null;
-
+        [SerializeField] private MouseType MouseState;
+        [SerializeField] Texture2D ui_NiddleImage = null;
+        [SerializeField] Texture2D ui_StickImage = null;
+        [SerializeField] bool isNiddleClicked = false;
+        [SerializeField]private bool isStickClicked = false;
+        private Vector2 hotSpot = Vector2.zero;
+        private CursorMode cursorMode = CursorMode.Auto;
+        public MouseType MouseStateInfo { get { return MouseState; } }
         protected override void Start()
         {
             savePath = Application.persistentDataPath;
@@ -25,6 +34,7 @@ namespace FreeDraw
             //(int)saveImageRect.rect.width;
             heightValue = 740;
             //(int)saveImageRect.rect.height;
+            MouseState = MouseType.None;
         }
     
     //   public void CreateLine()
@@ -55,6 +65,37 @@ namespace FreeDraw
     
             
             //Destroy(Func_Draw.Draw());
+        }
+
+        public void OnClick_NiddleButton()
+        {
+            if (MouseState != MouseType.Niddle)
+            {
+                Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
+                isNiddleClicked = true;
+                MouseState = MouseType.Niddle;
+            }
+            else
+            {
+                Cursor.SetCursor(default, hotSpot, cursorMode);
+                isNiddleClicked = false;
+                MouseState = MouseType.None;
+            }
+        }
+        public void OnClick_BubbleStick()
+        {
+            if (MouseState != MouseType.BubbleStick)
+            {
+                Cursor.SetCursor(ui_StickImage, hotSpot, cursorMode);
+                isStickClicked = true;
+                MouseState = MouseType.BubbleStick;
+            }
+            else
+            {
+                Cursor.SetCursor(default, hotSpot, cursorMode);
+                isStickClicked = false;
+                MouseState = MouseType.None;
+            }
         }
     }
 }

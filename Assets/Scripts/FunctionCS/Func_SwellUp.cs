@@ -89,6 +89,7 @@ public class Func_SwellUp : MonoBehaviour
 
     private IEnumerator CO_Bomb()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
         for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
         {
             eff_GetBubbleSticker[i].Play();

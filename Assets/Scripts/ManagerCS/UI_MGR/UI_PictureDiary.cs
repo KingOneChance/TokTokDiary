@@ -85,7 +85,7 @@ public class UI_PictureDiary : MonoBehaviour
         before = new TextMeshProUGUI();
     }
 
-    #region Road Sticker Button
+    #region Load Sticker Button
     public void OnClick_BSRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleStickerList);

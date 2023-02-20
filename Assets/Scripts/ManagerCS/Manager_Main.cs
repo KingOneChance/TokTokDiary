@@ -40,6 +40,7 @@ public class Manager_Main : MonoBehaviour
     [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
+
     private UI_StickerRepository ui_StickerRepository = null;
     public UI_StickerRepository UI_StickerRepository { get { return ui_StickerRepository; } }
 
