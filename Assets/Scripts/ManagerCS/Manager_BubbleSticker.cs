@@ -41,6 +41,17 @@ public class Manager_BubbleSticker : Func_SaveSticker
         Init();
     }
 
+    private void Update()
+    {
+        if (Manager_UserInput.touchCount > 0)
+        {
+            if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
+            {
+                Manager_Main.Instance.GetAudio().PlaySound("TouchSound", SoundType.Touch, gameObject, false);
+            }
+        }
+    }
+
     public void Init()
     {
         PanelIdx = 0;

@@ -4805,17 +4805,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4095744915355600559, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
   m_PrefabInstance: {fileID: 69400748}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &794815646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4095744915355600558, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
-  m_PrefabInstance: {fileID: 69400748}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794815645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &794815647 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4095744915355600557, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
@@ -6084,7 +6073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75600556ee9170498044c9fe573dce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  func_Draw: {fileID: 794815646}
+  func_Draw: {fileID: 0}
   Transparency: 1
 --- !u!4 &1048058678
 Transform:
@@ -6738,6 +6727,7 @@ MonoBehaviour:
   "\uB3C4\uCC29\uC9C0": {fileID: 288003136}
   "\uC190\uAC00\uB77D\uC774\uB3D9\uC18D\uB3C4": 1
   runCount: 1
+  isLeft: 0
 --- !u!1 &1107278543
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,12 +87,17 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_PlayInFinish()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false);
+        Invoke(nameof(PlayRecordSound), 1f);
+    }
+
+    private void PlayRecordSound()
+    {
         playSouce.clip = newClip;
         finishPlayButton.SetActive(false);
         playSouce.Play();
         StartCoroutine(Co_EndReturn());
     }
-
 
     public void OnClick_Rerecord()
     {

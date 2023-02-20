@@ -24,10 +24,10 @@ public class Manager_Audio : MonoBehaviour
     private void Awake()
     {
         AddAllClipsToDic(DiarySounds);
-        AddAllClipsToDic(BubbleGunSounds);
-        AddAllClipsToDic(BubbleBearSounds);
-        AddAllClipsToDic(BubbleStickerSounds);
-        AddAllClipsToDic(FreeStickerSounds);
+        //AddAllClipsToDic(BubbleGunSounds);
+        //AddAllClipsToDic(BubbleBearSounds);
+        //AddAllClipsToDic(BubbleStickerSounds);
+        //AddAllClipsToDic(FreeStickerSounds);
         AddAllClipsToDic(TouchSounds);
         AddAllClipsToDic(CommonSounds);
     }
@@ -203,7 +203,10 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
             // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(GetClip(soundType, ClipName));
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
         }
         else
         {
@@ -213,8 +216,11 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
             // Check AudioClip to play And PlaySound
-            audioSource.PlayOneShot(GetClip(soundType, ClipName));
-            Debug.LogError("No Exist AudioSourceComponent Please Check");
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            Debug.LogError("No Exist AudioSourceComponent So Add AudioSource Component");
             return;
         }        
     }

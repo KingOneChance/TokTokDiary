@@ -103,6 +103,7 @@ namespace FreeDraw
             //during drag
             else if (Input.GetMouseButton(0) && internalClick == true)
             {
+                Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, gameObject, false);
                 Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
                      {
