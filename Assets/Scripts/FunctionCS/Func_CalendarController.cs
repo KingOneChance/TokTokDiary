@@ -52,7 +52,7 @@ public class Func_CalendarController : MonoBehaviour
         for (int i = 1; i < _totalDateNum; i++)
         {
             GameObject item = Instantiate(_item);
-            item.GetComponent<Button>().onClick.AddListener(() => OnClick_Date());
+            //item.GetComponent<Button>().onClick.AddListener(() => OnClick_Date());
             item.name = "Date" + (i + 1).ToString();
             item.transform.SetParent(_itemParent.transform);
             item.transform.localScale = Vector3.one;
@@ -71,7 +71,6 @@ public class Func_CalendarController : MonoBehaviour
         //마지막 파일의 날짜에 검은색 테두리만들기
         for (int i = _dateItems.Count; i > 0; --i)
         {
-
             if (_dateItems[i - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[2]
                 && _dateItems[i - 1].transform.GetChild(1).GetChild(0).gameObject.activeSelf == true)
             {
@@ -224,11 +223,11 @@ public class Func_CalendarController : MonoBehaviour
 
     public void OnClick_Date()
     {
+
         string nowDay = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
 
-        //manager_DiaryCase.previewText.gameObject.SetActive(false);
+ 
         int m = int.Parse(_monthNumText.text);
-        int d = int.Parse(_yearNumText.text);
 
         string mm = "";
 
@@ -239,19 +238,19 @@ public class Func_CalendarController : MonoBehaviour
 
         string fileName = int.Parse(_yearNumText.text) + "_" + mm + "_" + nowDay;
         Debug.Log(fileName + "-1");
+
         //if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName + "-1"))
         for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
             if (manager_DiaryCase.allFilesTexture[i].name == fileName + "-1")
             {
-                Debug.Log(manager_DiaryCase.allFilesTexture[i].name);
+                manager_DiaryCase.previewText.gameObject.SetActive(false);
                 // manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesDictionary[fileName + "-1"];
                 manager_DiaryCase.previewImg.texture = manager_DiaryCase.allFilesTexture[i];
-                Debug.Log(manager_DiaryCase.previewImg.texture.name);
                 int year = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[0]);
                 int month = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[1]);
                 int day = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[2]);
-                Debug.Log(year + month + day);
+                Debug.Log(year +" "+ month + " " + day);
                 ShowPreviewDate(year.ToString(), month.ToString(), day.ToString());
                 break;
             }
@@ -360,7 +359,10 @@ public class Func_CalendarController : MonoBehaviour
                 && int.Parse(preViewDate[2].text) == int.Parse(_dateItems[i].transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text))
             {
                 _dateItems[i].GetComponent<Button>().Select();
+                break;
             }
         }
     }
+
+
 }
