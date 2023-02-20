@@ -8,7 +8,7 @@ namespace FreeDraw
 {   
     public class Func_DetectInFreeSticker : MonoBehaviour, IPointerDownHandler
     {
-        [SerializeField] private Func_DragObject func_DragObject = null; //드래그할거 만들고
+        [SerializeField] private Func_DragObject_FreeSticker func_DragObject_FreeSticker = null; //드래그할거 만들고
         [SerializeField] private Manager_FreeSticker manager_FreeSticker = null;
         [SerializeField] private RawImage sticker = null;
         [SerializeField] private RawImage bubble = null;
@@ -29,12 +29,14 @@ namespace FreeDraw
         {
             if (manager_FreeSticker.MouseStateInfo == MouseType.Niddle)
             {
-                func_DragObject.enabled = false; //드래그할 스크립트 켜고 끄면서 움직임 제어
+                Debug.Log("바늘상태");
+                func_DragObject_FreeSticker.enabled = false; //드래그할 스크립트 켜고 끄면서 움직임 제어
                 bubble.gameObject.SetActive(false);
             }
             else if (manager_FreeSticker.MouseStateInfo == MouseType.BubbleStick)
             {
-                func_DragObject.enabled = true;
+                Debug.Log("방울상태");
+                func_DragObject_FreeSticker.enabled = true;
                 bubble.gameObject.SetActive(true);
             }
         }

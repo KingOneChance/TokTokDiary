@@ -22,7 +22,7 @@ public class Func_DragObject_FreeSticker : MonoBehaviour, IDragHandler, IBeginDr
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         rect.position = mousePos;
-
+        
 
     }
     public void OnEndDrag(PointerEventData eventData)
