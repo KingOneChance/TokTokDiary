@@ -27,6 +27,7 @@ public class Func_DragAndDrop : Func_BasicDrag
         base.OnEndDrag(eventData);
         if (Vector3.Distance(myDestinationPos.position, myRect.position) < 100f)
         {
+            Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, false);
             myRect.position = myDestinationPos.position;
             isDropDone = true;
         }

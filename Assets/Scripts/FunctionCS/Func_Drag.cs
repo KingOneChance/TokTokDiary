@@ -54,6 +54,7 @@ public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         isOn = true;
         gameObject.transform.position = hitBoxPos.transform.position;
+        Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, false);
         Invoke("LoadFinishCanvas", 1f);
     }
     private void OnCollisionStay2D(Collision2D collision)
