@@ -77,7 +77,7 @@ public enum SoundType
     BubbleBear, 
     BubbleSticker,
     BubbleGun,
-    DiaryCase,
+    Diary,
     Common, 
     FreeSticker,
     Touch
