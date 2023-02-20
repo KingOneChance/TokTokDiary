@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Func_DIarySave : Func_SaveSticker
 {
@@ -31,7 +32,7 @@ public class Func_DIarySave : Func_SaveSticker
     }
     public void OnClick_SetProfileName()
     {
-        profileName=EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
+        profileName = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
     }
 
     public void OnClick_SetCansave(bool value) //set canSave State; 프로필 선택시 트루 , 프로필 선택창 닫기시 폴스 
@@ -48,6 +49,15 @@ public class Func_DIarySave : Func_SaveSticker
         {
             base.SaveTexture(StickerType.Diary, profileName);
         }
+        //저장 완료시 씬전환
+        StartCoroutine(Co_SaveEndLoadScene());
+    }
+    IEnumerator Co_SaveEndLoadScene()
+    {
+        isSaveDone = false;
+        yield return new WaitUntil(() => isSaveDone == true);
+        //씬전환
+        SceneManager.LoadScene("PictureDiary");
     }
     public void SaveTempCapture()
     {

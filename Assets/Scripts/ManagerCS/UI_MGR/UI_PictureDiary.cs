@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 using static NativeCamera;
 
 public class UI_PictureDiary : MonoBehaviour
@@ -311,6 +313,7 @@ public class UI_PictureDiary : MonoBehaviour
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(Application.persistentDataPath + "/" + "Profile")) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
+        if (false == Directory.Exists(directoryPath+"/Diary/")) Directory.CreateDirectory(directoryPath + "/Diary/");
 
         int widthValue = texture.width;
         int heightValue = texture.height;
@@ -431,4 +434,5 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileOverWrite.gameObject.SetActive(false);
     }
     #endregion
+
 }
