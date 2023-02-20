@@ -29,7 +29,7 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
     {
         if (ui_PictureDiary.MouseStateInfo == MouseType.Niddle)
         {
-            func_DragObject.enabled = false;
+            func_DragObject.enabled = false; 
             bubble.gameObject.SetActive(false);
         }
         else if (ui_PictureDiary.MouseStateInfo == MouseType.BubbleStick)
@@ -42,5 +42,4 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
     {
         OnClick_MouseType();
     }
-  
 }
