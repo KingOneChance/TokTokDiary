@@ -42,7 +42,7 @@ public class Func_SwellUp : MonoBehaviour
             return;
         }
         curIdx++;
-        StartCoroutine(SwellUp());
+        StartCoroutine(CO_SwellUp(curIdx));
     }
 
     public void SaveProcess()
@@ -54,15 +54,15 @@ public class Func_SwellUp : MonoBehaviour
         manager_bs.SaveBubbleSticker();
     }
 
-    private IEnumerator SwellUp()
+    private IEnumerator CO_SwellUp(int idx)
     {
         helperGuideClick.gameObject.SetActive(false);
         swellUpButton.interactable = false;
         while (true)
         {
-            if (swellUpImg.rectTransform.localScale.x >= curIdx)
+            if (swellUpImg.rectTransform.localScale.x >= idx)
             {
-                if (curIdx == 3)
+                if (idx == 3)
                 {
                     stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
                     stickerInBubbleImg.gameObject.SetActive(true);
@@ -72,12 +72,16 @@ public class Func_SwellUp : MonoBehaviour
                 helperGuideClick.gameObject.SetActive(true);
                 yield break;
             }
-            swellUpImg.rectTransform.localScale += 0.02f * curIdx * Vector3.one;
+            swellUpImg.rectTransform.localScale += 0.02f * idx * Vector3.one;
             yield return null;
         }
     }
 
-    public void OnClick_SkipButton() => Bomb();
+    public void OnClick_SkipButton()
+    {
+        swellUpButton.interactable = false;
+        StartCoroutine(CO_SwellUp(3));
+    }
 
     private void Bomb()
     {

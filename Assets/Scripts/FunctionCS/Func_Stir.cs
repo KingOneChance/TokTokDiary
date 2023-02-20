@@ -127,8 +127,8 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        MixProcess(bsManager.ColorType, 3);
         NextButton.gameObject.SetActive(true);
-
         stickButton.enabled = false;
     }
 }
