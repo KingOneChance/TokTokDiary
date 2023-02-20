@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
+using TMPro;
 
 public class Func_DIarySave : Func_SaveSticker
 {
     [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
     [SerializeField] private bool canSave = false;
+    [SerializeField] private string profileName = "";
     // fix Func_SaveSticker location
     protected override void Start()
     {
@@ -17,13 +21,20 @@ public class Func_DIarySave : Func_SaveSticker
         startYPos = saveImageRect.rect.position.y + 540;
         widthValue = (int)saveImageRect.rect.width;
         heightValue = (int)saveImageRect.rect.height;
+
+        saveFileName = DateTime.Now.ToString("yyyy_MM_dd");
     }
 
     public void Onclick_Capture()
     {
 
     }
-    public void SetCansave(bool value) //set canSave State; 프로필 선택시 트루 , 프로필 선택창 닫기시 폴스 
+    public void OnClick_SetProfileName()
+    {
+        profileName=EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
+    }
+
+    public void OnClick_SetCansave(bool value) //set canSave State; 프로필 선택시 트루 , 프로필 선택창 닫기시 폴스 
     {
         if (value == false)
             canSave = true;
@@ -34,7 +45,9 @@ public class Func_DIarySave : Func_SaveSticker
     {
         //base.OnClick_SaveImgae(StickerType.FreeSticker);
         if (canSave == true)
-            base.SaveTexture(StickerType.Diary);
+        {
+            base.SaveTexture(StickerType.Diary, profileName);
+        }
     }
     public void SaveTempCapture()
     {

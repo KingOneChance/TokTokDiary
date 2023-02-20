@@ -69,7 +69,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setFreeStickerNum = 0;
     [SerializeField] private int setDiaryNum = 0;
 
- 
+
 
     #endregion
 
@@ -217,16 +217,16 @@ public class Manager_Main : MonoBehaviour
             return getFreeStickerNum;
         }
     }
-    public int GetDiaryNum(string folder)
+    public int GetDiaryNum(string folder, string profileName)
     {
-        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/");
             return 0;
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/", "*.png", SearchOption.TopDirectoryOnly);
             getDiaryNum = allFiles.Length;
             return getDiaryNum;
         }
@@ -262,7 +262,7 @@ public class Manager_Main : MonoBehaviour
     /// <param name="stickerName"></param>
     public void UseSticker(string stickerName)
     {
-        if(PlayerPrefs.HasKey(stickerName) == false)
+        if (PlayerPrefs.HasKey(stickerName) == false)
         {
             Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
             return;
