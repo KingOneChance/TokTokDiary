@@ -3315,7 +3315,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1354450731}
         m_TargetAssemblyTypeName: Func_SwellUp, Assembly-CSharp
-        m_MethodName: OnClick_SkipButton
+        m_MethodName: OnClick_SwellUpBubble
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5711,7 +5711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7920711218516852055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8958,7 +8958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3832742115788424392
 RectTransform:
   m_ObjectHideFlags: 0

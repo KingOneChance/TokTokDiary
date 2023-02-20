@@ -25,13 +25,9 @@ public class Func_SwellUp : MonoBehaviour
         stickerInBubbleImg.gameObject.SetActive(false);
         helperGuideClick.gameObject.SetActive(true);
         helperGuideClick.GetComponent<RectTransform>().position = helperGuideClicInitPos.position;
-    }
-
-    private void OnDisable()
-    {
+        swellUpButton.interactable = true;
         curIdx = 0;
         swellUpImg.rectTransform.localScale = Vector3.zero;
-        swellUpButton.interactable = true;
     }
 
     public void OnClick_SwellUp()
@@ -67,6 +63,7 @@ public class Func_SwellUp : MonoBehaviour
                     stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
                     stickerInBubbleImg.gameObject.SetActive(true);
                     helperGuideClick.GetComponent<RectTransform>().position = helperGuideClickMovePos.position;
+                    yield break;
                 }
                 swellUpButton.interactable = true;
                 helperGuideClick.gameObject.SetActive(true);
@@ -83,7 +80,7 @@ public class Func_SwellUp : MonoBehaviour
         StartCoroutine(CO_SwellUp(3));
     }
 
-    private void Bomb()
+    public void OnClick_SwellUpBubble()
     {
         backButton.gameObject.SetActive(false);
         swellUpImg.rectTransform.localScale = Vector3.zero;
