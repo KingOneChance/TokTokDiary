@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 
 public class Func_CalendarController : MonoBehaviour
 {
-    /*const int _totalDateNum = 42;
+    const int _totalDateNum = 42;
 
-    
-    [SerializeField] private GameObject _item; 
+
+    [SerializeField] private GameObject _item;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
 
     [SerializeField] private GameObject _itemParent;
@@ -21,7 +21,7 @@ public class Func_CalendarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _yearNumText;
     [SerializeField] private TextMeshProUGUI _monthNumText;
     [SerializeField] private TextMeshProUGUI _monthStrText;
-    
+
     //프리뷰 년도 월 일
     [SerializeField] public TextMeshProUGUI[] preViewDate = null;
 
@@ -52,7 +52,7 @@ public class Func_CalendarController : MonoBehaviour
         for (int i = 1; i < _totalDateNum; i++)
         {
             GameObject item = Instantiate(_item);
-            item.GetComponent<Button>().onClick.AddListener(()=>OnClick_Date());
+            item.GetComponent<Button>().onClick.AddListener(() => OnClick_Date());
             item.name = "Date" + (i + 1).ToString();
             item.transform.SetParent(_itemParent.transform);
             item.transform.localScale = Vector3.one;
@@ -61,7 +61,7 @@ public class Func_CalendarController : MonoBehaviour
 
             _dateItems.Add(item);
         }
-        
+
         CreateCalendar();
 
         string year = manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[0];
@@ -91,7 +91,7 @@ public class Func_CalendarController : MonoBehaviour
         int date = 0;
 
         _yearNumText.text = _dateTime.Year.ToString();
-        _monthNumText.text = _dateTime.Month.ToString()*//* + " 월 "*//*;
+        _monthNumText.text = _dateTime.Month.ToString();//* + " 월 "*//*;
 
         switch (_dateTime.Month)
         {
@@ -135,8 +135,6 @@ public class Func_CalendarController : MonoBehaviour
 
         for (int i = 0; i < _totalDateNum; i++)
         {
-            
-            *//*TextMeshProUGUI*//*
             label = _dateItems[i].GetComponentInChildren<TextMeshProUGUI>();
             GameObject dateObj = _dateItems[i].gameObject;
             _dateItems[i].SetActive(false);
@@ -240,9 +238,9 @@ public class Func_CalendarController : MonoBehaviour
         if (int.Parse(nowDay) < 10) nowDay = "0" + nowDay;
 
         string fileName = int.Parse(_yearNumText.text) + "_" + mm + "_" + nowDay;
-        Debug.Log(fileName+"-1");
+        Debug.Log(fileName + "-1");
         //if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName + "-1"))
-        for(int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
+        for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
             if (manager_DiaryCase.allFilesTexture[i].name == fileName + "-1")
             {
@@ -264,7 +262,7 @@ public class Func_CalendarController : MonoBehaviour
                 ShowPreviewDate("", "", "");
             }
         }
-        
+
         for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
             if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesTexture[i])
@@ -364,5 +362,5 @@ public class Func_CalendarController : MonoBehaviour
                 _dateItems[i].GetComponent<Button>().Select();
             }
         }
-    }*/
+    }
 }

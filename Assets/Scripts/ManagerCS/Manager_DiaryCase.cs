@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Manager_DiaryCase : MonoBehaviour
 {
-    /*[SerializeField] GameObject[] panels = null;
+    [SerializeField] GameObject[] panels = null;
     [Header("프로필 고르기")]
     [SerializeField] RawImage[] profiles = null;
     [SerializeField] Button[] profileButton = null;
@@ -35,7 +35,7 @@ public class Manager_DiaryCase : MonoBehaviour
         }
 
     }
-    
+
     public void OnClick_Profile(int idx)
     {
 
@@ -57,7 +57,7 @@ public class Manager_DiaryCase : MonoBehaviour
     {
 
         allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories));
-        
+
         string filename = "";
         if (allFiles.Count == 0)
         {
@@ -70,7 +70,7 @@ public class Manager_DiaryCase : MonoBehaviour
         for (int i = 0; i < allFiles.Count; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-            
+
             filename = allFiles[i].Split('\\')[1].Split(".")[0];
             if (byteTexture.Length > 0)
             {
@@ -86,10 +86,10 @@ public class Manager_DiaryCase : MonoBehaviour
                 allFilesTexture.Add(texture);
             }
         }
-        presentNum = allFiles.Count-1;
+        presentNum = allFiles.Count - 1;
 
         ShowPreviewDiary();
-        for(int i = 0; i < allFilesTexture.Count; i++)
+        for (int i = 0; i < allFilesTexture.Count; i++)
         {
             Debug.Log(allFilesTexture[i].name);
         }
@@ -108,7 +108,7 @@ public class Manager_DiaryCase : MonoBehaviour
         previewImg.texture = null;
     }
 
-   //이전 일기장으로 연결해주는 버튼함수
+    //이전 일기장으로 연결해주는 버튼함수
     public void OnClick_PrevDiary()
     {
         presentNum--;
@@ -128,9 +128,9 @@ public class Manager_DiaryCase : MonoBehaviour
     public void OnClick_NextDiary()
     {
         presentNum++;
-        if (presentNum > allFiles.Count-1)
+        if (presentNum > allFiles.Count - 1)
         {
-            presentNum = allFiles.Count-1;
+            presentNum = allFiles.Count - 1;
         }
         previewImg.texture = allFilesTexture[presentNum];
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
@@ -139,5 +139,5 @@ public class Manager_DiaryCase : MonoBehaviour
 
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
-    }*/
+    }
 }
