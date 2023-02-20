@@ -735,7 +735,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4387,7 +4387,7 @@ PrefabInstance:
     - target: {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: Pen_Width
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 234665651}
     - target: {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
       propertyPath: LinesParent
       value: 
