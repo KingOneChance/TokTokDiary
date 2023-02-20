@@ -77,10 +77,7 @@ public class Manager_DiaryCase : MonoBehaviour
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
                 texture.name = filename;
-                if (allFilesDictionary.ContainsKey(filename))
-                {
-                    continue;
-                }
+
                 allFilesDictionary.Add(filename, texture);
 
                 allFilesTexture.Add(texture);
@@ -97,7 +94,7 @@ public class Manager_DiaryCase : MonoBehaviour
     //처음 들어갔을때 가장 최근일기 띄워주는 함수
     public void ShowPreviewDiary()
     {
-        previewImg.texture = allFilesTexture[allFiles.Count - 1];
+        previewImg.texture = allFilesTexture[presentNum];
     }
     //뒤로가기버튼
     public void OnClick_BackButton()
@@ -118,9 +115,14 @@ public class Manager_DiaryCase : MonoBehaviour
             return;
         }
         previewImg.texture = allFilesTexture[presentNum];
+
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        Debug.Log(previewImg.texture.name);
+        Debug.Log(year);
+        Debug.Log(month);
+        Debug.Log(day);
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }
@@ -136,7 +138,6 @@ public class Manager_DiaryCase : MonoBehaviour
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
-
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }

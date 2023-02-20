@@ -132,7 +132,6 @@ public class Func_GunCollision : MonoBehaviour
                     }
                 }
                 break;
-
         }
     }
     public void RoundFinish()
