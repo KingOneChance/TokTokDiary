@@ -72,6 +72,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                     {
                         string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
                         Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
+                        //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
@@ -79,11 +80,10 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         }
 
         myRectTransform.position = myPos.transform.position;
-
+       
         //nodedata plus
         SData_NodeData temp = new SData_NodeData();
         RectTransform tempRect = new RectTransform();
-
         tempRect = newSticker.GetComponent<RectTransform>();
         temp.position = tempRect.position;
         temp.rotation = tempRect.rotation.eulerAngles;
@@ -95,8 +95,12 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         // Use Sticker
         Manager_Main.Instance.UseSticker(stickerName);
-        //   Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
-        //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
 
+        // Json Data Add
+
+
+        //오디오 매니저 사용 방법
+        //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
+        //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
     }
 }

@@ -44,6 +44,10 @@ public class Func_DIarySave : Func_SaveSticker
     }
     public void OnClick_Save()
     {
+        //제이슨 저장 02.21 김원찬 해야할 일
+       // Manager_Main.Instance.func_DiaryToJson.SetProfileName(profileName);
+       // Manager_Main.Instance.func_DiaryToJson.SaveJson();
+
         //base.OnClick_SaveImgae(StickerType.FreeSticker);
         if (canSave == true)
         {

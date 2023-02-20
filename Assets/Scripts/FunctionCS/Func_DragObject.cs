@@ -15,7 +15,16 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     {
         drawObject=FindObjectOfType<Func_TodayFeelingImage>();
         rect = GetComponent<RectTransform>();
+      
+
     }
+    public void RecordToJson()
+    {
+        //레코드 스티커가 있다면 (조건)
+        //제이슨으로 현재 위치와 레코드 파일 이름 보내기
+        //다이어리데이터 객체 생성 필요
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         drawObject.IsStickerMaking(true);//스티커 드래그시 점찍히는거 막기
