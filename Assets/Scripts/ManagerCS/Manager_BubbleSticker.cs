@@ -47,7 +47,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
         {
             if (Manager_UserInput.touches[0].phase == TouchPhase.Began)
             {
-                Manager_Main.Instance.GetAudio().PlaySound("TouchSound", SoundType.Touch, gameObject, false);
+                Manager_Main.Instance.GetAudio().PlaySound("TouchSound", SoundType.Touch, gameObject, false, false);
             }
         }
     }
@@ -164,6 +164,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_NextBtn()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         DecideDesignAndColor();
         backButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == panels.Length - 1) nextButton.gameObject.SetActive(false);
@@ -209,7 +210,8 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_BackBtn()
     {
-        if(PanelIdx == 2) ActiveColorBucket(false);
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
+        if (PanelIdx == 2) ActiveColorBucket(false);
         if (PanelIdx - 1 == 0) backButton.gameObject.SetActive(false);
         panels[PanelIdx - 1].SetActive(true);
         panels[PanelIdx].SetActive(false);

@@ -87,7 +87,7 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_PlayInFinish()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false);
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
         Invoke(nameof(PlayRecordSound), 1f);
     }
 

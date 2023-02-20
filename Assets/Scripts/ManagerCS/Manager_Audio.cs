@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class Manager_Audio : MonoBehaviour
 {
@@ -24,10 +25,10 @@ public class Manager_Audio : MonoBehaviour
     private void Awake()
     {
         AddAllClipsToDic(DiarySounds);
-        //AddAllClipsToDic(BubbleGunSounds);
-        //AddAllClipsToDic(BubbleBearSounds);
-        //AddAllClipsToDic(BubbleStickerSounds);
-        //AddAllClipsToDic(FreeStickerSounds);
+        AddAllClipsToDic(BubbleGunSounds);
+        AddAllClipsToDic(BubbleBearSounds);
+        AddAllClipsToDic(BubbleStickerSounds);
+        AddAllClipsToDic(FreeStickerSounds);
         AddAllClipsToDic(TouchSounds);
         AddAllClipsToDic(CommonSounds);
     }
@@ -64,7 +65,7 @@ public class Manager_Audio : MonoBehaviour
             case SoundType.BubbleSticker:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    BubbleStickerClips.Add(BubbleBearSounds.Sounds[i].name, BubbleBearSounds.Sounds[i]);
+                    BubbleStickerClips.Add(BubbleStickerSounds.Sounds[i].name, BubbleStickerSounds.Sounds[i]);
                 }
                 break;
 
@@ -192,7 +193,7 @@ public class Manager_Audio : MonoBehaviour
         else return curdic;
     }
 
-    public void PlaySound(string ClipName, SoundType soundType,GameObject ObjToPlaySound, bool playLoop)
+    public void PlaySound(string ClipName, SoundType soundType,GameObject ObjToPlaySound, bool playLoop, bool overLap)
     {
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
@@ -203,9 +204,16 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
             // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if(overLap == true)
             {
                 audioSource.PlayOneShot(audioSource.clip);
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
             }
         }
         else
@@ -215,17 +223,21 @@ public class Manager_Audio : MonoBehaviour
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
-            // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if (overLap == true)
             {
                 audioSource.PlayOneShot(audioSource.clip);
             }
-            Debug.LogError("No Exist AudioSourceComponent So Add AudioSource Component");
-            return;
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
+            }
         }        
     }
 
-    public void PlayLocalSound(string ClipName, GameObject ObjToPlaySound, bool playLoop)
+    public void PlayLocalSound(string ClipName, GameObject ObjToPlaySound, bool playLoop, bool overLap)
     {
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
@@ -237,9 +249,16 @@ public class Manager_Audio : MonoBehaviour
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if (overLap == true)
             {
-                audioSource.PlayOneShot(audioSource.clip); 
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
             }
         }
         else
@@ -251,11 +270,32 @@ public class Manager_Audio : MonoBehaviour
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
             // Check AudioClip to play And PlaySound
-            if (!audioSource.isPlaying)
+            if (overLap == true)
             {
                 audioSource.PlayOneShot(audioSource.clip);
             }
-            Debug.LogError("No Exist AudioSourceComponent Please Check");
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioSource.clip);
+                }
+            }
+        }
+    }
+
+    public void StopPlaySound(GameObject stopPlaySoundObj)
+    {
+        // Check AudioSource Component and set loop
+        AudioSource audioSource = null;
+        if (stopPlaySoundObj.TryGetComponent(out AudioSource source))
+        {
+            audioSource = source;
+            audioSource.Stop();
+        }
+        else
+        {
+            Debug.LogError("There is No AudioSource Component to stop");
             return;
         }
     }

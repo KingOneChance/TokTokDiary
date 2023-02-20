@@ -43,6 +43,7 @@ namespace FreeDraw
 
                 else
                 {
+                    Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
                     internalClick = false;
                 }
             }
