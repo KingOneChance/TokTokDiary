@@ -7,7 +7,7 @@ using System.IO;
 /// </summary>
 public class Func_DiaryToJson : MonoBehaviour
 {
-    [SerializeField] private string filePath ; //프로필로 수정해야함
+    [SerializeField] private string filePath; //프로필로 수정해야함
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
     [SerializeField] private List<GameObject> recordObject = new List<GameObject>();
@@ -22,9 +22,12 @@ public class Func_DiaryToJson : MonoBehaviour
     }
     private void SaveData()
     {
-        for(int i = 0; i < recordFilesNames.Count; i++)
+        for (int i = 0; i < recordFilesNames.Count; i++)
         {
-           recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
+            recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
+            string lastFilePos = recordFilesNames[i];
+            string nowFilePos = filePath.Split("Jsons")[0]+ "Records/";
+            File.Move(lastFilePos, nowFilePos);
         }
         saveData.recordFilePos = recordFilesPos;
         saveData.recordFileNames = recordFilesNames;
