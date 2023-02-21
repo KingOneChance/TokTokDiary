@@ -225,17 +225,27 @@ public class Manager_Main : MonoBehaviour
     }
     public int GetDiaryNum(string folder, string profileName)
     {
+        getDiaryNum = 0;
         if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/"))
         {
             Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/");
             Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Jsons/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Record/");
             return 0;
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/", "*.png", SearchOption.TopDirectoryOnly);
-            getDiaryNum = allFiles.Length;
-            return getDiaryNum;
+            string time = DateTime.Now.ToString("yyyy_MM_dd");
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/", "*.png", SearchOption.TopDirectoryOnly);
+            for(int i = 0; i < allFiles.Length; i++)
+            {
+                if(allFiles[i].Contains(time))
+                {
+                    getDiaryNum++;
+                }
+            }
+           // getDiaryNum = allFiles.Length;
+            return getDiaryNum+1;
         }
     }
 

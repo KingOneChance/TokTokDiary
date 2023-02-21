@@ -330,6 +330,7 @@ public class UI_PictureDiary : MonoBehaviour
         {
             Directory.CreateDirectory(directoryPath + "/Diary/");
             Directory.CreateDirectory(directoryPath + "/Jsons/");
+            Directory.CreateDirectory(directoryPath + "/Records/");
 
         }
 

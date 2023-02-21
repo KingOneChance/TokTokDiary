@@ -89,7 +89,7 @@ public class Func_SaveSticker : MonoBehaviour
 
         SaveTexture(stickerType);
     }
-    protected virtual void SaveTexture(StickerType stickerType, string name = null)
+    protected virtual void SaveTexture(StickerType stickerType, string name = null, bool recordFile = false)
     {
         int nowNum;
         switch (stickerType)
@@ -128,12 +128,17 @@ public class Func_SaveSticker : MonoBehaviour
             case StickerType.Diary:
                 nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum + 1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum);
                 //Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
                 //제이슨 저장 02.21 김원찬 해야할 일
-                Manager_Main.Instance.func_DiaryToJson.SetProfileName(savePath + $"/{diaryFolder}/" + name + "/Jsons/"+saveFileName + "-" + nowNum + 1);
-                Manager_Main.Instance.func_DiaryToJson.SaveJson();
-                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
+                if (recordFile == true)
+                {
+                    //1.스티커 삭제
+                    //2.레코드 파일 일기장으로 넘기기
+                    //3.레코드 파일들 경로 받기 
+                    Manager_Main.Instance.func_DiaryToJson.SetProfileName(savePath + $"/{diaryFolder}/" + name + "/Jsons/" + saveFileName + "-" + nowNum + 1 + ".json");
+                    Manager_Main.Instance.func_DiaryToJson.SaveJson();
+                }
                 break;
             default:
                 Debug.Log("there is no sticker what you want");
