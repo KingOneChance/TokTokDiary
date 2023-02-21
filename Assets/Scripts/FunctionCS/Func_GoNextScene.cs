@@ -8,5 +8,4 @@ public class Func_GoNextScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
     }
-
 }

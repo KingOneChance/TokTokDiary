@@ -25,8 +25,8 @@ public class Func_DiaryToJson : MonoBehaviour
     }
     private Data_Diary LoadData(string path)
     {
-        if (File.Exists(path)) 
-{
+        if (File.Exists(path))
+        {
             string jsonData = File.ReadAllText(path);
             return JsonUtility.FromJson<Data_Diary>(jsonData);
         }
