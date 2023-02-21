@@ -26,11 +26,6 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         StartCoroutine(CO_BlinkBlink(alcoholLampPosImg));
     }
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
-
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
@@ -102,6 +97,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     private IEnumerator CO_FillSolution()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, bsManager.gameObject, true, true);
         while (true)
         {
             if (alcoholLampSolutions[0].fillAmount >= 1f)
@@ -121,9 +117,9 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             alcoholLampSolutions[1].fillAmount += 0.02f;
             yield return new WaitForFixedUpdate();
         }
-
+        Manager_Main.Instance.GetAudio().StopPlaySound(bsManager.gameObject);
         int repeatCount = 0;
-
+        Manager_Main.Instance.GetAudio().PlaySound("BubbleDrop", SoundType.BubbleSticker, gameObject, true, true);
         while (true)
         {
             if (alcoholLampSolutions[2].fillAmount >= 1f)
@@ -135,7 +131,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             alcoholLampSolutions[2].fillAmount += 0.03f;
             yield return new WaitForFixedUpdate();
         }
-
+        Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
         alcoholLampSolutions[0].fillAmount = 0f;
         alcoholLampSolutions[1].fillAmount = 0f;
         beakerImg[0].gameObject.SetActive(false);

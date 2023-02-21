@@ -60,6 +60,7 @@ public class Func_Stir : MonoBehaviour
 
     private IEnumerator Stir()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("Rolling", SoundType.BubbleSticker, gameObject, false, true);
         stickButton.enabled = false;
         float rad = 0f;
         float xCoord = 0f;
@@ -82,6 +83,7 @@ public class Func_Stir : MonoBehaviour
                 MixProcess(bsManager.ColorType, stirCount);
                 if (stirCount == 3)
                 {
+                    Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
                     NextButton.gameObject.SetActive(true);
                     SkipButton.gameObject.SetActive(false);
                     stickButton.enabled = false;
@@ -127,6 +129,7 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
         MixProcess(bsManager.ColorType, 3);
         NextButton.gameObject.SetActive(true);
         stickButton.enabled = false;
