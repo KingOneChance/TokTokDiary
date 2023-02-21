@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using FreeDraw;
 using UnityEngine.UI;
+using System.IO;
+using System;
+
 public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("===copy object===")]
@@ -17,6 +20,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private RawImage signSticker = null;
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
+    [SerializeField] private Func_DIarySave func_DIarySave = null;
+
 
 
     private RectTransform myRectTransform;
@@ -27,6 +32,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
+        func_DIarySave = FindObjectOfType<Func_DIarySave>();
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
@@ -74,7 +80,9 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                         Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
                         //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
                         Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
-                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(copyRectTransform.position);
+                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
+                        func_DIarySave.AddRecordList(buffer);
+                        func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
@@ -97,12 +105,9 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         // Use Sticker
         Manager_Main.Instance.UseSticker(stickerName);
-
-        // Json Data Add
-
-
         //오디오 매니저 사용 방법
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
         //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
     }
+ 
 }

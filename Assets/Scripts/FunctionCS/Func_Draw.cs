@@ -36,7 +36,7 @@ namespace FreeDraw
         List<Vector2> points = new List<Vector2>();
         public Color curColor = Color.black;
         private GameObject tempOBJ;
-        private float currentPenWidth = 0f;
+        protected float currentPenWidth = 0f;
 
     //    const float Min_Pen_Width = 0.1f;
     //    const float Max_Pen_Width = 1.0f;
@@ -123,6 +123,7 @@ namespace FreeDraw
             }
         }
 
+        
         public void MMMMMM()
         {
             onObject = true;
@@ -151,6 +152,8 @@ namespace FreeDraw
                         curTouchPos.x > titleAreaMinX && curTouchPos.y > titleAreaMinY)
                     {
                         currentPenWidth = 0.05f;
+                        // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
+                   
                     }
 
                     else
@@ -212,6 +215,9 @@ namespace FreeDraw
                     break;
                 case ColorType.Eraser:
                     curColor = new Color32(255, 255, 255, 255);
+                    break;
+                case ColorType. WritingEraser:
+                    curColor = new Color32(181, 203, 203, 255);
                     break;
             }
         }

@@ -5,17 +5,22 @@ using UnityEngine.EventSystems;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using System.IO;
 public class Func_DIarySave : Func_SaveSticker
 {
-    [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
+    [SerializeField] private List<string> recordFileNames = new List<string>();
+    [SerializeField] private List<int> recordUsedNum = new List<int>();
+    [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
+    [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
+
     // fix Func_SaveSticker location
     protected override void Start()
     {
-        uI_PictureDiary = FindObjectOfType<UI_PictureDiary>();
         savePath = Application.persistentDataPath;
+        uI_PictureDiary = FindObjectOfType<UI_PictureDiary>();
+        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         //calculate all position
         saveImageRect = saveImage.GetComponent<RectTransform>();
         startXPos = saveImageRect.rect.position.x + 960 + 244;
@@ -26,6 +31,12 @@ public class Func_DIarySave : Func_SaveSticker
         saveFileName = DateTime.Now.ToString("yyyy_MM_dd");
     }
 
+    public void AddRecordList(string path)
+    {
+        recordFileNames.Add(path);
+    }
+
+    #region OnClicks
     public void Onclick_Capture()
     {
 
@@ -44,23 +55,32 @@ public class Func_DIarySave : Func_SaveSticker
     }
     public void OnClick_Save()
     {
-        //제이슨 저장 02.21 김원찬 해야할 일
-       // Manager_Main.Instance.func_DiaryToJson.SetProfileName(profileName);
-       // Manager_Main.Instance.func_DiaryToJson.SaveJson();
-
-        //base.OnClick_SaveImgae(StickerType.FreeSticker);
-        if (canSave == true)
-        {
-            base.SaveTexture(StickerType.Diary, profileName);
-        }
-        //저장 완료시 씬전환
         StartCoroutine(Co_SaveEndLoadScene());
     }
+    #endregion 
     IEnumerator Co_SaveEndLoadScene()
     {
+        //base.OnClick_SaveImgae(StickerType.FreeSticker);
         isSaveDone = false;
+        if (canSave == true)
+        {
+            if (recordFileNames.Count == 0)
+                base.SaveTexture(StickerType.Diary, profileName);
+            else
+                base.SaveTexture(StickerType.Diary, profileName, true);
+        }
+        //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
+        //사용한 스티커 삭제하기
+        for(int i = 0; i < recordUsedNum.Count; i++)
+        {
+            string signBuffer = func_DiaryInventory.GetRecordingSignList(recordUsedNum[i]);
+            string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(recordUsedNum[i]);
+            DeleteFile(signBuffer);
+            DeleteFile(stickerBuffer);
+        }
         //씬전환
+        Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }
@@ -101,5 +121,25 @@ public class Func_DIarySave : Func_SaveSticker
         //
         saveTemp.texture = newTex;
         uI_PictureDiary.OnClick_OpenProfileButton();
+    }
+
+    private void DeleteFile(string path)
+    {
+        if (File.Exists(path))
+        {
+            try
+            {
+                File.Delete(path);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+        }
+    }
+    public void SetUsedRecordNum(int num)
+    {
+        recordUsedNum.Add(num);
     }
 }
