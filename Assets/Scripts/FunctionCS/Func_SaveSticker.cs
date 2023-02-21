@@ -25,7 +25,7 @@ public class Func_SaveSticker : MonoBehaviour
     private string audioStickerFolder = "RecordingSticker";
     private string recordingSignFolder = "RecordingSign";
     private string freeStickerFolder = "BubbleFreeSticker";
-    private string diaryFolder = "Diary";
+    private string diaryFolder = "Profile";
     protected string savePath = "";
     protected bool isSaveDone = true;
 
@@ -85,7 +85,7 @@ public class Func_SaveSticker : MonoBehaviour
         //
         saveTemp.texture = newTex;
 
-      //  saveTemp.texture = texture;
+        //  saveTemp.texture = texture;
 
         SaveTexture(stickerType);
     }
@@ -110,13 +110,13 @@ public class Func_SaveSticker : MonoBehaviour
             case StickerType.RecordSticker:
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum,1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum, 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.SignSticker:
                 nowNum = Manager_Main.Instance.GetSignStickerNum(recordingSignFolder);
                 Manager_Main.Instance.SetSignStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum,1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum, 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.FreeSticker:
@@ -126,9 +126,10 @@ public class Func_SaveSticker : MonoBehaviour
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.Diary:
-                nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder);
+                nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum + 1);
+                Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             default:
