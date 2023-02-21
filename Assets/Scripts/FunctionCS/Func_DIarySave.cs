@@ -5,19 +5,21 @@ using UnityEngine.EventSystems;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using System.IO;
 public class Func_DIarySave : Func_SaveSticker
 {
-    [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
     [SerializeField] private List<string> recordFileNames = new List<string>();
+    [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
+    [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
 
     // fix Func_SaveSticker location
     protected override void Start()
     {
-        uI_PictureDiary = FindObjectOfType<UI_PictureDiary>();
         savePath = Application.persistentDataPath;
+        uI_PictureDiary = FindObjectOfType<UI_PictureDiary>();
+        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         //calculate all position
         saveImageRect = saveImage.GetComponent<RectTransform>();
         startXPos = saveImageRect.rect.position.x + 960 + 244;
@@ -68,6 +70,11 @@ public class Func_DIarySave : Func_SaveSticker
         }
         //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
+        //사용한 스티커 삭제하기
+        string signBuffer = func_DiaryInventory.GetRecordingSignList(int.Parse(gameObject.name));
+        string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(int.Parse(gameObject.name));
+        DeleteFile(signBuffer);
+        DeleteFile(stickerBuffer);
         //씬전환
         Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
@@ -110,5 +117,21 @@ public class Func_DIarySave : Func_SaveSticker
         //
         saveTemp.texture = newTex;
         uI_PictureDiary.OnClick_OpenProfileButton();
+    }
+
+    private void DeleteFile(string path)
+    {
+        if (File.Exists(path))
+        {
+            try
+            {
+                File.Delete(path);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+        }
     }
 }
