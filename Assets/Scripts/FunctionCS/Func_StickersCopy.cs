@@ -73,6 +73,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                         string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
                         Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
                         //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
+                        Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
+                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(copyRectTransform.position);
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);

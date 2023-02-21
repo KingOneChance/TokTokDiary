@@ -128,8 +128,8 @@ public class Func_SaveSticker : MonoBehaviour
             case StickerType.Diary:
                 nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/"  , saveFileName + "-" + nowNum+1);
-                Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum+1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum + 1);
+                Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             default:

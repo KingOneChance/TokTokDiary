@@ -61,6 +61,7 @@ public class Func_DIarySave : Func_SaveSticker
         isSaveDone = false;
         yield return new WaitUntil(() => isSaveDone == true);
         //¾ÀÀüÈ¯
+        Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }
     public void SaveTempCapture()
