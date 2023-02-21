@@ -138,6 +138,7 @@ public class Manager_DiaryCase : MonoBehaviour
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        string num = previewImg.texture.name.Split("-")[1]; //일기장 개수 필요하면 Int.Parse(num)해서 사용하셈
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }

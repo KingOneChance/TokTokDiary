@@ -29,7 +29,7 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
     {
         if (ui_PictureDiary.MouseStateInfo == MouseType.Niddle)
         {
-            func_DragObject.enabled = false;
+            func_DragObject.enabled = false; 
             bubble.gameObject.SetActive(false);
             Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, true);
         }
@@ -44,5 +44,4 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
     {
         OnClick_MouseType();
     }
-  
 }

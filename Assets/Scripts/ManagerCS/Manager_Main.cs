@@ -37,6 +37,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private UI_Main ui_Main = null;
 
     public UI_Main UI_Main { get { return ui_Main; } }
+
     [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
@@ -44,7 +45,11 @@ public class Manager_Main : MonoBehaviour
     public UI_StickerRepository UI_StickerRepository { get { return ui_StickerRepository; } }
 
     [field: SerializeField]
-    [SerializeField] public GameObject ui_StickerRepositoryPrefab { get; private set; }
+    public GameObject ui_StickerRepositoryPrefab { get; private set; }
+
+    [field: SerializeField]
+    public Func_DiaryToJson func_DiaryToJson { get; private set; }
+
 
     [Header("AudioManager")]
     #region Audio Management
@@ -69,7 +74,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setFreeStickerNum = 0;
     [SerializeField] private int setDiaryNum = 0;
 
- 
+
 
     #endregion
 
@@ -107,6 +112,7 @@ public class Manager_Main : MonoBehaviour
             PlayerPrefs.SetString("IsFirst", "No");
             PlayerPrefs.Save();
         }
+        func_DiaryToJson = FindObjectOfType<Func_DiaryToJson>();
     }
 
     private void Update()
@@ -217,16 +223,16 @@ public class Manager_Main : MonoBehaviour
             return getFreeStickerNum;
         }
     }
-    public int GetDiaryNum(string folder)
+    public int GetDiaryNum(string folder, string profileName)
     {
-        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/");
             return 0;
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/", "*.png", SearchOption.TopDirectoryOnly);
             getDiaryNum = allFiles.Length;
             return getDiaryNum;
         }
@@ -262,7 +268,7 @@ public class Manager_Main : MonoBehaviour
     /// <param name="stickerName"></param>
     public void UseSticker(string stickerName)
     {
-        if(PlayerPrefs.HasKey(stickerName) == false)
+        if (PlayerPrefs.HasKey(stickerName) == false)
         {
             Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
             return;

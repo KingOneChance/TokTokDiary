@@ -12,7 +12,7 @@ public class Func_FreeStickerDraw : Func_Draw
 
     protected new void Start()
     {
-        
+        currentPenWidth = 0.1f;
     }
     protected new void Update()
     {
