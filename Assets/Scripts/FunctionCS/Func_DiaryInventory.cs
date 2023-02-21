@@ -46,6 +46,15 @@ public class Func_DiaryInventory : MonoBehaviour
     {
         return recordFileName[i];
     }
+    public string GetRecordingStickerList(int i)
+    {
+        return recordingStickerList[i];
+    }
+    public string GetRecordingSignList(int i)
+    {
+        return recordingSignList[i];
+    }
+
 
     public void OnClick_BubbleStickerRepository()
     {

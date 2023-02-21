@@ -427,9 +427,7 @@ public class UI_PictureDiary : MonoBehaviour
                 Console.WriteLine(e.Message);
                 return;
             }
-
         }
-
     }
 
     private void Rename(string filepath)
