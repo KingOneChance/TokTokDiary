@@ -11,6 +11,7 @@ public class Func_DIarySave : Func_SaveSticker
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
     [SerializeField] private List<string> recordFileNames = new List<string>();
+    [SerializeField] private List<int> recordUsedNum = new List<int>();
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
 
@@ -71,10 +72,13 @@ public class Func_DIarySave : Func_SaveSticker
         //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
         //사용한 스티커 삭제하기
-        string signBuffer = func_DiaryInventory.GetRecordingSignList(int.Parse(gameObject.name));
-        string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(int.Parse(gameObject.name));
-        DeleteFile(signBuffer);
-        DeleteFile(stickerBuffer);
+        for(int i = 0; i < recordUsedNum.Count; i++)
+        {
+            string signBuffer = func_DiaryInventory.GetRecordingSignList(recordUsedNum[i]);
+            string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(recordUsedNum[i]);
+            DeleteFile(signBuffer);
+            DeleteFile(stickerBuffer);
+        }
         //씬전환
         Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
@@ -133,5 +137,9 @@ public class Func_DIarySave : Func_SaveSticker
                 return;
             }
         }
+    }
+    public void SetUsedRecordNum(int num)
+    {
+        recordUsedNum.Add(num);
     }
 }
