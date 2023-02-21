@@ -86,6 +86,7 @@ MonoBehaviour:
   ui_Main: {fileID: 1071966920976230973, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
   <manager_PictureDiary>k__BackingField: {fileID: 0}
   <ui_StickerRepositoryPrefab>k__BackingField: {fileID: 485657232424484033}
+  <func_DiaryToJson>k__BackingField: {fileID: 0}
   getBubbleGunStickerNum: 0
   getAudioStickerNum: 0
   getSignStickerNum: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ee380c295aedd40be1aa83efcb1483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DiarySounds: {fileID: 0}
+  DiarySounds: {fileID: 11400000, guid: 7fd6837798021104e80b8b0a5a88cbd0, type: 2}
   BubbleGunSounds: {fileID: 11400000, guid: 1045297bd35bfc645a42ab09eb70f572, type: 2}
   BubbleBearSounds: {fileID: 11400000, guid: f12e9d5691100bb4aa8f286d2e2550a9, type: 2}
   BubbleStickerSounds: {fileID: 11400000, guid: 6fb8fa3df1a369d4e8bb2994e0385c85, type: 2}
