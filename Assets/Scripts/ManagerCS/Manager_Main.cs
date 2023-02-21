@@ -228,6 +228,7 @@ public class Manager_Main : MonoBehaviour
         if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/"))
         {
             Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Jsons/");
             return 0;
         }
         else
