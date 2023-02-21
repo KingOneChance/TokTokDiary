@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 /// <summary>
 /// This script will be on mainMgr
 /// </summary>
@@ -24,9 +25,11 @@ public class Func_DiaryToJson : MonoBehaviour
     {
         for (int i = 0; i < recordFilesNames.Count; i++)
         {
+            string time = DateTime.Now.ToString("yyyy_MM_dd");
+
             recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
             string lastFilePos = recordFilesNames[i];
-            string nowFilePos = filePath.Split("Jsons")[0]+ "Records/";
+            string nowFilePos = filePath.Split("Jsons")[0] + "Records/" + time + "_" + i.ToString() + ".wav";
             File.Move(lastFilePos, nowFilePos);
         }
         saveData.recordFilePos = recordFilesPos;

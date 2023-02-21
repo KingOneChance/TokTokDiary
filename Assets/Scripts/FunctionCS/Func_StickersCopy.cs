@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using FreeDraw;
 using UnityEngine.UI;
+using System.IO;
+using System;
+
 public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("===copy object===")]
@@ -73,12 +76,18 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 {
                     if (func_DiaryInventory.GetNowType() == StickerType.RecordSticker)
                     {
+                        //
                         string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
+                        string signBuffer = func_DiaryInventory.GetRecordingSignList(int.Parse(gameObject.name));
+                        string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(int.Parse(gameObject.name));
                         Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
                         //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
                         Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
                         Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
                         func_DIarySave.AddRecordList(buffer);
+                        //사용한 스티커 삭제하기
+                        DeleteFile(signBuffer);
+                        DeleteFile(stickerBuffer);
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
@@ -101,12 +110,23 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         // Use Sticker
         Manager_Main.Instance.UseSticker(stickerName);
-
-        // Json Data Add
-
-
         //오디오 매니저 사용 방법
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
         //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
+    }
+    private void DeleteFile (string path)
+    {
+        if (File.Exists(path))
+        {
+            try
+            {
+                File.Delete(path);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+        }
     }
 }
