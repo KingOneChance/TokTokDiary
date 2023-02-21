@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class Func_FreeStickerDraw : Func_Draw
 {
     [SerializeField] private Transform LinesParent = null;
-    [SerializeField] private float currentPenWidth = 0f;
+    [SerializeField] private float currentPenWidth_Free = 0f;
     [SerializeField] private LineRenderer lineRenderer;
 
     protected new void Start()
     {
-        currentPenWidth = 0.1f;
+        currentPenWidth_Free = 0.1f;
     }
     protected new void Update()
     {
