@@ -26,7 +26,7 @@ public class Func_DiaryToJson : MonoBehaviour
         {
             recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
             string lastFilePos = recordFilesNames[i];
-            string nowFilePos = filePath.Split("Jsons")[0]+ "Records/";
+            string nowFilePos = filePath.Split("Jsons")[0]+ "Records/hehe"+ i.ToString()+".wav";
             File.Move(lastFilePos, nowFilePos);
         }
         saveData.recordFilePos = recordFilesPos;

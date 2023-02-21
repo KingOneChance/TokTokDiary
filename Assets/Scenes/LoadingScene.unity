@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &388990745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ Canvas:
   m_GameObject: {fileID: 1728247087}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2113010135}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4adfcf214d61fb49815271fcc9424cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backGroundImgs: []
 --- !u!1 &2113010133
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +451,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2113010136}
   - component: {fileID: 2113010135}
-  - component: {fileID: 2113010134}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -458,14 +458,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2113010134
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113010133}
-  m_Enabled: 1
 --- !u!20 &2113010135
 Camera:
   m_ObjectHideFlags: 0
@@ -494,7 +486,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 540
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
