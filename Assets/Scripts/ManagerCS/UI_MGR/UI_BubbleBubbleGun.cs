@@ -54,7 +54,8 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     public void TobeSticker()
     {
         randImages[randStickerNum].gameObject.GetComponent<Button>().interactable = true;
-       //func_GunCollision.OnClickSticker();
+       
+        //func_GunCollision.OnClickSticker();
     }
 
 }

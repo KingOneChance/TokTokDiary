@@ -51,6 +51,7 @@ public class Func_Record : MonoBehaviour
 
     public void OnClick_Record()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("StartRecord", SoundType.BubbleBear, gameObject, false, true);
         timerBox.SetActive(true);
         timerRun = true;
         newClip = null;
@@ -62,6 +63,7 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_RecordStop()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("StartRecord", SoundType.BubbleBear, gameObject, false, true);
         timerRun = false;
         StopRecordMicrophone(newClip);
         StopCoroutine(Co_UiTimer());

@@ -81,6 +81,12 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         nextButton.SetActive(false);
     }
     #region Hedgehog Make button
+
+    public void PlayHedgehogSound()
+    {
+        Manager_Main.Instance.GetAudio().PlaySound("Voice", SoundType.BubbleBear, gameObject, false, true);
+    }
+
     public void OnClick_ButtonBody1()//summer
     {
         ToggleAlphaChange(buttonBody);
@@ -194,6 +200,7 @@ public class Func_BubbleBearCtrl : MonoBehaviour
     }
     public void OnClick_ButtonRandom()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("Voice", SoundType.BubbleBear, gameObject, false, true);
         int randomSkin = Random.Range(0, 50); //2ÆÛ¼¾Æ®
 
         if (randomSkin == 1) //origin skin
