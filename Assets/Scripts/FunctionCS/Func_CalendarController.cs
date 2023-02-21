@@ -57,7 +57,7 @@ public class Func_CalendarController : MonoBehaviour
             item.transform.SetParent(_itemParent.transform);
             item.transform.localScale = Vector3.one;
             item.transform.localRotation = Quaternion.identity;
-            item.transform.localPosition = new Vector3((i % 7) * 36 + startPos.x, startPos.y - (i / 7) * 30, startPos.z);
+            item.transform.localPosition = new Vector3((i % 7) * 37 + startPos.x, startPos.y - (i / 7) * 32, startPos.z);
 
             _dateItems.Add(item);
         }
@@ -146,16 +146,6 @@ public class Func_CalendarController : MonoBehaviour
                     _dateItems[i].SetActive(true);
 
                     label.text = (date + 1).ToString();
-
-                    if (dateObj.transform.localPosition.x == 106.5) // SaturDay
-                    {
-                        label.color = Color.blue;
-                    }
-
-                    if (dateObj.transform.localPosition.x == -109.5) // SunDay
-                    {
-                        label.color = Color.red;
-                    }
 
                     days.Add(date);
                     date++;

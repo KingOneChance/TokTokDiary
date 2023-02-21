@@ -26,6 +26,9 @@ public class Manager_DiaryCase : MonoBehaviour
 
     [SerializeField] Func_CalendarController func_CalendarController;
 
+    [Header("캔버스")]
+    [SerializeField] GameObject diaryPanel = null;
+
     public int presentNum = 0;
     private void Start()
     {
@@ -55,6 +58,12 @@ public class Manager_DiaryCase : MonoBehaviour
     public List<string> allFiles = new List<string>();
     private void AddDiaryFiles()
     {
+        //초기화
+        allFiles.Clear();
+        allFilesDictionary.Clear();
+        allFilesTexture.Clear();
+        allFilesNames.Clear();
+
 
         allFiles.AddRange(Directory.GetFiles(selectedProfilPath, "*.png", SearchOption.AllDirectories));
 
@@ -119,10 +128,7 @@ public class Manager_DiaryCase : MonoBehaviour
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
-        Debug.Log(previewImg.texture.name);
-        Debug.Log(year);
-        Debug.Log(month);
-        Debug.Log(day);
+
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }
@@ -141,5 +147,39 @@ public class Manager_DiaryCase : MonoBehaviour
         string num = previewImg.texture.name.Split("-")[1]; //일기장 개수 필요하면 Int.Parse(num)해서 사용하셈
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
+    }
+
+    //일기 삭제
+    public void Onclick_DeleteDiary(RawImage deleltefile)
+    {
+        DeleteDiary(deleltefile);
+    }
+
+    public void DeleteDiary(RawImage deleltefile)
+    {
+        Manager_Main.Instance.GetAudio().PlaySound("CloseDelete", SoundType.Diary, gameObject, false, true);
+        string fileTextureName = deleltefile.texture.name;
+
+        string fileName = selectedProfilPath + "/" + fileTextureName + ".png";
+
+        if (File.Exists(fileName))
+        {
+            try
+            {
+                Debug.Log(fileName);
+                File.Delete(fileName);
+            }
+            catch (IOException e)
+            {
+                Debug.Log(e.Message);
+                return;
+            }
+
+        }
+        diaryPanel.SetActive(false);
+        AddDiaryFiles();
+        diaryPanel.SetActive(true);
+
+
     }
 }

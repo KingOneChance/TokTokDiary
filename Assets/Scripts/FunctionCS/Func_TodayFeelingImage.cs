@@ -17,7 +17,9 @@ namespace FreeDraw
         [SerializeField] public GameObject Helper;
         [SerializeField] private bool stickerMaking = false;
         [SerializeField] public LineRenderer lineRenderer; // 라인 렌더러 컴포넌트를 가리키는 변수
-
+        [SerializeField] private Button btn_Eraser = null;
+        [SerializeField] private Func_DrawingSettings func_DrawingSettings = null;
+        
         public void OnButtonClick()
         {
             lineRenderer.startWidth = 1.0f; // 라인 렌더러의 시작 너비를 1로 설정
@@ -32,6 +34,7 @@ namespace FreeDraw
             base.Start();
         }
 
+
         private void Update()
         {
             if (!ActiveTodayFeelingMenu() || Helper.activeSelf)
@@ -39,6 +42,32 @@ namespace FreeDraw
                 if (CheckArea() == true && stickerMaking == false)
                 {
                     Draw();
+
+                    Vector3 curTouchPos_FreeSticker = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+                    
+                        if(curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
+                           curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
+                             //|| curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
+                             //curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                        {
+                             Debug.Log("범위들어옴?");
+                             currentPenWidth = 0.05f;
+                             // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
+                             btn_Eraser.onClick.RemoveListener(func_DrawingSettings.SetEraser);
+                             btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+
+                        }
+
+                        else
+                        {
+                            btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
+                            btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
+                            Debug.Log("다른범위");
+                        }
+                    
+
+                    
                 }
 
                 else
@@ -48,6 +77,7 @@ namespace FreeDraw
                 }
             }
         }
+        
         public void IsStickerMaking(bool state)
         {
             if (state == true) 
