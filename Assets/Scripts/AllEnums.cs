@@ -24,7 +24,8 @@ public enum ColorType
     Pink,
     Brown,
     Black,
-    Eraser
+    Eraser,
+    WritingEraser,
 }
 public enum MouseType
 {
