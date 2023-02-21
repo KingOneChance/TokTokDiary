@@ -72,8 +72,12 @@ public class Func_DIarySave : Func_SaveSticker
         //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
         //사용한 스티커 삭제하기
-        for(int i = 0; i < recordUsedNum.Count; i++)
+        Debug.Log("recordUsedNum 개수 : " + recordUsedNum.Count);
+
+        for (int i = 0; i < recordUsedNum.Count; i++)
         {
+            Debug.Log("recordUsedNum 개수 : " + recordUsedNum.Count);
+
             string signBuffer = func_DiaryInventory.GetRecordingSignList(recordUsedNum[i]);
             string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(recordUsedNum[i]);
             DeleteFile(signBuffer);
@@ -141,5 +145,6 @@ public class Func_DIarySave : Func_SaveSticker
     public void SetUsedRecordNum(int num)
     {
         recordUsedNum.Add(num);
+        Debug.Log("사용된 스티커 수 " + recordUsedNum.Count);
     }
 }

@@ -87,7 +87,7 @@ MonoBehaviour:
   ui_Main: {fileID: 1071966920976230973, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
   <manager_PictureDiary>k__BackingField: {fileID: 0}
   <ui_StickerRepositoryPrefab>k__BackingField: {fileID: 485657232424484033}
-  <func_DiaryToJson>k__BackingField: {fileID: 0}
+  <func_DiaryToJson>k__BackingField: {fileID: 2014360371647384666}
   getBubbleGunStickerNum: 0
   getAudioStickerNum: 0
   getSignStickerNum: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   filePath: 
   recordFilesNames: []
   recordFilesPos: []
+  recordObject: []
 --- !u!1001 &5097337398694215193
 PrefabInstance:
   m_ObjectHideFlags: 0
