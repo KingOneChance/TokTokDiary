@@ -20,7 +20,6 @@ public class Func_LoadProfilePicture : MonoBehaviour
  
         for (int i = 0; i < di.GetDirectories().Length; i++)
         {
-            Debug.Log(di.GetDirectories().Length);
             if (allFiles[i].Contains(di.GetDirectories()[i].Name) == true)
             {
                 byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
