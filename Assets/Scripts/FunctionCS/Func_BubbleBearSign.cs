@@ -44,6 +44,7 @@ public class Func_BubbleBearSign : MonoBehaviour
 
     public void CancelSign()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("OpenDelete", SoundType.Diary, gameObject, false, true);
         GameObject[] cancelList = GameObject.FindGameObjectsWithTag("Line");
         for(int i = 0; i < cancelList.Length; i++)
         {
