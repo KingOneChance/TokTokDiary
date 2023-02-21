@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Func_LoadingScene : MonoBehaviour
 {
     [SerializeField] RawImage[] backGroundImgs = null;
+
     static string nextScene;
     public bool isLoadingDone = true;
+    private bool isUnloadingDone = true;
 
     public static void LoadScene(string sceneName)
     {
@@ -17,6 +19,7 @@ public class Func_LoadingScene : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(UnloadSceneProcess());
         StartCoroutine(LoadSceneProcess());
     }
 
@@ -24,24 +27,26 @@ public class Func_LoadingScene : MonoBehaviour
     {
         isLoadingDone = false;
         AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
-        Debug.Log("1");
         ao.allowSceneActivation = false;
-        Debug.Log("2");
-
         while (!ao.isDone)
         {
-            Debug.Log("3");
-
             yield return new WaitForSeconds(3f);
-            Debug.Log("4");
-
             SceneManager.UnloadSceneAsync("LoadingScene");
-            Debug.Log("5");
-
             ao.allowSceneActivation = true;
-            Debug.Log("6");
             isLoadingDone = true;
+        }
+    }
+
+    private IEnumerator UnloadSceneProcess()
+    {
+        isUnloadingDone = false;
+        AsyncOperation ao = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        ao.allowSceneActivation = false;
+        while (!ao.isDone)
+        {
+            ao.allowSceneActivation = true;
             yield return null;
         }
+        isUnloadingDone = true;
     }
 }

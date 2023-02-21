@@ -287,6 +287,7 @@ public class Manager_Audio : MonoBehaviour
 
     public void StopPlaySound(GameObject stopPlaySoundObj)
     {
+        if (stopPlaySoundObj == null) return;
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
         if (stopPlaySoundObj.TryGetComponent(out AudioSource source))
