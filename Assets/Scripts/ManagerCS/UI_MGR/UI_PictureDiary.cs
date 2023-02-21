@@ -41,6 +41,10 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage ui_ProfilePick = null;
     [SerializeField] RawImage ui_ProfileOverWrite = null;
     [SerializeField] RawImage ui_ProfileDelete = null;
+    [SerializeField] RawImage ui_ProfilePickImagePlus = null;
+    [SerializeField] RawImage ui_ProfilePickImageOverWrite = null;
+
+    [SerializeField] RawImage[] basicProfileImges = null;
 
     //프로필 추가
     [SerializeField] RawImage plusProfileImage = null;
@@ -297,7 +301,16 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_LoadProfilePicture()
     {
-        Onclick_LoadImage(plusProfileImage);
+        // Onclick_LoadImage(plusProfileImage);
+        ui_ProfilePickImagePlus.gameObject.SetActive(true);
+
+    }
+    //
+    public void PickProfileImage(RawImage picked)
+    {
+        Debug.Log(picked);
+        plusProfileImage.texture = picked.texture;
+        ui_ProfilePickImagePlus.gameObject.SetActive(false);
     }
     public void OnClick_SaveNewProfile()
     {
@@ -324,7 +337,7 @@ public class UI_PictureDiary : MonoBehaviour
         Graphics.Blit(texture, copiedRenderTexture);
         RenderTexture.active = copiedRenderTexture;
 
-        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
+        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.ARGB32, false);
         texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
         texture2D.Apply();
 
@@ -369,16 +382,21 @@ public class UI_PictureDiary : MonoBehaviour
     } // x 버튼 , 취소버튼
     public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
     {
-        Onclick_LoadImage(overWriteImage);
+        //Onclick_LoadImage(overWriteImage);
+        ui_ProfilePickImageOverWrite.gameObject.SetActive(true);
+
+    }
+    public void PickProfileOverWrite(RawImage picked)
+    {
+        overWriteImage.texture = picked.texture;
+        ui_ProfilePickImageOverWrite.gameObject.SetActive(false);
     }
     public void OnClick_OverWriteDirectory()
     {
-
         string path = Application.persistentDataPath + "/Profile/";
         
         if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + overWriteNickName.text);
 
-        
         Rename(path);
         TobeEmpty(path);
         string savePath = Application.persistentDataPath + "/Profile/" + overWriteNickName.text + "/";
