@@ -8,4 +8,8 @@ public class Func_GoNextScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void GoNextSceneThroughLoadingScene(string sceneName)
+    {
+
+    }
 }

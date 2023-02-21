@@ -325,6 +325,7 @@ public class Manager_BubbleBear : MonoBehaviour
     //Canvas Change "CheckCanvas" to "FinishCanvas"
     public void MoveCheckToFinishCanvas()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
         finishCanvas.SetActive(true);
         checkCanvas.SetActive(false);
         restartAll.SetActive(true);

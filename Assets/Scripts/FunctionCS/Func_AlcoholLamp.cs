@@ -97,9 +97,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     private IEnumerator CO_FillSolution()
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.pitch = 2f;
-        Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, gameObject, true, true);
+        Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, bsManager.gameObject, true, true);
         while (true)
         {
             if (alcoholLampSolutions[0].fillAmount >= 1f)
@@ -119,7 +117,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             alcoholLampSolutions[1].fillAmount += 0.02f;
             yield return new WaitForFixedUpdate();
         }
-        Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
+        Manager_Main.Instance.GetAudio().StopPlaySound(bsManager.gameObject);
         int repeatCount = 0;
         Manager_Main.Instance.GetAudio().PlaySound("BubbleDrop", SoundType.BubbleSticker, gameObject, true, true);
         while (true)

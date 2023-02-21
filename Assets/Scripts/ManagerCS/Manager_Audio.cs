@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.LowLevel;
 
 public class Manager_Audio : MonoBehaviour
@@ -24,13 +25,13 @@ public class Manager_Audio : MonoBehaviour
 
     private void Awake()
     {
-        //AddAllClipsToDic(DiarySounds);
-        //AddAllClipsToDic(BubbleGunSounds);
-        //AddAllClipsToDic(BubbleBearSounds);
-        //AddAllClipsToDic(BubbleStickerSounds);
-        //AddAllClipsToDic(FreeStickerSounds);
-        //AddAllClipsToDic(TouchSounds);
-        //AddAllClipsToDic(CommonSounds);
+        AddAllClipsToDic(DiarySounds);
+        AddAllClipsToDic(BubbleGunSounds);
+        AddAllClipsToDic(BubbleBearSounds);
+        AddAllClipsToDic(BubbleStickerSounds);
+        AddAllClipsToDic(FreeStickerSounds);
+        AddAllClipsToDic(TouchSounds);
+        AddAllClipsToDic(CommonSounds);
     }
 
     /// <summary>
@@ -206,7 +207,7 @@ public class Manager_Audio : MonoBehaviour
             // Check AudioClip to play And PlaySound
             if(overLap == true)
             {
-                audioSource.PlayOneShot(audioSource.clip);
+                audioSource.Play();
             }
             else
             {
@@ -225,7 +226,7 @@ public class Manager_Audio : MonoBehaviour
             audioSource.clip = GetClip(soundType, ClipName);
             if (overLap == true)
             {
-                audioSource.PlayOneShot(audioSource.clip);
+                audioSource.Play();
             }
             else
             {
@@ -291,6 +292,7 @@ public class Manager_Audio : MonoBehaviour
         if (stopPlaySoundObj.TryGetComponent(out AudioSource source))
         {
             audioSource = source;
+            audioSource.pitch = 1f;
             audioSource.Stop();
         }
         else

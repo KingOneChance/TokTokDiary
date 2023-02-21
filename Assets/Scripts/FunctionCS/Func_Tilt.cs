@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Diagnostics.Tracing;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Func_Tilt : MonoBehaviour
@@ -88,12 +86,13 @@ public class Func_Tilt : MonoBehaviour
 
     private void TiltUp()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, false);
         beakerSolutionImg.gameObject.SetActive(false);
         StopCoroutine(CO_FallSolution());
-        Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
         tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
         if (tiltObj.rotation.z < 0f)
         {
+            Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
             tiltObj.localEulerAngles = Vector3.zero;
         }
     }

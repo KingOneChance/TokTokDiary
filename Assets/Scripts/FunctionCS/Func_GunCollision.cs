@@ -154,6 +154,7 @@ public class Func_GunCollision : MonoBehaviour
     }
     IEnumerator DisappearSticker()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
         yield return new WaitForSeconds(10f);
         stickerBackGroundImage.gameObject.SetActive(false);
     }

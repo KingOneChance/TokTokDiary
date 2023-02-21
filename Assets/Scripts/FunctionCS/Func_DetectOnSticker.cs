@@ -31,13 +31,13 @@ public class Func_DetectOnSticker : MonoBehaviour, IPointerDownHandler
         {
             func_DragObject.enabled = false;
             bubble.gameObject.SetActive(false);
-            Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
+            Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, true);
         }
         else if (ui_PictureDiary.MouseStateInfo == MouseType.BubbleStick)
         {
             func_DragObject.enabled = true;
             bubble.gameObject.SetActive(true);
-            Manager_Main.Instance.GetAudio().PlaySound("BubbleStick", SoundType.Diary, gameObject, false, false);
+            Manager_Main.Instance.GetAudio().PlaySound("BubbleStick", SoundType.Diary, gameObject, false, true);
         }
     }
     public void OnPointerDown(PointerEventData eventData)

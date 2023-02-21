@@ -43,6 +43,7 @@ public class Func_SwellUp : MonoBehaviour
 
     public void SaveProcess()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
         StartCoroutine(CO_Bomb());
         swellUpButton.interactable = false;
         curPanel.SetActive(false);
@@ -52,6 +53,7 @@ public class Func_SwellUp : MonoBehaviour
 
     private IEnumerator CO_SwellUp(int idx)
     {
+        Manager_Main.Instance.GetAudio().PlaySound("GettingBigger", SoundType.BubbleSticker, gameObject, false, true);
         helperGuideClick.gameObject.SetActive(false);
         swellUpButton.interactable = false;
         while (true)
@@ -84,12 +86,13 @@ public class Func_SwellUp : MonoBehaviour
     {
         backButton.gameObject.SetActive(false);
         swellUpImg.rectTransform.localScale = Vector3.zero;
-        StartCoroutine(CO_Bomb());
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
+        // 터지는 파티클 추가해주기
     }
 
     private IEnumerator CO_Bomb()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
         for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
         {
             eff_GetBubbleSticker[i].Play();
