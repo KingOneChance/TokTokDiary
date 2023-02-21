@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Func_LoadingScene : MonoBehaviour
 {
+    [SerializeField] RawImage[] backGroundImgs = null;
     static string nextScene;
 
     public static void LoadScene(string sceneName)

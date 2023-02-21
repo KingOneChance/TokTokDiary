@@ -44,6 +44,7 @@ public class Func_SwellUp : MonoBehaviour
     public void SaveProcess()
     {
         Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
+        StartCoroutine(CO_Bomb());
         swellUpButton.interactable = false;
         curPanel.SetActive(false);
         getBubbleStickerPanel.SetActive(true);
@@ -104,8 +105,6 @@ public class Func_SwellUp : MonoBehaviour
         {
             eff_GetBubbleSticker[i].Clear(true);
         }
-
-        SaveProcess();
     }
 
     private IEnumerator Co_Fluffy()

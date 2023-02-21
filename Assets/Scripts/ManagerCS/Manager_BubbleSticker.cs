@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Manager_BubbleSticker : Func_SaveSticker
@@ -60,6 +61,11 @@ public class Manager_BubbleSticker : Func_SaveSticker
         panels[0].SetActive(true);
 
         ActiveColorBucket(false);
+    }
+
+    public void RestartBubbleSticker()
+    {
+        SceneManager.LoadScene("BubbleSticker");
     }
 
     private void DecideDesignAndColor()
