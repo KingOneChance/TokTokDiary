@@ -326,7 +326,13 @@ public class UI_PictureDiary : MonoBehaviour
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(Application.persistentDataPath + "/" + "Profile")) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-        if (false == Directory.Exists(directoryPath+"/Diary/")) Directory.CreateDirectory(directoryPath + "/Diary/");
+        if (false == Directory.Exists(directoryPath + "/Diary/"))
+        {
+            Directory.CreateDirectory(directoryPath + "/Diary/");
+            Directory.CreateDirectory(directoryPath + "/Jsons/");
+            Directory.CreateDirectory(directoryPath + "/Records/");
+
+        }
 
         int widthValue = texture.width;
         int heightValue = texture.height;

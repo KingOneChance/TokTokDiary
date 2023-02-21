@@ -7,20 +7,28 @@ using System.IO;
 /// </summary>
 public class Func_DiaryToJson : MonoBehaviour
 {
-    [SerializeField] private string filePath = Application.dataPath + "/DiaryData.json"; //프로필로 수정해야함
+    [SerializeField] private string filePath ; //프로필로 수정해야함
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
+    [SerializeField] private List<GameObject> recordObject = new List<GameObject>();
     [SerializeField] private Data_Diary saveData;
     [SerializeField] private Data_Diary loadData;
 
     private void Start()
     {
+        filePath = Application.dataPath + "/DiaryData.json";
         saveData = new Data_Diary();
         loadData = new Data_Diary();
     }
-    private void SaveData(Data_Diary data)
+    private void SaveData()
     {
-        string jsonData = JsonUtility.ToJson(data);
+        for(int i = 0; i < recordFilesNames.Count; i++)
+        {
+           recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
+        }
+        saveData.recordFilePos = recordFilesPos;
+        saveData.recordFileNames = recordFilesNames;
+        string jsonData = JsonUtility.ToJson(saveData);
         File.WriteAllText(filePath, jsonData);
     }
     private Data_Diary LoadData(string path)
@@ -33,8 +41,8 @@ public class Func_DiaryToJson : MonoBehaviour
         else return null;
     }
     public void AddRecordFileName(string recordName) => recordFilesNames.Add(recordName);
-    public void AddRecordPos(Vector2 recordPos) => recordFilesPos.Add(recordPos);
+    public void AddRecordPos(GameObject recordPos) => recordObject.Add(recordPos);
     public void SetProfileName(string name) => filePath = name; //일기 저장할 때 프로필 네임, 일기 불러오기 때 
-    public void SaveJson() => SaveData(saveData);
+    public void SaveJson() => SaveData();
     public Data_Diary LoadRecord() => loadData = LoadData(filePath);
 }

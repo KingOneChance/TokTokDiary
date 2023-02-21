@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3818636585261483290}
   - component: {fileID: 1503318229}
   - component: {fileID: 8076677025633486733}
+  - component: {fileID: 2014360371647384666}
   m_Layer: 0
   m_Name: MainManager
   m_TagString: Untagged
@@ -170,6 +171,21 @@ MonoBehaviour:
   FreeStickerSounds: {fileID: 11400000, guid: 84009140a06997148a0dc833ca713631, type: 2}
   TouchSounds: {fileID: 11400000, guid: 3b643ac17b6511642abe062092f67034, type: 2}
   CommonSounds: {fileID: 11400000, guid: 5f5bb59a5f3ffd54380cc340435236d3, type: 2}
+--- !u!114 &2014360371647384666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818636585261483291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb208459c9e0e3c409e29df7cd7c3e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  recordFilesNames: []
+  recordFilesPos: []
 --- !u!1001 &5097337398694215193
 PrefabInstance:
   m_ObjectHideFlags: 0

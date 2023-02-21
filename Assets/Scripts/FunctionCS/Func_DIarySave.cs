@@ -11,6 +11,8 @@ public class Func_DIarySave : Func_SaveSticker
     [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
+    [SerializeField] private List<string> recordFileNames = new List<string>();
+
     // fix Func_SaveSticker location
     protected override void Start()
     {
@@ -26,6 +28,12 @@ public class Func_DIarySave : Func_SaveSticker
         saveFileName = DateTime.Now.ToString("yyyy_MM_dd");
     }
 
+    public void AddRecordList(string path)
+    {
+        recordFileNames.Add(path);
+    }
+
+    #region OnClicks
     public void Onclick_Capture()
     {
 
@@ -44,23 +52,24 @@ public class Func_DIarySave : Func_SaveSticker
     }
     public void OnClick_Save()
     {
-        //제이슨 저장 02.21 김원찬 해야할 일
-       // Manager_Main.Instance.func_DiaryToJson.SetProfileName(profileName);
-       // Manager_Main.Instance.func_DiaryToJson.SaveJson();
-
-        //base.OnClick_SaveImgae(StickerType.FreeSticker);
-        if (canSave == true)
-        {
-            base.SaveTexture(StickerType.Diary, profileName);
-        }
-        //저장 완료시 씬전환
         StartCoroutine(Co_SaveEndLoadScene());
     }
+    #endregion 
     IEnumerator Co_SaveEndLoadScene()
     {
+        //base.OnClick_SaveImgae(StickerType.FreeSticker);
         isSaveDone = false;
+        if (canSave == true)
+        {
+            if (recordFileNames.Count == 0)
+                base.SaveTexture(StickerType.Diary, profileName);
+            else
+                base.SaveTexture(StickerType.Diary, profileName, true);
+        }
+        //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
         //씬전환
+        Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }

@@ -17,6 +17,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private RawImage signSticker = null;
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
+    [SerializeField] private Func_DIarySave func_DIarySave = null;
+
 
 
     private RectTransform myRectTransform;
@@ -27,6 +29,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
+        func_DIarySave = FindObjectOfType<Func_DIarySave>();
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
@@ -74,7 +77,8 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                         Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
                         //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
                         Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
-                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(copyRectTransform.position);
+                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
+                        func_DIarySave.AddRecordList(buffer);
                     }
                 });
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
