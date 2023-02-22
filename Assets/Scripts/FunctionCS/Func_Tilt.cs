@@ -86,13 +86,11 @@ public class Func_Tilt : MonoBehaviour
 
     private void TiltUp()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, false);
         beakerSolutionImg.gameObject.SetActive(false);
         StopCoroutine(CO_FallSolution());
         tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
         if (tiltObj.rotation.z < 0f)
         {
-            Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
             tiltObj.localEulerAngles = Vector3.zero;
         }
     }
@@ -123,6 +121,7 @@ public class Func_Tilt : MonoBehaviour
         isSwipeDown = false;
         isSolutionFall = false;
         NextButton.gameObject.SetActive(true);
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
     }
 
     private void CheckColor(string name)

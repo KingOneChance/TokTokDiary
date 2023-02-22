@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Manager_BubbleSticker : Func_SaveSticker
@@ -18,7 +19,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private Func_SwipeMove stickerDesign = null;
 
     [Header("========== 기울이기 ==========")]
-    [SerializeField] private Func_Tilt[] colorBucketTitlts = null;
+    [SerializeField] private Func_Tilt[] colorBucketTilts = null;
     [SerializeField] private RectTransform placePos = null;
     [SerializeField] private RectTransform[] colorBucketsRect = null;
     [SerializeField] private RectTransform[] colorBucketsInitPos = null;
@@ -48,9 +49,9 @@ public class Manager_BubbleSticker : Func_SaveSticker
         backButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(true);
 
-        for(int i = 0; i < colorBucketTitlts.Length; ++i)
+        for(int i = 0; i < colorBucketTilts.Length; ++i)
         {
-            colorBucketTitlts[i].enabled = false;
+            colorBucketTilts[i].enabled = false;
         }
 
         for (int i = 0; i < panels.Length; i++)
@@ -60,6 +61,11 @@ public class Manager_BubbleSticker : Func_SaveSticker
         panels[0].SetActive(true);
 
         ActiveColorBucket(false);
+    }
+
+    public void RestartBubbleSticker()
+    {
+        SceneManager.LoadScene("BubbleSticker");
     }
 
     private void DecideDesignAndColor()
@@ -153,7 +159,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_NextBtn()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         DecideDesignAndColor();
         backButton.gameObject.SetActive(true);
         if (PanelIdx + 1 == panels.Length - 1) nextButton.gameObject.SetActive(false);
@@ -199,7 +204,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_BackBtn()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         if (PanelIdx == 2) ActiveColorBucket(false);
         if (PanelIdx - 1 == 0) backButton.gameObject.SetActive(false);
         panels[PanelIdx - 1].SetActive(true);
@@ -207,6 +211,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
         PanelIdx--;
         if (PanelIdx == 0)
         {
+            Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
             nextButton.gameObject.SetActive(true);
             ActiveColorBucket(false);
         }
@@ -215,6 +220,8 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void OnClick_SelectColor(string color)
     {
+        Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, true);
+
         switch (color)
         {
             case "Green":
@@ -233,12 +240,12 @@ public class Manager_BubbleSticker : Func_SaveSticker
         {
             if (colorBucketToggles[i].isOn == true)
             {
-                colorBucketTitlts[i].enabled = true;
+                colorBucketTilts[i].enabled = true;
                 colorBucketsRect[i].position = placePos.position;
             }
             else
             {
-                colorBucketTitlts[i].enabled = false;
+                colorBucketTilts[i].enabled = false;
                 colorBucketsRect[i].position = colorBucketsInitPos[i].position;
                 colorBucketsRect[i].localEulerAngles = Vector3.zero;
             }
@@ -253,9 +260,9 @@ public class Manager_BubbleSticker : Func_SaveSticker
 
     public void InitColorBucket()
     {
-        for (int i = 0; i < colorBucketTitlts.Length; i++)
+        for (int i = 0; i < colorBucketTilts.Length; i++)
         {
-            colorBucketTitlts[i].enabled = false;
+            colorBucketTilts[i].enabled = false;
             colorBucketsRect[i].position = colorBucketsInitPos[i].position;
             colorBucketsRect[i].localEulerAngles = Vector3.zero;
         }

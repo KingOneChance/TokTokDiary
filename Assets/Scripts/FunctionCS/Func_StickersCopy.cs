@@ -103,8 +103,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
-        // Use Sticker
-        Manager_Main.Instance.UseSticker(stickerName);
         //오디오 매니저 사용 방법
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
         //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
