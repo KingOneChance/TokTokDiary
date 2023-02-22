@@ -74,56 +74,57 @@ namespace FreeDraw
 
         protected void Draw()
         {
-            //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
-            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
+            if (Input.touchCount > 0)
             {
-                SData_NodeData temp = new SData_NodeData();
-                internalClick = true;
-                obj = Instantiate(linePrefab);
-                obj.tag = "Line";
-                tempOBJ = obj;
-                line = obj.GetComponent<LineRenderer>();
-                col = obj.GetComponent<EdgeCollider2D>();
-                obj.transform.position = Vector3.zero;
-                line.startColor = curColor;
-                line.endColor = curColor;
-                line.startWidth = currentPenWidth;
-                line.endWidth = currentPenWidth;
-                line.positionCount = 1;
-                points.Add(mainCam.ScreenToWorldPoint(Input.mousePosition));
-                line.SetPosition(0, points[0]);
+                Touch touch = Input.GetTouch(0);
 
+                if (touch.phase == TouchPhase.Began)
+                {
+                    SData_NodeData temp = new SData_NodeData();
+                    internalClick = true;
+                    obj = Instantiate(linePrefab);
+                    obj.tag = "Line";
+                    tempOBJ = obj;
+                    line = obj.GetComponent<LineRenderer>();
+                    col = obj.GetComponent<EdgeCollider2D>();
+                    obj.transform.position = Vector3.zero;
+                    line.startColor = curColor;
+                    line.endColor = curColor;
+                    line.startWidth = currentPenWidth;
+                    line.endWidth = currentPenWidth;
+                    line.positionCount = 1;
+                    points.Add(mainCam.ScreenToWorldPoint(touch.position));
+                    line.SetPosition(0, points[0]);
 
-                temp.position = obj.transform.position;
-                temp.rotation = obj.transform.rotation.eulerAngles;
-                temp.scale = obj.transform.localScale;
-                if (isDiaryScene == true)
-                    Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
-            }
-            //during drag
-            else if (Input.GetMouseButton(0) && internalClick == true)
-            {
-                Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, gameObject, false, false);
-                Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
-                     {
-                         return;
-                     }*/
-                points.Add(pos);
-                line.positionCount++;
-                line.SetPosition(line.positionCount - 1, pos);
-                col.points = points.ToArray();
-            }
-            //end drag
-            else if (Input.GetMouseButtonUp(0))
-            {
-                Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
-                if (isDragSticker == true) Destroy(tempOBJ);
-                points.Clear();
+                    temp.position = obj.transform.position;
+                    temp.rotation = obj.transform.rotation.eulerAngles;
+                    temp.scale = obj.transform.localScale;
+                    if (isDiaryScene == true)
+                        Manager_Main.Instance.manager_PictureDiary.AddDragInit(temp, obj);
+                }
+                else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                {
+                    Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, gameObject, false, false);
+                    Vector2 pos = mainCam.ScreenToWorldPoint(touch.position);
+                    /*     if (Vector2.Distance(pos, points[points.Count - 1]) < 0.001f)
+                         {
+                             return;
+                         }*/
+                    points.Add(pos);
+                    line.positionCount++;
+                    line.SetPosition(line.positionCount - 1, pos);
+                    col.points = points.ToArray();
+                }
+                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
+                    if (isDragSticker == true) Destroy(tempOBJ);
+                    points.Clear();
+                }
             }
         }
 
-        
+
         public void MMMMMM()
         {
             onObject = true;
