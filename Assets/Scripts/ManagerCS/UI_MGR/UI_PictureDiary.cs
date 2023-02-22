@@ -412,8 +412,6 @@ public class UI_PictureDiary : MonoBehaviour
     private void TobeEmpty(string path)
     {
         string fileName = path + overWriteNickName.text;
-        Debug.Log(fileName);
-        Debug.Log(before.text);
 
         if (File.Exists(fileName + "/" + before.text + ".png"))
         {
