@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Func_bathLoadingSpread : MonoBehaviour
+public class Func_labLoadingSpread : MonoBehaviour
 {
     [SerializeField] RectTransform myRect = null;
     private Vector2 myRandomDir = Vector2.zero;
@@ -11,9 +11,9 @@ public class Func_bathLoadingSpread : MonoBehaviour
 
     private void Start()
     {
-        speed = Random.Range(1f,2f);
+        speed = Random.Range(1f, 2f);
         myRect = GetComponent<RectTransform>();
-        myRandomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        myRandomDir = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(Mathf.Tan(40 * (Mathf.PI / 180)), 1f)).normalized;
         StartCoroutine(Co_Move());
     }
 

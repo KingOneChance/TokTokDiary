@@ -8,15 +8,17 @@ public class Func_LoadingScene : MonoBehaviour
     [SerializeField] RawImage[] backGroundImgs = null;
     [SerializeField] Toggle[] backGroundToggle = null;
     [SerializeField] RawImage fadeOutImg = null;
+    [SerializeField] RawImage fadeOutImgWhite = null;
     [SerializeField] RawImage[] bubblBearNoteImgs = null;
     [SerializeField] RectTransform bathkkamdo = null;
     [SerializeField] GameObject[] freeStickerBubbles = null;
+    [SerializeField] GameObject[] labBubbles = null;
 
     public static string nextScene;
     public bool isLoadingDone = true;
 
     private WaitForSeconds bubbleBearNoteOnDelay = new WaitForSeconds(0.375f);
-    private WaitForFixedUpdate bathRotatedeltaTime = new WaitForFixedUpdate();
+    private WaitForFixedUpdate fixedDeltaTime = new WaitForFixedUpdate();
     private Vector3 angle = new Vector3(0, 0, 1);
 
     public static void LoadScene(string sceneName)
@@ -28,13 +30,13 @@ public class Func_LoadingScene : MonoBehaviour
     private void Start()
     {
         StartCoroutine(UnloadSceneProcess());
+        NextLoadingSceneProcess();
         Manager_Main.Instance.PlayBGM(nextScene);
     }
 
     private IEnumerator LoadSceneProcess()
     {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
-        NextLoadingSceneProcess();
+        AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);        
         ao.allowSceneActivation = false;
         while (!ao.isDone)
         {
@@ -90,8 +92,21 @@ public class Func_LoadingScene : MonoBehaviour
 
     private IEnumerator BubbleStickerProcess()
     {
-        yield return new WaitForSeconds(3f);
-        isLoadingDone = true;
+        int runCount = 0;
+        for (int i = 0; i < labBubbles.Length; ++i)
+        {
+            labBubbles[i].SetActive(false);
+        }
+        while (runCount < 10)
+        {
+            for (int i = 0; i < labBubbles.Length; i++)
+            {
+                labBubbles[i].SetActive(true);
+                runCount++;
+                yield return new WaitForSeconds(0.3f);
+            }
+        }
+        StartCoroutine(FadeIn(1f));
     }
 
     private IEnumerator BubbleGunProcess()
@@ -101,17 +116,17 @@ public class Func_LoadingScene : MonoBehaviour
             while (bathkkamdo.localEulerAngles.z < 359)
             {
                 bathkkamdo.localEulerAngles += angle * Time.deltaTime * 25f;
-                yield return bathRotatedeltaTime;
+                yield return fixedDeltaTime;
             }
 
             while (bathkkamdo.localEulerAngles.z > 341)
             {
                 Debug.Log(bathkkamdo.rotation.z);
                 bathkkamdo.localEulerAngles -= angle * Time.deltaTime * 25f;
-                yield return bathRotatedeltaTime;
+                yield return fixedDeltaTime;
             } 
         }
-        isLoadingDone = true;
+        StartCoroutine(FadeIn(1f));
     }
 
     private IEnumerator BubbleBearProcess()
@@ -126,23 +141,43 @@ public class Func_LoadingScene : MonoBehaviour
             bubblBearNoteImgs[i].gameObject.SetActive(true);
             yield return bubbleBearNoteOnDelay;
         }
-        isLoadingDone = true;
+        StartCoroutine(FadeIn(1f));
     }
 
     private IEnumerator FreeStickerProcess()
     {
         int runCount = 0;
-        while (runCount < 10)
+        for(int i = 0; i < freeStickerBubbles.Length; ++i)
+        {
+            freeStickerBubbles[i].SetActive(false);
+        }
+        while (runCount < 3)
         {
             for (int i = 0; i < freeStickerBubbles.Length; i++)
             {
-                for (int j = 0; j < 20; j++)
-                {
-                    freeStickerBubbles[i].transform.GetChild(i).gameObject.SetActive(true);
-                }
-                yield return new WaitForSeconds(0.3f);
+                freeStickerBubbles[i].SetActive(true);
                 runCount++;
+                yield return new WaitForSeconds(1f);
             }
+        }
+        StartCoroutine(FadeIn(1f));
+    }
+
+    private IEnumerator FadeIn(float finalAlpha)
+    {
+        float alphaVal = 0f;
+        while (!Mathf.Approximately(alphaVal, finalAlpha))
+        {
+            alphaVal = Mathf.Lerp(alphaVal, finalAlpha, Time.deltaTime * 10f);
+            fadeOutImg.color = new Color(1,1,1, alphaVal);
+            yield return fixedDeltaTime; 
+        }
+
+        while (!Mathf.Approximately(alphaVal, finalAlpha))
+        {
+            alphaVal = Mathf.Lerp(alphaVal, finalAlpha, Time.deltaTime * 10f);
+            fadeOutImgWhite.color = new Color(1, 1, 1, alphaVal);
+            yield return fixedDeltaTime;
         }
         isLoadingDone = true;
     }
