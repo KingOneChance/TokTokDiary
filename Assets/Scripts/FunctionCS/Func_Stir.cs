@@ -85,6 +85,7 @@ public class Func_Stir : MonoBehaviour
                 {
                     Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
                     SkipButton.gameObject.SetActive(false);
+                    stickButton.enabled = false;
                     Invoke(nameof(DelayProcess), 2f);
                 }
                 myRect.position = stickInitPos.position;
@@ -129,6 +130,7 @@ public class Func_Stir : MonoBehaviour
     public void OnClick_SkipButton()
     {
         Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
+        stickButton.enabled = false;
         Invoke(nameof(DelayProcess), 2f);
     }
 
@@ -137,6 +139,5 @@ public class Func_Stir : MonoBehaviour
         Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         MixProcess(bsManager.ColorType, 3);
         NextButton.gameObject.SetActive(true);
-        stickButton.enabled = false;
     }
 }

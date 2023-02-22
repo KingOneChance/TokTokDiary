@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Func_bathLoadingSpread : MonoBehaviour
+{
+    [SerializeField] RectTransform myRect = null;
+    private Vector2 myRandomDir = Vector2.zero;
+    private WaitForFixedUpdate deltaTime = new WaitForFixedUpdate();
+    private float speed = 1f;
+
+    private void Start()
+    {
+        speed = Random.Range(1f,2f);
+        myRect = GetComponent<RectTransform>();
+        myRandomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        StartCoroutine(Co_Move());
+    }
+
+    private IEnumerator Co_Move()
+    {
+        float moveTime = 0f;
+        while (moveTime < 5f)
+        {
+            moveTime += Time.fixedDeltaTime;
+            myRect.Translate(myRandomDir * 6f * speed);
+            yield return deltaTime;
+        }
+    }
+}
