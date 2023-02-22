@@ -53,6 +53,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
+
     }
 
     public void OnClick_Profile(int idx)
