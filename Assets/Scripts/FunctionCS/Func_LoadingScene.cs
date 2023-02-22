@@ -11,7 +11,6 @@ public class Func_LoadingScene : MonoBehaviour
     
     public static string nextScene;
     public bool isLoadingDone = true;
-    private bool isUnloadingDone = true;
 
     public static void LoadScene(string sceneName)
     {
@@ -22,7 +21,6 @@ public class Func_LoadingScene : MonoBehaviour
     private void Start()
     {
         StartCoroutine(UnloadSceneProcess());
-        //StartCoroutine(LoadSceneProcess());
     }
 
     private IEnumerator LoadSceneProcess()
@@ -30,9 +28,10 @@ public class Func_LoadingScene : MonoBehaviour
         AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
         NextLoadingSceneProcess();
         ao.allowSceneActivation = false;
-        yield return new WaitUntil(() => isLoadingDone == true);
+        //yield return new WaitUntil(() => isLoadingDone == true);
         while (!ao.isDone)
         {
+            yield return new WaitForSeconds(3f);
             SceneManager.UnloadSceneAsync("LoadingScene");
             ao.allowSceneActivation = true;
         }
@@ -40,7 +39,6 @@ public class Func_LoadingScene : MonoBehaviour
 
     private IEnumerator UnloadSceneProcess()
     {
-        isUnloadingDone = false;
         AsyncOperation ao = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         ao.allowSceneActivation = false;
         while (!ao.isDone)
@@ -48,7 +46,6 @@ public class Func_LoadingScene : MonoBehaviour
             ao.allowSceneActivation = true;
             yield return null;
         }
-        isUnloadingDone = true;
         StartCoroutine(LoadSceneProcess());
     }
 
@@ -86,25 +83,29 @@ public class Func_LoadingScene : MonoBehaviour
 
     private IEnumerator BubbleStickerProcess()
     {
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
+        yield return null;
         isLoadingDone = true;
     }
 
     private IEnumerator BubbleGunProcess()
     {
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
+        yield return null;
         isLoadingDone = true;
     }
 
     private IEnumerator BubbleBearProcess()
     {
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
+        yield return null;
         isLoadingDone = true;
     }
 
     private IEnumerator FreeStickerProcess()
     {
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
+        yield return null;
         isLoadingDone = true;
     }
 }
