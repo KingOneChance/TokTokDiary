@@ -13,6 +13,7 @@ public class Func_DragAndDrop : Func_BasicDrag
         Start();
         isDropDone = false;
         myRect.position = myInitRect.position;
+
     }
 
     public override void OnDrag(PointerEventData eventData)
