@@ -71,14 +71,15 @@ public class UI_StickerRepository : MonoBehaviour
         bubbleFreeStickerList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
+            Debug.Log(allFiles[i]);
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
 
             if (byteTexture.Length > 0)
             {
+                
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
-
-
+               
                 if (allFiles[i].Contains("BubbleSticker"))
                 {
                     bubbleStickerList.Add(allFiles[i]);
@@ -116,7 +117,7 @@ public class UI_StickerRepository : MonoBehaviour
     /// <param name="anyList2">Insert signList</param>
     private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
-      
+
         if (anyList.Count < 12)
         {
             for (int i = basicStickers.Count-1; i > 11; --i)
@@ -174,15 +175,16 @@ public class UI_StickerRepository : MonoBehaviour
         //Fill in the raw image's texture
         for (int i = 0; i < anyList.Count; i++)
         {
+            Debug.Log(anyList[i]);
             byte[] byteTexture = File.ReadAllBytes(anyList[i]);
-
+            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
-                texture.name = "YellowDuck";
+                texture.name = filename;
                 basicStickers[i].texture = texture;
-                basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount("YelloDuck");
+                basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(basicStickers[i].texture.name);
             }
             if (anyList2 != null)
             {
