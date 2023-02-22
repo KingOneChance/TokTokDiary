@@ -1981,6 +1981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d840b2cac45e0db498c8a08f432dd7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragAreaMaxX: 5.5
+  dragAreaMinX: -5.3
+  dragAreaMaxY: 2.5
+  dragAreaMinY: -2.4
+  InArea: 1
 --- !u!114 &1000852350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,7 +2719,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1359955308}
   - component: {fileID: 1359955307}
-  - component: {fileID: 1359955306}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2722,14 +2726,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1359955306
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359955305}
-  m_Enabled: 1
 --- !u!20 &1359955307
 Camera:
   m_ObjectHideFlags: 0
@@ -3205,6 +3201,12 @@ MonoBehaviour:
   ui_StickImage: {fileID: 2800000, guid: 07687234b46c2654f8f1f5a4097109df, type: 3}
   isNiddleClicked: 0
   isStickClicked: 0
+  freeStickerDraw: {fileID: 976256087}
+  mainCam: {fileID: 1359955307}
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0
 --- !u!224 &1743147381
 RectTransform:
   m_ObjectHideFlags: 0

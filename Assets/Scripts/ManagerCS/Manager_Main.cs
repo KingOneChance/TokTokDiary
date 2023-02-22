@@ -177,10 +177,15 @@ public class Manager_Main : MonoBehaviour
             return 0;
         }
         else
-        {
+        {//
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getAudioStickerNum = allFiles.Length;
-            return getAudioStickerNum;
+            if (getAudioStickerNum > 0)
+                if (getAudioStickerNum > 0 && int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]) >= getAudioStickerNum)
+                {
+                    getAudioStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]);
+                }
+            return getAudioStickerNum + 1;
         }
     }
     public int GetSignStickerNum(string folder)
@@ -194,7 +199,11 @@ public class Manager_Main : MonoBehaviour
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getSignStickerNum = allFiles.Length;
-            return getSignStickerNum;
+            if (getSignStickerNum > 0 && int.Parse(allFiles[getSignStickerNum - 1].Split(".")[0].Split("-")[1]) >= getSignStickerNum)
+            {
+                getSignStickerNum = int.Parse(allFiles[getSignStickerNum - 1].Split(".")[0].Split("-")[1]);
+            }
+            return getSignStickerNum + 1;
         }
     }
     public int GetRecordNum(string folder)
@@ -208,7 +217,11 @@ public class Manager_Main : MonoBehaviour
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.wav", SearchOption.TopDirectoryOnly);
             getAudioStickerNum = allFiles.Length;
-            return getAudioStickerNum;
+            if (getAudioStickerNum > 0 && int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]) >= getAudioStickerNum)
+            {
+                getAudioStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]);
+            }
+            return getAudioStickerNum + 1;
         }
     }
     public int GetFreeStickerNum(string folder)
@@ -222,7 +235,11 @@ public class Manager_Main : MonoBehaviour
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getFreeStickerNum = allFiles.Length;
-            return getFreeStickerNum;
+            if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]) >= getFreeStickerNum)
+            {
+                getFreeStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]);
+            }
+            return getFreeStickerNum + 1;
         }
     }
     public int GetDiaryNum(string folder, string profileName)
@@ -239,15 +256,15 @@ public class Manager_Main : MonoBehaviour
         {
             string time = DateTime.Now.ToString("yyyy_MM_dd");
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/", "*.png", SearchOption.TopDirectoryOnly);
-            for(int i = 0; i < allFiles.Length; i++)
+            for (int i = 0; i < allFiles.Length; i++)
             {
-                if(allFiles[i].Contains(time))
+                if (allFiles[i].Contains(time))
                 {
                     getDiaryNum++;
                 }
             }
-           // getDiaryNum = allFiles.Length;
-            return getDiaryNum+1;
+            // getDiaryNum = allFiles.Length;
+            return getDiaryNum + 1;
         }
     }
 

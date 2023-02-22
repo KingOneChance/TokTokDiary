@@ -60,9 +60,9 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         copyRectTransform = myRectTransform;
         newSticker.AddComponent<Func_DragObject>();
         newSticker.AddComponent<Func_DetectOnSticker>();
-        Destroy(newSticker.GetComponent<Func_StickersCopy>());
         newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
-        switch(func_DiaryInventory.GetNowType())
+        Debug.Log("스티커 상태 :" + func_DiaryInventory.GetNowType().ToString());
+        switch (func_DiaryInventory.GetNowType())
         {
             case StickerType.BubbleSticker:
                 break;
@@ -72,25 +72,22 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
                 break;
             case StickerType.RecordSticker:
+                string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
                 newSticker.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    if (func_DiaryInventory.GetNowType() == StickerType.RecordSticker)
-                    {
-                        string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
-                        Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
-                        //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
-                        Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
-                        Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
-                        func_DIarySave.AddRecordList(buffer);
-                        func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
-                    }
+                    Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
+                    //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
                 });
+                Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
+                Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
+                func_DIarySave.AddRecordList(buffer);
+                func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
                 break;
         }
 
         myRectTransform.position = myPos.transform.position;
-       
+
         //nodedata plus
         SData_NodeData temp = new SData_NodeData();
         RectTransform tempRect = new RectTransform();
@@ -103,9 +100,15 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
+        // Use Sticker
+        if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker)
+            Manager_Main.Instance.UseSticker(stickerName);
+
+        Destroy(newSticker.GetComponent<Func_StickersCopy>());
+
         //오디오 매니저 사용 방법
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
         //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
     }
- 
+
 }

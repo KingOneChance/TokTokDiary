@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 218918}
   myParents: {fileID: 1862654791}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 843180086}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
@@ -2990,6 +2990,8 @@ MonoBehaviour:
   Select4: {fileID: 1113669275}
   HelperMenu: {fileID: 405310937}
   StopButton: {fileID: 458755898}
+  DrawingObj: {fileID: 804669447}
+  Tutorial: {fileID: 1900164803}
 --- !u!1 &141345442
 GameObject:
   m_ObjectHideFlags: 0
@@ -6953,7 +6955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 335846533}
   myParents: {fileID: 407683276}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1822483181}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
@@ -8127,7 +8129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 376608621}
   myParents: {fileID: 190738520}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1075414798}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
@@ -13256,7 +13258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 669524822}
   myParents: {fileID: 1137588191}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 122262544}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
@@ -14132,7 +14134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 686247858}
   myParents: {fileID: 1013433496}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 220354900}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
@@ -15392,6 +15394,8 @@ MonoBehaviour:
   Select4: {fileID: 1113669275}
   HelperMenu: {fileID: 405310937}
   StopButton: {fileID: 458755898}
+  DrawingObj: {fileID: 804669447}
+  Tutorial: {fileID: 1900164803}
 --- !u!1 &773878038
 GameObject:
   m_ObjectHideFlags: 0
@@ -15903,7 +15907,7 @@ RectTransform:
   m_GameObject: {fileID: 804669443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1527136330}
@@ -15911,7 +15915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0.000034093857, y: -0.000033140182}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &804669445
@@ -17628,6 +17632,8 @@ MonoBehaviour:
   Select4: {fileID: 1113669275}
   HelperMenu: {fileID: 405310937}
   StopButton: {fileID: 458755898}
+  DrawingObj: {fileID: 804669447}
+  Tutorial: {fileID: 1900164803}
 --- !u!1 &884548933
 GameObject:
   m_ObjectHideFlags: 0
@@ -18981,7 +18987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 975221180}
   myParents: {fileID: 1614330633}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 341505720}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
@@ -20765,7 +20771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1022845168}
   myParents: {fileID: 682074299}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 866498134}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
@@ -22419,6 +22425,8 @@ MonoBehaviour:
   Select4: {fileID: 1113669275}
   HelperMenu: {fileID: 405310937}
   StopButton: {fileID: 458755898}
+  DrawingObj: {fileID: 804669447}
+  Tutorial: {fileID: 1900164803}
 --- !u!1 &1114703182
 GameObject:
   m_ObjectHideFlags: 0
@@ -27594,7 +27602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1425523915}
   myParents: {fileID: 1466256424}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 751904789}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
@@ -30515,7 +30523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1628774426}
   myParents: {fileID: 69289199}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 537591964}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
@@ -32993,7 +33001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1793396624}
   myParents: {fileID: 2143629074}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1755600208}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
@@ -34871,7 +34879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1890016216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35295,6 +35303,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895610266}
   m_CullTransparentMesh: 1
+--- !u!1 &1900164802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900164804}
+  - component: {fileID: 1900164803}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1900164803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900164802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b087a2df7540743a1192501e532afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1900164804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900164802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921202841
 GameObject:
   m_ObjectHideFlags: 0
@@ -36017,7 +36069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1935584526}
   myParents: {fileID: 1312304308}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 225069321}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
@@ -38998,7 +39050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 2069775672}
   myParents: {fileID: 469152852}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1968599168}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
