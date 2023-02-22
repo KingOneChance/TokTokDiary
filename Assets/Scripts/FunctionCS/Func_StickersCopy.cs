@@ -20,7 +20,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [SerializeField] private RawImage signSticker = null;
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
-    [SerializeField] private Func_DiarySave func_DIarySave = null;
+    [SerializeField] private Func_DIarySave func_DiarySave = null;
 
 
 
@@ -32,7 +32,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
-        func_DIarySave = FindObjectOfType<Func_DiarySave>();
+        func_DiarySave = FindObjectOfType<Func_DIarySave>();
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
@@ -81,9 +81,11 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 });
                 Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
                 Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
-                func_DIarySave.AddRecordList(buffer);
-                func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name)); //이대로 자유스티커에 넣어줘야함 , name은 인덱스
+                func_DiarySave.AddRecordList(buffer);
+                func_DiarySave.SetUsedRecordNum(int.Parse(gameObject.name)); //이대로 자유스티커에 넣어줘야함 , name은 인덱스
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
+                break;
+            default:
                 break;
         }
 

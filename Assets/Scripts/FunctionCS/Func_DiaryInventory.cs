@@ -54,9 +54,17 @@ public class Func_DiaryInventory : MonoBehaviour
     {
         return recordingSignList[i];
     }
-    public string GetFreeSignList(int i)
+    public string GetFreeStickerList(int i)
     {
-        return recordingSignList[i];
+        return bubbleFreeStickerList[i];
+    }
+    public string GetGunStickerList(int i)
+    {
+        return bubbleGunStickerList[i];
+    }
+    public string GetbubbleStickerList(int i)
+    {
+        return bubbleStickerList[i];
     }
 
 

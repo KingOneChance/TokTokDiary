@@ -6,7 +6,7 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
-public class Func_DiarySave : Func_SaveSticker
+public class Func_DIarySave : Func_SaveSticker
 {
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
@@ -63,15 +63,21 @@ public class Func_DiarySave : Func_SaveSticker
     #endregion 
     IEnumerator Co_SaveEndLoadScene()
     {
-        //base.OnClick_SaveImgae(StickerType.FreeSticker);
-        isSaveDone = false;
+        Debug.Log("저장 코루틴 시작");
+       //base.OnClick_SaveImgae(StickerType.FreeSticker);
+       isSaveDone = false;
         if (canSave == true)
         {
+            Debug.Log("저장 if 시작");
             if (recordFileNames.Count == 0)
                 base.SaveTexture(StickerType.Diary, profileName);
             else
+            {
+                Debug.Log("else 끝");
                 base.SaveTexture(StickerType.Diary, profileName, true);
+            }
         }
+        Debug.Log("저장 완료");
         //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
         //사용한 스티커 삭제하기
@@ -91,20 +97,39 @@ public class Func_DiarySave : Func_SaveSticker
         {
             Debug.Log("freeUsedNum 개수 : " + freeUsedNum.Count);
 
-            string freeBuffer = func_DiaryInventory.GetFreeSignList(freeUsedNum[i]);
+            string freeBuffer = func_DiaryInventory.GetFreeStickerList(freeUsedNum[i]);
             DeleteFile(freeBuffer);
         }
-        for( int i = 0; i < gunUsedNum.Count; i++)
-        {
 
+        string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleFreeSticker", "*.png", SearchOption.AllDirectories);
+        
+        for (int i = 0; i < gunUsedNum.Count; i++)
+        {
+            if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleFreeSticker")[1].Split(".")[0])) == 1) // 인자값 스티커 이름삭제
+            {
+                string freeBuffer = func_DiaryInventory.GetGunStickerList(gunUsedNum[i]);
+                DeleteFile(freeBuffer);
+            }
+            else
+            {
+                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleFreeSticker")[1].Split(".")[0]);
+            }
         }
+        allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGun", "*.png", SearchOption.AllDirectories);
         for (int i = 0; i < bubbleUsedNum.Count; i++)
         {
-
+            if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleGun")[1].Split(".")[0])) == 1) //삭제
+            {
+                string freeBuffer = func_DiaryInventory.GetbubbleStickerList(bubbleUsedNum[i]);
+                DeleteFile(freeBuffer);
+            }
+            else
+            {
+                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleGun")[1].Split(".")[0]);
+            }
         }
-
-            //씬전환
-            Debug.Log("세이브 상태 :" + isSaveDone);
+        //씬전환
+        Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }

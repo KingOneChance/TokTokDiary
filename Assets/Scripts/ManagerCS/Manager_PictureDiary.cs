@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public partial class Manager_PictureDiary : MonoBehaviour
 {
-    private Data_LinkedList conZ = new Data_LinkedList();
+    private Data_LinkedList conZ = null;
 
+    private void Awake() => conZ = new Data_LinkedList();
     private void Start() => Manager_Main.Instance.InitPictureDiaryScene();
 
     #region These functions are for the purpose of controlling some specific behaviors. (like Control + Z)

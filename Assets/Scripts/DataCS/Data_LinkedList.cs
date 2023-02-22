@@ -8,11 +8,11 @@ public class Data_LinkedList : MonoBehaviour
     public Data_Node head = null;
     public Data_Node tail = null;
     public SData_NodeData prevData;
-    private Func_DiarySave func_SaveDiary = null;
+    private Func_DIarySave func_SaveDiary = null;
 
     public Data_LinkedList()
     {
-        func_SaveDiary = FindObjectOfType<Func_DiarySave>();
+        func_SaveDiary = FindObjectOfType<Func_DIarySave>();
     }
     public void AddDragStart(SData_NodeData newData, GameObject myObj)
     {
