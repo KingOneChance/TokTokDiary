@@ -30,7 +30,12 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] Func_CalendarController func_CalendarController;
 
     [Header("캔버스")]
-    [SerializeField] GameObject diaryPanel = null;
+
+    [SerializeField] private GameObject diaryPanel = null;
+    [SerializeField] private Sprite openTrashCan = null;
+    [SerializeField] private Sprite closeTrashCan = null;
+    [SerializeField] private RawImage TrashCan = null;
+
     [Header("===JsonData===")]
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
@@ -52,6 +57,9 @@ public class Manager_DiaryCase : MonoBehaviour
 
     public void OnClick_Profile(int idx)
     {
+
+        TrashCan.texture = closeTrashCan.texture;
+
         selectedProfileName = profileName[idx - 1].text;
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
 
@@ -271,6 +279,14 @@ public class Manager_DiaryCase : MonoBehaviour
     }
 
     //일기 삭제
+    public void Onclick_TrashCan()
+    {
+        TrashCan.texture = openTrashCan.texture;
+    }
+    public void Onclick_CloseTrashCan()
+    {
+        TrashCan.texture = closeTrashCan.texture;
+    }
     public void Onclick_DeleteDiary(RawImage deleltefile)
     {
         DeleteDiary(deleltefile);
@@ -291,7 +307,7 @@ public class Manager_DiaryCase : MonoBehaviour
         AddDiaryFiles();
         diaryPanel.SetActive(true);
 
-
+        TrashCan.texture = closeTrashCan.texture;
     }
     private void DeletFolder(string fileName)
     {

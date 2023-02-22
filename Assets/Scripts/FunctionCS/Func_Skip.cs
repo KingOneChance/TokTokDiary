@@ -29,6 +29,7 @@ public class Func_Skip : MonoBehaviour
             {
                 func_GunCollision.ChangeImage(checkImages[i].texture.name, checkImages[i].gameObject);
                 //이펙트 및 스킵 사운드
+                Manager_Main.Instance.GetAudio().PlaySound("Mop", SoundType.Diary, gameObject, false, true);
             }
             yield return new WaitForSeconds(0f);
         }
@@ -52,6 +53,7 @@ public class Func_Skip : MonoBehaviour
                 func_GunCollision.cleanList[randnum].color = Nothing;
                 func_GunCollision.cleanList.RemoveAt(randnum);
                 //이펙트 및 비눗방울 터지는 사운드
+                Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, true);
             }
             yield return new WaitForSeconds(0.2f);
         }

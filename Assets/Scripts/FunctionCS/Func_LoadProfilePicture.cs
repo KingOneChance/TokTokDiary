@@ -6,9 +6,14 @@ public class Func_LoadProfilePicture : MonoBehaviour
 {
     [SerializeField] RawImage[] profileImages = null;
     [SerializeField] TextMeshProUGUI[] textMeshProUGUI;
+    [SerializeField] RawImage[] selectedFrameImages = null;
     private void OnEnable()
     {
-        for(int i = 0; i < profileImages.Length; i++)
+        for (int i = 0; i < selectedFrameImages.Length; i++)
+        {
+            selectedFrameImages[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < profileImages.Length; i++)
         {
             profileImages[i].gameObject.SetActive(false);
         }

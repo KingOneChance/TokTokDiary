@@ -56,8 +56,32 @@ public class Func_DIarySave : Func_SaveSticker
         else
             canSave = false;
     }
+    //Æú´õ °¹¼ö
+    public int GetDirecotoryCount(string filePath)
+    {
+        int count = 0;
+        try
+        {
+            if (Directory.Exists(filePath))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
+                foreach (var item in directoryInfo.GetDirectories())
+                {
+                    count++;
+
+                }
+            }
+        }
+        catch
+        {; }
+        return count;
+    }
     public void OnClick_Save()
     {
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") ==0)
+        {
+            return;
+        }
         StartCoroutine(Co_SaveEndLoadScene());
     }
     #endregion 
