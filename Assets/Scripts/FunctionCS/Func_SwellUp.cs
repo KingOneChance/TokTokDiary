@@ -88,6 +88,7 @@ public class Func_SwellUp : MonoBehaviour
         swellUpImg.rectTransform.localScale = Vector3.zero;
         Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
         // 터지는 파티클 추가해주기
+        SaveProcess();
     }
 
     private IEnumerator CO_Bomb()
@@ -104,8 +105,6 @@ public class Func_SwellUp : MonoBehaviour
         {
             eff_GetBubbleSticker[i].Clear(true);
         }
-
-        SaveProcess();
     }
 
     private IEnumerator Co_Fluffy()

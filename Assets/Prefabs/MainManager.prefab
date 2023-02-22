@@ -87,7 +87,7 @@ MonoBehaviour:
   ui_Main: {fileID: 1071966920976230973, guid: b206de4709fdc0a4abbd31c0fbc31176, type: 3}
   <manager_PictureDiary>k__BackingField: {fileID: 0}
   <ui_StickerRepositoryPrefab>k__BackingField: {fileID: 485657232424484033}
-  <func_DiaryToJson>k__BackingField: {fileID: 0}
+  <func_DiaryToJson>k__BackingField: {fileID: 2014360371647384666}
   getBubbleGunStickerNum: 0
   getAudioStickerNum: 0
   getSignStickerNum: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   BubbleGunSounds: {fileID: 11400000, guid: 1045297bd35bfc645a42ab09eb70f572, type: 2}
   BubbleBearSounds: {fileID: 11400000, guid: f12e9d5691100bb4aa8f286d2e2550a9, type: 2}
   BubbleStickerSounds: {fileID: 11400000, guid: 6fb8fa3df1a369d4e8bb2994e0385c85, type: 2}
-  FreeStickerSounds: {fileID: 11400000, guid: 84009140a06997148a0dc833ca713631, type: 2}
+  BGMSounds: {fileID: 11400000, guid: 84009140a06997148a0dc833ca713631, type: 2}
   TouchSounds: {fileID: 11400000, guid: 3b643ac17b6511642abe062092f67034, type: 2}
   CommonSounds: {fileID: 11400000, guid: 5f5bb59a5f3ffd54380cc340435236d3, type: 2}
 --- !u!114 &2014360371647384666
@@ -186,6 +186,7 @@ MonoBehaviour:
   filePath: 
   recordFilesNames: []
   recordFilesPos: []
+  recordObject: []
 --- !u!1001 &5097337398694215193
 PrefabInstance:
   m_ObjectHideFlags: 0
