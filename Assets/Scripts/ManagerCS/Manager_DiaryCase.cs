@@ -34,10 +34,10 @@ public class Manager_DiaryCase : MonoBehaviour
     [Header("===JsonData===")]
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
-    [SerializeField] private Data_Diary dataDiary = null;
-    [SerializeField] private GameObject buttonPrefab = null;
     [SerializeField] private List<GameObject> buttonPool = new List<GameObject>(); //버튼 오브젝트풀
     [SerializeField] private List<string> jsonFiles = new List<string>();
+    [SerializeField] private Data_Diary dataDiary = null;
+    [SerializeField] private GameObject buttonPrefab = null;
 
 
     public int presentNum = 0;
@@ -56,7 +56,7 @@ public class Manager_DiaryCase : MonoBehaviour
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
 
         //프로필 네임 
-        Manager_Main.Instance.func_DiaryToJson.SetProfileName(selectedProfileName);
+        Manager_Main.Instance.func_DiaryToJson.SetProfileName(Application.persistentDataPath + "/Profile/" + selectedProfileName);
         savedRecordFinePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Records";
         savedJsonFilePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Jsons";
         AddDiaryFiles();
@@ -111,11 +111,19 @@ public class Manager_DiaryCase : MonoBehaviour
         jsonFiles.AddRange(Directory.GetFiles(savedJsonFilePath, "*.json", SearchOption.AllDirectories));
         if (jsonFiles.Count != 0)
         {
-            dataDiary = Manager_Main.Instance.func_DiaryToJson.LoadRecord();
+            //제이슨 파일 n번째에 있는 레코드파일과 포지션 다 넘기기
             for (int i = 0; i < jsonFiles.Count; i++)
             {
-                recordFilesNames.Add(dataDiary.recordFileNames[i]);
-                recordFilesPos.Add(dataDiary.recordFilePos[i]);
+                //제이슨 파일 n번째 이름 세팅해주기
+                Manager_Main.Instance.func_DiaryToJson.SetProfileName(jsonFiles[i]);
+                //제이슨 파일 n번째 자료 가져오기
+                dataDiary = Manager_Main.Instance.func_DiaryToJson.LoadRecord();
+                for (int j = 0; j < dataDiary.recordFileNames.Count; j++)
+                {
+                    Debug.Log(dataDiary.recordFileNames[j].ToString() + "카운트 개수");
+                    recordFilesNames.Add(dataDiary.recordFileNames[j]);
+                    recordFilesPos.Add(dataDiary.recordFilePos[j]);
+                }
             }
         }
 
@@ -131,58 +139,76 @@ public class Manager_DiaryCase : MonoBehaviour
     public void ShowPreviewDiary()
     {
         previewImg.texture = allFilesTexture[presentNum];
-        string lastDay = previewImg.texture.name.Split("-")[0];
+        string lastDay = previewImg.texture.name;
+        Debug.Log("마지막 일기 띄움");
         FindRecordFile(lastDay);
     }
     public void FindRecordFile(string lastDay)
     {
+        Debug.Log("마지막 일기 사운드 확인 띄움");
+        Debug.Log(lastDay);
         for (int i = 0; i < jsonFiles.Count; i++)
         {
-            if (jsonFiles.Contains(lastDay) == true)
+            Debug.Log(jsonFiles[i]);
+
+            if (jsonFiles[i].Contains(lastDay) == true)
             {
+                Debug.Log("마지막 일기 사운드 있음");
                 InsertRecordButton(lastDay);
-            }
-            break;
-        }
-    }
-    public void InsertRecordButton(string lastDay)
-    {
-        for (int j = 0; j < recordFilesNames.Count; j++) //오디오 소스 이름,레코드 포지션
-        { //오브젝트풀 사용해야함
-            if (recordFilesNames[j].Contains(lastDay) == true)
-            {
-                CheckButtonPool();
                 break;
             }
+            else
+                Debug.Log("마지막 일기 사운드 없음");
+        }
+    }
+    List<string> theDayRecordNames = new List<string>();
+    public void InsertRecordButton(string lastDay)
+    {
+        theDayRecordNames.Clear();
+        string[] all = Directory.GetFiles(savedRecordFinePath, "*.wav", SearchOption.AllDirectories);
+        for (int i = 0; i < all.Length; i++)
+        {
+            if (all[i].Contains(lastDay))
+                theDayRecordNames.Add(all[i]);
+        }
+        for (int j = 0; j < theDayRecordNames.Count; j++) //오디오 소스 이름,레코드 포지션
+        {
+            CheckButtonPool();
         }
     }
     public void CheckButtonPool()
     {
+        Debug.Log("오브젝트풀 생성");
         //오브젝트 풀이 부족하다면 
-        if (buttonPool.Count < recordFilesNames.Count)
+        if (buttonPool.Count < theDayRecordNames.Count)
         {  //현재 있는 오브젝트 풀과 그날 있는 오디오 개수의 차이만큼 생성
-            for (int k = 0; k < recordFilesNames.Count - buttonPool.Count; k++)
+            Debug.Log("오브젝트풀 부족");
+            for (int k = 0; k < theDayRecordNames.Count - buttonPool.Count; k++)
             {
-                GameObject audioPool = GameObject.Instantiate(buttonPrefab);
+                Debug.Log("오브젝트풀 생성중");
+
+                GameObject audioPool = GameObject.Instantiate(buttonPrefab, diaryPanel.transform);
+                audioPool.name = k.ToString();
                 buttonPool.Add(audioPool);
             }
         }
-        else
+        Debug.Log("오브젝트풀 생성완료");
+        for (int k = 0; k < buttonPool.Count; k++)
         {
-            for (int k = 0; k < buttonPool.Count; k++)
+            Debug.Log("오브젝트풀 처리중");
+            if (k < theDayRecordNames.Count) //오브젝트풀
             {
-                if (k <= recordFilesNames.Count) //오브젝트풀
-                {
-                    buttonPool[k].SetActive(true);
-                    buttonPool[k].GetComponent<RectTransform>().position = recordFilesPos[k];
-                    buttonPool[k].GetComponent<Button>().onClick.RemoveAllListeners();
-                    buttonPool[k].GetComponent<Button>().onClick.AddListener(() =>
-                    Manager_Main.Instance.GetAudio().PlayLocalSound(recordFilesNames[k], buttonPool[k], false, false)
-                    );
-                }
-                else
-                    buttonPool[k].SetActive(false);
+                Debug.Log(k);
+                Debug.Log(theDayRecordNames[k].ToString());
+                Debug.Log(buttonPool.Count);
+                Vector2 temp = recordFilesPos[k];
+                buttonPool[k].SetActive(true);
+                buttonPool[k].GetComponent<RectTransform>().position = temp;
+                buttonPool[k].GetComponent<Button>().onClick.RemoveAllListeners();
+                buttonPool[k].GetComponent<Func_SelfAddListner>().SetLissner(theDayRecordNames[k]);
             }
+            else
+                buttonPool[k].SetActive(false);
         }
     }
 
@@ -247,7 +273,7 @@ public class Manager_DiaryCase : MonoBehaviour
         string recordName = selectedProfilPath + "/" + fileTextureName + ".png";
 
         DeletFolder(fileName);
-        
+
         diaryPanel.SetActive(false);
         AddDiaryFiles();
         diaryPanel.SetActive(true);

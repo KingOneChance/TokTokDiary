@@ -321,12 +321,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 218918}
   myParents: {fileID: 1862654791}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 843180086}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
   signSticker: {fileID: 2008800316}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &218922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6952,12 +6953,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 335846533}
   myParents: {fileID: 407683276}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1822483181}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
   signSticker: {fileID: 923612941}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &335846537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8125,12 +8127,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 376608621}
   myParents: {fileID: 190738520}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1075414798}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
   signSticker: {fileID: 1523923273}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &376608625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13253,12 +13256,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 669524822}
   myParents: {fileID: 1137588191}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 122262544}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
   signSticker: {fileID: 2107987768}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &669524826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14128,12 +14132,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 686247858}
   myParents: {fileID: 1013433496}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 220354900}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
   signSticker: {fileID: 622904789}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &686247862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18976,12 +18981,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 975221180}
   myParents: {fileID: 1614330633}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 341505720}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
   signSticker: {fileID: 1784517981}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &975221184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20759,12 +20765,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1022845168}
   myParents: {fileID: 682074299}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 866498134}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
   signSticker: {fileID: 839050170}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &1022845172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25992,9 +25999,12 @@ MonoBehaviour:
   startYPos: 0
   widthValue: 0
   heightValue: 0
-  uI_PictureDiary: {fileID: 0}
   canSave: 0
   profileName: 
+  recordFileNames: []
+  recordUsedNum: 
+  func_DiaryInventory: {fileID: 0}
+  uI_PictureDiary: {fileID: 0}
 --- !u!4 &1331872540
 Transform:
   m_ObjectHideFlags: 0
@@ -27584,12 +27594,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1425523915}
   myParents: {fileID: 1466256424}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 751904789}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
   signSticker: {fileID: 304002934}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &1425523921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30504,12 +30515,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1628774426}
   myParents: {fileID: 69289199}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 537591964}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
   signSticker: {fileID: 1017696183}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &1628774430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32981,12 +32993,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1793396624}
   myParents: {fileID: 2143629074}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1755600208}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
   signSticker: {fileID: 947458677}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &1793396628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36004,12 +36017,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1935584526}
   myParents: {fileID: 1312304308}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 225069321}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
   signSticker: {fileID: 1057081443}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &1935584530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38984,12 +38998,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 2069775672}
   myParents: {fileID: 469152852}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1968599168}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
   signSticker: {fileID: 1389338389}
   func_DiaryInventory: {fileID: 0}
+  func_DIarySave: {fileID: 0}
 --- !u!114 &2069775676
 MonoBehaviour:
   m_ObjectHideFlags: 0

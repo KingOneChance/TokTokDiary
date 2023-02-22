@@ -82,7 +82,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
                 func_DIarySave.AddRecordList(buffer);
                 func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
-                Debug.Log("셋유즈레코드넘 :" + int.Parse(gameObject.name));
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
                 break;
         }

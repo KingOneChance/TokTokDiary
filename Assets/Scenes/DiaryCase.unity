@@ -952,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &406568260
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -2699,8 +2699,8 @@ Canvas:
   m_GameObject: {fileID: 995750242}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1117839456}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2876,9 +2876,9 @@ MonoBehaviour:
   diaryPanel: {fileID: 406568259}
   recordFilesNames: []
   recordFilesPos: []
-  buttonPrefab: {fileID: 2951232858341082311, guid: c8783e2f2bf0dd947aa2997f2e7c47a2, type: 3}
   buttonPool: []
   jsonFiles: []
+  buttonPrefab: {fileID: 2951232858341082311, guid: c8783e2f2bf0dd947aa2997f2e7c47a2, type: 3}
   presentNum: 0
 --- !u!4 &1069710166
 Transform:
@@ -4437,7 +4437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1476595416
 RectTransform:
   m_ObjectHideFlags: 0
