@@ -50,7 +50,8 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage plusProfileImage = null;
     [SerializeField] Sprite plusSprite = null;
     [SerializeField] TMP_InputField newNickName = null;
-
+    [SerializeField] Sprite selectedSprite = null;
+    [SerializeField] RawImage[] profileFrames = null;
     //프로필 수정
     [SerializeField] RawImage overWriteImage = null;
     [SerializeField] TMP_InputField overWriteNickName = null;
@@ -273,7 +274,20 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileOverWrite.gameObject.SetActive(false);
 
     }
+    public void SelectedProfile(RawImage profileImg)
+    {
+        for(int i=0; i < profileFrames.Length; i++)
+        {
+            profileFrames[i].gameObject.SetActive(false);
+        }
+        if(profileImg.transform.GetChild(0).gameObject.activeSelf == false)
+        {
+            profileImg.transform.GetChild(0).gameObject.SetActive(true);
+            
+        }
 
+
+    }
     public void OnClick_OpenPlusProfile()
     {
         if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") == 6)
@@ -288,6 +302,10 @@ public class UI_PictureDiary : MonoBehaviour
 
     public void OnClick_OpenOverWriteProfile()
     {
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") == 0)
+        {
+            return;
+        }
         ui_ProfilePick.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(false);
@@ -310,7 +328,7 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfilePickImagePlus.gameObject.SetActive(true);
 
     }
-    //
+    
     public void PickProfileImage(RawImage picked)
     {
         plusProfileImage.texture = picked.texture;
@@ -318,7 +336,7 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_SaveNewProfile()
     {
-        if(plusProfileImage.texture == plusSprite.texture)
+        if(plusProfileImage.texture == plusSprite.texture || newNickName.text =="")
         {
             return;
         }
@@ -334,13 +352,13 @@ public class UI_PictureDiary : MonoBehaviour
         int count = 0;
         try
         {
-            if (System.IO.Directory.Exists(filePath))
+            if ( Directory.Exists(filePath))
             {
-                System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo(filePath);
+                DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
                 foreach(var item in directoryInfo.GetDirectories())
                 {
                     count++;
-                    Debug.Log("폴더이름" +item.Name);
+                 
                 }
             }
         }
