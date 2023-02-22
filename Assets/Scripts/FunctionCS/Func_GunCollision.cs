@@ -150,7 +150,10 @@ public class Func_GunCollision : MonoBehaviour
         
         stickerBackGround.gameObject.SetActive(true);
         StartCoroutine(DisappearSticker());
-        func_BubbleGunSave.SaveBubbleGun();
+
+        string fileName = ui_BubbleBubbleGun.sticker.sprite.name;
+            
+        func_BubbleGunSave.SaveBubbleGun(fileName);
     }
     IEnumerator DisappearSticker()
     {

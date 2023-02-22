@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
 
 public class UI_StickerRepository : MonoBehaviour
 {
@@ -145,7 +146,6 @@ public class UI_StickerRepository : MonoBehaviour
                     MakingObj.Add(go);
                     basicStickers.Add(go);
                     ui_RecordSubStickers.Add(go.transform.GetChild(0).GetComponent<RawImage>());
-
                 }
             }
         }
@@ -180,8 +180,9 @@ public class UI_StickerRepository : MonoBehaviour
             {
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
-
+                texture.name = "YellowDuck";
                 basicStickers[i].texture = texture;
+                basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount("YelloDuck");
             }
             if (anyList2 != null)
             {

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Func_BubbleGunSave : Func_SaveSticker
 {
-    public void SaveBubbleGun()
+    public void SaveBubbleGun(string fileName)
     {
+        saveFileName = fileName;
         OnClick_SaveImgae(StickerType.BubbleGunSticker);
     }
 
