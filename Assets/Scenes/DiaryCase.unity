@@ -2867,12 +2867,19 @@ MonoBehaviour:
   previewText: {fileID: 2117681613}
   allFilesTexture: []
   allFilesNames: []
+  allFiles: []
   selectedProfileName: 
   selectedProfilPath: 
+  savedRecordFinePath: 
+  savedJsonFilePath: 
   func_CalendarController: {fileID: 1189666488}
   diaryPanel: {fileID: 406568259}
+  recordFilesNames: []
+  recordFilesPos: []
+  buttonPrefab: {fileID: 2951232858341082311, guid: c8783e2f2bf0dd947aa2997f2e7c47a2, type: 3}
+  buttonPool: []
+  jsonFiles: []
   presentNum: 0
-  allFiles: []
 --- !u!4 &1069710166
 Transform:
   m_ObjectHideFlags: 0
