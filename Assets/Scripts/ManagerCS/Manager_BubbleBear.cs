@@ -82,7 +82,7 @@ public class Manager_BubbleBear : MonoBehaviour
         //Canvas move button GameObject
         sceneBefore.SetActive(false);
         sceneNext.SetActive(true);
-
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         StageUIChange(1);
         InitAfterRecordButton();
     }
@@ -273,6 +273,7 @@ public class Manager_BubbleBear : MonoBehaviour
             checkCanvas.SetActive(false);
             sceneBefore.SetActive(false);
             sceneNext.SetActive(true);
+            Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
             drawCam.SetActive(true);
             nowState = NowStateInAudio.Sign;
             //back to stage2
@@ -286,6 +287,7 @@ public class Manager_BubbleBear : MonoBehaviour
     {
         InitAfterRecordButton();
         sceneNext.SetActive(true);
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
         sceneBefore.SetActive(false);
         nowState = NowStateInAudio.Sign;
         //Send Picked SpriteImage to SaveScript

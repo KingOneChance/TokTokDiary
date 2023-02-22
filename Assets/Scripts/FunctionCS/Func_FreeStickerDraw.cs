@@ -14,7 +14,7 @@ public class Func_FreeStickerDraw : Func_Draw
     {
         currentPenWidth_Free = 0.1f;
     }
-    protected new void Update()
+    public new void Update()
     {
         if (onObject == false)
         {
@@ -25,7 +25,6 @@ public class Func_FreeStickerDraw : Func_Draw
             else
             {
                 internalClick = false;
-                Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
             }
         }
         if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))

@@ -11,7 +11,7 @@ public class Manager_Audio : MonoBehaviour
     [SerializeField] Data_Audios BubbleGunSounds = null;
     [SerializeField] Data_Audios BubbleBearSounds = null;
     [SerializeField] Data_Audios BubbleStickerSounds = null;
-    [SerializeField] Data_Audios FreeStickerSounds = null;
+    [SerializeField] Data_Audios BGMSounds = null;
     [SerializeField] Data_Audios TouchSounds = null;
     [SerializeField] Data_Audios CommonSounds = null;
 
@@ -19,7 +19,7 @@ public class Manager_Audio : MonoBehaviour
     private Dictionary<string, AudioClip> BubbleGunClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleBearClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleStickerClips = new Dictionary<string, AudioClip>();
-    private Dictionary<string, AudioClip> FreeStickerClips = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> BGMClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> TouchClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> CommonClips = new Dictionary<string, AudioClip>();
 
@@ -29,7 +29,7 @@ public class Manager_Audio : MonoBehaviour
         AddAllClipsToDic(BubbleGunSounds);
         AddAllClipsToDic(BubbleBearSounds);
         AddAllClipsToDic(BubbleStickerSounds);
-        AddAllClipsToDic(FreeStickerSounds);
+        AddAllClipsToDic(BGMSounds);
         AddAllClipsToDic(TouchSounds);
         AddAllClipsToDic(CommonSounds);
     }
@@ -70,10 +70,10 @@ public class Manager_Audio : MonoBehaviour
                 }
                 break;
 
-            case SoundType.FreeSticker:
+            case SoundType.BGM:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    FreeStickerClips.Add(FreeStickerSounds.Sounds[i].name, FreeStickerSounds.Sounds[i]);
+                    BGMClips.Add(BGMSounds.Sounds[i].name, BGMSounds.Sounds[i]);
                 }
                 break;
             case SoundType.Touch:
@@ -127,10 +127,10 @@ public class Manager_Audio : MonoBehaviour
                 }
                 break;
 
-            case SoundType.FreeSticker:
+            case SoundType.BGM:
                 for (int i = 0; i < obj.Sounds.Length; i++)
                 {
-                    FreeStickerClips.Clear();
+                    BGMClips.Clear();
                 }
                 break;
         }
@@ -157,8 +157,8 @@ public class Manager_Audio : MonoBehaviour
         Dictionary<string, AudioClip> curdic = new Dictionary<string, AudioClip>();
         switch (soundType)
         {
-            case SoundType.FreeSticker:
-                curdic = FreeStickerClips;
+            case SoundType.BGM:
+                curdic = BGMClips;
                 break;
 
             case SoundType.Diary:
@@ -287,6 +287,7 @@ public class Manager_Audio : MonoBehaviour
 
     public void StopPlaySound(GameObject stopPlaySoundObj)
     {
+        if (stopPlaySoundObj == null) return;
         // Check AudioSource Component and set loop
         AudioSource audioSource = null;
         if (stopPlaySoundObj.TryGetComponent(out AudioSource source))
@@ -294,11 +295,6 @@ public class Manager_Audio : MonoBehaviour
             audioSource = source;
             audioSource.pitch = 1f;
             audioSource.Stop();
-        }
-        else
-        {
-            Debug.LogError("There is No AudioSource Component to stop");
-            return;
         }
     }
 }

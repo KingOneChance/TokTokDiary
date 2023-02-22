@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine.Scripting;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -100,6 +101,7 @@ public class Manager_Main : MonoBehaviour
     private void Start()
     {
         InitAudioManager();
+        GetAudio().PlaySound("Main", SoundType.BGM, gameObject, true, false);
         // Exist isFirst value
         if (PlayerPrefs.HasKey("IsFirst") == true)
         {
@@ -326,4 +328,10 @@ public class Manager_Main : MonoBehaviour
     public void SetSignStickerNum() => setSignStickerNum++;
     public void SetFreeStickerNum() => setFreeStickerNum++;
     public void SetDiaryNum() => setDiaryNum++;
+
+    public void PlayBGM(string sceneName)
+    {
+        GetAudio().StopPlaySound(gameObject);
+        GetAudio().PlaySound(sceneName, SoundType.BGM, gameObject, true, false);
+    }
 }

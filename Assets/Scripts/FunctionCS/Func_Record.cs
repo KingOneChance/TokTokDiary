@@ -63,7 +63,7 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_RecordStop()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("StartRecord", SoundType.BubbleBear, gameObject, false, true);
+        Manager_Main.Instance.GetAudio().PlaySound("EndRecord", SoundType.BubbleBear, gameObject, false, true);
         timerRun = false;
         StopRecordMicrophone(newClip);
         StopCoroutine(Co_UiTimer());

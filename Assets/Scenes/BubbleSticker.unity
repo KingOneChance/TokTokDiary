@@ -222,10 +222,10 @@ MonoBehaviour:
   - {fileID: 1658891250}
   - {fileID: 596593141}
   stickerDesign: {fileID: 1612595848}
-  colorBucketTitlts:
-  - {fileID: 1234304136}
-  - {fileID: 722229171}
-  - {fileID: 1483149967}
+  colorBucketTilts:
+  - {fileID: 3832742115082669304}
+  - {fileID: 3832742115082669303}
+  - {fileID: 3832742115082669301}
   placePos: {fileID: 656096886}
   colorBucketsRect:
   - {fileID: 1234304133}
@@ -278,17 +278,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3832742115501333336, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
   m_PrefabInstance: {fileID: 3832742115082669299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &722229171 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 722229171, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
-  m_PrefabInstance: {fileID: 3832742115082669299}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &770332164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 658471767, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
@@ -494,17 +483,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3832742115339311786, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
   m_PrefabInstance: {fileID: 3832742115082669299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1234304136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1234304136, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
-  m_PrefabInstance: {fileID: 3832742115082669299}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1326344462 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3832742115970967037, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
@@ -654,17 +632,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3832742115042623860, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
   m_PrefabInstance: {fileID: 3832742115082669299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1483149967 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1483149967, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
-  m_PrefabInstance: {fileID: 3832742115082669299}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1511065658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3832742115788424393, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
@@ -754,6 +721,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 603813636}
+    - target: {fileID: 3832742114618909996, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832742114618909996, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832742114618909996, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3832742115082669305, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -821,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 3832742116309295860, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
       propertyPath: m_Name
       value: BubbleStickerCanvasPrefabs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832742116309295860, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3832742116309295864, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
       propertyPath: m_Pivot.x
@@ -945,11 +928,44 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8082396975315134415, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
   m_PrefabInstance: {fileID: 3832742115082669299}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3832742115082669301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1483149967, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+  m_PrefabInstance: {fileID: 3832742115082669299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3832742115082669302 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1093310254088457607, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
   m_PrefabInstance: {fileID: 3832742115082669299}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3832742115082669303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 722229171, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+  m_PrefabInstance: {fileID: 3832742115082669299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3832742115082669304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1234304136, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}
+  m_PrefabInstance: {fileID: 3832742115082669299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcf639033ba19a4ab39f8961a3e33e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3832742115082669305 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3832742115082669305, guid: 690a758271bea32449eb0b66d9ceaa7e, type: 3}

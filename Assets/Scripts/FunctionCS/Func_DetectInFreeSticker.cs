@@ -27,6 +27,7 @@ namespace FreeDraw
         }
         public void OnClick_MouseType()
         {
+
             Vector3 worldpos = Camera.main.WorldToViewportPoint(this.transform.position);
             if (worldpos.x < 0f) worldpos.x = 0f;
             if (worldpos.y < 0f) worldpos.y = 0f;
@@ -37,13 +38,11 @@ namespace FreeDraw
 
             if (manager_FreeSticker.MouseStateInfo == MouseType.Niddle)
             {
-                Debug.Log("바늘상태");
                 func_DragObject_FreeSticker.enabled = false; //드래그할 스크립트 켜고 끄면서 움직임 제어
                 bubble.gameObject.SetActive(false);
             }
             else if (manager_FreeSticker.MouseStateInfo == MouseType.BubbleStick)
             {
-                Debug.Log("방울상태");
                 func_DragObject_FreeSticker.enabled = true;
                 bubble.gameObject.SetActive(true);
             }
