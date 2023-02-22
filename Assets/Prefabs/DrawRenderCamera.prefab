@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4095744915355600556}
   - component: {fileID: 4095744915355600557}
-  - component: {fileID: 4095744915355600558}
   - component: {fileID: 4095744915378150477}
+  - component: {fileID: 6832660811585069855}
+  - component: {fileID: 4095744915378150481}
   m_Layer: 0
   m_Name: DrawRenderCamera
   m_TagString: Untagged
@@ -77,37 +78,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &4095744915355600558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4095744915355600559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc779e1e4c9dcec46b9f13cac4fc4671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCircleFrame: 0
-  circleSize: 0
-  linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
-  Pen_Width: {fileID: 0}
-  line: {fileID: 0}
-  curColor: {r: 0, g: 0, b: 0, a: 1}
-  col: {fileID: 0}
-  drawingAreaMaxX: 8.31
-  drawingAreaMinX: -3.7
-  drawingAreaMaxY: 3.6
-  drawingAreaMinY: -1.8
-  writingAreaMaxX: 7
-  writingAreaMinX: -1.3
-  writingAreaMaxY: -2.2
-  writingAreaMinY: -4.2
-  mainCam: {fileID: 0}
-  internalClick: 0
-  isDragSticker: 0
-  onObject: 0
 --- !u!114 &4095744915378150477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +91,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &6832660811585069855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095744915355600559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &4095744915378150481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095744915355600559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2f9497c651ad44cb5bdc46bc99a78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCircleFrame: 0
+  circleSize: 0
+  Pen_Width: {fileID: 0}
+  line: {fileID: 0}
+  linePrefab: {fileID: 8258965187325637957, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
+  col: {fileID: 0}
+  drawingAreaMaxX: 5.65
+  drawingAreaMinX: -6.15
+  drawingAreaMaxY: 3.8
+  drawingAreaMinY: -2.73
+  writingAreaMaxX: 0
+  writingAreaMinX: 0
+  writingAreaMaxY: 0
+  writingAreaMinY: 0
+  titleAreaMaxX: 0
+  titleAreaMinX: 0
+  titleAreaMaxY: 0
+  titleAreaMinY: 0
+  mainCam: {fileID: 0}
+  internalClick: 0
+  isDragSticker: 0
+  isDiaryScene: 0
+  onObject: 0
+  func_TodayFeelingImage: {fileID: 0}
+  curColor: {r: 0, g: 0, b: 0, a: 1}

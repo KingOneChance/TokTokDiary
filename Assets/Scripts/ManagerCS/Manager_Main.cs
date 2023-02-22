@@ -5,6 +5,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Scripting;
 using Unity.VisualScripting;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -36,6 +38,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private UI_Main ui_Main = null;
 
     public UI_Main UI_Main { get { return ui_Main; } }
+
     [field: SerializeField]
     public Manager_PictureDiary manager_PictureDiary { get; private set; }
 
@@ -43,7 +46,18 @@ public class Manager_Main : MonoBehaviour
     public UI_StickerRepository UI_StickerRepository { get { return ui_StickerRepository; } }
 
     [field: SerializeField]
-    [SerializeField] public GameObject ui_StickerRepositoryPrefab { get; private set; }
+    public GameObject ui_StickerRepositoryPrefab { get; private set; }
+
+    [field: SerializeField]
+    public Func_DiaryToJson func_DiaryToJson { get; private set; }
+
+
+    [Header("AudioManager")]
+    #region Audio Management
+    private Manager_Audio _AudioManager = null;
+    private void InitAudioManager() => _AudioManager = GetComponent<Manager_Audio>();
+    public Manager_Audio GetAudio() => _AudioManager;
+    #endregion
 
     [Header("===NumberOfStickers===")]
     [SerializeField] private int getBubbleGunStickerNum = 0;
@@ -61,7 +75,7 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setFreeStickerNum = 0;
     [SerializeField] private int setDiaryNum = 0;
 
- 
+
 
     #endregion
 
@@ -86,30 +100,23 @@ public class Manager_Main : MonoBehaviour
 
     private void Start()
     {
-        //SetResolution(); // Init Resolution
+        InitAudioManager();
+        GetAudio().PlaySound("Main", SoundType.BGM, gameObject, true, false);
+        // Exist isFirst value
+        if (PlayerPrefs.HasKey("IsFirst") == true)
+        {
+            return;
+        }
+        // No Exist isFirst value
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetString("IsFirst", "No");
+            PlayerPrefs.Save();
+        }
+        func_DiaryToJson = FindObjectOfType<Func_DiaryToJson>();
     }
 
-    public void SetResolution()
-    {
-        int setWidth = 1920; // Resoulution Width
-        int setHeight = 1080; // Resoulution Height
-
-        int deviceWidth = Screen.width; // Device Width
-        int deviceHeight = Screen.height; // Device Height
-
-        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true);
-
-        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // Device resolution > (1920 / 1080)
-        {
-            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // new Width
-            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // new Rect
-        }
-        else // Device resolution < (1920 / 1080)
-        {
-            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // new Height
-            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // new Rect
-        }
-    }
     private void Update()
     {
         // Check user input every frame
@@ -143,7 +150,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleGunStickerNum = allFiles.Length;
             return getBubbleGunStickerNum;
         }
@@ -157,7 +164,7 @@ public class Manager_Main : MonoBehaviour
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.jpg", SearchOption.TopDirectoryOnly);
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getBubbleStickerNum = allFiles.Length;
             return getBubbleStickerNum;
         }
@@ -218,18 +225,29 @@ public class Manager_Main : MonoBehaviour
             return getFreeStickerNum;
         }
     }
-    public int GetDiaryNum(string folder)
+    public int GetDiaryNum(string folder, string profileName)
     {
-        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/"))
+        getDiaryNum = 0;
+        if (false == Directory.Exists(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Jsons/");
+            Directory.CreateDirectory(Application.persistentDataPath + $"/{folder}/" + profileName + "/Record/");
             return 0;
         }
         else
         {
-            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-            getDiaryNum = allFiles.Length;
-            return getDiaryNum;
+            string time = DateTime.Now.ToString("yyyy_MM_dd");
+            string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/" + profileName + "/Diary/", "*.png", SearchOption.TopDirectoryOnly);
+            for(int i = 0; i < allFiles.Length; i++)
+            {
+                if(allFiles[i].Contains(time))
+                {
+                    getDiaryNum++;
+                }
+            }
+           // getDiaryNum = allFiles.Length;
+            return getDiaryNum+1;
         }
     }
 
@@ -240,7 +258,7 @@ public class Manager_Main : MonoBehaviour
     /// the value of 5 is added as a new key.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void SaveStickerNumberOfTimesAvailable(string stickerName)
+    public void SaveSticker(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName))
         {
@@ -250,6 +268,8 @@ public class Manager_Main : MonoBehaviour
         {
             PlayerPrefs.SetInt(stickerName, 5);
         }
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     /// <summary>
@@ -259,9 +279,9 @@ public class Manager_Main : MonoBehaviour
     /// subtract 1 from the key value and save it.
     /// </summary>
     /// <param name="stickerName"></param>
-    public void UseStickerNumberOfTimesAvailable(string stickerName)
+    public void UseSticker(string stickerName)
     {
-        if(PlayerPrefs.HasKey(stickerName) == false)
+        if (PlayerPrefs.HasKey(stickerName) == false)
         {
             Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
             return;
@@ -269,6 +289,20 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
         if (PlayerPrefs.GetInt(stickerName) == 0)
             PlayerPrefs.DeleteKey(stickerName);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
+    }
+
+    public void ReturnSticker(string stickerName)
+    {
+        if (PlayerPrefs.HasKey(stickerName) == false)
+        {
+            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
+            return;
+        }
+        PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 1);
+        PlayerPrefs.Save();
+        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;
@@ -277,4 +311,10 @@ public class Manager_Main : MonoBehaviour
     public void SetSignStickerNum() => setSignStickerNum++;
     public void SetFreeStickerNum() => setFreeStickerNum++;
     public void SetDiaryNum() => setDiaryNum++;
+
+    public void PlayBGM(string sceneName)
+    {
+        GetAudio().StopPlaySound(gameObject);
+        GetAudio().PlaySound(sceneName, SoundType.BGM, gameObject, true, false);
+    }
 }

@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 using static NativeCamera;
 
 public class UI_PictureDiary : MonoBehaviour
@@ -39,6 +41,10 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] RawImage ui_ProfilePick = null;
     [SerializeField] RawImage ui_ProfileOverWrite = null;
     [SerializeField] RawImage ui_ProfileDelete = null;
+    [SerializeField] RawImage ui_ProfilePickImagePlus = null;
+    [SerializeField] RawImage ui_ProfilePickImageOverWrite = null;
+
+    [SerializeField] RawImage[] basicProfileImges = null;
 
     //프로필 추가
     [SerializeField] RawImage plusProfileImage = null;
@@ -62,6 +68,9 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] GameObject soupImage = null;
 
+    [SerializeField] private MouseType MouseState;
+    public MouseType MouseStateInfo { get { return MouseState; } }
+
     private void Start()
     {
 
@@ -71,9 +80,7 @@ public class UI_PictureDiary : MonoBehaviour
        // Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
 
         //바늘 상태
-        NiddleState = NiddleType.None;
-        //비눗방울 스티커 상태
-        SoupState = SoupBubbleType.Soap;
+        MouseState = MouseType.None;
 
         foreach (string device in Microphone.devices)
         {
@@ -82,7 +89,7 @@ public class UI_PictureDiary : MonoBehaviour
         before = new TextMeshProUGUI();
     }
 
-    #region Road Sticker Button
+    #region Load Sticker Button
     public void OnClick_BSRepository()
     {
         LoadLocalStickerInventory(Manager_Main.Instance.UI_StickerRepository.bubbleStickerList);
@@ -214,58 +221,35 @@ public class UI_PictureDiary : MonoBehaviour
     #region NiddleBtn , StickBtn
     public void OnClick_NiddleBtn()
     {
-        if (!isNiddleClicked)
+        if (MouseState!=MouseType.Niddle)
         {
             Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
             isNiddleClicked = true;
-            NiddleState = NiddleType.Niddle;
+            MouseState = MouseType.Niddle;
         }
         else
         {
             Cursor.SetCursor(default, hotSpot, cursorMode);
             isNiddleClicked = false;
-            NiddleState = NiddleType.None;
+            MouseState = MouseType.None;
         }
     }
     public void OnClick_BubbleStick()
     {
-        if (!isStickClicked)
+        if (MouseState != MouseType.BubbleStick)
         {
             Cursor.SetCursor(ui_StickImage, hotSpot, cursorMode);
             isStickClicked = true;
-            StickState = StickType.Stick;
+            MouseState = MouseType.BubbleStick;
         }
         else
         {
             Cursor.SetCursor(default, hotSpot, cursorMode);
             isStickClicked = false;
-            StickState = StickType.None;
+            MouseState = MouseType.None;
         }
     }
 
-
-    private NiddleType NiddleState;
-    public NiddleType NiddleStateInfo { get { return NiddleState; } }
-    private SoupBubbleType SoupState;
-    public SoupBubbleType SoupStateInfo { get { return SoupState; } }
-
-    private StickType StickState;
-    public StickType StickStateInfo { get { return StickState; } }
-    public void OnClick_Pop()
-    {
-        if (NiddleState == NiddleType.Niddle && SoupState == SoupBubbleType.Soap)
-        {
-            Debug.Log("펑");
-            soupImage.GetComponent<Func_StickerDrag>().enabled = false;
-            SoupState = SoupBubbleType.Attached;
-        }
-        if (SoupState == SoupBubbleType.Attached && StickState == StickType.Stick)
-        {
-            soupImage.GetComponent<Func_StickerDrag>().enabled = true;
-            SoupState = SoupBubbleType.Soap;
-            Debug.Log("떼졌쥬?");
-        }
-    }
     #endregion
 
     #region Profile
@@ -279,6 +263,8 @@ public class UI_PictureDiary : MonoBehaviour
     //프로필 메인
     public void OnClick_OpenProfileButton()
     {
+       new WaitForEndOfFrame();
+
         ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
@@ -315,7 +301,16 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_LoadProfilePicture()
     {
-        Onclick_LoadImage(plusProfileImage);
+        // Onclick_LoadImage(plusProfileImage);
+        ui_ProfilePickImagePlus.gameObject.SetActive(true);
+
+    }
+    //
+    public void PickProfileImage(RawImage picked)
+    {
+        Debug.Log(picked);
+        plusProfileImage.texture = picked.texture;
+        ui_ProfilePickImagePlus.gameObject.SetActive(false);
     }
     public void OnClick_SaveNewProfile()
     {
@@ -331,6 +326,13 @@ public class UI_PictureDiary : MonoBehaviour
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(Application.persistentDataPath + "/" + "Profile")) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
+        if (false == Directory.Exists(directoryPath + "/Diary/"))
+        {
+            Directory.CreateDirectory(directoryPath + "/Diary/");
+            Directory.CreateDirectory(directoryPath + "/Jsons/");
+            Directory.CreateDirectory(directoryPath + "/Records/");
+
+        }
 
         int widthValue = texture.width;
         int heightValue = texture.height;
@@ -341,7 +343,7 @@ public class UI_PictureDiary : MonoBehaviour
         Graphics.Blit(texture, copiedRenderTexture);
         RenderTexture.active = copiedRenderTexture;
 
-        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
+        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.ARGB32, false);
         texture2D.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
         texture2D.Apply();
 
@@ -386,16 +388,21 @@ public class UI_PictureDiary : MonoBehaviour
     } // x 버튼 , 취소버튼
     public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
     {
-        Onclick_LoadImage(overWriteImage);
+        //Onclick_LoadImage(overWriteImage);
+        ui_ProfilePickImageOverWrite.gameObject.SetActive(true);
+
+    }
+    public void PickProfileOverWrite(RawImage picked)
+    {
+        overWriteImage.texture = picked.texture;
+        ui_ProfilePickImageOverWrite.gameObject.SetActive(false);
     }
     public void OnClick_OverWriteDirectory()
     {
-
         string path = Application.persistentDataPath + "/Profile/";
         
         if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + overWriteNickName.text);
 
-        
         Rename(path);
         TobeEmpty(path);
         string savePath = Application.persistentDataPath + "/Profile/" + overWriteNickName.text + "/";
@@ -405,8 +412,6 @@ public class UI_PictureDiary : MonoBehaviour
     private void TobeEmpty(string path)
     {
         string fileName = path + overWriteNickName.text;
-        Debug.Log(fileName);
-        Debug.Log(before.text);
 
         if (File.Exists(fileName + "/" + before.text + ".png"))
         {
@@ -420,9 +425,7 @@ public class UI_PictureDiary : MonoBehaviour
                 Console.WriteLine(e.Message);
                 return;
             }
-
         }
-
     }
 
     private void Rename(string filepath)
@@ -451,4 +454,5 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileOverWrite.gameObject.SetActive(false);
     }
     #endregion
+
 }

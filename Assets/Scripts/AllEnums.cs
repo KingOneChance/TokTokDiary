@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum StickerType
 {
+    None,
     BubbleGunSticker,
     FreeSticker,
-    AudioSticker,
+    RecordSticker,
     SignSticker,
     BubbleSticker,
     Diary
@@ -23,22 +24,24 @@ public enum ColorType
     Pink,
     Brown,
     Black,
-    Eraser
+    Eraser,
+    WritingEraser,
 }
-public enum NiddleType
+public enum MouseType
 {
     None,
-    Niddle
-}
-public enum SoupBubbleType
-{
-    Soap,
-    Attached
+    Niddle,
+    BubbleStick,
 }
 public enum StickType
 {
     None,
     Stick
+}
+public enum SoupBubbleType
+{
+    Soap,
+    Attached
 }
 public enum CreateStickerState
 {
@@ -69,4 +72,14 @@ public enum AccessoryType
     HeadPalmtree,
     HeadBand,
     None
+}
+public enum SoundType
+{ 
+    BubbleBear, 
+    BubbleSticker,
+    BubbleGun,
+    Diary,
+    Common, 
+    BGM,
+    Touch
 }

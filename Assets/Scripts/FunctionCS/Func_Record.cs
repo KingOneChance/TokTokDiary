@@ -51,6 +51,7 @@ public class Func_Record : MonoBehaviour
 
     public void OnClick_Record()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("StartRecord", SoundType.BubbleBear, gameObject, false, true);
         timerBox.SetActive(true);
         timerRun = true;
         newClip = null;
@@ -62,6 +63,7 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_RecordStop()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("EndRecord", SoundType.BubbleBear, gameObject, false, true);
         timerRun = false;
         StopRecordMicrophone(newClip);
         StopCoroutine(Co_UiTimer());
@@ -87,12 +89,17 @@ public class Func_Record : MonoBehaviour
     }
     public void OnClick_PlayInFinish()
     {
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, false);
+        Invoke(nameof(PlayRecordSound), 1f);
+    }
+
+    private void PlayRecordSound()
+    {
         playSouce.clip = newClip;
         finishPlayButton.SetActive(false);
         playSouce.Play();
         StartCoroutine(Co_EndReturn());
     }
-
 
     public void OnClick_Rerecord()
     {

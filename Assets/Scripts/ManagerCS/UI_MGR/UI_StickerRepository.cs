@@ -17,9 +17,9 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] private Texture basicTextrue = null;
     //부모 위치
     [SerializeField] private GameObject ui_myParent = null;
-    //비눗방을 프리팹 
-    [SerializeField] GameObject stickerPrefab = null;
-    [SerializeField] private RawImage[] ui_RecordSubStickers = null;
+    //사인 프리팹 
+    [SerializeField] private GameObject stickerPrefab = null;
+    [SerializeField] private List<RawImage> ui_RecordSubStickers = null;
 
     public List<string> bubbleStickerList = new List<string>();
     public List<string> recordingStickerList = new List<string>();
@@ -32,8 +32,6 @@ public class UI_StickerRepository : MonoBehaviour
     private void Start()
     {
         path = Application.persistentDataPath;
-
-
     }
 
     public void OnClick_BubbleStickerRepository()
@@ -117,7 +115,7 @@ public class UI_StickerRepository : MonoBehaviour
     /// <param name="anyList2">Insert signList</param>
     private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
-        
+      
         if (anyList.Count < 12)
         {
             for (int i = basicStickers.Count-1; i > 11; --i)
@@ -131,7 +129,6 @@ public class UI_StickerRepository : MonoBehaviour
                 Destroy(MakingObj[i].gameObject);
                 MakingObj.RemoveAt(i);
             }
-
         }
         
         MakingObj.Clear();
@@ -147,9 +144,10 @@ public class UI_StickerRepository : MonoBehaviour
                     go = Instantiate(stickerPrefab, ui_myParent.transform).GetComponent<RawImage>();
                     MakingObj.Add(go);
                     basicStickers.Add(go);
+                    ui_RecordSubStickers.Add(go.transform.GetChild(0).GetComponent<RawImage>());
+
                 }
             }
-
         }
 
         //initiate raw images's texture
@@ -157,11 +155,20 @@ public class UI_StickerRepository : MonoBehaviour
         for (int i = 0; i < basicStickers.Count; i++)
         {
             basicStickers[i].texture = basicTextrue;
-            /*if (anyList2 != null)
+          /*  if (anyList2 != null)
             {
-                ui_RecordSubStickers[i].gameObject.SetActive(true);
+                ui_RecordSubStickers[i].color = new Color(255, 255, 255, 255);
                 ui_RecordSubStickers[i].texture = null;
+            }
+            else
+            {
+                //ui_RecordSubStickers[i].color = new Color(255, 255, 255, 0);
+                //ui_RecordSubStickers[i].texture = null;
             }*/
+        }
+        for(int i = 0; i < recordingSignList.Count; i++)
+        {
+            ui_RecordSubStickers[i].color = new Color(255, 255, 255, 0);
         }
 
         //Fill in the raw image's texture
@@ -185,6 +192,7 @@ public class UI_StickerRepository : MonoBehaviour
                     texture2.LoadImage(byteTexture2);
 
                     ui_RecordSubStickers[i].texture = texture2;
+                    ui_RecordSubStickers[i].color = new Color(255, 255, 255, 255);
                 }
             }
         }

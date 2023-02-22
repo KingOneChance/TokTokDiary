@@ -7,6 +7,8 @@ TagManager:
   - Image
   - Find
   - Line
+  - DiarySticker
+  - WritingLine
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Board2
   - NoRenderOBJ
   - Image
-  - 
+  - WritingLine
   - 
   - 
   - 
@@ -43,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WritingLine
+    uniqueID: 356680487
     locked: 0

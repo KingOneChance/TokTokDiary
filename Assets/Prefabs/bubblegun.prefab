@@ -4867,7 +4867,31 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  dirtyImages:
+  - {fileID: 21300000, guid: 3cdc90ffd1d90f84e8405800c03d4736, type: 3}
+  - {fileID: 21300000, guid: 01cc3adf9f63bb142860a094e4679bea, type: 3}
+  - {fileID: 21300000, guid: 4d4bfc881c9a8a945957d2a5f9020a6f, type: 3}
+  - {fileID: 21300000, guid: 38b1696f0609946409f4fd5af8f54cc4, type: 3}
+  - {fileID: 21300000, guid: 82db8d7791f378547adb778c745e30df, type: 3}
+  - {fileID: 21300000, guid: 9e00ea45e8299bf4aab34d884dd4ce50, type: 3}
+  middleImages:
+  - {fileID: 21300000, guid: 6bf1dce35f390c3438a8cabf31ce95d1, type: 3}
+  - {fileID: 21300000, guid: b2ca9c066b715a24794ab6f698829042, type: 3}
+  - {fileID: 21300000, guid: 5ae0ba5008a6d854a8f70c693a7ee783, type: 3}
+  - {fileID: 21300000, guid: 9ce8ab95cbe805d44b37e1c2ddb750e4, type: 3}
+  - {fileID: 21300000, guid: e222675b8819a0d41bd662be2b3d07c1, type: 3}
+  - {fileID: 21300000, guid: 0aa35bedec1bc374ba06735db67d1e2f, type: 3}
+  claenImages:
+  - {fileID: 21300000, guid: f455923b9f4fa934aa462b1915c223ac, type: 3}
+  - {fileID: 21300000, guid: a34bcea0aff6f464cb12fe0657b916a6, type: 3}
+  - {fileID: 21300000, guid: 9fe20552d053a2f4b80ccb55cf0ebdff, type: 3}
+  - {fileID: 21300000, guid: 83674244871e54d4ea1d18a7d85f571d, type: 3}
+  - {fileID: 21300000, guid: a1e5aec7018f981458a315c553eb70ee, type: 3}
+  - {fileID: 21300000, guid: 83444aa5069aecf4b841721736e1f73a, type: 3}
   stickerBackGround: {fileID: 0}
+  stickerBackGroundImage: {fileID: 0}
+  Restart: {fileID: 0}
+  sticerRepository: {fileID: 0}
   BackGroundSticker: {fileID: 0}
   skipOneRoundBtn: {fileID: 0}
   skipTwoRoundBtn: {fileID: 0}
@@ -4901,7 +4925,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8734917952385149061}
   m_LocalRotation: {x: -0.34180155, y: -0.9247125, z: -0.058095954, w: 0.15717335}
-  m_LocalPosition: {x: 0, y: 0, z: -5.02}
+  m_LocalPosition: {x: 0, y: 0, z: -7.8}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4910,7 +4934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -12.409, y: -165.11, z: 38.944}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.63, y: 0.17}
+  m_AnchoredPosition: {x: 12.6, y: -4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7289388574634069073

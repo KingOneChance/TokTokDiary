@@ -7,21 +7,19 @@ using FreeDraw;
 public delegate void Del_DrawStop(bool isStop);
 public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    public Del_DrawStop del_DrawStop = null;
     private RectTransform rect = null;
     private Vector2 mousePos = Vector2.zero;
-    public Del_DrawStop del_DrawStop = null;
     private Func_Draw func_draw = null;
 
     [SerializeField] private bool isClickMe = false;
 
-    private RectTransform rectTransform = null;
 
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        func_draw = FindObjectOfType<Func_Draw>();
+        //this is purposed for prevent drawing on stickers
         del_DrawStop = func_draw.StopDraw;
-
+        func_draw = FindObjectOfType<Func_Draw>();
         rect = GetComponent<RectTransform>();
     }
 

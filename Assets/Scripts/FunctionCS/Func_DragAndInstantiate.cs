@@ -43,10 +43,8 @@ public class Func_DragAndInstantiate : MonoBehaviour, IDragHandler, IBeginDragHa
             go.transform.SetParent(StickerTr);
             go.transform.SetAsLastSibling();
             Destroy(go.GetComponent<Func_DragAndInstantiate>());
+          
             go.AddComponent<Func_DragObject>();
-
-
-
             tempRect = go.GetComponent<RectTransform>();
             temp.position = tempRect.position;
             temp.rotation = tempRect.rotation.eulerAngles;

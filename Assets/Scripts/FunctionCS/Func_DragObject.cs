@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using FreeDraw;
 
 public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    SData_NodeData nodeData;
-    RectTransform rect;
+    private SData_NodeData nodeData;
+    private RectTransform rect;
+    private Vector2 mousePos = Vector2.zero;
+    [SerializeField] private Func_TodayFeelingImage drawObject = null;
+
     private void Start()
     {
+        drawObject=FindObjectOfType<Func_TodayFeelingImage>();
         rect = GetComponent<RectTransform>();
+      
+
     }
+    public void RecordToJson()
+    {
+        //레코드 스티커가 있다면 (조건)
+        //제이슨으로 현재 위치와 레코드 파일 이름 보내기
+        //다이어리데이터 객체 생성 필요
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        drawObject.IsStickerMaking(true);//스티커 드래그시 점찍히는거 막기
         nodeData = new SData_NodeData();
         nodeData.position = rect.position;
         nodeData.rotation = rect.rotation.eulerAngles;
@@ -21,7 +36,9 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     }
     public void OnDrag(PointerEventData eventData)
     {
-        rect.transform.position = eventData.position;
+        //rect.transform.position = eventData.position;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        gameObject.transform.position = mousePos;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -30,6 +47,7 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         nodeData.rotation = rect.rotation.eulerAngles;
         nodeData.scale = rect.localScale;
         Manager_Main.Instance.manager_PictureDiary.AddDrangEnd(nodeData, gameObject);
+        drawObject.IsStickerMaking(false);//스티커 드래그시 점찍히는거 해제
     }
 }
 

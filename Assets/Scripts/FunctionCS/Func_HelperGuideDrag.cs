@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FreeDraw;
 
 public class Func_HelperGuideDrag : MonoBehaviour
 {
@@ -9,16 +10,20 @@ public class Func_HelperGuideDrag : MonoBehaviour
     [SerializeField] private RectTransform ¼Õ°¡¶ô = null;
     [SerializeField] private RectTransform Ãâ¹ßÁö = null;
     [SerializeField] private RectTransform µµÂøÁö = null;
-    [SerializeField] public GameObject Select1 = null;
+    [SerializeField] private GameObject Select1 = null;
     [SerializeField] private GameObject Select2 = null;
     [SerializeField] private GameObject Select3 = null;
     [SerializeField] private GameObject Select4 = null;
     [SerializeField] private GameObject HelperMenu = null;
     [SerializeField] private GameObject StopButton = null;
+    [SerializeField] private Func_TodayFeelingImage DrawingObj;
+    [SerializeField] private Func_Tutorial Tutorial;
     bool TurnPopWindows = false;
 
     public void OnClick_Select1()
     {
+        Tutorial.Obj_Smallar();
+        DrawingObj.IsStickerMaking(true);
         Select1.SetActive(true);
         Select2.SetActive(false);
         Select3.SetActive(false);
@@ -32,6 +37,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
 
     public void OnClick_Select2()
     {
+        DrawingObj.IsStickerMaking(true);
         Select2.SetActive(true);
         Select1.SetActive(false);
         Select3.SetActive(false);
@@ -44,6 +50,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
 
     public void OnClick_Select3()
     {
+        DrawingObj.IsStickerMaking(true);
         Select3.SetActive(true);
         Select1.SetActive(false);
         Select2.SetActive(false);
@@ -56,6 +63,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
 
     public void OnClick_Select4()
     {
+        DrawingObj.IsStickerMaking(true);
         Select4.SetActive(true);
         Select1.SetActive(false);
         Select2.SetActive(false);
@@ -69,6 +77,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
 
     public void OnClick_Stop()
     {
+        DrawingObj.IsStickerMaking(true);
         StopAllCoroutines();
         Select1.SetActive(false);
         Select2.SetActive(false);
@@ -90,6 +99,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
 
     public void OnClick_HelpMenu()
     {
+        DrawingObj.IsStickerMaking(true);
         HelperMenu.SetActive(true);
         StopButton.SetActive(true);
         Debug.Log("ÇïÇÁ¸Þ´ºÄÑÁü?");
@@ -98,6 +108,7 @@ public class Func_HelperGuideDrag : MonoBehaviour
         {
             HelperMenu.SetActive(false);
             StopButton.SetActive(false);
+            DrawingObj.IsStickerMaking(false);
             Debug.Log("²¨Áü?");
         }
     }

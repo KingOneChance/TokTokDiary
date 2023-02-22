@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class Func_Tilt : MonoBehaviour
 {
-    [SerializeField] private Slider progressBar = null;
     [SerializeField] private Toggle[] ColorBucketToggles = null;
+    [SerializeField] private RawImage beakerSolutionImg = null;
+    [SerializeField] private RawImage[] colorBeakerImg = null;
+    [SerializeField] private RectTransform beakerSolutionImgPos = null;
+    [SerializeField] private RectTransform beakerSolutionImgInitPos = null;
     [SerializeField] private Button NextButton = null;
-    [SerializeField] private Button SkipButton = null;
 
     private RectTransform tiltObj = null;
     private Vector3 angle = new Vector3(0, 0, 1);
@@ -15,18 +17,17 @@ public class Func_Tilt : MonoBehaviour
     private Vector3 SecondPoint = Vector3.zero;
 
     private bool isSwipeDown = false;
-    private bool isProgress = false;
+    private bool isSolutionFall = false;
 
     private void Start()
     {
         tiltObj = GetComponent<RectTransform>();
-        SkipButton.gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        isProgress = false;
         isSwipeDown = false;
+        beakerSolutionImg.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -68,59 +69,25 @@ public class Func_Tilt : MonoBehaviour
         }
     }
 
-    private IEnumerator CO_ProgressBar()
-    {
-        SkipButton.gameObject.SetActive(true);
-        isProgress = true;
-        for(int i = 0; i < ColorBucketToggles.Length; ++i)
-        {
-            ColorBucketToggles[i].interactable = false;
-        }
-        while (true)
-        {
-            if (isProgress == false)
-            {
-                SkipButton.gameObject.SetActive(false);
-                for (int i = 0; i < ColorBucketToggles.Length; ++i)
-                {
-                    ColorBucketToggles[i].interactable = true;
-                }
-                yield break;
-            }
-            if(progressBar.value >= 1f)
-            {
-                SkipButton.gameObject.SetActive(false);
-                isProgress = false;
-                isSwipeDown = false;
-                TiltUp();
-                NextButton.interactable = true;
-                progressBar.value = 0f;
-                for (int i = 0; i < ColorBucketToggles.Length; ++i)
-                {
-                    ColorBucketToggles[i].interactable = true;
-                }
-                yield break;
-
-            }
-            progressBar.value += 0.01f;
-            yield return null;
-        }
-    }
-
     private void TiltDown()
     {
         tiltObj.localEulerAngles += angle * Time.deltaTime * 100f;
+
         if (tiltObj.localEulerAngles.z > 120f)
         {
             tiltObj.localEulerAngles = new Vector3(0, 0, 120);
-            if (isProgress == false)
-                StartCoroutine(CO_ProgressBar());
+            beakerSolutionImg.gameObject.SetActive(true);
+            if (isSolutionFall == false)
+            {
+                StartCoroutine(CO_FallSolution()); 
+            }
         }
     }
 
     private void TiltUp()
     {
-        isProgress = false;
+        beakerSolutionImg.gameObject.SetActive(false);
+        StopCoroutine(CO_FallSolution());
         tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
         if (tiltObj.rotation.z < 0f)
         {
@@ -128,6 +95,56 @@ public class Func_Tilt : MonoBehaviour
         }
     }
 
-    public void OnClick_SkipButton() => progressBar.value = 1f;
-    
+    private IEnumerator CO_FallSolution()
+    {
+        isSolutionFall = true;
+        int count = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, gameObject, true, true);
+            while (true)
+            {
+                if(count == 25)
+                {
+                    count = 0;
+                    beakerSolutionImgPos.position = beakerSolutionImgInitPos.position;
+                    
+                    break;
+                }
+                beakerSolutionImgPos.position += new Vector3(0,-10f,0);
+                count++;
+                yield return new WaitForFixedUpdate();
+            } 
+        }
+        colorBeakerImg[0].gameObject.SetActive(false);
+        CheckColor(gameObject.name);
+        isSwipeDown = false;
+        isSolutionFall = false;
+        NextButton.gameObject.SetActive(true);
+        Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
+    }
+
+    private void CheckColor(string name)
+    {
+        switch (name)
+        {
+            case "GreenBeaker":
+                colorBeakerImg[1].gameObject.SetActive(true);
+                colorBeakerImg[2].gameObject.SetActive(false);
+                colorBeakerImg[3].gameObject.SetActive(false);
+                break;
+
+            case "PinkBeaker":
+                colorBeakerImg[2].gameObject.SetActive(true);
+                colorBeakerImg[1].gameObject.SetActive(false);
+                colorBeakerImg[3].gameObject.SetActive(false);
+                break;
+
+            case "BlueBeaker":
+                colorBeakerImg[3].gameObject.SetActive(true);
+                colorBeakerImg[1].gameObject.SetActive(false);
+                colorBeakerImg[2].gameObject.SetActive(false);
+                break;
+        }
+    }
 }

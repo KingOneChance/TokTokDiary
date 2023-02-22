@@ -25,7 +25,7 @@ public class Func_SaveSticker : MonoBehaviour
     private string audioStickerFolder = "RecordingSticker";
     private string recordingSignFolder = "RecordingSign";
     private string freeStickerFolder = "BubbleFreeSticker";
-    private string diaryFolder = "Diary";
+    private string diaryFolder = "Profile";
     protected string savePath = "";
     protected bool isSaveDone = true;
 
@@ -85,11 +85,11 @@ public class Func_SaveSticker : MonoBehaviour
         //
         saveTemp.texture = newTex;
 
-      //  saveTemp.texture = texture;
+        //  saveTemp.texture = texture;
 
         SaveTexture(stickerType);
     }
-    protected virtual void SaveTexture(StickerType stickerType, string name = null)
+    protected virtual void SaveTexture(StickerType stickerType, string name = null, bool recordFile = false)
     {
         int nowNum;
         switch (stickerType)
@@ -97,36 +97,48 @@ public class Func_SaveSticker : MonoBehaviour
             //First, Get number of sticker what you want
             //Secont, Set number of sticker what you want plus 1
             case StickerType.BubbleGunSticker:
-                nowNum = Manager_Main.Instance.GetBubbleGunStickerNum(bubbleGunStikcerFolder);
                 Manager_Main.Instance.SetBubbleGunStickerNum();
                 //Saveimage save
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleGunStikcerFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleGunStikcerFolder}/", saveFileName);
+                Manager_Main.Instance.SaveSticker(saveFileName);
                 //SaveTextureToPng(saveImage.texture, "C:/Users/User/Desktop/Sticker/", saveFileName + "_" + nowNum);
                 break;
             case StickerType.BubbleSticker:
-                nowNum = Manager_Main.Instance.GetBubbleStickerNum(bubbleStickerFolder);
-                Manager_Main.Instance.SetBubbleStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleStickerFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{bubbleStickerFolder}/", saveFileName);
+                Manager_Main.Instance.SaveSticker(saveFileName);
                 break;
-            case StickerType.AudioSticker:
+            case StickerType.RecordSticker:
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum,1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum, 1);
+                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.SignSticker:
                 nowNum = Manager_Main.Instance.GetSignStickerNum(recordingSignFolder);
                 Manager_Main.Instance.SetSignStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum,1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum, 1);
+                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.FreeSticker:
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
                 Manager_Main.Instance.SetFreeStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "_" + nowNum);
+                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.Diary:
-                nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder);
+                nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum);
+                //Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
+                //제이슨 저장 02.21 김원찬 해야할 일
+                if (recordFile == true)
+                {
+                    //1.스티커 삭제
+                    //2.레코드 파일 일기장으로 넘기기
+                    //3.레코드 파일들 경로 받기 
+                    Manager_Main.Instance.func_DiaryToJson.SetProfileName(savePath + $"/{diaryFolder}/" + name + "/Jsons/" + saveFileName + "-" + nowNum + 1 + ".json");
+                    Manager_Main.Instance.func_DiaryToJson.SaveJson();
+                }
                 break;
             default:
                 Debug.Log("there is no sticker what you want");
@@ -139,15 +151,15 @@ public class Func_SaveSticker : MonoBehaviour
     {
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-        widthValue = widthValue / 7;
-        heightValue = heightValue / 7;
+        widthValue = widthValue / 4;
+        heightValue = heightValue / 4;
         RenderTexture currentRenderTexture = RenderTexture.active;
         RenderTexture copiedRenderTexture = new RenderTexture(widthValue, heightValue, 0);
 
         Graphics.Blit(texture, copiedRenderTexture);
         RenderTexture.active = copiedRenderTexture;
 
-        Texture2D texture2D = new Texture2D(widthValue, heightValue, TextureFormat.RGB24, false);
+        Texture2D texture2D = new Texture2D(widthValue, heightValue, TextureFormat.ARGB32, false);
         texture2D.ReadPixels(new Rect(0, 0, widthValue, heightValue), 0, 0);
         texture2D.Apply();
 

@@ -8,6 +8,6 @@ public class Manager_Lobby : MonoBehaviour
     private void Awake()
     {
         if (FindObjectOfType<Manager_Main>() != null) return;
-        else Instantiate(mainManager);
+        else Instantiate(mainManager);      
     }
 }
