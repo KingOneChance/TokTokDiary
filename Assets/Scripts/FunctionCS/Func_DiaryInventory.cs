@@ -29,7 +29,7 @@ public class Func_DiaryInventory : MonoBehaviour
 
     [SerializeField] private StickerType nowStickerType = StickerType.None;
 
-    string path = "";
+    [SerializeField]string path = "";
 
     private void Start()
     {

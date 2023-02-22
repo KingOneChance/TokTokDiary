@@ -330,16 +330,6 @@ public class Manager_Main : MonoBehaviour
         }
         return PlayerPrefs.GetInt(stickerName).ToString();
     }
-
-    public string GetCurStickerUserCount(string stickerName)
-    {
-        if (PlayerPrefs.HasKey(stickerName) == false)
-        {
-            Debug.LogError("The sticker you are trying to get useNum does not exist. Please check Again - Request JongHoon");
-            return "";
-        }
-        return PlayerPrefs.GetInt(stickerName).ToString();
-    }
     public void SetBubbleGunStickerNum() => setBubbleGunStickerNum++;
     public void SetBubbleStickerNum() => setBubbleStickerNum++;
     public void SetAudioStickerNum() => setAudioStickerNum++;
