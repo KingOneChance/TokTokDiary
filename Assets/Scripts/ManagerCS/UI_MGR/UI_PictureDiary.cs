@@ -48,6 +48,7 @@ public class UI_PictureDiary : MonoBehaviour
 
     //프로필 추가
     [SerializeField] RawImage plusProfileImage = null;
+    [SerializeField] Sprite plusSprite = null;
     [SerializeField] TMP_InputField newNickName = null;
 
     //프로필 수정
@@ -264,7 +265,7 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_OpenProfileButton()
     {
        new WaitForEndOfFrame();
-
+        
         ui_ProfileBackGround.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
@@ -275,6 +276,10 @@ public class UI_PictureDiary : MonoBehaviour
 
     public void OnClick_OpenPlusProfile()
     {
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") == 6)
+        {
+            return;
+        }
         ui_ProfilePlus.gameObject.SetActive(true);
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfilePick.gameObject.SetActive(false);
@@ -288,19 +293,19 @@ public class UI_PictureDiary : MonoBehaviour
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfileOverWrite.gameObject.SetActive(false);
     }
-    //저장
-    public void OnClick_SaveProfile()
-    {
 
-    }
     //프로필 추가부분
     public void OnClick_ExitPlusProfile()
     {
+        plusProfileImage.texture = plusSprite.texture;
+        newNickName.text = default;
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(true);
+        
     }
     public void OnClick_LoadProfilePicture()
     {
+
         // Onclick_LoadImage(plusProfileImage);
         ui_ProfilePickImagePlus.gameObject.SetActive(true);
 
@@ -308,21 +313,47 @@ public class UI_PictureDiary : MonoBehaviour
     //
     public void PickProfileImage(RawImage picked)
     {
-        Debug.Log(picked);
         plusProfileImage.texture = picked.texture;
         ui_ProfilePickImagePlus.gameObject.SetActive(false);
     }
     public void OnClick_SaveNewProfile()
     {
+        if(plusProfileImage.texture == plusSprite.texture)
+        {
+            return;
+        }
         string savePath = Application.persistentDataPath + "/Profile/" + newNickName.text + "/";
         SaveTextureToPng(plusProfileImage.texture, savePath, newNickName.text);
-
+        plusProfileImage.texture = plusSprite.texture;
+        newNickName.text = default;
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
     }
-
+    public int GetDirecotoryCount(string filePath)
+    {
+        int count = 0;
+        try
+        {
+            if (System.IO.Directory.Exists(filePath))
+            {
+                System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo(filePath);
+                foreach(var item in directoryInfo.GetDirectories())
+                {
+                    count++;
+                    Debug.Log("폴더이름" +item.Name);
+                }
+            }
+        }
+        catch
+        {; }
+        return count;
+    }
     private void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
+        if(GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") > 6)
+        {
+            return;
+        }
         if (true == string.IsNullOrEmpty(directoryPath)) return;
         if (false == Directory.Exists(Application.persistentDataPath + "/" + "Profile")) Directory.CreateDirectory(Application.persistentDataPath + "/Profile");
         if (false == Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
@@ -432,6 +463,7 @@ public class UI_PictureDiary : MonoBehaviour
     {
         string oldFile = filepath + "/" + before.text;
         string newFile = filepath + "/" + overWriteNickName.text;
+        if(oldFile != newFile)
         Directory.Move(oldFile, newFile);
     }
 

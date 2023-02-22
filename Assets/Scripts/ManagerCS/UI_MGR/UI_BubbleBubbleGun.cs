@@ -19,7 +19,7 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     [SerializeField] private GameObject followObject = null;
 
     //마지막 획득 스티커
-    [SerializeField] private Image sticker = null;
+    [SerializeField] public Image sticker = null;
 
     //스티커가 될 
     [SerializeField] public RawImage[] randImages=null;

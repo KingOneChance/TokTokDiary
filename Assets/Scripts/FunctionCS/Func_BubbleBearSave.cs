@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Func_BubbleBearSave : Func_SaveSticker
 {
@@ -14,6 +15,7 @@ public class Func_BubbleBearSave : Func_SaveSticker
     protected override void Start()
     {
         savePath = Application.persistentDataPath;
+        saveFileName = DateTime.Now.ToString("yyyy_MM_dd");
         //calculate all position
         saveImageRect = saveImage.GetComponent<RectTransform>();
         //   startXPos = saveImage.gameObject.transform.position.x + saveImageRect.rect.position.x + 960;
@@ -33,15 +35,13 @@ public class Func_BubbleBearSave : Func_SaveSticker
         signImage.texture = signTempImage.texture;
         hogImage.texture = hogTempImage.texture;
     //    SaveAll();
-
+        
         saveTemp = hogTempImage;
-        saveFileName = "RecordingSticker";
         widthValue = 660;
         heightValue = 1000;
         SaveTexture(StickerType.RecordSticker);
 
         saveTemp = signTempImage;
-        saveFileName = "RecordingSign";
         widthValue = 525;
         heightValue = 525;
         SaveTexture(StickerType.SignSticker);

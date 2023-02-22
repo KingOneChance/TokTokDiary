@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 218918}
   myParents: {fileID: 1862654791}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 843180086}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
@@ -6955,7 +6955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 335846533}
   myParents: {fileID: 407683276}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1822483181}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
@@ -8129,7 +8129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 376608621}
   myParents: {fileID: 190738520}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1075414798}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
@@ -8864,7 +8864,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -13258,7 +13258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 669524822}
   myParents: {fileID: 1137588191}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 122262544}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
@@ -14134,7 +14134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 686247858}
   myParents: {fileID: 1013433496}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 220354900}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
@@ -16772,7 +16772,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -18987,7 +18987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 975221180}
   myParents: {fileID: 1614330633}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 341505720}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
@@ -20771,7 +20771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1022845168}
   myParents: {fileID: 682074299}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 866498134}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
@@ -24027,7 +24027,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -25932,6 +25932,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 574320454}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1321705804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27206,7 +27218,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -27602,7 +27614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1425523915}
   myParents: {fileID: 1466256424}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 751904789}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
@@ -30523,7 +30535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1628774426}
   myParents: {fileID: 69289199}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 537591964}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
@@ -31138,8 +31150,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -31889,6 +31901,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1011704557}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2036005197}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1710746978
 MonoBehaviour:
@@ -33001,7 +33037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1793396624}
   myParents: {fileID: 2143629074}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1755600208}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
@@ -36069,7 +36105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 1935584526}
   myParents: {fileID: 1312304308}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 225069321}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
@@ -38770,7 +38806,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -39050,7 +39086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySticker: {fileID: 2069775672}
   myParents: {fileID: 469152852}
-  myGrandPa: {fileID: 469776530}
+  myGrandPa: {fileID: 7993371125704136075}
   myPos: {fileID: 1968599168}
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
@@ -39820,7 +39856,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.47058824}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -42467,6 +42503,10 @@ PrefabInstance:
       propertyPath: soupImage
       value: 
       objectReference: {fileID: 1034301096}
+    - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
+      propertyPath: plusSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 94452583933797a4f9b054197725e6be, type: 3}
     - target: {fileID: 6218628758852621126, guid: 99d90dfb9f48078479b927d41c207a7a, type: 3}
       propertyPath: ui_HomeBtn
       value: 

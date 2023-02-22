@@ -110,19 +110,19 @@ public class Func_SaveSticker : MonoBehaviour
             case StickerType.RecordSticker:
                 nowNum = Manager_Main.Instance.GetAudioStickerNum(audioStickerFolder);
                 Manager_Main.Instance.SetAudioStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "_" + nowNum, 1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{audioStickerFolder}/", saveFileName + "-" + nowNum, 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.SignSticker:
                 nowNum = Manager_Main.Instance.GetSignStickerNum(recordingSignFolder);
                 Manager_Main.Instance.SetSignStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "_" + nowNum, 1);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{recordingSignFolder}/", saveFileName + "-" + nowNum, 1);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.FreeSticker:
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
                 Manager_Main.Instance.SetFreeStickerNum();
-                SaveTextureToPng(saveTemp.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "_" + nowNum);
+                SaveTextureToPng(saveTemp.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "-" + nowNum);
                 Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.Diary:
@@ -136,7 +136,8 @@ public class Func_SaveSticker : MonoBehaviour
                     //1.스티커 삭제
                     //2.레코드 파일 일기장으로 넘기기
                     //3.레코드 파일들 경로 받기 
-                    Manager_Main.Instance.func_DiaryToJson.SetProfileName(savePath + $"/{diaryFolder}/" + name + "/Jsons/" + saveFileName + "-" + nowNum + 1 + ".json");
+                    Manager_Main.Instance.func_DiaryToJson.SetProfileName(savePath + $"/{diaryFolder}/" + name + "/Jsons/" + saveFileName + "-" + nowNum + ".json");
+                    Manager_Main.Instance.func_DiaryToJson.SetJosonFileName(saveFileName + "-" + nowNum);
                     Manager_Main.Instance.func_DiaryToJson.SaveJson();
                 }
                 break;

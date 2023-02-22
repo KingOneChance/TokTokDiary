@@ -9,6 +9,7 @@ using System;
 public class Func_DiaryToJson : MonoBehaviour
 {
     [SerializeField] private string filePath; //프로필로 수정해야함
+    [SerializeField] private string jsonTempName; //프로필로 수정해야함
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
     [SerializeField] private List<GameObject> recordObject = new List<GameObject>();
@@ -25,11 +26,13 @@ public class Func_DiaryToJson : MonoBehaviour
     {
         for (int i = 0; i < recordFilesNames.Count; i++)
         {
+            int recordNum = i + 1;
             string time = DateTime.Now.ToString("yyyy_MM_dd");
-
             recordFilesPos.Add(recordObject[i].GetComponent<RectTransform>().position);
             string lastFilePos = recordFilesNames[i];
-            string nowFilePos = filePath.Split("Jsons")[0] + "Records/" + time + "_" + i.ToString() + ".wav";
+            string nowFilePos = filePath.Split("Jsons")[0] + "Records/" + jsonTempName + "-" + recordNum + ".wav";
+            //Diary Case에서 사용하기 위함
+            recordFilesNames[i] = nowFilePos;
             File.Move(lastFilePos, nowFilePos);
         }
         saveData.recordFilePos = recordFilesPos;
@@ -51,4 +54,5 @@ public class Func_DiaryToJson : MonoBehaviour
     public void SetProfileName(string name) => filePath = name; //일기 저장할 때 프로필 네임, 일기 불러오기 때 
     public void SaveJson() => SaveData();
     public Data_Diary LoadRecord() => loadData = LoadData(filePath);
+    public void SetJosonFileName(string name) => jsonTempName = name;
 }
