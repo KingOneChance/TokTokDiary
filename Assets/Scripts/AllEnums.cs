@@ -79,6 +79,6 @@ public enum SoundType
     BubbleGun,
     Diary,
     Common, 
-    FreeSticker,
+    BGM,
     Touch
 }

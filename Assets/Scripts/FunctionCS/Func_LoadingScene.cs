@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Func_LoadingScene : MonoBehaviour
 {
     [SerializeField] RawImage[] backGroundImgs = null;
-
-    static string nextScene;
+    [SerializeField] Toggle[] backGroundToggle = null;
+    [SerializeField] RawImage fadeOutImg = null;
+    
+    public static string nextScene;
     public bool isLoadingDone = true;
     private bool isUnloadingDone = true;
 
@@ -20,20 +22,19 @@ public class Func_LoadingScene : MonoBehaviour
     private void Start()
     {
         StartCoroutine(UnloadSceneProcess());
-        StartCoroutine(LoadSceneProcess());
+        //StartCoroutine(LoadSceneProcess());
     }
 
     private IEnumerator LoadSceneProcess()
     {
-        isLoadingDone = false;
-        AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
+        AsyncOperation ao = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
+        NextLoadingSceneProcess();
         ao.allowSceneActivation = false;
+        yield return new WaitUntil(() => isLoadingDone == true);
         while (!ao.isDone)
         {
-            yield return new WaitForSeconds(3f);
             SceneManager.UnloadSceneAsync("LoadingScene");
             ao.allowSceneActivation = true;
-            isLoadingDone = true;
         }
     }
 
@@ -48,5 +49,62 @@ public class Func_LoadingScene : MonoBehaviour
             yield return null;
         }
         isUnloadingDone = true;
+        StartCoroutine(LoadSceneProcess());
+    }
+
+    private void NextLoadingSceneProcess()
+    {
+        isLoadingDone = false;
+        switch (nextScene)
+        {
+            case "BubbleSticker" :
+                backGroundToggle[0].isOn = true;
+                StartCoroutine(BubbleStickerProcess());
+                break;
+
+            case "BubbleGun":
+                backGroundToggle[1].isOn = true;
+                StartCoroutine(BubbleGunProcess());
+                break;
+
+            case "BubbleBear":
+                backGroundToggle[2].isOn = true;
+                StartCoroutine(BubbleBearProcess());
+                break;
+
+            case "FreeSticker":
+                backGroundToggle[3].isOn = true;
+                StartCoroutine(FreeStickerProcess());
+                break;
+        }
+        Manager_Main.Instance.PlayBGM(nextScene);
+        for (int i = 0; i < backGroundToggle.Length; i++)
+        {
+            backGroundImgs[i].gameObject.SetActive(backGroundToggle[i].isOn);
+        }
+    }
+
+    private IEnumerator BubbleStickerProcess()
+    {
+        yield return new WaitForSeconds(3f);
+        isLoadingDone = true;
+    }
+
+    private IEnumerator BubbleGunProcess()
+    {
+        yield return new WaitForSeconds(3f);
+        isLoadingDone = true;
+    }
+
+    private IEnumerator BubbleBearProcess()
+    {
+        yield return new WaitForSeconds(3f);
+        isLoadingDone = true;
+    }
+
+    private IEnumerator FreeStickerProcess()
+    {
+        yield return new WaitForSeconds(3f);
+        isLoadingDone = true;
     }
 }
