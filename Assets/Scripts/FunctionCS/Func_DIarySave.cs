@@ -6,12 +6,15 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
-public class Func_DIarySave : Func_SaveSticker
+public class Func_DiarySave : Func_SaveSticker
 {
     [SerializeField] private bool canSave = false;
     [SerializeField] private string profileName = "";
     [SerializeField] private List<string> recordFileNames = new List<string>();
     [SerializeField] private List<int> recordUsedNum = new List<int>();
+    [SerializeField] private List<int> bubbleUsedNum = new List<int>();
+    [SerializeField] private List<int> freeUsedNum = new List<int>();
+    [SerializeField] private List<int> gunUsedNum = new List<int>();
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private UI_PictureDiary uI_PictureDiary = null;
 
@@ -83,8 +86,25 @@ public class Func_DIarySave : Func_SaveSticker
             DeleteFile(signBuffer);
             DeleteFile(stickerBuffer);
         }
-        //씬전환
-        Debug.Log("세이브 상태 :" + isSaveDone);
+
+        for (int i = 0; i < freeUsedNum.Count; i++)
+        {
+            Debug.Log("freeUsedNum 개수 : " + freeUsedNum.Count);
+
+            string freeBuffer = func_DiaryInventory.GetFreeSignList(freeUsedNum[i]);
+            DeleteFile(freeBuffer);
+        }
+        for( int i = 0; i < gunUsedNum.Count; i++)
+        {
+
+        }
+        for (int i = 0; i < bubbleUsedNum.Count; i++)
+        {
+
+        }
+
+            //씬전환
+            Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }
@@ -145,6 +165,37 @@ public class Func_DIarySave : Func_SaveSticker
     public void SetUsedRecordNum(int num)
     {
         recordUsedNum.Add(num);
-        Debug.Log("사용된 스티커 수 " + recordUsedNum.Count);
+        Debug.Log("사용된 녹음 스티커 수 " + recordUsedNum.Count);
+    }
+    public void SetUsedFreeNum(int num)
+    {
+        freeUsedNum.Add(num);
+        Debug.Log("사용된 프리 스티커 수 " + freeUsedNum.Count);
+    }
+    public void SetUsedGunNum(int num)
+    {
+        gunUsedNum.Add(num);
+        Debug.Log("사용된 프리 스티커 수 " + gunUsedNum.Count);
+    }
+    public void SetUsedBubbleNum(int num)
+    {
+        bubbleUsedNum.Add(num);
+        Debug.Log("사용된 프리 스티커 수 " + bubbleUsedNum.Count);
+    }
+    public void RemoveRecordAtList(int num)
+    {
+        recordUsedNum.Remove(num);
+    }
+    public void RemoveFreeAtList(int num)
+    {
+        freeUsedNum.Remove(num);
+    }
+    public void RemoveGunAtList(int num)
+    {
+        gunUsedNum.Remove(num);
+    }
+    public void RemoveBubbleAtList(int num)
+    {
+        bubbleUsedNum.Remove(num);
     }
 }

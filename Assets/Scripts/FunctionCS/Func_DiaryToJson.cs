@@ -55,4 +55,16 @@ public class Func_DiaryToJson : MonoBehaviour
     public void SaveJson() => SaveData();
     public Data_Diary LoadRecord() => loadData = LoadData(filePath);
     public void SetJosonFileName(string name) => jsonTempName = name;
+    public void DeleteListNumber(int num)
+    {
+        for(int i = 0; i < recordObject.Count; i++)
+        {
+            if (int.Parse(recordObject[i].name.Split("(")[0]) ==num)
+            {
+                recordObject.Remove(recordObject[i]);
+                recordFilesPos.Remove(recordFilesPos[i]);
+                recordFilesNames.Remove(recordFilesNames[i]);
+            }
+        }
+    }
 }

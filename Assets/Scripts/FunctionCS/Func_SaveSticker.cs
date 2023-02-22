@@ -123,7 +123,6 @@ public class Func_SaveSticker : MonoBehaviour
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
                 Manager_Main.Instance.SetFreeStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "-" + nowNum);
-                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.Diary:
                 nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);

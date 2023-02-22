@@ -8,7 +8,12 @@ public class Data_LinkedList : MonoBehaviour
     public Data_Node head = null;
     public Data_Node tail = null;
     public SData_NodeData prevData;
+    private Func_DiarySave func_SaveDiary = null;
 
+    public Data_LinkedList()
+    {
+        func_SaveDiary = FindObjectOfType<Func_DiarySave>();
+    }
     public void AddDragStart(SData_NodeData newData, GameObject myObj)
     {
         Data_Node newNode = new Data_Node();
@@ -107,6 +112,27 @@ public class Data_LinkedList : MonoBehaviour
         }
         else  //처음 생긴 오브젝트일 경우
         {
+            int num = int.Parse(tail.myObject.name.Split("(")[0]);
+            switch (tail.myObject.tag)
+            {
+                case"RecordSticker":
+                    //제이슨에서 목록 지우기
+                    Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
+                    //다이어리세이브에서 지우기
+                    func_SaveDiary.RemoveRecordAtList(num);
+                    break;
+                case "FreeSticker":
+                    func_SaveDiary.RemoveFreeAtList(num);
+                    break;
+                case "GunSticker":
+                    func_SaveDiary.RemoveGunAtList(num);
+                    break;
+                case "BubbleSticker":
+                    func_SaveDiary.RemoveBubbleAtList(num);
+                    break;
+                default:
+                    break;
+            }
             Manager_Main.Instance.manager_PictureDiary.DestroySomthing(tail.myObject);
             Debug.Log("파괴 : " + tail.myObject.name);
         }

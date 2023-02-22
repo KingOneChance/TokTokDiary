@@ -54,6 +54,10 @@ public class Func_DiaryInventory : MonoBehaviour
     {
         return recordingSignList[i];
     }
+    public string GetFreeSignList(int i)
+    {
+        return recordingSignList[i];
+    }
 
 
     public void OnClick_BubbleStickerRepository()
@@ -148,7 +152,7 @@ public class Func_DiaryInventory : MonoBehaviour
     /// <param name="anyList2">Insert signList</param>
     private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
-        for (int i = 0; i < mainStickers.Count;i++)
+        for (int i = 0; i < mainStickers.Count;i++) //다 끄기
         {
             if (mainStickers[i].gameObject.activeSelf == false) break; //메인스티커나 서명 스티커 하나만 꺼져도 꺼져있는 상태
 
@@ -160,6 +164,9 @@ public class Func_DiaryInventory : MonoBehaviour
             signStickersBack[i].texture = null;
             mainStickersBack[i].color = new Color(255, 255, 255, 0);
             signStickersBack[i].color = new Color(255, 255, 255, 0);
+
+            mainStickers[i].gameObject.SetActive(false);
+            mainStickersBack[i].gameObject.SetActive(false);
         }
         //12이상 채워진 텍스쳐들 삭제하는 로직
         if (anyList.Count < 12)
@@ -179,7 +186,7 @@ public class Func_DiaryInventory : MonoBehaviour
                 mainStickersBack[i].gameObject.SetActive(false);//
             }
         }
-        if (anyList.Count - 10 > 0) //12개 이상시 채워두기 
+        if (anyList.Count - 10 > 0 && anyList.Count > mainStickers.Count) //12개 이상시 채워두기 
         {
             int makingRawImage = anyList.Count - 11;
             int makingLine = makingRawImage / 2 + 1;
@@ -209,6 +216,9 @@ public class Func_DiaryInventory : MonoBehaviour
             {
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
+
+                mainStickers[i].gameObject.SetActive(true);
+                mainStickersBack[i].gameObject.SetActive(true);
 
                 mainStickers[i].texture = texture;
                 mainStickersBack[i].texture = texture;
