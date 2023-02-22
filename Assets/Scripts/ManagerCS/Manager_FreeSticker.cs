@@ -17,10 +17,19 @@ namespace FreeDraw
         [SerializeField] Texture2D ui_NiddleImage = null;
         [SerializeField] Texture2D ui_StickImage = null;
         [SerializeField] bool isNiddleClicked = false;
-        [SerializeField]private bool isStickClicked = false;
+        [SerializeField] private bool isStickClicked = false;
+        [SerializeField] private Func_Draw freeStickerDraw;
+        [SerializeField] private Camera mainCam = null;
         private Vector2 hotSpot = Vector2.zero;
         private CursorMode cursorMode = CursorMode.Auto;
         public MouseType MouseStateInfo { get { return MouseState; } }
+        public float minX, maxX, minY, maxY;
+
+        private void Update()
+        {
+            
+        }
+
         protected override void Start()
         {
             savePath = Application.persistentDataPath;
@@ -60,10 +69,11 @@ namespace FreeDraw
 
         public void OnClick_Result()
         {
+            freeStickerDraw.StopDraw(true);
+            Debug.Log("스톱");
             // 이미지의 SetActive 값을 반전시킴
             Result.SetActive(!Result.activeSelf);
-    
-            
+
             //Destroy(Func_Draw.Draw());
         }
 
