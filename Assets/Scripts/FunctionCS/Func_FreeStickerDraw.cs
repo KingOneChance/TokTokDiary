@@ -14,7 +14,7 @@ public class Func_FreeStickerDraw : Func_Draw
     {
         currentPenWidth_Free = 0.1f;
     }
-    protected new void Update()
+    public new void Update()
     {
         if (onObject == false)
         {
