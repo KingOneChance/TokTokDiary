@@ -8,11 +8,13 @@ public class Func_SwellUpDrag : Func_DragAndDrop
     [SerializeField] private Func_SwellUpDrag[] func_SwellUpDrags = null;
     [SerializeField] private Button skipButton = null;
     [SerializeField] private GameObject dummy = null;
+
     private bool isDragDone = false;
     public bool IsDragDone { get { return isDragDone; } private set { } }
 
     private new void OnEnable()
     {
+        base.OnEnable();
         dummy = GameObject.Find("DummyForSound");
         isDragDone = false;
         SwellUpPanels[0].SetActive(true);

@@ -35,6 +35,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         base.OnEndDrag(eventData);
         if (Vector3.Distance(myDestinationPos.position, myRect.position) < 100f)
         {
+            Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, true);
             StopCoroutine(CO_BlinkBlink(alcoholLampPosImg));
             StartCoroutine(CO_FillSolution());
             alcoholLampPosImg.color = Vector4.one;

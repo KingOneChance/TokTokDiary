@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 168128831}
   - component: {fileID: 168128830}
   - component: {fileID: 168128829}
+  - component: {fileID: 168128832}
   m_Layer: 5
   m_Name: BubbleBear
   m_TagString: Untagged
@@ -334,6 +335,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168128827}
   m_CullTransparentMesh: 1
+--- !u!114 &168128832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168128827}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd50ee8788ec814c8b560a0a33ea97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &175485980
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +359,7 @@ GameObject:
   - component: {fileID: 175485984}
   - component: {fileID: 175485983}
   - component: {fileID: 175485982}
+  - component: {fileID: 175485985}
   m_Layer: 5
   m_Name: BubbleSticker
   m_TagString: Untagged
@@ -468,6 +482,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175485980}
   m_CullTransparentMesh: 1
+--- !u!114 &175485985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175485980}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd50ee8788ec814c8b560a0a33ea97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &240065263
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +593,7 @@ GameObject:
   - component: {fileID: 421251939}
   - component: {fileID: 421251938}
   - component: {fileID: 421251937}
+  - component: {fileID: 421251940}
   m_Layer: 5
   m_Name: FreeSticker
   m_TagString: Untagged
@@ -689,6 +716,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421251935}
   m_CullTransparentMesh: 1
+--- !u!114 &421251940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421251935}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd50ee8788ec814c8b560a0a33ea97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &497872890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1273,7 @@ GameObject:
   - component: {fileID: 911412743}
   - component: {fileID: 911412742}
   - component: {fileID: 911412741}
+  - component: {fileID: 911412744}
   m_Layer: 5
   m_Name: BubbleBubbleBubbleGun
   m_TagString: Untagged
@@ -1356,6 +1396,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911412739}
   m_CullTransparentMesh: 1
+--- !u!114 &911412744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911412739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd50ee8788ec814c8b560a0a33ea97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1115464872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2577,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: []
   scroll: {fileID: 3798804751079732473}
+  childButtons:
+  - {fileID: 175485985}
+  - {fileID: 911412744}
+  - {fileID: 168128832}
+  - {fileID: 421251940}
 --- !u!1 &3798804750892845107
 GameObject:
   m_ObjectHideFlags: 0

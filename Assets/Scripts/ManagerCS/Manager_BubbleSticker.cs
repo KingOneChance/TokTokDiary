@@ -26,6 +26,8 @@ public class Manager_BubbleSticker : Func_SaveSticker
     [SerializeField] private Toggle[] colorBucketToggles = null;
     [SerializeField] private RawImage[] colorBeakersImgs = null;
     [SerializeField] private GameObject colorBeakersTiltGuideLine = null;
+
+    [SerializeField] private GameObject collocatePanel = null;
     #endregion
 
     #region AnotherVariables
@@ -157,18 +159,6 @@ public class Manager_BubbleSticker : Func_SaveSticker
         }
     }
 
-    public void OnClick_NextBtn()
-    {
-        DecideDesignAndColor();
-        backButton.gameObject.SetActive(true);
-        if (PanelIdx + 1 == panels.Length - 1) nextButton.gameObject.SetActive(false);
-        panels[PanelIdx + 1].SetActive(true);
-        panels[PanelIdx].SetActive(false);
-        PanelIdx++;
-        nextButton.gameObject.SetActive(false);
-        InitCurPanel();
-    }
-
     private void InitCurPanel()
     {
         switch (PanelIdx)
@@ -193,13 +183,25 @@ public class Manager_BubbleSticker : Func_SaveSticker
                 break;
 
             case 3:
-
+                collocatePanel.SetActive(true);
                 break;
 
             case 4:
 
                 break;
         }
+    }
+
+    public void OnClick_NextBtn()
+    {
+        DecideDesignAndColor();
+        backButton.gameObject.SetActive(true);
+        if (PanelIdx + 1 == panels.Length - 1) nextButton.gameObject.SetActive(false);
+        panels[PanelIdx + 1].SetActive(true);
+        panels[PanelIdx].SetActive(false);
+        PanelIdx++;
+        nextButton.gameObject.SetActive(false);
+        InitCurPanel();
     }
 
     public void OnClick_BackBtn()
@@ -221,7 +223,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
     public void OnClick_SelectColor(string color)
     {
         Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, true);
-
+        nextButton.gameObject.SetActive(false);
         switch (color)
         {
             case "Green":

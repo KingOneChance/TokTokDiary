@@ -75,9 +75,11 @@ public class UI_PictureDiary : MonoBehaviour
 
     Func_LoadProfilePicture func_LoadProfilePicture = null;
 
+    [SerializeField] private TextMeshProUGUI dateText = null;
+
     private void Start()
     {
-        
+        dateText.text = DateTime.Now.ToString("yyyy" + " ³â " + "MM" + " ¿ù " + "dd" + "ÀÏ");
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
