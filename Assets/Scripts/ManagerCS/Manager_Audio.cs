@@ -16,6 +16,9 @@ public class Manager_Audio : MonoBehaviour
     [SerializeField] Data_Audios TouchSounds = null;
     [SerializeField] Data_Audios CommonSounds = null;
 
+    [SerializeField] Slider bgmSlider = null;
+    [SerializeField] Slider effSlider = null;
+
     private Dictionary<string, AudioClip> DiaryClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleGunClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BubbleBearClips = new Dictionary<string, AudioClip>();
@@ -24,11 +27,12 @@ public class Manager_Audio : MonoBehaviour
     private Dictionary<string, AudioClip> TouchClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> CommonClips = new Dictionary<string, AudioClip>();
 
-    private float val_BGM = 0.5f;
-    private float val_Eff = 0.5f;
+    private float val_BGM = 0f;
+    private float val_Eff = 0f;
 
     private void Awake()
     {
+        InitVolumeVal();
         AddAllClipsToDic(DiarySounds);
         AddAllClipsToDic(BubbleGunSounds);
         AddAllClipsToDic(BubbleBearSounds);
@@ -36,6 +40,32 @@ public class Manager_Audio : MonoBehaviour
         AddAllClipsToDic(BGMSounds);
         AddAllClipsToDic(TouchSounds);
         AddAllClipsToDic(CommonSounds);
+    }
+
+    /// <summary>
+    /// Init volume value
+    /// </summary>
+    private void InitVolumeVal()
+    {
+        if (PlayerPrefs.HasKey("Val_BGM"))
+        {
+            val_BGM = PlayerPrefs.GetFloat("Val_BGM");
+        }
+        else
+        {
+            val_BGM = 0.5f;
+        }
+
+        if (PlayerPrefs.HasKey("Val_Eff"))
+        {
+            val_Eff = PlayerPrefs.GetFloat("Val_Eff");
+        }
+        else
+        {
+            val_Eff = 0.5f;
+        }
+        bgmSlider.value = val_BGM;
+        effSlider.value = val_Eff;
     }
 
     /// <summary>
@@ -208,8 +238,9 @@ public class Manager_Audio : MonoBehaviour
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
+            SetVolume(soundType, audioSource);
             // Check AudioClip to play And PlaySound
-            if(overLap == true)
+            if (overLap == true)
             {
                 audioSource.Play();
             }
@@ -228,6 +259,7 @@ public class Manager_Audio : MonoBehaviour
             audioSource.playOnAwake = false;
             audioSource.loop = playLoop;
             audioSource.clip = GetClip(soundType, ClipName);
+            SetVolume(soundType, audioSource);
             if (overLap == true)
             {
                 audioSource.Play();
@@ -253,6 +285,7 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
+            audioSource.volume = val_Eff;
             // Check AudioClip to play And PlaySound
             if (overLap == true)
             {
@@ -274,6 +307,7 @@ public class Manager_Audio : MonoBehaviour
             audioSource.loop = playLoop;
             //audioSource.clip = Func_WavUtility.ToAudioClip(Application.persistentDataPath + "/RecordFile/" + ClipName + ".wav");
             audioSource.clip = Func_WavUtility.ToAudioClip(ClipName);
+            audioSource.volume = val_Eff;
             // Check AudioClip to play And PlaySound
             if (overLap == true)
             {
@@ -302,13 +336,33 @@ public class Manager_Audio : MonoBehaviour
         }
     }
 
+    private void SetVolume(SoundType type, AudioSource source)
+    {
+        if(type != SoundType.BGM)
+        {
+            source.volume = val_Eff;
+            return;
+        }
+        else
+        {
+            Manager_Main.Instance.mainAudioSource.volume = val_BGM;
+        }
+    }
+
     public void SetBGMValue(Slider slider)
     {
         val_BGM = slider.value;
+        Manager_Main.Instance.mainAudioSource.volume = val_BGM;
     }
 
     public void SetEffValue(Slider slider)
     {
         val_Eff = slider.value;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("Val_BGM", val_BGM);
+        PlayerPrefs.SetFloat("Val_Eff", val_Eff);
     }
 }
