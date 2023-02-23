@@ -48,6 +48,7 @@ public class Manager_Main : MonoBehaviour
 
     [field: SerializeField]
     public GameObject ui_volumePanel { get; private set; }
+    public GameObject volumeButton = null;
     private bool isvolumePanelOn = false;
 
     [Header("AudioManager")]
@@ -336,7 +337,7 @@ public class Manager_Main : MonoBehaviour
     public void PlayBGM(string sceneName)
     {
         GetAudio().StopPlaySound(gameObject);
-        GetAudio().PlaySound(sceneName, SoundType.BGM, gameObject, true, false);
+        GetAudio().PlaySound(sceneName, SoundType.BGM, gameObject, true, true);
     }
 
     public void OnClick_VolumeControlButton()

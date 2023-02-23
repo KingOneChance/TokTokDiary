@@ -33,6 +33,7 @@ public class Func_LoadingScene : MonoBehaviour
         StartCoroutine(UnloadSceneProcess());
         NextLoadingSceneProcess();
         Manager_Main.Instance.PlayBGM(nextScene);
+        Manager_Main.Instance.volumeButton.SetActive(false);
     }
 
     private IEnumerator LoadSceneProcess()
@@ -180,6 +181,7 @@ public class Func_LoadingScene : MonoBehaviour
             fadeOutImgWhite.color = new Color(1, 1, 1, alphaVal);
             yield return fixedDeltaTime;
         }
+        Manager_Main.Instance.volumeButton.SetActive(true);
         isLoadingDone = true;
     }
 }
