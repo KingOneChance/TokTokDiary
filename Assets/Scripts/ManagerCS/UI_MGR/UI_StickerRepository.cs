@@ -187,7 +187,12 @@ public class UI_StickerRepository : MonoBehaviour
         {
             Debug.Log(anyList[i]);
             byte[] byteTexture = File.ReadAllBytes(anyList[i]);
+#if UNITY_ANDROID
+            string filename = anyList[i].Split('/')[9].Split('.')[0];
+#else
             string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#endif
+
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
