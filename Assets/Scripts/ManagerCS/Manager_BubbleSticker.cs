@@ -90,7 +90,7 @@ public class Manager_BubbleSticker : Func_SaveSticker
                                 break;
 
                             case 2:
-                                file = "TurtlepPink";
+                                file = "TurtlePink";
                                 break;
 
                             case 3:
