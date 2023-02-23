@@ -7,13 +7,23 @@ using UnityEngine.UI;
 public class Func_FreeStickerDraw : Func_Draw
 {
     [SerializeField] private Transform LinesParent = null;
-    [SerializeField] private float currentPenWidth_Free = 0f;
-    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] public Button widthSmallBtn;
+    [SerializeField] public Button widthMediumBtn;
+    [SerializeField] public Button widthLargeBtn;
+    Func_Draw func_draw;
+   
+    
+    public float penWidth;
+    
 
     protected new void Start()
     {
-        currentPenWidth_Free = 0.1f;
+        base.currentPenWidth = 0.5f;
+        widthSmallBtn.onClick.AddListener(OnClick_WidthSmall);
+        widthMediumBtn.onClick.AddListener(OnClick_WidthMedium);
+        widthLargeBtn.onClick.AddListener(OnClick_WidthLarge);
     }
+
     public new void Update()
     {
         if (onObject == false)
@@ -33,21 +43,23 @@ public class Func_FreeStickerDraw : Func_Draw
         }
     }
 
+    public void SetPenWidth(float width)
+    {
+        base.fixedPenWidth = width;
+    }
+
     public void OnClick_WidthLarge()
     {
-        lineRenderer.startWidth = 0.3f;
-        lineRenderer.endWidth = 0.3f;
+        SetPenWidth(0.3f);
     }
 
     public void OnClick_WidthMedium()
     {
-        lineRenderer.startWidth = 0.2f;
-        lineRenderer.endWidth = 0.2f;
+        SetPenWidth(0.2f);
     }
 
     public void OnClick_WidthSmall()
     {
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
+        SetPenWidth(0.1f);
     }
 }

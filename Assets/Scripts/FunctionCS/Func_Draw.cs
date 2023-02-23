@@ -37,6 +37,7 @@ namespace FreeDraw
         public Color curColor = Color.black;
         private GameObject tempOBJ;
         protected float currentPenWidth = 0f;
+        protected float fixedPenWidth = 0.3f;
 
         //    const float Min_Pen_Width = 0.1f;
         //    const float Max_Pen_Width = 1.0f;
@@ -153,12 +154,11 @@ namespace FreeDraw
                     {
                         currentPenWidth = 0.05f;
                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-
                     }
 
                     else
                     {
-                        currentPenWidth = 0.3f;
+                        currentPenWidth = fixedPenWidth;
                     }
 
                     return true;
@@ -221,6 +221,12 @@ namespace FreeDraw
                     break;
             }
         }
+
+        protected void SetFixedPenWidth(float width)
+        {
+            fixedPenWidth = width;
+        }
+
 
         public void ControllPenWidth()
         {

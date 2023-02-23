@@ -2980,7 +2980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c3d022b04f58e45b648501fbd9e359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 1346412860}
+  DragLine: {fileID: 0}
   "\uC190\uAC00\uB77D": {fileID: 1610832944}
   "\uCD9C\uBC1C\uC9C0": {fileID: 270915065}
   "\uB3C4\uCC29\uC9C0": {fileID: 1747639512}
@@ -2992,6 +2992,8 @@ MonoBehaviour:
   StopButton: {fileID: 458755898}
   DrawingObj: {fileID: 804669447}
   Tutorial: {fileID: 1900164803}
+  drawingFun: {fileID: 0}
+  canDrag: 0
 --- !u!1 &141345442
 GameObject:
   m_ObjectHideFlags: 0
@@ -15591,7 +15593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c3d022b04f58e45b648501fbd9e359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 1544796232}
+  DragLine: {fileID: 0}
   "\uC190\uAC00\uB77D": {fileID: 95455933}
   "\uCD9C\uBC1C\uC9C0": {fileID: 1028662794}
   "\uB3C4\uCC29\uC9C0": {fileID: 1039946913}
@@ -15603,6 +15605,8 @@ MonoBehaviour:
   StopButton: {fileID: 458755898}
   DrawingObj: {fileID: 804669447}
   Tutorial: {fileID: 1900164803}
+  drawingFun: {fileID: 0}
+  canDrag: 0
 --- !u!1 &773878038
 GameObject:
   m_ObjectHideFlags: 0
@@ -17915,7 +17919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c3d022b04f58e45b648501fbd9e359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 2020017889}
+  DragLine: {fileID: 0}
   "\uC190\uAC00\uB77D": {fileID: 1843223881}
   "\uCD9C\uBC1C\uC9C0": {fileID: 1428303963}
   "\uB3C4\uCC29\uC9C0": {fileID: 125462051}
@@ -17927,6 +17931,8 @@ MonoBehaviour:
   StopButton: {fileID: 458755898}
   DrawingObj: {fileID: 804669447}
   Tutorial: {fileID: 1900164803}
+  drawingFun: {fileID: 0}
+  canDrag: 0
 --- !u!1 &884548933
 GameObject:
   m_ObjectHideFlags: 0
@@ -22781,7 +22787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c3d022b04f58e45b648501fbd9e359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 1215893458}
+  DragLine: {fileID: 0}
   "\uC190\uAC00\uB77D": {fileID: 2078867300}
   "\uCD9C\uBC1C\uC9C0": {fileID: 1963506750}
   "\uB3C4\uCC29\uC9C0": {fileID: 1099842946}
@@ -22793,6 +22799,8 @@ MonoBehaviour:
   StopButton: {fileID: 458755898}
   DrawingObj: {fileID: 804669447}
   Tutorial: {fileID: 1900164803}
+  drawingFun: {fileID: 0}
+  canDrag: 0
 --- !u!1 &1114703182
 GameObject:
   m_ObjectHideFlags: 0
@@ -38850,7 +38858,7 @@ MonoBehaviour:
   Sprite_Shiny: {fileID: 21300000, guid: fb2d2bedcc02dd644913af7116532045, type: 3}
   Sprite_Cloudy: {fileID: 21300000, guid: d07750a4c54c9124387423e70538cd06, type: 3}
   Sprite_Rainy: {fileID: 21300000, guid: ed30f7005368cd54e868146e9f74ede6, type: 3}
-  Sprite_Snowy: {fileID: 21300000, guid: 9eed8d5ff9434394780e54dc53bbca05, type: 3}
+  Sprite_Snowy: {fileID: 21300000, guid: 2091bed90b341a847885e68d99f23de0, type: 3}
   Origin_Shiny: {fileID: 21300000, guid: b0613435e40ade341a888674ee01c6f8, type: 3}
   Origin_Cloudy: {fileID: 21300000, guid: 256cc35b7fdc64d40a7255e0bb288aaf, type: 3}
   Origin_Rainy: {fileID: 21300000, guid: 7de476f1ba12b3841bcff4d6882221a1, type: 3}
