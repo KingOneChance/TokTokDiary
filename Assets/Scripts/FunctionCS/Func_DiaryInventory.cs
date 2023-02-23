@@ -138,7 +138,7 @@ public class Func_DiaryInventory : MonoBehaviour
                 {
                     recordingSignList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleGun"))
+                else if (allFiles[i].Contains("BubbleGunSticker"))
                 {
                     bubbleGunStickerList.Add(allFiles[i]);
                 }
@@ -244,7 +244,13 @@ public class Func_DiaryInventory : MonoBehaviour
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-                        textureTemp.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                       
+#if UNITY_ANDROID
+                        string filename = anyList[i].Split('/')[9].Split('.')[0];
+#else
+            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#endif
+                        textureTemp.name = filename;
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -276,7 +282,12 @@ public class Func_DiaryInventory : MonoBehaviour
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-                        textureTemp.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#if UNITY_ANDROID
+                        string filename = anyList[i].Split('/')[9].Split('.')[0];
+#else
+            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#endif
+                        textureTemp.name = filename;
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -303,7 +314,13 @@ public class Func_DiaryInventory : MonoBehaviour
                     //playerprepth
                     Texture2D texture = new Texture2D(0, 0);
                     texture.LoadImage(byteTexture);
-                    texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#if UNITY_ANDROID
+                    string filename = anyList[i].Split('/')[9].Split('.')[0];
+#else
+            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#endif
+                    texture.name = filename;
+               
                     Debug.Log(texture.name + "이름 넣는중");
 
                     mainStickers[i].gameObject.SetActive(true);
@@ -335,7 +352,12 @@ public class Func_DiaryInventory : MonoBehaviour
                     //playerprepth
                     Texture2D texture = new Texture2D(0, 0);
                     texture.LoadImage(byteTexture);
-                    texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#if UNITY_ANDROID
+                    string filename = anyList[i].Split('/')[9].Split('.')[0];
+#else
+            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#endif
+                    texture.name = filename;
                     Debug.Log(texture.name + "이름 넣는중");
 
                     mainStickers[i].gameObject.SetActive(true);
