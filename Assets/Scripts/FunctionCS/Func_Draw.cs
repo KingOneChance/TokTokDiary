@@ -77,7 +77,7 @@ namespace FreeDraw
         protected void Draw()
         {
             //영역에서 버튼 눌렸을 때, 외부 영역에서 클릭하고 드래그해서 영역안에 왔을 때,
-            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)))
+            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && (internalClick == false || onObject == true)) || Manager_Main.Instance.IsVolumePanelOn == true)
             {
                 internalClick = true;
                 obj = Instantiate(linePrefab);
