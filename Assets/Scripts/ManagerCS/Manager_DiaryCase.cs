@@ -35,7 +35,9 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private Sprite openTrashCan = null;
     [SerializeField] private Sprite closeTrashCan = null;
     [SerializeField] private RawImage TrashCan = null;
-
+    [SerializeField] private Button prevBtn = null; 
+    [SerializeField] private Button nextBtn = null; 
+ 
     [Header("===JsonData===")]
     [SerializeField] private List<string> recordFilesNames = new List<string>();
     [SerializeField] private List<Vector2> recordFilesPos = new List<Vector2>();
@@ -53,6 +55,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
+        nextBtn.gameObject.SetActive(false);
     }
 
     public void OnClick_Profile(int idx)
@@ -246,11 +249,16 @@ public class Manager_DiaryCase : MonoBehaviour
     public void OnClick_PrevDiary()
     {
         presentNum--;
+        nextBtn.gameObject.SetActive(true);
+        if (presentNum == 0) prevBtn.gameObject.SetActive(false);
+
+
         if (presentNum < 0)
-        {
+        {           
             presentNum = 0;
             return;
         }
+        
         previewImg.texture = allFilesTexture[presentNum];
         FindRecordFile(previewImg.texture.name);
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
@@ -264,8 +272,11 @@ public class Manager_DiaryCase : MonoBehaviour
     public void OnClick_NextDiary()
     {
         presentNum++;
+        prevBtn.gameObject.SetActive(true);
+        if(presentNum == allFiles.Count -1) nextBtn.gameObject.SetActive(false);
         if (presentNum > allFiles.Count - 1)
         {
+           
             presentNum = allFiles.Count - 1;
         }
         previewImg.texture = allFilesTexture[presentNum];
@@ -302,6 +313,8 @@ public class Manager_DiaryCase : MonoBehaviour
         string recordName = selectedProfilPath + "/" + fileTextureName + ".png";
 
         DeletFolder(fileName);
+        DeletFolder(jsonName);
+        DeletFolder(recordName);
 
         diaryPanel.SetActive(false);
         AddDiaryFiles();

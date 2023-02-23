@@ -39,6 +39,7 @@ public class UI_StickerRepository : MonoBehaviour
     private void Start()
     {
         path = Application.persistentDataPath;
+ 
     }
 
     public void OnClick_BubbleStickerRepository()
@@ -226,13 +227,11 @@ public class UI_StickerRepository : MonoBehaviour
     {
         presentNum++;
         stickerCountText.text = presentNum.ToString();
-
     }
     public void Onclick_MinusBtn()
     {
         presentNum--;
         stickerCountText.text = presentNum.ToString();
-
     }
 
     public void Onclick_TransferDelete()

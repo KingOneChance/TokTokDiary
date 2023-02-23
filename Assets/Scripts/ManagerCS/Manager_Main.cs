@@ -56,6 +56,7 @@ public class Manager_Main : MonoBehaviour
     private Manager_Audio _AudioManager = null;
     private void InitAudioManager() => _AudioManager = GetComponent<Manager_Audio>();
     public Manager_Audio GetAudio() => _AudioManager;
+    public AudioSource mainAudioSource = null;
     #endregion
 
     [Header("===NumberOfStickers===")]

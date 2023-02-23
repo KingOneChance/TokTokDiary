@@ -15,9 +15,12 @@ public class Func_AlcoholLamp : Func_DragAndDrop
     [SerializeField] private GameObject alcoholLampDragGuide = null;
     [SerializeField] private GameObject[] colorBeakerPoppingGuideLine = null;
 
+    private bool isSolutionFill = false;
+
     private new void OnEnable()
     {
         base.OnEnable();
+        isSolutionFill = false;
         alcoholLampDragGuide.SetActive(true);
         alcoholLampPosImg.color = Vector4.one;
         bsManager.ActiveColorBucket(false);
@@ -28,6 +31,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (isSolutionFill == true) return;
         base.OnEndDrag(eventData);
         if (Vector3.Distance(myDestinationPos.position, myRect.position) < 100f)
         {
@@ -142,6 +146,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         {
             colorBeakerPoppingGuideLine[i].gameObject.SetActive(true);
         }
+        isSolutionFill = true;
         StartCoroutine(CO_BlinkBlink(colorBeakerImg));
         yield break;
     }

@@ -28,6 +28,8 @@ public class Func_CalendarController : MonoBehaviour
     private DateTime _dateTime;
 
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    [SerializeField] private Sprite[] monthSprites = null;
+    [SerializeField] private RawImage monthImage = null;
     private string myName = "";
 
     private List<int> days = new List<int>();
@@ -213,9 +215,7 @@ public class Func_CalendarController : MonoBehaviour
 
     public void OnClick_Date()
     {
-
         string nowDay = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
-
  
         int m = int.Parse(_monthNumText.text);
 
@@ -227,9 +227,7 @@ public class Func_CalendarController : MonoBehaviour
         if (int.Parse(nowDay) < 10) nowDay = "0" + nowDay;
 
         string fileName = int.Parse(_yearNumText.text) + "_" + mm + "_" + nowDay;
-        Debug.Log(fileName + "-1");
 
-        //if (manager_DiaryCase.allFilesDictionary.ContainsKey(fileName + "-1"))
         for (int i = 0; i < manager_DiaryCase.allFilesTexture.Count; i++)
         {
             if (manager_DiaryCase.allFilesTexture[i].name == fileName + "-1")
@@ -257,7 +255,6 @@ public class Func_CalendarController : MonoBehaviour
             if (manager_DiaryCase.previewImg.texture == manager_DiaryCase.allFilesTexture[i])
             {
                 manager_DiaryCase.presentNum = i;
-
             }
         }
     }

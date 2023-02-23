@@ -4138,6 +4138,18 @@ PrefabInstance:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 8029507514993700031, guid: 282bd2da11c692b43acd76fd9891301d, type: 3}
+    - target: {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: widthLargeBtn
+      value: 
+      objectReference: {fileID: 213277904}
+    - target: {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: widthSmallBtn
+      value: 
+      objectReference: {fileID: 1469362523}
+    - target: {fileID: 4095744915378150481, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
+      propertyPath: widthMediumBtn
+      value: 
+      objectReference: {fileID: 89697801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a582f3af0c8118479afdefcb399dc6d, type: 3}
 --- !u!114 &5640414795496629954

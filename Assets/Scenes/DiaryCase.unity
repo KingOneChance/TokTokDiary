@@ -2831,7 +2831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069710166}
   - component: {fileID: 1069710165}
-  - component: {fileID: 1069710167}
+  - component: {fileID: 1069710168}
   m_Layer: 0
   m_Name: DiaryManager
   m_TagString: Untagged
@@ -2889,6 +2889,8 @@ MonoBehaviour:
   openTrashCan: {fileID: 21300000, guid: 65ab1dc5eea6190438a5648f598be9ba, type: 3}
   closeTrashCan: {fileID: 21300000, guid: d578b2b5705134b4e9c27a102176c2b9, type: 3}
   TrashCan: {fileID: 936332012}
+  prevBtn: {fileID: 899002951}
+  nextBtn: {fileID: 1080972899}
   recordFilesNames: []
   recordFilesPos: []
   buttonPool: []
@@ -2910,7 +2912,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1069710167
+--- !u!114 &1069710168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2919,7 +2921,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1069710164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 534e1d9d50571a849a4de4372096c208, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ced67d8319b15a42b6dca58c8517a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   profileImages:
@@ -5362,8 +5364,32 @@ MonoBehaviour:
         m_MethodName: Onclick_DeleteDiary
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 1867193321}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1069710165}
+        m_TargetAssemblyTypeName: Manager_DiaryCase, Assembly-CSharp
+        m_MethodName: Onclick_CloseTrashCan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1476595415}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6191,6 +6217,58 @@ PrefabInstance:
       propertyPath: manager_DiaryCase
       value: 
       objectReference: {fileID: 1069710165}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 56c89a6bc3ae6f34d825070f0847d8ae, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ff46ad8ab83359c43a2b5fb4ba2ee825, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b35cd3e03e51dd409c90ced0d568e50, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ea56513309b9ef4daf21fd2328c9b59, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: a49354a077f1b224fac72a25e5bb5acb, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 56f7fc5ce736cd94084413df9cc56432, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 78ff8bba46290e946b796fab1ab9e599, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d8358d9fc5908d46b7b6f98bce6f454, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b2ec4e9d62f42045a48f17df30bbc4f, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: d35c5956994548641b9d05acfad76959, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8e00f7275d215dd44b8c46201a8fdca5, type: 3}
+    - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
+      propertyPath: monthImgs.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a77ea54c343c4345bf969028ae3956c, type: 3}
     - target: {fileID: 7957542426212672223, guid: bfba7d9f091176344a29884ff682408a, type: 3}
       propertyPath: preViewDate.Array.data[0]
       value: 
