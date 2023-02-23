@@ -10,7 +10,7 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private RectTransform rect;
     private Vector2 mousePos = Vector2.zero;
     [SerializeField] private Func_TodayFeelingImage drawObject = null;
-
+    Func_HelperGuideDrag func_HelperGuideDrag;
     private void Start()
     {
         drawObject=FindObjectOfType<Func_TodayFeelingImage>();
@@ -27,6 +27,7 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (func_HelperGuideDrag.canDrag == true) return;
         drawObject.IsStickerMaking(true);//스티커 드래그시 점찍히는거 막기
         nodeData = new SData_NodeData();
         nodeData.position = rect.position;
@@ -36,12 +37,14 @@ public class Func_DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     }
     public void OnDrag(PointerEventData eventData)
     {
+        if (func_HelperGuideDrag.canDrag == true) return;
         //rect.transform.position = eventData.position;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         gameObject.transform.position = mousePos;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (func_HelperGuideDrag.canDrag == true) return;
         nodeData = new SData_NodeData();
         nodeData.position = rect.position;
         nodeData.rotation = rect.rotation.eulerAngles;
