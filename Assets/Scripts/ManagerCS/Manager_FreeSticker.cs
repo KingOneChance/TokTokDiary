@@ -24,6 +24,7 @@ namespace FreeDraw
         private CursorMode cursorMode = CursorMode.Auto;
         public MouseType MouseStateInfo { get { return MouseState; } }
         public float minX, maxX, minY, maxY;
+        
 
         private void Update()
         {
@@ -62,9 +63,24 @@ namespace FreeDraw
             yield return new WaitUntil(() => isSaveDone == true);
             // raw 이미지의 스케일 값을 조절
             Lines.SetActive(false);
-            rawImage.transform.localPosition = new Vector3(0, 0, 0);
+            
             rawImage.transform.localScale = new Vector3(scale, scale, 1f);
             Invoke("OnClick_Result", 0.1f);
+
+            float time = 0f;
+            while (time < 3)
+            {
+                time += Time.deltaTime;
+
+                // 보간 시간을 0~1 범위로 정규화
+                float t = time / 3f;
+                // 보간된 y값에 Sin 함수의 결과를 더함
+                float deltaY = Mathf.Lerp(10f, 0f, t) + Mathf.Sin(t * Mathf.PI * 4f) * 5f;
+                // x축 이동값을 Sin 함수의 결과로 보간
+                float deltaX = Mathf.Sin(t * Mathf.PI * 6f) * 5f;
+                rawImage.transform.position = new Vector3(deltaX, deltaY, 0f);
+                yield return null;
+            }
         } 
 
         public void OnClick_Result()
