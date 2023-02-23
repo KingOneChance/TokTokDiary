@@ -2893,7 +2893,7 @@ MonoBehaviour:
   recordFilesPos: []
   buttonPool: []
   jsonFiles: []
-  buttonPrefab: {fileID: 0}
+  buttonPrefab: {fileID: 2951232858341082311, guid: c8783e2f2bf0dd947aa2997f2e7c47a2, type: 3}
   presentNum: 0
 --- !u!4 &1069710166
 Transform:
@@ -2936,6 +2936,13 @@ MonoBehaviour:
   - {fileID: 1931947616}
   - {fileID: 1107195677}
   - {fileID: 119355436}
+  selectedFrameImages:
+  - {fileID: 1383288528}
+  - {fileID: 376344204}
+  - {fileID: 826825443}
+  - {fileID: 2086516592}
+  - {fileID: 1194583081}
+  - {fileID: 796563178}
 --- !u!1 &1080972897
 GameObject:
   m_ObjectHideFlags: 0

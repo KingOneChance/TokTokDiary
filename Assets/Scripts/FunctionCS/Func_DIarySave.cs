@@ -78,7 +78,7 @@ public class Func_DIarySave : Func_SaveSticker
     }
     public void OnClick_Save()
     {
-        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") ==0)
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") == 0)
         {
             return;
         }
@@ -88,8 +88,8 @@ public class Func_DIarySave : Func_SaveSticker
     IEnumerator Co_SaveEndLoadScene()
     {
         Debug.Log("저장 코루틴 시작");
-       //base.OnClick_SaveImgae(StickerType.FreeSticker);
-       isSaveDone = false;
+        //base.OnClick_SaveImgae(StickerType.FreeSticker);
+        isSaveDone = false;
         if (canSave == true)
         {
             Debug.Log("저장 if 시작");
@@ -124,34 +124,40 @@ public class Func_DIarySave : Func_SaveSticker
             string freeBuffer = func_DiaryInventory.GetFreeStickerList(freeUsedNum[i]);
             DeleteFile(freeBuffer);
         }
-
-        string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleFreeSticker", "*.png", SearchOption.AllDirectories);
-        
-        for (int i = 0; i < gunUsedNum.Count; i++)
+        string[] allfiles;
+        if (Directory.Exists(Application.persistentDataPath + "/BubbleGunSticker"))
         {
-            if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleFreeSticker")[1].Split(".")[0])) == 1) // 인자값 스티커 이름삭제
+            allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGunSticker", "*.png", SearchOption.AllDirectories);
+            for (int i = 0; i < gunUsedNum.Count; i++)
             {
-                string freeBuffer = func_DiaryInventory.GetGunStickerList(gunUsedNum[i]);
-                DeleteFile(freeBuffer);
-            }
-            else
-            {
-                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleFreeSticker")[1].Split(".")[0]);
+                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleGunSticker")[1].Split(".")[0])) == 1) // 인자값 스티커 이름삭제
+                {
+                    string freeBuffer = func_DiaryInventory.GetGunStickerList(gunUsedNum[i]);
+                    DeleteFile(freeBuffer);
+                }
+                else
+                {
+                    Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleGunSticker")[1].Split(".")[0]);
+                }
             }
         }
-        allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGun", "*.png", SearchOption.AllDirectories);
-        for (int i = 0; i < bubbleUsedNum.Count; i++)
+        if (Directory.Exists(Application.persistentDataPath + "/BubbleSticker"))
         {
-            if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleGun")[1].Split(".")[0])) == 1) //삭제
+            allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleSticker", "*.png", SearchOption.AllDirectories);
+            for (int i = 0; i < bubbleUsedNum.Count; i++)
             {
-                string freeBuffer = func_DiaryInventory.GetbubbleStickerList(bubbleUsedNum[i]);
-                DeleteFile(freeBuffer);
-            }
-            else
-            {
-                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleGun")[1].Split(".")[0]);
+                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleSticker")[1].Split(".")[0])) == 1) //삭제
+                {
+                    string freeBuffer = func_DiaryInventory.GetbubbleStickerList(bubbleUsedNum[i]);
+                    DeleteFile(freeBuffer);
+                }
+                else
+                {
+                    Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleSticker")[1].Split(".")[0]);
+                }
             }
         }
+           
         //씬전환
         Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);

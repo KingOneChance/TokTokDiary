@@ -57,13 +57,14 @@ public class Func_DiaryToJson : MonoBehaviour
     public void SetJosonFileName(string name) => jsonTempName = name;
     public void DeleteListNumber(int num)
     {
+        
         for(int i = 0; i < recordObject.Count; i++)
         {
+            Debug.Log(recordObject[i].name +"<= 제이슨에 저장된오브젝트 이름");
             if (int.Parse(recordObject[i].name.Split("(")[0]) ==num)
             {
-                recordObject.Remove(recordObject[i]);
-                recordFilesPos.Remove(recordFilesPos[i]);
                 recordFilesNames.Remove(recordFilesNames[i]);
+                recordObject.Remove(recordObject[i]);
             }
         }
     }

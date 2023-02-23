@@ -21,7 +21,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private Func_DIarySave func_DiarySave = null;
-    Func_HelperGuideDrag func_HelperGuideDrag;
+    [SerializeField] private Func_HelperGuideDrag func_HelperGuideDrag;
 
 
     private RectTransform myRectTransform;
@@ -32,6 +32,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void Start()
     {
+        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         func_DiarySave = FindObjectOfType<Func_DIarySave>();
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
@@ -44,29 +45,27 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
 
     }
-    
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("ÂïÈû");
-      if (func_HelperGuideDrag.canDrag == true) return;
-      else
-        {   
-             drawObject.IsStickerMaking(true);
-             gameObject.transform.SetParent(myGrandPa.transform);
-        }
+      //  if (func_HelperGuideDrag.canDrag == true) return;
+
+        drawObject.IsStickerMaking(true);
+        gameObject.transform.SetParent(myGrandPa.transform);
+
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (func_HelperGuideDrag.canDrag == true) return;
-        else
-        {
-           mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-           myRectTransform.position = mousePos;
-        }
+      //  if (func_HelperGuideDrag.canDrag == true) return;
+
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        myRectTransform.position = mousePos;
+
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (func_HelperGuideDrag.canDrag == true) return;
+      //  if (func_HelperGuideDrag.canDrag == true) return;
 
         GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
@@ -78,13 +77,20 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         switch (func_DiaryInventory.GetNowType())
         {
             case StickerType.BubbleSticker:
+                newSticker.tag = "BubbleSticker";
+                func_DiarySave.SetUsedBubbleNum(int.Parse(gameObject.name));
                 break;
             case StickerType.BubbleGunSticker:
+                newSticker.tag = "GunSticker";
+                func_DiarySave.SetUsedGunNum(int.Parse(gameObject.name));
                 break;
             case StickerType.FreeSticker:
+                newSticker.tag = "FreeSticker";
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
+                func_DiarySave.SetUsedFreeNum(int.Parse(gameObject.name));
                 break;
             case StickerType.RecordSticker:
+                newSticker.tag = "RecordSticker";
                 string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
                 newSticker.GetComponent<Button>().onClick.AddListener(() =>
                 {

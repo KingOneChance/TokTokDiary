@@ -28,8 +28,7 @@ public class Func_DiaryInventory : MonoBehaviour
     public List<string> bubbleFreeStickerList = new List<string>();
 
     [SerializeField] private StickerType nowStickerType = StickerType.None;
-
-    [SerializeField]string path = "";
+    [SerializeField] string path = "";
 
     private void Start()
     {
@@ -97,7 +96,7 @@ public class Func_DiaryInventory : MonoBehaviour
             return;
         }
         string[] allRecord = Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories);
-        if(allRecord.Length!=0)
+        if (allRecord.Length != 0)
         {
             foreach (string file in allRecord)
             {
@@ -160,7 +159,7 @@ public class Func_DiaryInventory : MonoBehaviour
     /// <param name="anyList2">Insert signList</param>
     private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
     {
-        for (int i = 0; i < mainStickers.Count;i++) //다 끄기
+        for (int i = 0; i < mainStickers.Count; i++) //다 끄기
         {
             if (mainStickers[i].gameObject.activeSelf == false) break; //메인스티커나 서명 스티커 하나만 꺼져도 꺼져있는 상태
 
@@ -242,7 +241,7 @@ public class Func_DiaryInventory : MonoBehaviour
                     texture2.LoadImage(byteTexture2);
 
                     signStickers[i].texture = texture2;
-                    signStickersBack[i].texture = texture2; 
+                    signStickersBack[i].texture = texture2;
                     signStickers[i].color = new Color(255, 255, 255, 255);
                     signStickersBack[i].color = new Color(255, 255, 255, 255);
                 }
