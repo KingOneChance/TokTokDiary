@@ -356,30 +356,28 @@ public class Manager_Audio : MonoBehaviour
         if (val_BGM == 0)
         {
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(1.0f, 0.5f, true);
-            Debug.Log("X표시 온");
         }
         else
         {
-            Debug.Log("X표시 다운");
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
         }
     }
+
     public void CheckVolume()
     {
         if (val_BGM == 0)
         {
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(1.0f, 0.5f, true);
-            Debug.Log("X표시 온");
         }
         else
         {
-            Debug.Log("X표시 다운");
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
         }
 
         if (val_Eff == 0) Manager_Main.Instance.effXImage.CrossFadeAlpha(1.0f, 0.5f, true);
         else Manager_Main.Instance.effXImage.CrossFadeAlpha(0f, 0.5f, true);
     }
+
     public void SetEffValue(Slider slider)
     {
         val_Eff = slider.value;
@@ -387,17 +385,11 @@ public class Manager_Audio : MonoBehaviour
         else Manager_Main.Instance.effXImage.CrossFadeAlpha(0f, 0.5f, true);
     }
 
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.SetFloat("Val_BGM", val_BGM);
-        PlayerPrefs.SetFloat("Val_Eff", val_Eff);
-    }
-
     public void OnClick_VolumeXButton(Slider slider)
     {
         if(slider.value != 0)
         {
-            if(slider.name == "bgm_XImage")
+            if(slider.name == "bgmController")
             {
                 curTempVal_BGM = slider.value;
             }
@@ -409,7 +401,7 @@ public class Manager_Audio : MonoBehaviour
         }
         else
         {
-            if (slider.name == "bgm_XImage")
+            if (slider.name == "bgmController")
             {
                 slider.value = curTempVal_BGM;
                 curTempVal_BGM = 0f;
@@ -420,5 +412,11 @@ public class Manager_Audio : MonoBehaviour
                 curTempVal_Eff = 0f;
             }
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("Val_BGM", val_BGM);
+        PlayerPrefs.SetFloat("Val_Eff", val_Eff);
     }
 }
