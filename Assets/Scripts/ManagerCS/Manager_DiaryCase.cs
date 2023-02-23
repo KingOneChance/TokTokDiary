@@ -162,6 +162,10 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             Debug.Log(jsonFiles[i]);
 
+            for (int k = 0; k < buttonPool.Count; k++)
+            {
+                buttonPool[k].SetActive(false);
+            }
             if (jsonFiles[i].Contains(lastDay) == true)
             {
                 Debug.Log("마지막 일기 사운드 있음");
@@ -169,7 +173,9 @@ public class Manager_DiaryCase : MonoBehaviour
                 break;
             }
             else
+            {
                 Debug.Log("마지막 일기 사운드 없음");
+            }
         }
     }
     List<string> theDayRecordNames = new List<string>();

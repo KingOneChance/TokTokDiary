@@ -28,9 +28,10 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     private RectTransform copyRectTransform;
     private RectTransform startTransform;
     private Vector2 mousePos = Vector2.zero;
+    [SerializeField] private Vector2 startPos = Vector2.zero;
     private string stickerName = "";
 
-    private void Start()
+    private void Awake()
     {
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         func_DiarySave = FindObjectOfType<Func_DIarySave>();
@@ -38,12 +39,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
         stickerName = GetComponent<RawImage>().texture != null ? GetComponent<RawImage>().texture.name : "";
+        
     }
+ 
 
     public void OnClick_MakeClone()
     {
-
-
+        startPos = myRectTransform.position;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -65,8 +67,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-      //  if (func_HelperGuideDrag.canDrag == true) return;
-
+        //  if (func_HelperGuideDrag.canDrag == true) return;
+        if (Input.mousePosition.x < 540)
+        {
+            gameObject.transform.SetParent(myParents.transform);
+            myRectTransform.position = myPos.transform.position;
+            return;
+        }
         GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
@@ -130,5 +137,4 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
         //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
     }
-
 }
