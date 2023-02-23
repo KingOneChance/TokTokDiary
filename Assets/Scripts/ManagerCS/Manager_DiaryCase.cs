@@ -37,7 +37,9 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private Sprite closeTrashCan = null;
     [SerializeField] private RawImage TrashCan = null;
     [SerializeField] private Button prevBtn = null; 
-    [SerializeField] private Button nextBtn = null; 
+    [SerializeField] private Button nextBtn = null;
+
+ 
  
     [Header("===JsonData===")]
     [SerializeField] private List<string> recordFilesNames = new List<string>();
@@ -46,7 +48,6 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private List<string> jsonFiles = new List<string>();
     [SerializeField] private Data_Diary dataDiary = null;
     [SerializeField] private GameObject buttonPrefab = null;
-
 
     public int presentNum = 0;
     private void Start()
