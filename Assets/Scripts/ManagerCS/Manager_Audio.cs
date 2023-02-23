@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.LowLevel;
+using UnityEngine.UI;
 
 public class Manager_Audio : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Manager_Audio : MonoBehaviour
     private Dictionary<string, AudioClip> BGMClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> TouchClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> CommonClips = new Dictionary<string, AudioClip>();
+
+    private float val_BGM = 0.5f;
+    private float val_Eff = 0.5f;
 
     private void Awake()
     {
@@ -296,5 +300,15 @@ public class Manager_Audio : MonoBehaviour
             audioSource.pitch = 1f;
             audioSource.Stop();
         }
+    }
+
+    public void SetBGMValue(Slider slider)
+    {
+        val_BGM = slider.value;
+    }
+
+    public void SetEffValue(Slider slider)
+    {
+        val_Eff = slider.value;
     }
 }

@@ -1,12 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-using UnityEngine.Scripting;
-using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Manager_Main : MonoBehaviour
 {
@@ -51,6 +46,9 @@ public class Manager_Main : MonoBehaviour
     [field: SerializeField]
     public Func_DiaryToJson func_DiaryToJson { get; private set; }
 
+    [field: SerializeField]
+    public GameObject ui_volumePanel { get; private set; }
+    private bool isvolumePanelOn = false;
 
     [Header("AudioManager")]
     #region Audio Management
@@ -74,8 +72,6 @@ public class Manager_Main : MonoBehaviour
     [SerializeField] private int setBubbleStickerNum = 0;
     [SerializeField] private int setFreeStickerNum = 0;
     [SerializeField] private int setDiaryNum = 0;
-
-
 
     #endregion
 
@@ -341,5 +337,11 @@ public class Manager_Main : MonoBehaviour
     {
         GetAudio().StopPlaySound(gameObject);
         GetAudio().PlaySound(sceneName, SoundType.BGM, gameObject, true, false);
+    }
+
+    public void OnClick_VolumeControlButton()
+    {
+        isvolumePanelOn = !isvolumePanelOn;
+        ui_volumePanel.gameObject.SetActive(isvolumePanelOn);
     }
 }
