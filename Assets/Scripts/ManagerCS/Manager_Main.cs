@@ -233,15 +233,10 @@ public class Manager_Main : MonoBehaviour
         else
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
-            //getFreeStickerNum = allFiles.Length;
-            //   if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]) >= getFreeStickerNum)
-            //   {
-            //       getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]);
-            //   }
             getFreeStickerNum = allFiles.Length;
-            if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 1].Split('.')[0].Split('-')[1]) >= getFreeStickerNum)
+            if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 2].Split('.')[0].Split('-')[1]) >= getFreeStickerNum)
             {
-                getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 1].Split('.')[0].Split('-')[1]);
+                getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 2].Split('.')[0].Split('-')[1]);
             }
 
             return getFreeStickerNum + 1;
