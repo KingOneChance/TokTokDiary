@@ -31,13 +31,15 @@ public class Func_DiaryInventory : MonoBehaviour
     public List<string> bubbleFreeStickerList = new List<string>();
 
     [SerializeField] private StickerType nowStickerType = StickerType.None;
-    [SerializeField] string path = "";
+    [SerializeField] private string path = "";
+    [SerializeField] private Func_DIarySave func_Diary;
 
     private void Start()
     {
         path = Application.persistentDataPath;
         RepositoryListOpen(); //그림일기씬 오픈시 실행
         OnClick_BubbleFreeStickerRepository(); //처음 인벤토리 오픈
+        func_Diary = FindObjectOfType<Func_DIarySave>();
     }
 
     public StickerType GetNowType()
@@ -224,6 +226,11 @@ public class Func_DiaryInventory : MonoBehaviour
 
             if (byteTexture.Length > 0)
             {
+                //버블 스티커와 버블건의 경우
+                //i번째의 스티커 개수를 세야한다. (전체개수 - 사용개수)>0 인지 확인 갇다면 continue;
+                //playerprepth
+                
+
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
                 texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
@@ -236,22 +243,76 @@ public class Func_DiaryInventory : MonoBehaviour
                 mainStickersBack[i].texture = texture;
                 mainStickers[i].color = new Color(255, 255, 255, 255);
                 mainStickersBack[i].color = new Color(255, 255, 255, 255);
-            }
-            if (anyList2 != null)
-            {
-                byte[] byteTexture2 = File.ReadAllBytes(anyList2[i]);
-                if (byteTexture2.Length > 0)
+                if (anyList2 != null)
                 {
-                    Texture2D texture2 = new Texture2D(0, 0);
-                    texture2.LoadImage(byteTexture2);
+                    byte[] byteTexture2 = File.ReadAllBytes(anyList2[i]);
+                    if (byteTexture2.Length > 0)
+                    {
+                        Texture2D texture2 = new Texture2D(0, 0);
+                        texture2.LoadImage(byteTexture2);
 
-                    signStickers[i].texture = texture2;
-                    signStickersBack[i].texture = texture2;
-                    signStickers[i].color = new Color(255, 255, 255, 255);
-                    signStickersBack[i].color = new Color(255, 255, 255, 255);
+                        signStickers[i].texture = texture2;
+                        signStickersBack[i].texture = texture2;
+                        signStickers[i].color = new Color(255, 255, 255, 255);
+                        signStickersBack[i].color = new Color(255, 255, 255, 255);
+                    }
                 }
             }
         }
-            del_SendName();
+            del_SendName(); // 인벤토리 텍스터에 이름 넣어주기위한 델리게이트
+
+/*
+
+
+
+
+        if (anyList.Count < mainStickers.Count)
+        {
+            for (int i = mainStickers.Count - 1; i > anyList.Count-1; --i)
+            {
+                Destroy(mainStickers[i].gameObject.);
+                mainStickers.RemoveAt(i);
+
+                mainStickersBack[i].texture = null;
+                signStickersBack[i].texture = null;
+
+                mainStickers[i].gameObject.SetActive(false); //끄기
+                mainStickersBack[i].gameObject.SetActive(false);//
+            }
+        }
+        if (anyList.Count < 12)
+        {
+            for (int i = basicStickers.Count - 1; i > 11; --i)
+            {
+                basicStickers[i].texture = basicTextrue;
+                Destroy(basicStickers[i].gameObject);
+                basicStickers.RemoveAt(i);
+            }
+            for (int i = 0; i < MakingObj.Count; i++)
+            {
+                Destroy(MakingObj[i].gameObject);
+                MakingObj.RemoveAt(i);
+            }
+        }
+
+        MakingObj.Clear();
+        if (anyList.Count - 8 > 0)
+        {
+            Debug.Log(anyList.Count);
+            int makingRawImage = anyList.Count - 9;
+            int makingLine = makingRawImage / 4 + 1;
+            for (int k = 0; k < (makingLine); k++)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    go = Instantiate(stickerPrefab, ui_myParent.transform).GetComponent<RawImage>();
+                    MakingObj.Add(go);
+                    basicStickers.Add(go);
+                    ui_RecordSubStickers.Add(go.transform.GetChild(0).GetComponent<RawImage>());
+                }
+            }
+        }*/
+
+
     }
 }
