@@ -9,6 +9,7 @@ public class Func_CalendarController : MonoBehaviour
 {
     const int _totalDateNum = 42;
 
+    [SerializeField] Button goToMain = null;
 
     [SerializeField] private GameObject _item;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
@@ -41,7 +42,7 @@ public class Func_CalendarController : MonoBehaviour
     {
         manager_DiaryCase = FindObjectOfType<Manager_DiaryCase>();
         Init();
-
+        goToMain.gameObject.gameObject.SetActive(false);
     }
 
     private void Init()

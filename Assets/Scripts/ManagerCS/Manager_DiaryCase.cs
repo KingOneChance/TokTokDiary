@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Manager_DiaryCase : MonoBehaviour
 {
+    [SerializeField] Button goToMain = null;
     [SerializeField] GameObject[] panels = null;
     [Header("프로필 고르기")]
     [SerializeField] RawImage[] profiles = null;
@@ -61,6 +62,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
+      
     }
 
     public void OnClick_Profile(int idx)
@@ -79,6 +81,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             panels[0].SetActive(false);
             panels[1].SetActive(true);
+            
         }
         else
         {
@@ -234,6 +237,7 @@ public class Manager_DiaryCase : MonoBehaviour
         selectedProfilPath = "";
         selectedProfileName = "";
         previewImg.texture = null;
+        goToMain.gameObject.SetActive(true);
     }
 
     //이전 일기장으로 연결해주는 버튼함수
