@@ -18,7 +18,7 @@ public class Func_LoadProfilePicture : MonoBehaviour
         }
         FillProfileImg();
     }
-    private void FillProfileImg()
+    public void FillProfileImg()
     {
         for (int i = 0; i < profileImages.Length; i++)
         {
