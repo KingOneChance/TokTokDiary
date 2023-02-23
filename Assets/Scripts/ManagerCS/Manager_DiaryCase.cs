@@ -123,7 +123,6 @@ public class Manager_DiaryCase : MonoBehaviour
             filename = allFiles[i].Split('\\')[1].Split(".")[0];
 #endif
 
-            Debug.Log(filename);
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
@@ -168,6 +167,10 @@ public class Manager_DiaryCase : MonoBehaviour
     {
         previewImg.texture = allFilesTexture[presentNum];
         string lastDay = previewImg.texture.name;
+        string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
+        string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
+        string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        func_CalendarController.ShowPreviewDate(year, month, day);
         Debug.Log("마지막 일기 띄움");
         FindRecordFile(lastDay);
     }

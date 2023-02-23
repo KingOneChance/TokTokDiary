@@ -7,7 +7,6 @@ using TMPro;
 
 public class UI_StickerRepository : MonoBehaviour
 {
-    [SerializeField] Button on = null;
     [Header("===StickerButtons===")]
 
     [SerializeField] private Toggle[] ui_StickerBtns = null;
@@ -69,10 +68,6 @@ public class UI_StickerRepository : MonoBehaviour
     {
         string[] allFiles = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
 
-        if (allFiles.Length == bubbleStickerList.Count + recordingStickerList.Count + recordingSignList.Count + bubbleGunStickerList.Count + bubbleFreeStickerList.Count)
-        {
-            return;
-        }
         //List Initiate for rearrange;
         bubbleStickerList.Clear();
         recordingStickerList.Clear();
@@ -262,6 +257,7 @@ public class UI_StickerRepository : MonoBehaviour
             PlayerPrefs.DeleteKey(sticker.name);
             PlayerPrefs.Save();
             sticker.GetComponent<RawImage>().texture = basicTextrue;
+            sticker.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "0";
         }
         else if(presentNum < int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {
