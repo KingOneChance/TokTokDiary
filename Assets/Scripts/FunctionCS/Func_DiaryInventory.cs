@@ -6,6 +6,9 @@ using System.IO;
 
 public class Func_DiaryInventory : MonoBehaviour
 {
+    public delegate void Del_SendName();
+    public Del_SendName del_SendName;
+
     [Header("===StickerButtons===")]
     // [SerializeField] private Button[] ui_StickerBtns = null;
     [Header("===Stickers===")]
@@ -223,6 +226,8 @@ public class Func_DiaryInventory : MonoBehaviour
             {
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
+                texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                Debug.Log(texture.name +"이름 넣는중");    
 
                 mainStickers[i].gameObject.SetActive(true);
                 mainStickersBack[i].gameObject.SetActive(true);
@@ -247,5 +252,6 @@ public class Func_DiaryInventory : MonoBehaviour
                 }
             }
         }
+            del_SendName();
     }
 }

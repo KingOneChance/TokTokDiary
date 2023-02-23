@@ -54,27 +54,31 @@ public class Data_LinkedList : MonoBehaviour
         if (head == null) return;
         if (head == tail && head.isFirst == true) //리스트에 1개만 있고 생성된 오브젝트일때 삭제후 리턴
         {
-            int num = int.Parse(tail.myObject.name.Split("(")[0]);
-            switch (tail.myObject.tag)
+            int num = 0;
+            if (!tail.myObject.name.Contains("Line"))
             {
-                case "RecordSticker":
-                    //제이슨에서 목록 지우기
-                    Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
-                    //다이어리세이브에서 지우기
-                    func_SaveDiary.RemoveRecordAtList(num);
-                    break;
-                case "FreeSticker":
-                    func_SaveDiary.RemoveFreeAtList(num);
-                    break;
-                case "GunSticker":
-                    func_SaveDiary.RemoveGunAtList(num);
-                    break;
-                case "BubbleSticker":
-                    func_SaveDiary.RemoveBubbleAtList(num);
-                    break;
-                default:
-                    break;
+                num = int.Parse(tail.myObject.name.Split("(")[0]);
             }
+            switch (tail.myObject.tag)
+                {
+                    case "RecordSticker":
+                        //제이슨에서 목록 지우기
+                        Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
+                        //다이어리세이브에서 지우기
+                        func_SaveDiary.RemoveRecordAtList(num);
+                        break;
+                    case "FreeSticker":
+                        func_SaveDiary.RemoveFreeAtList(num);
+                        break;
+                    case "GunSticker":
+                        func_SaveDiary.RemoveGunAtList(num);
+                        break;
+                    case "BubbleSticker":
+                        func_SaveDiary.RemoveBubbleAtList(num);
+                        break;
+                    default:
+                        break;
+                }
             Manager_Main.Instance.manager_PictureDiary.DestroySomthing(head.myObject);
             head = null;
             tail = null;
@@ -90,7 +94,7 @@ public class Data_LinkedList : MonoBehaviour
         if (tail.isFirst == false)//처음 생긴 오브젝트인지 확인 
         {
             //이전과 같은 오브젝트인경우  (트랜스폼 변경)
-            if (tail.myObject == tail.prev.myObject && tail.nodeData.position != tail.prev.nodeData.position) 
+            if (tail.myObject == tail.prev.myObject && tail.nodeData.position != tail.prev.nodeData.position)
             {
                 RectTransform temp = tail.myObject.GetComponent<RectTransform>();
                 temp.rotation = Quaternion.Euler(tail.prev.nodeData.rotation);
@@ -133,9 +137,15 @@ public class Data_LinkedList : MonoBehaviour
         }
         else  //처음 생긴 오브젝트일 경우
         {
-            int num = int.Parse(tail.myObject.name.Split("(")[0]);
-            Debug.Log(tail.myObject.name.Split("(")[0] +" <= 이름");
-            Debug.Log("num");
+            int num = 0;
+            Debug.Log(tail.myObject.name + " <= 이름");
+            if (!tail.myObject.name.Contains("Line"))
+            {
+                num = int.Parse(tail.myObject.name.Split("(")[0]);
+                Debug.Log(tail.myObject.name.Split("(")[0] + " <= 이름");
+                Debug.Log("num");
+            }
+
             switch (tail.myObject.tag)
             {
                 case "RecordSticker":

@@ -18,6 +18,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [Header("===Texture===")]
     [SerializeField] private RawImage mainSticker = null;
     [SerializeField] private RawImage signSticker = null;
+    [SerializeField] private RawImage myRawimage = null;
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private Func_DIarySave func_DiarySave = null;
@@ -29,19 +30,22 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     private RectTransform startTransform;
     private Vector2 mousePos = Vector2.zero;
     [SerializeField] private Vector2 startPos = Vector2.zero;
-    private string stickerName = "";
+    [SerializeField] private string stickerName = "";
 
     private void Awake()
     {
         func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         func_DiarySave = FindObjectOfType<Func_DIarySave>();
-        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
         drawObject = FindObjectOfType<Func_TodayFeelingImage>();
         myRectTransform = GetComponent<RectTransform>();
-        stickerName = GetComponent<RawImage>().texture != null ? GetComponent<RawImage>().texture.name : "";
-        
+        func_DiaryInventory.del_SendName = StickerName;
+        myRawimage = GetComponent<RawImage>();
     }
- 
+    private void StickerName()
+    {
+        Debug.Log("½ºÆ¼Ä¿ÀÇ ÀÌ¸§Àº" + myRawimage.texture.name);
+        stickerName = myRawimage.texture.name;
+    }
 
     public void OnClick_MakeClone()
     {
@@ -74,6 +78,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
             myRectTransform.position = myPos.transform.position;
             return;
         }
+        StickerName();
         GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
@@ -127,8 +132,9 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
+        Debug.Log(stickerName + "±ò±ò");
         // Use Sticker
-        if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker)
+        if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker&& func_DiaryInventory.GetNowType() != StickerType.FreeSticker)
             Manager_Main.Instance.UseSticker(stickerName);
 
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
