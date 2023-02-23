@@ -71,8 +71,12 @@ public class Manager_DiaryCase : MonoBehaviour
         TrashCan.texture = closeTrashCan.texture;
 
         selectedProfileName = profileName[idx - 1].text;
+#if UNITY_ANDROID
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
-
+#else
+          selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
+#endif
+        Debug.Log(selectedProfilPath);
         //프로필 네임 
         Manager_Main.Instance.func_DiaryToJson.SetProfileName(Application.persistentDataPath + "/Profile/" + selectedProfileName);
         savedRecordFinePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Records";
@@ -113,8 +117,12 @@ public class Manager_DiaryCase : MonoBehaviour
         for (int i = 0; i < allFiles.Count; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-
+#if UNITY_ANDROID
+            filename = allFiles[i].Split('/')[11].Split('.')[0];
+#else
             filename = allFiles[i].Split('\\')[1].Split(".")[0];
+#endif
+
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
@@ -159,6 +167,10 @@ public class Manager_DiaryCase : MonoBehaviour
     {
         previewImg.texture = allFilesTexture[presentNum];
         string lastDay = previewImg.texture.name;
+        string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
+        string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
+        string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
+        func_CalendarController.ShowPreviewDate(year, month, day);
         Debug.Log("마지막 일기 띄움");
         FindRecordFile(lastDay);
     }
@@ -170,6 +182,10 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             Debug.Log(jsonFiles[i]);
 
+            for (int k = 0; k < buttonPool.Count; k++)
+            {
+                buttonPool[k].SetActive(false);
+            }
             if (jsonFiles[i].Contains(lastDay) == true)
             {
                 Debug.Log("마지막 일기 사운드 있음");
@@ -177,19 +193,31 @@ public class Manager_DiaryCase : MonoBehaviour
                 break;
             }
             else
+            {
                 Debug.Log("마지막 일기 사운드 없음");
+            }
         }
     }
     List<string> theDayRecordNames = new List<string>();
+    List<Vector2> theDayRecordPos = new List<Vector2>();
     public void InsertRecordButton(string lastDay)
     {
         theDayRecordNames.Clear();
+        theDayRecordPos.Clear();
+        Debug.Log(savedRecordFinePath);
+        Debug.Log(lastDay);
         string[] all = Directory.GetFiles(savedRecordFinePath, "*.wav", SearchOption.AllDirectories);
         for (int i = 0; i < all.Length; i++)
         {
             if (all[i].Contains(lastDay))
                 theDayRecordNames.Add(all[i]);
         }
+        for(int i = 0; i < recordFilesPos.Count; i++)
+        {
+            if (recordFilesNames[i].Contains(lastDay))
+                theDayRecordPos.Add(recordFilesPos[i]);
+        }
+
         for (int j = 0; j < theDayRecordNames.Count; j++) //오디오 소스 이름,레코드 포지션
         {
             CheckButtonPool();
@@ -212,6 +240,12 @@ public class Manager_DiaryCase : MonoBehaviour
             }
         }
         Debug.Log("오브젝트풀 생성완료");
+        for(int k = 0; k<buttonPool.Count; k++)
+        {
+            buttonPool[k].SetActive(false);
+        }
+
+
         for (int k = 0; k < buttonPool.Count; k++)
         {
             Debug.Log("오브젝트풀 처리중");
@@ -220,14 +254,11 @@ public class Manager_DiaryCase : MonoBehaviour
                 Debug.Log(k);
                 Debug.Log(theDayRecordNames[k].ToString());
                 Debug.Log(buttonPool.Count);
-                Vector2 temp = recordFilesPos[k];
+                Vector2 temp = theDayRecordPos[k];
                 buttonPool[k].SetActive(true);
                 buttonPool[k].GetComponent<RectTransform>().position = temp;
-                buttonPool[k].GetComponent<Button>().onClick.RemoveAllListeners();
                 buttonPool[k].GetComponent<Func_SelfAddListner>().SetLissner(theDayRecordNames[k]);
             }
-            else
-                buttonPool[k].SetActive(false);
         }
     }
 
@@ -256,11 +287,11 @@ public class Manager_DiaryCase : MonoBehaviour
         }
         
         previewImg.texture = allFilesTexture[presentNum];
-        FindRecordFile(previewImg.texture.name.Split("-")[0]);
+        FindRecordFile(previewImg.texture.name);
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
-
+    
         func_CalendarController.ShowPreviewDate(year, month, day);
         func_CalendarController.ChangeCalender();
     }
@@ -276,7 +307,7 @@ public class Manager_DiaryCase : MonoBehaviour
             presentNum = allFiles.Count - 1;
         }
         previewImg.texture = allFilesTexture[presentNum];
-        FindRecordFile(previewImg.texture.name.Split("-")[0]);
+        FindRecordFile(previewImg.texture.name);
         string year = previewImg.texture.name.Split("-")[0].Split("_")[0];
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
