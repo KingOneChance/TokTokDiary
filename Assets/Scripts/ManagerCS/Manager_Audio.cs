@@ -63,6 +63,7 @@ public class Manager_Audio : MonoBehaviour
         {
             val_Eff = 1.5f;
         }
+
         bgmSlider.value = val_BGM;
         effSlider.value = val_Eff;
     }
@@ -352,16 +353,22 @@ public class Manager_Audio : MonoBehaviour
     {
         val_BGM = slider.value;
         Manager_Main.Instance.mainAudioSource.volume = val_BGM;
-        if(val_BGM == 0)
+        if (val_BGM == 0)
+        {
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(1.0f, 0.5f, true);
-        else Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
+            Debug.Log("X표시 온");
+        }
+        else
+        {
+            Debug.Log("X표시 다운");
+            Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
+        }
     }
 
     public void SetEffValue(Slider slider)
     {
         val_Eff = slider.value;
-        if (val_Eff == 0)
-            Manager_Main.Instance.effXImage.CrossFadeAlpha(1.0f, 0.5f, true);
+        if (val_Eff == 0) Manager_Main.Instance.effXImage.CrossFadeAlpha(1.0f, 0.5f, true);
         else Manager_Main.Instance.effXImage.CrossFadeAlpha(0f, 0.5f, true);
     }
 
