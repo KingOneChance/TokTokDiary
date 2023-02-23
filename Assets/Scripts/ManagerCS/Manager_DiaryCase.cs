@@ -51,16 +51,20 @@ public class Manager_DiaryCase : MonoBehaviour
     private void Start()
     {
         dataDiary = new Data_Diary();
+
+        nextBtn.gameObject.SetActive(false);
+
+    }
+    private void OnEnable()
+    {
         for (int i = 0; i < profiles.Length; i++)
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
-        nextBtn.gameObject.SetActive(false);
     }
 
     public void OnClick_Profile(int idx)
     {
-
         TrashCan.texture = closeTrashCan.texture;
 
         selectedProfileName = profileName[idx - 1].text;
