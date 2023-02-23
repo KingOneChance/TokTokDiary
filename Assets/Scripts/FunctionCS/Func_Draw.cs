@@ -26,7 +26,7 @@ namespace FreeDraw
         [SerializeField] protected float titleAreaMinX = 0f;
         [SerializeField] protected float titleAreaMaxY = 0f;
         [SerializeField] protected float titleAreaMinY = 0f;
-        [SerializeField] protected Camera mainCam = null; 
+        [SerializeField] protected Camera mainCam = null;
 
         [Header("===InitialClickPoisitionCheck===")]
         [SerializeField] protected bool internalClick = false;
@@ -38,8 +38,8 @@ namespace FreeDraw
         private GameObject tempOBJ;
         protected float currentPenWidth = 0f;
 
-    //    const float Min_Pen_Width = 0.1f;
-    //    const float Max_Pen_Width = 1.0f;
+        //    const float Min_Pen_Width = 0.1f;
+        //    const float Max_Pen_Width = 1.0f;
         public void StopDraw(bool isStop)
         {
             isDragSticker = isStop;
@@ -62,14 +62,14 @@ namespace FreeDraw
 
         protected void Update()
         {
-         /*   if (onObject == false)
-            {
-                if (CheckArea() == true)
-                {
-                    Draw();
-                }
-                else internalClick = false;
-            }*/
+            /*   if (onObject == false)
+               {
+                   if (CheckArea() == true)
+                   {
+                       Draw();
+                   }
+                   else internalClick = false;
+               }*/
         }
 
         protected void Draw()
@@ -123,7 +123,7 @@ namespace FreeDraw
             }
         }
 
-        
+
         public void MMMMMM()
         {
             onObject = true;
@@ -153,7 +153,7 @@ namespace FreeDraw
                     {
                         currentPenWidth = 0.05f;
                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-                   
+
                     }
 
                     else
@@ -216,7 +216,7 @@ namespace FreeDraw
                 case ColorType.Eraser:
                     curColor = new Color32(255, 255, 255, 255);
                     break;
-                case ColorType. WritingEraser:
+                case ColorType.WritingEraser:
                     curColor = new Color32(181, 203, 203, 255);
                     break;
             }
@@ -226,5 +226,5 @@ namespace FreeDraw
         {
             currentPenWidth = Pen_Width.value;
         }
-    }    
+    }
 }
