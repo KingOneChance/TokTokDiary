@@ -71,8 +71,12 @@ public class Manager_DiaryCase : MonoBehaviour
         TrashCan.texture = closeTrashCan.texture;
 
         selectedProfileName = profileName[idx - 1].text;
+#if UNITY_ANDROID
         selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
-
+#else
+          selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
+#endif
+        Debug.Log(selectedProfilPath);
         //프로필 네임 
         Manager_Main.Instance.func_DiaryToJson.SetProfileName(Application.persistentDataPath + "/Profile/" + selectedProfileName);
         savedRecordFinePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Records";
@@ -113,8 +117,13 @@ public class Manager_DiaryCase : MonoBehaviour
         for (int i = 0; i < allFiles.Count; i++)
         {
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
-
+#if UNITY_ANDROID
+            filename = allFiles[i].Split('/')[11].Split('.')[0];
+#else
             filename = allFiles[i].Split('\\')[1].Split(".")[0];
+#endif
+
+            Debug.Log(filename);
             if (byteTexture.Length > 0)
             {
                 Texture2D texture = new Texture2D(0, 0);
