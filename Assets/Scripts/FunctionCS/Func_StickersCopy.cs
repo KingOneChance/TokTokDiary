@@ -21,7 +21,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private Func_DIarySave func_DIarySave = null;
-
+    Func_HelperGuideDrag func_HelperGuideDrag;
 
 
     private RectTransform myRectTransform;
@@ -43,49 +43,59 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
 
     }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
-        drawObject.IsStickerMaking(true);
-        gameObject.transform.SetParent(myGrandPa.transform);
+        Debug.Log("찍힘");
+      if (func_HelperGuideDrag.canDrag == true) return;
+      else
+        {   
+             drawObject.IsStickerMaking(true);
+             gameObject.transform.SetParent(myGrandPa.transform);
+        }
     }
     public void OnDrag(PointerEventData eventData)
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        myRectTransform.position = mousePos;
+        if (func_HelperGuideDrag.canDrag == true) return;
+        else
+        {
+           mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           myRectTransform.position = mousePos;
+        }
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
-        copyRectTransform = newSticker.GetComponent<RectTransform>();
-        copyRectTransform = myRectTransform;
-        newSticker.AddComponent<Func_DragObject>();
-        newSticker.AddComponent<Func_DetectOnSticker>();
-        newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
-        Debug.Log("스티커 상태 :" + func_DiaryInventory.GetNowType().ToString());
-        switch (func_DiaryInventory.GetNowType())
-        {
-            case StickerType.BubbleSticker:
-                break;
-            case StickerType.BubbleGunSticker:
-                break;
-            case StickerType.FreeSticker:
-                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
-                break;
-            case StickerType.RecordSticker:
-                string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
-                newSticker.GetComponent<Button>().onClick.AddListener(() =>
-                {
-                    Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
-                    //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
-                });
-                Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
-                Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
-                func_DIarySave.AddRecordList(buffer);
-                func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
-                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
-                break;
+        if (func_HelperGuideDrag.canDrag == true) return;
+            GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
+            copyRectTransform = newSticker.GetComponent<RectTransform>();
+            copyRectTransform = myRectTransform;
+            newSticker.AddComponent<Func_DragObject>();
+            newSticker.AddComponent<Func_DetectOnSticker>();
+            newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
+            Debug.Log("스티커 상태 :" + func_DiaryInventory.GetNowType().ToString());
+            switch (func_DiaryInventory.GetNowType())
+            {
+                case StickerType.BubbleSticker:
+                    break;
+                case StickerType.BubbleGunSticker:
+                    break;
+                case StickerType.FreeSticker:
+                    newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
+                    break;
+                case StickerType.RecordSticker:
+                    string buffer = func_DiaryInventory.GetRecordName(int.Parse(gameObject.name));
+                    newSticker.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        Manager_Main.Instance.GetAudio().PlayLocalSound(buffer, newSticker, false, false);
+                        //newSticker . RecordToJson으로 위치와 레코드 파일 네임 보내주기
+                    });
+                    Manager_Main.Instance.func_DiaryToJson.AddRecordFileName(buffer);
+                    Manager_Main.Instance.func_DiaryToJson.AddRecordPos(newSticker);
+                    func_DIarySave.AddRecordList(buffer);
+                    func_DIarySave.SetUsedRecordNum(int.Parse(gameObject.name));
+                    newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
+                    break;
         }
-
         myRectTransform.position = myPos.transform.position;
 
         //nodedata plus

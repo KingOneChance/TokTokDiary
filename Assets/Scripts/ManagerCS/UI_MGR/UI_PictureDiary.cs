@@ -73,9 +73,11 @@ public class UI_PictureDiary : MonoBehaviour
     [SerializeField] private MouseType MouseState;
     public MouseType MouseStateInfo { get { return MouseState; } }
 
+    Func_LoadProfilePicture func_LoadProfilePicture = null;
+
     private void Start()
     {
-
+        
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
@@ -266,8 +268,8 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_OpenProfileButton()
     {
        new WaitForEndOfFrame();
-        
         ui_ProfileBackGround.gameObject.SetActive(true);
+        func_LoadProfilePicture = FindObjectOfType<Func_LoadProfilePicture>();
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfilePick.gameObject.SetActive(false);
@@ -285,8 +287,6 @@ public class UI_PictureDiary : MonoBehaviour
             profileImg.transform.GetChild(0).gameObject.SetActive(true);
             
         }
-
-
     }
     public void OnClick_OpenPlusProfile()
     {
@@ -306,7 +306,9 @@ public class UI_PictureDiary : MonoBehaviour
         {
             return;
         }
+        InitProfile();
         ui_ProfilePick.gameObject.SetActive(true);
+       
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfileOverWrite.gameObject.SetActive(false);
@@ -317,16 +319,13 @@ public class UI_PictureDiary : MonoBehaviour
     {
         plusProfileImage.texture = plusSprite.texture;
         newNickName.text = default;
+        InitProfile();
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(true);
-        
     }
     public void OnClick_LoadProfilePicture()
     {
-
-        // Onclick_LoadImage(plusProfileImage);
         ui_ProfilePickImagePlus.gameObject.SetActive(true);
-
     }
     
     public void PickProfileImage(RawImage picked)
@@ -344,6 +343,7 @@ public class UI_PictureDiary : MonoBehaviour
         SaveTextureToPng(plusProfileImage.texture, savePath, newNickName.text);
         plusProfileImage.texture = plusSprite.texture;
         newNickName.text = default;
+        InitProfile();
         ui_ProfileMain.gameObject.SetActive(true);
         ui_ProfilePlus.gameObject.SetActive(false);
     }
@@ -407,12 +407,15 @@ public class UI_PictureDiary : MonoBehaviour
     //수정할 프로필 고르기
     public void OnClick_ExitPickProfile()
     {
+        InitProfile();
         ui_ProfilePick.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(true);
+
     }
 
     public void OnClick_PickToOverWriteImage(RawImage picked)
     {
+        InitProfile();
         ui_ProfileOverWrite.gameObject.SetActive(true);
         ui_ProfilePick.gameObject.SetActive(false);
         overWriteImage.texture = picked.texture;
@@ -437,7 +440,6 @@ public class UI_PictureDiary : MonoBehaviour
     } // x 버튼 , 취소버튼
     public void OnClick_ChangeProfilePicture()//rawImage 사진나오는곳
     {
-        //Onclick_LoadImage(overWriteImage);
         ui_ProfilePickImageOverWrite.gameObject.SetActive(true);
 
     }
@@ -456,7 +458,7 @@ public class UI_PictureDiary : MonoBehaviour
         TobeEmpty(path);
         string savePath = Application.persistentDataPath + "/Profile/" + overWriteNickName.text + "/";
         SaveTextureToPng(overWriteImage.texture, savePath, overWriteNickName.text);
-
+        InitProfile();
     }
     private void TobeEmpty(string path)
     {
@@ -497,6 +499,7 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_RealDelete()
     {
         DeleteDirectory();
+        InitProfile();
         ui_ProfileDelete.gameObject.SetActive(false);
         ui_ProfilePick.gameObject.SetActive(false);
         ui_ProfilePlus.gameObject.SetActive(false);
@@ -505,4 +508,9 @@ public class UI_PictureDiary : MonoBehaviour
     }
     #endregion
 
+    private void InitProfile()
+    {
+        func_LoadProfilePicture.FillProfileImg();
+             func_LoadProfilePicture.FillOverWrite();
+    }
 }
