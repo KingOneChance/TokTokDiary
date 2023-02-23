@@ -50,6 +50,7 @@ public class Manager_Main : MonoBehaviour
     public GameObject ui_volumePanel { get; private set; }
     public GameObject volumeButton = null;
     private bool isvolumePanelOn = false;
+    public bool IsVolumePanelOn { get { return isvolumePanelOn; } private set { } }
     public RectTransform[] buttonPos = null;
     public RawImage bgmXImage = null;
     public RawImage effXImage = null;
