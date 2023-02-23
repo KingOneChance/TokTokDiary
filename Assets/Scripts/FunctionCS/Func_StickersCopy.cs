@@ -21,7 +21,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     [Header("===Scripts===")]
     [SerializeField] private Func_DiaryInventory func_DiaryInventory = null;
     [SerializeField] private Func_DIarySave func_DiarySave = null;
-
+    Func_HelperGuideDrag func_HelperGuideDrag;
 
 
     private RectTransform myRectTransform;
@@ -44,18 +44,30 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
 
     }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
-        drawObject.IsStickerMaking(true);
-        gameObject.transform.SetParent(myGrandPa.transform);
+        Debug.Log("ÂïÈû");
+      if (func_HelperGuideDrag.canDrag == true) return;
+      else
+        {   
+             drawObject.IsStickerMaking(true);
+             gameObject.transform.SetParent(myGrandPa.transform);
+        }
     }
     public void OnDrag(PointerEventData eventData)
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        myRectTransform.position = mousePos;
+        if (func_HelperGuideDrag.canDrag == true) return;
+        else
+        {
+           mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           myRectTransform.position = mousePos;
+        }
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (func_HelperGuideDrag.canDrag == true) return;
+
         GameObject newSticker = Instantiate(mySticker, myGrandPa.transform);
         copyRectTransform = newSticker.GetComponent<RectTransform>();
         copyRectTransform = myRectTransform;
@@ -88,7 +100,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
             default:
                 break;
         }
-
         myRectTransform.position = myPos.transform.position;
 
         //nodedata plus
