@@ -153,7 +153,6 @@ namespace FreeDraw
                     {
                         currentPenWidth = 0.05f;
                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-
                     }
 
                     else

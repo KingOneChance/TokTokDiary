@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class Func_FreeStickerDraw : Func_Draw
 {
     [SerializeField] private Transform LinesParent = null;
-    [SerializeField] private float currentPenWidth_Free = 0f;
-    [SerializeField] private LineRenderer lineRenderer;
+    //[SerializeField] private float currentPenWidth_Free = 0f;
+    //Func_Draw func_draw;
+    public float penWidth;
+
+
 
     protected new void Start()
     {
-        currentPenWidth_Free = 0.1f;
+        base.currentPenWidth = 0.5f;
+        GetComponent<Button>().onClick.AddListener(OnClick);
     }
     public new void Update()
     {
@@ -33,21 +37,31 @@ public class Func_FreeStickerDraw : Func_Draw
         }
     }
 
+    public void SetPenWidth(float width)
+    {
+        base.currentPenWidth = width;
+    }
+
+    public void OnClick()
+    {
+        SetPenWidth(penWidth);
+    }
     public void OnClick_WidthLarge()
     {
-        lineRenderer.startWidth = 0.3f;
-        lineRenderer.endWidth = 0.3f;
+        base.currentPenWidth = 0.3f;
+        
+    
     }
 
     public void OnClick_WidthMedium()
     {
-        lineRenderer.startWidth = 0.2f;
-        lineRenderer.endWidth = 0.2f;
+        base.currentPenWidth = 0.2f;
+    
     }
 
     public void OnClick_WidthSmall()
     {
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
+        base.currentPenWidth = 0.1f;
+    
     }
 }
