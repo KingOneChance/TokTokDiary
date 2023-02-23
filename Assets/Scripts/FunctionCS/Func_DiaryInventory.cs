@@ -234,7 +234,7 @@ public class Func_DiaryInventory : MonoBehaviour
                     int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("\\")[1].Split(".")[0]));
                     int usedCount = func_DiarySave.GetUsedBubbleNum();
 
-          /*          if(Manager_Main.Instance.GetCurStickerUserCount("불러오려는 스티커") == "0")
+                    /*if(Manager_Main.Instance.GetCurStickerUserCount("불러오려는 스티커") == "0")
                     {
                         // 파일 삭제하고
                         PlayerPrefs.DeleteKey("불러오려는 스티커");
