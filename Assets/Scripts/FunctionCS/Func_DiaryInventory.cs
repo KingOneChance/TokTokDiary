@@ -122,11 +122,11 @@ public class Func_DiaryInventory : MonoBehaviour
                 {
                     recordingSignList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleGun"))
+                else if (allFiles[i].Contains("BubbleGunSticker"))
                 {
                     bubbleGunStickerList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleFree"))
+                else if (allFiles[i].Contains("BubbleFreeSticker"))
                 {
                     bubbleFreeStickerList.Add(allFiles[i]);
                 }

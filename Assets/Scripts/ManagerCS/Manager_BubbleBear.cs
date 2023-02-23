@@ -37,7 +37,7 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject sceneBefore = null;
     [SerializeField] private GameObject sceneNext = null;
     [SerializeField] private GameObject restartAll = null;
-
+    [SerializeField] private GameObject stickerRepo = null;
     [SerializeField] private GameObject hedgehogStage = null;
 
     [Header("===StageUI===")]
@@ -73,7 +73,7 @@ public class Manager_BubbleBear : MonoBehaviour
         finishCanvas.SetActive(false);
         drawCam.SetActive(false);
         buttonBefore.SetActive(false);
-
+        stickerRepo.SetActive(false);
         toggleBoddy.SetActive(true);
         toggleBelly.SetActive(false);
         toggleHead.SetActive(false);
@@ -327,6 +327,7 @@ public class Manager_BubbleBear : MonoBehaviour
         finishCanvas.SetActive(true);
         checkCanvas.SetActive(false);
         restartAll.SetActive(true);
+        stickerRepo.SetActive(true);
         sceneBefore.SetActive(false);
         nowState = NowStateInAudio.Done;
 
