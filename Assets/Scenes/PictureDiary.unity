@@ -326,8 +326,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 218923}
   signSticker: {fileID: 2008800316}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &218922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6962,8 +6966,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 335846538}
   signSticker: {fileID: 923612941}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &335846537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7686,8 +7694,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
-        m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
+      - m_Target: {fileID: 1331872541}
+        m_TargetAssemblyTypeName: Func_DiarySave, Assembly-CSharp
         m_MethodName: SaveTempCapture
         m_Mode: 1
         m_Arguments:
@@ -8136,8 +8144,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 376608626}
   signSticker: {fileID: 1523923273}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &376608625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8887,7 +8899,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -8899,7 +8911,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -13472,8 +13484,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 669524827}
   signSticker: {fileID: 2107987768}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &669524826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14348,8 +14364,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 686247863}
   signSticker: {fileID: 622904789}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &686247862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17077,7 +17097,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -17089,7 +17109,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -19291,8 +19311,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 975221185}
   signSticker: {fileID: 1784517981}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &975221184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21075,8 +21099,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1022845173}
   signSticker: {fileID: 839050170}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &1022845172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24422,7 +24450,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -24434,7 +24462,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -26307,8 +26335,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
-        m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
+      - m_Target: {fileID: 1331872541}
+        m_TargetAssemblyTypeName: Func_DiarySave, Assembly-CSharp
         m_MethodName: OnClick_Save
         m_Mode: 1
         m_Arguments:
@@ -26378,7 +26406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1331872540}
-  - component: {fileID: 1331872539}
+  - component: {fileID: 1331872541}
   m_Layer: 0
   m_Name: SaveObject
   m_TagString: Untagged
@@ -26386,32 +26414,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1331872539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331872538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821a2da9a3272d54fa68fa01ee1e71f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveFileName: 
-  saveTemp: {fileID: 81226}
-  backGroundColor: {r: 0.8745099, g: 0.93725497, b: 0.9058824, a: 1}
-  saveImage: {fileID: 1933279041}
-  startXPos: 0
-  startYPos: 0
-  widthValue: 0
-  heightValue: 0
-  canSave: 0
-  profileName: 
-  recordFileNames: []
-  recordUsedNum: 
-  func_DiaryInventory: {fileID: 0}
-  uI_PictureDiary: {fileID: 0}
 --- !u!4 &1331872540
 Transform:
   m_ObjectHideFlags: 0
@@ -26427,6 +26429,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1331872541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331872538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821a2da9a3272d54fa68fa01ee1e71f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveFileName: 
+  saveTemp: {fileID: 81226}
+  backGroundColor: {r: 1, g: 0.8443396, b: 0.8443396, a: 1}
+  saveImage: {fileID: 1933279041}
+  startXPos: 0
+  startYPos: 0
+  widthValue: 0
+  heightValue: 0
+  canSave: 0
+  profileName: 
+  recordFileNames: []
+  recordUsedNum: 
+  bubbleUsedNum: 
+  freeUsedNum: 
+  gunUsedNum: 
+  func_DiaryInventory: {fileID: 0}
+  uI_PictureDiary: {fileID: 0}
 --- !u!1 &1346412860
 GameObject:
   m_ObjectHideFlags: 0
@@ -27626,7 +27657,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -27638,7 +27669,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -28019,8 +28050,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1425523917}
   signSticker: {fileID: 304002934}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &1425523921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30940,8 +30975,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1628774431}
   signSticker: {fileID: 1017696183}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &1628774430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33515,8 +33554,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1793396629}
   signSticker: {fileID: 947458677}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &1793396628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36584,8 +36627,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 1935584531}
   signSticker: {fileID: 1057081443}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &1935584530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39283,7 +39330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -39295,7 +39342,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -39560,8 +39607,12 @@ MonoBehaviour:
   drawObject: {fileID: 0}
   mainSticker: {fileID: 2069775677}
   signSticker: {fileID: 1389338389}
+  myRawimage: {fileID: 0}
   func_DiaryInventory: {fileID: 0}
-  func_DIarySave: {fileID: 0}
+  func_DiarySave: {fileID: 0}
+  func_HelperGuideDrag: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  stickerName: 
 --- !u!114 &2069775676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40346,7 +40397,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetCansave
         m_Mode: 6
@@ -40358,7 +40409,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1331872539}
+      - m_Target: {fileID: 1331872541}
         m_TargetAssemblyTypeName: Func_DIarySave, Assembly-CSharp
         m_MethodName: OnClick_SetProfileName
         m_Mode: 1
@@ -40516,6 +40567,7 @@ MonoBehaviour:
   bubbleGunStickerList: []
   bubbleFreeStickerList: []
   nowStickerType: 0
+  path: 
 --- !u!1 &2116987573
 GameObject:
   m_ObjectHideFlags: 0
@@ -41830,11 +41882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_RootOrder
@@ -41842,27 +41894,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41894,11 +41946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -849
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 439
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 8135898543358956389, guid: 6723b2d00d5d1f840830676245a5fcba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 
 namespace FreeDraw
 {
@@ -27,7 +27,7 @@ namespace FreeDraw
 
         private void Update()
         {
-            
+            saveFileName = DateTime.Now.ToString("yyyy_MM_dd");
         }
 
         protected override void Start()

@@ -123,13 +123,12 @@ public class Func_SaveSticker : MonoBehaviour
                 nowNum = Manager_Main.Instance.GetFreeStickerNum(freeStickerFolder);
                 Manager_Main.Instance.SetFreeStickerNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{freeStickerFolder}/", saveFileName + "-" + nowNum);
-                Manager_Main.Instance.SaveSticker(saveFileName + "_" + nowNum);
                 break;
             case StickerType.Diary:
                 nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum);
-                //Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
+                Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
                 //제이슨 저장 02.21 김원찬 해야할 일
                 if (recordFile == true)
                 {
