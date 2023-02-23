@@ -257,7 +257,7 @@ public class UI_StickerRepository : MonoBehaviour
             PlayerPrefs.DeleteKey(sticker.name);
             PlayerPrefs.Save();
             sticker.GetComponent<RawImage>().texture = basicTextrue;
-            sticker.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "0";
+            sticker.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
         else if(presentNum < int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {

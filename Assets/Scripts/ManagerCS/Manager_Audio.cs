@@ -40,7 +40,7 @@ public class Manager_Audio : MonoBehaviour
         AddAllClipsToDic(TouchSounds);
         AddAllClipsToDic(CommonSounds);
     }
-
+   
     /// <summary>
     /// Init volume value
     /// </summary>
@@ -364,7 +364,22 @@ public class Manager_Audio : MonoBehaviour
             Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
         }
     }
+    public void CheckVolume()
+    {
+        if (val_BGM == 0)
+        {
+            Manager_Main.Instance.bgmXImage.CrossFadeAlpha(1.0f, 0.5f, true);
+            Debug.Log("X표시 온");
+        }
+        else
+        {
+            Debug.Log("X표시 다운");
+            Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
+        }
 
+        if (val_Eff == 0) Manager_Main.Instance.effXImage.CrossFadeAlpha(1.0f, 0.5f, true);
+        else Manager_Main.Instance.effXImage.CrossFadeAlpha(0f, 0.5f, true);
+    }
     public void SetEffValue(Slider slider)
     {
         val_Eff = slider.value;
