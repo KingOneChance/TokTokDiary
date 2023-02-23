@@ -19,6 +19,8 @@ public class Func_Tilt : MonoBehaviour
     private bool isSwipeDown = false;
     private bool isSolutionFall = false;
 
+    private bool stopSolutionFall = true;
+
     private void Start()
     {
         tiltObj = GetComponent<RectTransform>();
@@ -86,8 +88,9 @@ public class Func_Tilt : MonoBehaviour
 
     private void TiltUp()
     {
+        stopSolutionFall = true;
         beakerSolutionImg.gameObject.SetActive(false);
-        StopCoroutine(CO_FallSolution());
+        //StopCoroutine(CO_FallSolution());
         tiltObj.localEulerAngles += -1 * angle * Time.deltaTime * 100f;
         if (tiltObj.rotation.z < 0f)
         {
@@ -98,12 +101,21 @@ public class Func_Tilt : MonoBehaviour
     private IEnumerator CO_FallSolution()
     {
         isSolutionFall = true;
+        stopSolutionFall = false;
         int count = 0;
         for (int i = 0; i < 3; i++)
         {
-            Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, gameObject, true, true);
+            Manager_Main.Instance.GetAudio().PlaySound("PongPong", SoundType.BubbleSticker, gameObject, false, true);
             while (true)
             {
+                if (stopSolutionFall == true)
+                {
+                    NextButton.gameObject.SetActive(false);
+                    beakerSolutionImgPos.position = beakerSolutionImgInitPos.position;
+                    isSolutionFall = false;
+                    stopSolutionFall = true;
+                    yield break;
+                }
                 if(count == 25)
                 {
                     count = 0;
