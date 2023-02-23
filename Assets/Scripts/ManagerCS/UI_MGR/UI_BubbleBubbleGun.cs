@@ -31,7 +31,9 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     Func_GunCollision func_GunCollision = null;
     void Start()
     {
-        func_GunCollision = FindObjectOfType<Func_GunCollision>();
+        followImage.transform.position = new Vector3(2000, 2000, 2000);
+        followObject.transform.position = new Vector3(2000, 2000, 2000);
+       func_GunCollision = FindObjectOfType<Func_GunCollision>();
         randStickerNum = Random.Range(0, randImages.Length);
         
         randImages[randStickerNum].gameObject.SetActive(true);

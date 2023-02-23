@@ -56,6 +56,10 @@ MonoBehaviour:
   <func_DiaryToJson>k__BackingField: {fileID: 2014360371647384666}
   <ui_volumePanel>k__BackingField: {fileID: 4532158373711754346}
   volumeButton: {fileID: 4532158373842098223}
+  buttonPos:
+  - {fileID: 1759225006689525283}
+  - {fileID: 8394642718335954116}
+  - {fileID: 2961693454035220660}
   mainAudioSource: {fileID: 842087781479576606}
   getBubbleGunStickerNum: 0
   getAudioStickerNum: 0
@@ -366,8 +370,17 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8076677025633486733}
+    - target: {fileID: 8885002188853084991, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3818636585261483290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+--- !u!224 &1759225006689525283 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4555238359834100030, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+  m_PrefabInstance: {fileID: 2836547541952339741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2161699156532315897 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4225103347697146340, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
@@ -379,6 +392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2961693454035220660 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1028927880887658409, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+  m_PrefabInstance: {fileID: 2836547541952339741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4532158372690986405 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1853238887352933048, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
@@ -405,6 +423,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8394642718335954116 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5990548257601254361, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+  m_PrefabInstance: {fileID: 2836547541952339741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5097337398694215193
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,9 +62,11 @@ public class Func_SwellUp : MonoBehaviour
             {
                 if (idx == 3)
                 {
+                    swellUpImg.GetComponent<Button>().onClick.AddListener(OnClick_SwellUpBubble);
                     stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
                     stickerInBubbleImg.gameObject.SetActive(true);
                     helperGuideClick.GetComponent<RectTransform>().position = helperGuideClickMovePos.position;
+                    helperGuideClick.gameObject.SetActive(true);
                     yield break;
                 }
                 swellUpButton.interactable = true;

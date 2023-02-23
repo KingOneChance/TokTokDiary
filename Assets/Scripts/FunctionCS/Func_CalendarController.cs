@@ -9,6 +9,7 @@ public class Func_CalendarController : MonoBehaviour
 {
     const int _totalDateNum = 42;
 
+    [SerializeField] Button goToMain = null;
 
     [SerializeField] private GameObject _item;
     [SerializeField] private List<GameObject> _dateItems = new List<GameObject>();
@@ -28,8 +29,7 @@ public class Func_CalendarController : MonoBehaviour
     private DateTime _dateTime;
 
     private string[] monthStr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-    [SerializeField] private Sprite[] monthSprites = null;
-    [SerializeField] private RawImage monthImage = null;
+    [SerializeField] private RawImage[] monthImages = null;
     private string myName = "";
 
     private List<int> days = new List<int>();
@@ -37,11 +37,12 @@ public class Func_CalendarController : MonoBehaviour
     [SerializeField] Manager_DiaryCase manager_DiaryCase;
 
 
+
     private void OnEnable()
     {
         manager_DiaryCase = FindObjectOfType<Manager_DiaryCase>();
         Init();
-
+        goToMain.gameObject.gameObject.SetActive(false);
     }
 
     private void Init()
@@ -86,7 +87,10 @@ public class Func_CalendarController : MonoBehaviour
     //date = 0;
     private void CreateCalendar()
     {
-
+        for(int i = 0; i < monthImages.Length; i++)
+        {
+            monthImages[i].gameObject.SetActive(false);
+        }
         DateTime firstDay = _dateTime.AddDays(-(_dateTime.Day - 1));
         int index = GetDays(firstDay.DayOfWeek);
         int date = 0;
@@ -98,39 +102,51 @@ public class Func_CalendarController : MonoBehaviour
         {
             case 1:
                 _monthStrText.text = monthStr[0];
+                monthImages[0].gameObject.SetActive(true);
                 break;
             case 2:
                 _monthStrText.text = monthStr[1];
+                monthImages[1].gameObject.SetActive(true);
                 break;
             case 3:
                 _monthStrText.text = monthStr[2];
+                monthImages[2].gameObject.SetActive(true);
                 break;
             case 4:
                 _monthStrText.text = monthStr[3];
+                monthImages[3].gameObject.SetActive(true);
                 break;
             case 5:
                 _monthStrText.text = monthStr[4];
+                monthImages[4].gameObject.SetActive(true);
                 break;
             case 6:
                 _monthStrText.text = monthStr[5];
+                monthImages[5].gameObject.SetActive(true);
                 break;
             case 7:
                 _monthStrText.text = monthStr[6];
+                monthImages[6].gameObject.SetActive(true);
                 break;
             case 8:
                 _monthStrText.text = monthStr[7];
+                monthImages[7].gameObject.SetActive(true);
                 break;
             case 9:
                 _monthStrText.text = monthStr[8];
+                monthImages[8].gameObject.SetActive(true);
                 break;
             case 10:
                 _monthStrText.text = monthStr[9];
+                monthImages[9].gameObject.SetActive(true);
                 break;
             case 11:
                 _monthStrText.text = monthStr[10];
+                monthImages[10].gameObject.SetActive(true);
                 break;
             case 12:
                 _monthStrText.text = monthStr[11];
+                monthImages[11].gameObject.SetActive(true);
                 break;
         }
 

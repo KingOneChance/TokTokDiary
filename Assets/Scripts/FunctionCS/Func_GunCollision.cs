@@ -13,7 +13,8 @@ public class Func_GunCollision : MonoBehaviour
     [SerializeField] private Sprite[] middleImages = null;
     //±ú²ýÇÑ ºñ´°¹æ¿ïµé
     [SerializeField] private Sprite[] claenImages = null;
-
+    //Ä¸ÃÄÈÄ ²ø ÀÌ¹ÌÁö
+    [SerializeField] public Image offImage = null;
     //
     [SerializeField] private RawImage stickerBackGround = null;
     [SerializeField] private Image stickerBackGroundImage = null;
@@ -39,7 +40,8 @@ public class Func_GunCollision : MonoBehaviour
     private int randNum = 0;
     private void Start()
     {
-        for(int i = 0; i < blacks.Length; i++)
+        
+        for (int i = 0; i < blacks.Length; i++)
         {
             whiteList.Add(blacks[i]);
             cleanList.Add(blacks[i]);
@@ -64,7 +66,7 @@ public class Func_GunCollision : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<RawImage>().texture.name.Contains("dirty"))
         {
-            Debug.Log(collision.gameObject.GetComponent<RawImage>().texture.name);
+            
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             blackList.Remove(collision.gameObject.GetComponent<RawImage>());
             //´ÛÀÌ´Â »ç¿îµå ¹× ÀÌÆåÆ®
@@ -112,7 +114,6 @@ public class Func_GunCollision : MonoBehaviour
         switch (bubbleState)
         {
             case "dirty":
-                Debug.Log(middleImages.Length);
                 for(int i =0; i< middleImages.GetLength(0); i++)
                 {
                     if (middleImages[i].name.Contains(bubbleColor))
@@ -154,6 +155,7 @@ public class Func_GunCollision : MonoBehaviour
         string fileName = ui_BubbleBubbleGun.sticker.sprite.name;
             
         func_BubbleGunSave.SaveBubbleGun(fileName);
+
     }
     IEnumerator DisappearSticker()
     {

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Manager_DiaryCase : MonoBehaviour
 {
+    [SerializeField] Button goToMain = null;
     [SerializeField] GameObject[] panels = null;
     [Header("프로필 고르기")]
     [SerializeField] RawImage[] profiles = null;
@@ -36,7 +37,9 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private Sprite closeTrashCan = null;
     [SerializeField] private RawImage TrashCan = null;
     [SerializeField] private Button prevBtn = null; 
-    [SerializeField] private Button nextBtn = null; 
+    [SerializeField] private Button nextBtn = null;
+
+ 
  
     [Header("===JsonData===")]
     [SerializeField] private List<string> recordFilesNames = new List<string>();
@@ -46,21 +49,25 @@ public class Manager_DiaryCase : MonoBehaviour
     [SerializeField] private Data_Diary dataDiary = null;
     [SerializeField] private GameObject buttonPrefab = null;
 
-
     public int presentNum = 0;
     private void Start()
     {
         dataDiary = new Data_Diary();
+
+        nextBtn.gameObject.SetActive(false);
+
+    }
+    private void OnEnable()
+    {
         for (int i = 0; i < profiles.Length; i++)
         {
             if (profiles[i].texture == null) profileButton[i].interactable = false;
         }
-        nextBtn.gameObject.SetActive(false);
+      
     }
 
     public void OnClick_Profile(int idx)
     {
-
         TrashCan.texture = closeTrashCan.texture;
 
         selectedProfileName = profileName[idx - 1].text;
@@ -75,6 +82,7 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             panels[0].SetActive(false);
             panels[1].SetActive(true);
+            
         }
         else
         {
@@ -249,6 +257,7 @@ public class Manager_DiaryCase : MonoBehaviour
         selectedProfilPath = "";
         selectedProfileName = "";
         previewImg.texture = null;
+        goToMain.gameObject.SetActive(true);
     }
 
     //이전 일기장으로 연결해주는 버튼함수
