@@ -10852,7 +10852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC120\uD0DD\uD558\uC2E4 \uD504\uB85C\uD544\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694!"
+  m_text: "\uC800\uC7A5\uD558\uC2E4 \uD504\uB85C\uD544\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c691322c051c35f44a597628b3b6096f, type: 2}
   m_sharedMaterial: {fileID: 8561530843365053182, guid: c691322c051c35f44a597628b3b6096f, type: 2}
@@ -11637,6 +11637,7 @@ GameObject:
   - component: {fileID: 574320455}
   - component: {fileID: 574320457}
   - component: {fileID: 574320456}
+  - component: {fileID: 574320458}
   m_Layer: 5
   m_Name: ProfileBackGround
   m_TagString: Untagged
@@ -11709,6 +11710,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574320454}
   m_CullTransparentMesh: 1
+--- !u!114 &574320458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574320454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e1d9d50571a849a4de4372096c208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profileImages:
+  - {fileID: 1201897219}
+  - {fileID: 843353437}
+  - {fileID: 2114422389}
+  - {fileID: 1415720527}
+  - {fileID: 399717558}
+  - {fileID: 2052329557}
+  textMeshProUGUI:
+  - {fileID: 941765941}
+  - {fileID: 2006048173}
+  - {fileID: 1887392357}
+  - {fileID: 50418646}
+  - {fileID: 889337728}
+  - {fileID: 1014855991}
+  selectedFrameImages:
+  - {fileID: 1649203621}
+  - {fileID: 1031670761}
+  - {fileID: 825058046}
+  - {fileID: 489802682}
+  - {fileID: 576257119}
+  - {fileID: 2123753418}
+  profileOverWriteImages:
+  - {fileID: 15240866}
+  - {fileID: 987485557}
+  - {fileID: 1127542558}
+  - {fileID: 1802027092}
+  - {fileID: 453457109}
+  - {fileID: 1361399756}
+  textMeshProUGUIOverWrite:
+  - {fileID: 1690353965}
+  - {fileID: 396160388}
+  - {fileID: 1639448151}
+  - {fileID: 281581216}
+  - {fileID: 577046030}
+  - {fileID: 1584047562}
 --- !u!1 &576257117
 GameObject:
   m_ObjectHideFlags: 0
@@ -38175,7 +38223,6 @@ GameObject:
   - component: {fileID: 2009485241}
   - component: {fileID: 2009485244}
   - component: {fileID: 2009485243}
-  - component: {fileID: 2009485242}
   m_Layer: 5
   m_Name: ProfilePickProfileToOverWrite
   m_TagString: Untagged
@@ -38205,33 +38252,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2009485242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009485240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 534e1d9d50571a849a4de4372096c208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profileImages:
-  - {fileID: 15240866}
-  - {fileID: 987485557}
-  - {fileID: 1127542558}
-  - {fileID: 1802027092}
-  - {fileID: 453457109}
-  - {fileID: 1361399756}
-  textMeshProUGUI:
-  - {fileID: 1690353965}
-  - {fileID: 396160388}
-  - {fileID: 1639448151}
-  - {fileID: 281581216}
-  - {fileID: 577046030}
-  - {fileID: 1584047562}
-  selectedFrameImages: []
 --- !u!114 &2009485243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38745,7 +38765,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036005197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 534e1d9d50571a849a4de4372096c208, type: 3}
   m_Name: 
@@ -38771,6 +38791,8 @@ MonoBehaviour:
   - {fileID: 489802682}
   - {fileID: 576257119}
   - {fileID: 2123753418}
+  profileOverWriteImages: []
+  textMeshProUGUIOverWrite: []
 --- !u!1 &2036859601
 GameObject:
   m_ObjectHideFlags: 0
