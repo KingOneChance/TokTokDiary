@@ -43,8 +43,11 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     }
     private void StickerName()
     {
-        Debug.Log("스티커의 이름은" + myRawimage.texture.name);
-        stickerName = myRawimage.texture.name;
+        if (myRawimage.texture != null)
+        {
+            Debug.Log("스티커의 이름은" + myRawimage.texture.name);
+            stickerName = myRawimage.texture.name;
+        }
     }
 
     public void OnClick_MakeClone()
@@ -54,17 +57,16 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("찍힘");
-      //  if (func_HelperGuideDrag.canDrag == true) return;
-
+        //  if (func_HelperGuideDrag.canDrag == true) return;
+        if (gameObject.tag == "CannotMake") return;
         drawObject.IsStickerMaking(true);
         gameObject.transform.SetParent(myGrandPa.transform);
 
     }
     public void OnDrag(PointerEventData eventData)
     {
-      //  if (func_HelperGuideDrag.canDrag == true) return;
-
+        //  if (func_HelperGuideDrag.canDrag == true) return;
+        if (gameObject.tag == "CannotMake") return;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         myRectTransform.position = mousePos;
 
@@ -72,6 +74,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     public void OnEndDrag(PointerEventData eventData)
     {
         //  if (func_HelperGuideDrag.canDrag == true) return;
+        if (gameObject.tag == "CannotMake") return;
         if (Input.mousePosition.x < 540)
         {
             gameObject.transform.SetParent(myParents.transform);
@@ -91,15 +94,18 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
             case StickerType.BubbleSticker:
                 newSticker.tag = "BubbleSticker";
                 func_DiarySave.SetUsedBubbleNum(int.Parse(gameObject.name));
+                func_DiaryInventory.OnClick_BubbleStickerRepository();
                 break;
             case StickerType.BubbleGunSticker:
                 newSticker.tag = "GunSticker";
                 func_DiarySave.SetUsedGunNum(int.Parse(gameObject.name));
+                func_DiaryInventory.OnClick_BubbleGunStickerRepository();
                 break;
             case StickerType.FreeSticker:
                 newSticker.tag = "FreeSticker";
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
                 func_DiarySave.SetUsedFreeNum(int.Parse(gameObject.name));
+                func_DiaryInventory.OnClick_BubbleFreeStickerRepository();
                 break;
             case StickerType.RecordSticker:
                 newSticker.tag = "RecordSticker";
@@ -114,6 +120,7 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 func_DiarySave.AddRecordList(buffer);
                 func_DiarySave.SetUsedRecordNum(int.Parse(gameObject.name)); //이대로 자유스티커에 넣어줘야함 , name은 인덱스
                 newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2.5f);
+                func_DiaryInventory.OnClick_RecordFileRepository();
                 break;
             default:
                 break;
@@ -134,10 +141,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         Debug.Log(stickerName + "깔깔");
         // Use Sticker
-        if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker&& func_DiaryInventory.GetNowType() != StickerType.FreeSticker)
-            Manager_Main.Instance.UseSticker(stickerName);
+   /*     if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker && func_DiaryInventory.GetNowType() != StickerType.FreeSticker)
+            Manager_Main.Instance.UseSticker(stickerName);*/
 
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
+
+
+
 
         //오디오 매니저 사용 방법
         //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);

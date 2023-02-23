@@ -303,8 +303,7 @@ public class Manager_Main : MonoBehaviour
             return;
         }
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
-        if (PlayerPrefs.GetInt(stickerName) == 0)
-            PlayerPrefs.DeleteKey(stickerName);
+
         PlayerPrefs.Save();
         Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
@@ -325,7 +324,7 @@ public class Manager_Main : MonoBehaviour
         if (PlayerPrefs.HasKey(stickerName) == false)
         {
             Debug.LogError("The sticker you are trying to get useNum does not exist. Please check Again - Request JongHoon");
-            return "";
+            return "-1";
         }
         return PlayerPrefs.GetInt(stickerName).ToString();
     }

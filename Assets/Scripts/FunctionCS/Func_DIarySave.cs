@@ -130,15 +130,17 @@ public class Func_DIarySave : Func_SaveSticker
             allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGunSticker", "*.png", SearchOption.AllDirectories);
             for (int i = 0; i < gunUsedNum.Count; i++)
             {
-                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleGunSticker")[1].Split(".")[0])) == 1) // 인자값 스티커 이름삭제
+              /*  if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("\\")[1].Split(".")[0])) == 1) // 인자값 1이면 ,스티커 이름삭제
                 {
                     string freeBuffer = func_DiaryInventory.GetGunStickerList(gunUsedNum[i]);
                     DeleteFile(freeBuffer);
                 }
                 else
                 {
-                    Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleGunSticker")[1].Split(".")[0]);
-                }
+                    Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("\\")[1].Split(".")[0]);
+                }*/
+                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("\\")[1].Split(".")[0]);
+
             }
         }
         if (Directory.Exists(Application.persistentDataPath + "/BubbleSticker"))
@@ -146,18 +148,21 @@ public class Func_DIarySave : Func_SaveSticker
             allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleSticker", "*.png", SearchOption.AllDirectories);
             for (int i = 0; i < bubbleUsedNum.Count; i++)
             {
-                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleSticker")[1].Split(".")[0])) == 1) //삭제
-                {
-                    string freeBuffer = func_DiaryInventory.GetbubbleStickerList(bubbleUsedNum[i]);
-                    DeleteFile(freeBuffer);
-                }
-                else
-                {
-                    Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleSticker")[1].Split(".")[0]);
-                }
+                /*  if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("\\")[1].Split(".")[0])) == 1) //삭제
+                  {
+                      string freeBuffer = func_DiaryInventory.GetbubbleStickerList(bubbleUsedNum[i]);
+                      DeleteFile(freeBuffer);
+                  }
+                  else
+                  {
+                      Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("\\")[1].Split(".")[0]);
+                  }*/
+                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("\\")[1].Split(".")[0]);
+
             }
         }
-           
+
+  
         //씬전환
         Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
@@ -217,6 +222,39 @@ public class Func_DIarySave : Func_SaveSticker
             }
         }
     }
+    //람다식 전환하기 => 리펙토링 때
+    public List<int> GetUsedRecordList()
+    {
+        return recordUsedNum;
+    }
+    public List<int> GetUsedFreeList()
+    {
+        return freeUsedNum;
+    }
+    public List<int> GetUsedGunList()
+    {
+        return gunUsedNum;
+    }
+    public List<int> GetUsedBubbleList()
+    {
+        return bubbleUsedNum;
+    }
+    public int GetUsedRecordNum()
+    {
+        return recordUsedNum.Count;
+    }
+    public int GetUsedFreeNum()
+    {
+        return freeUsedNum.Count;
+    }
+    public int GetUsedGunNum()
+    {
+        return gunUsedNum.Count;
+    }
+    public int GetUsedBubbleNum()
+    {
+        return bubbleUsedNum.Count;
+    }
     public void SetUsedRecordNum(int num)
     {
         recordUsedNum.Add(num);
@@ -252,5 +290,6 @@ public class Func_DIarySave : Func_SaveSticker
     public void RemoveBubbleAtList(int num)
     {
         bubbleUsedNum.Remove(num);
+        Debug.Log(bubbleUsedNum.Count + "<= 지워지고 난 후 숫자");
     }
 }

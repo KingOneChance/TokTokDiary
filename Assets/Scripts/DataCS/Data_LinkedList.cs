@@ -9,10 +9,11 @@ public class Data_LinkedList : MonoBehaviour
     public Data_Node tail = null;
     public SData_NodeData prevData;
     private Func_DIarySave func_SaveDiary = null;
-
+    private Func_DiaryInventory func_DiaryInventory = null;
     public Data_LinkedList()
     {
         func_SaveDiary = FindObjectOfType<Func_DIarySave>();
+        func_DiaryInventory = FindObjectOfType<Func_DiaryInventory>();
     }
     public void AddDragStart(SData_NodeData newData, GameObject myObj)
     {
@@ -61,24 +62,28 @@ public class Data_LinkedList : MonoBehaviour
             }
             switch (tail.myObject.tag)
                 {
-                    case "RecordSticker":
-                        //제이슨에서 목록 지우기
-                        Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
-                        //다이어리세이브에서 지우기
-                        func_SaveDiary.RemoveRecordAtList(num);
-                        break;
-                    case "FreeSticker":
-                        func_SaveDiary.RemoveFreeAtList(num);
-                        break;
-                    case "GunSticker":
-                        func_SaveDiary.RemoveGunAtList(num);
-                        break;
-                    case "BubbleSticker":
-                        func_SaveDiary.RemoveBubbleAtList(num);
-                        break;
-                    default:
-                        break;
-                }
+                case "RecordSticker":
+                    //제이슨에서 목록 지우기
+                    Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
+                    //다이어리세이브에서 지우기
+                    func_SaveDiary.RemoveRecordAtList(num);
+                    func_DiaryInventory.OnClick_RecordFileRepository();
+                    break;
+                case "FreeSticker":
+                    func_SaveDiary.RemoveFreeAtList(num);
+                    func_DiaryInventory.OnClick_BubbleFreeStickerRepository();
+                    break;
+                case "GunSticker":
+                    func_SaveDiary.RemoveGunAtList(num);
+                    func_DiaryInventory.OnClick_BubbleGunStickerRepository();
+                    break;
+                case "BubbleSticker":
+                    func_SaveDiary.RemoveBubbleAtList(num);
+                    func_DiaryInventory.OnClick_BubbleStickerRepository();
+                    break;
+                default:
+                    break;
+            }
             Manager_Main.Instance.manager_PictureDiary.DestroySomthing(head.myObject);
             head = null;
             tail = null;
@@ -144,6 +149,7 @@ public class Data_LinkedList : MonoBehaviour
                 num = int.Parse(tail.myObject.name.Split("(")[0]);
                 Debug.Log(tail.myObject.name.Split("(")[0] + " <= 이름");
                 Debug.Log("num");
+                Debug.Log(tail.myObject.tag.ToString());
             }
 
             switch (tail.myObject.tag)
@@ -153,15 +159,19 @@ public class Data_LinkedList : MonoBehaviour
                     Manager_Main.Instance.func_DiaryToJson.DeleteListNumber(num);
                     //다이어리세이브에서 지우기
                     func_SaveDiary.RemoveRecordAtList(num);
+                    func_DiaryInventory.OnClick_RecordFileRepository();
                     break;
                 case "FreeSticker":
                     func_SaveDiary.RemoveFreeAtList(num);
+                    func_DiaryInventory.OnClick_BubbleFreeStickerRepository();
                     break;
                 case "GunSticker":
                     func_SaveDiary.RemoveGunAtList(num);
+                    func_DiaryInventory.OnClick_BubbleGunStickerRepository();
                     break;
                 case "BubbleSticker":
                     func_SaveDiary.RemoveBubbleAtList(num);
+                    func_DiaryInventory.OnClick_BubbleStickerRepository();
                     break;
                 default:
                     break;
