@@ -51,6 +51,8 @@ public class Manager_Main : MonoBehaviour
     public GameObject volumeButton = null;
     private bool isvolumePanelOn = false;
     public RectTransform[] buttonPos = null;
+    public RawImage bgmXImage = null;
+    public RawImage effXImage = null;
 
     [Header("AudioManager")]
     #region Audio Management

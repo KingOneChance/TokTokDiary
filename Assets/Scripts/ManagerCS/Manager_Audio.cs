@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.LowLevel;
 using UnityEngine.UI;
 
 public class Manager_Audio : MonoBehaviour
@@ -27,8 +24,10 @@ public class Manager_Audio : MonoBehaviour
     private Dictionary<string, AudioClip> TouchClips = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> CommonClips = new Dictionary<string, AudioClip>();
 
-    private float val_BGM = 0f;
-    private float val_Eff = 0f;
+    [SerializeField] private float val_BGM = 0f;
+    [SerializeField] private float val_Eff = 0f;
+    [SerializeField] private float curTempVal_BGM = 0f;
+    [SerializeField] private float curTempVal_Eff = 0f;
 
     private void Awake()
     {
@@ -53,7 +52,7 @@ public class Manager_Audio : MonoBehaviour
         }
         else
         {
-            val_BGM = 0.5f;
+            val_BGM = 1.5f;
         }
 
         if (PlayerPrefs.HasKey("Val_Eff"))
@@ -62,7 +61,7 @@ public class Manager_Audio : MonoBehaviour
         }
         else
         {
-            val_Eff = 0.5f;
+            val_Eff = 1.5f;
         }
         bgmSlider.value = val_BGM;
         effSlider.value = val_Eff;
@@ -353,16 +352,51 @@ public class Manager_Audio : MonoBehaviour
     {
         val_BGM = slider.value;
         Manager_Main.Instance.mainAudioSource.volume = val_BGM;
+        if(val_BGM == 0)
+            Manager_Main.Instance.bgmXImage.CrossFadeAlpha(1.0f, 0.5f, true);
+        else Manager_Main.Instance.bgmXImage.CrossFadeAlpha(0f, 0.5f, true);
     }
 
     public void SetEffValue(Slider slider)
     {
         val_Eff = slider.value;
+        if (val_Eff == 0)
+            Manager_Main.Instance.effXImage.CrossFadeAlpha(1.0f, 0.5f, true);
+        else Manager_Main.Instance.effXImage.CrossFadeAlpha(0f, 0.5f, true);
     }
 
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetFloat("Val_BGM", val_BGM);
         PlayerPrefs.SetFloat("Val_Eff", val_Eff);
+    }
+
+    public void OnClick_VolumeXButton(Slider slider)
+    {
+        if(slider.value != 0)
+        {
+            if(slider.name == "bgm_XImage")
+            {
+                curTempVal_BGM = slider.value;
+            }
+            else
+            {
+                curTempVal_Eff = slider.value;
+            }
+            slider.value = 0f;
+        }
+        else
+        {
+            if (slider.name == "bgm_XImage")
+            {
+                slider.value = curTempVal_BGM;
+                curTempVal_BGM = 0f;
+            }
+            else
+            {
+                slider.value = curTempVal_Eff;
+                curTempVal_Eff = 0f;
+            }
+        }
     }
 }
