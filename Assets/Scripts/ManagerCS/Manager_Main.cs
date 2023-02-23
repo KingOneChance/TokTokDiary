@@ -51,6 +51,8 @@ public class Manager_Main : MonoBehaviour
     public GameObject volumeButton = null;
     private bool isvolumePanelOn = false;
     public RectTransform[] buttonPos = null;
+    public RawImage bgmXImage = null;
+    public RawImage effXImage = null;
 
     [Header("AudioManager")]
     #region Audio Management
@@ -234,10 +236,11 @@ public class Manager_Main : MonoBehaviour
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.png", SearchOption.TopDirectoryOnly);
             getFreeStickerNum = allFiles.Length;
-            if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]) >= getFreeStickerNum)
+            if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 2].Split('.')[0].Split('-')[1]) >= getFreeStickerNum)
             {
-                getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]);
+                getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 2].Split('.')[0].Split('-')[1]);
             }
+
             return getFreeStickerNum + 1;
         }
     }
@@ -319,6 +322,7 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
+
     public string GetCurStickerUserCount(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName) == false)

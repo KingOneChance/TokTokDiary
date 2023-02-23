@@ -19,9 +19,9 @@ public class Func_CalendarController : MonoBehaviour
     public List<GameObject> stickers = new List<GameObject>();
 
     //달력에 년도, 월 일
-    [SerializeField] private TextMeshProUGUI _yearNumText;
-    [SerializeField] private TextMeshProUGUI _monthNumText;
-    [SerializeField] private TextMeshProUGUI _monthStrText;
+    [SerializeField] public TextMeshProUGUI _yearNumText;
+    [SerializeField] public TextMeshProUGUI _monthNumText;
+    [SerializeField] public TextMeshProUGUI _monthStrText;
 
     //프리뷰 년도 월 일
     [SerializeField] public TextMeshProUGUI[] preViewDate = null;
