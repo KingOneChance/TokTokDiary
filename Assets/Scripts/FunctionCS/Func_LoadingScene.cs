@@ -20,6 +20,7 @@ public class Func_LoadingScene : MonoBehaviour
     private WaitForSeconds bubbleBearNoteOnDelay = new WaitForSeconds(0.375f);
     private WaitForFixedUpdate fixedDeltaTime = new WaitForFixedUpdate();
     private Vector3 angle = new Vector3(0, 0, 1);
+    private float fadeDuration = 1.5f;
 
     public static void LoadScene(string sceneName)
     {
@@ -168,14 +169,14 @@ public class Func_LoadingScene : MonoBehaviour
         float alphaVal = 0f;
         while (!Mathf.Approximately(alphaVal, finalAlpha))
         {
-            alphaVal = Mathf.Lerp(alphaVal, finalAlpha, Time.deltaTime * 10f);
-            fadeOutImg.color = new Color(1,1,1, alphaVal);
+            alphaVal = Mathf.MoveTowards(alphaVal, finalAlpha, fadeDuration * Time.deltaTime);
+            fadeOutImg.color = new Color(1, 1, 1, alphaVal);
             yield return fixedDeltaTime; 
         }
-
+        alphaVal = 0f;
         while (!Mathf.Approximately(alphaVal, finalAlpha))
         {
-            alphaVal = Mathf.Lerp(alphaVal, finalAlpha, Time.deltaTime * 10f);
+            alphaVal = Mathf.MoveTowards(alphaVal, finalAlpha, fadeDuration * Time.deltaTime);
             fadeOutImgWhite.color = new Color(1, 1, 1, alphaVal);
             yield return fixedDeltaTime;
         }
