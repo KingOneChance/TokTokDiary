@@ -19,6 +19,7 @@ namespace FreeDraw
         [SerializeField] public LineRenderer lineRenderer; // 라인 렌더러 컴포넌트를 가리키는 변수
         [SerializeField] private Button btn_Eraser = null;
         [SerializeField] private Func_DrawingSettings func_DrawingSettings = null;
+        private bool FeelingMenuOff = false;
         
         public void OnButtonClick()
         {
@@ -41,35 +42,56 @@ namespace FreeDraw
             {
                 if (CheckArea() == true && stickerMaking == false)
                 {
-                    Draw();
+                    
+                    Debug.Log("그리기 가능");
 
                     Vector3 curTouchPos_FreeSticker = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-                    
-                        if(curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
-                           curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
-                             //|| curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
-                             //curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
-                        {
+                    if (FeelingMenuOff && Input.GetMouseButtonUp(0))
+                    {
+                         
+                         if (ThisImage.rectTransform.rect.Contains(curTouchPos_FreeSticker - ThisImage.rectTransform.position))
+                         {
+                            Debug.Log("범위 클릭");
+                             if (ThisImage.sprite == Change_Image_Excited)
+                            {
+                                Debug.Log("익사이팅 클릭");
+                                Image_Excited();
 
-                             currentPenWidth = 0.05f;
-                             // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-                             btn_Eraser.onClick.RemoveListener(func_DrawingSettings.SetEraser);
-                             btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+                            }
+                            else if (ThisImage.sprite == Change_Image_Happy)
+                                 Image_Happy();
+                             else if (ThisImage.sprite == Change_Image_Calm)
+                                 Image_Calm();
+                             else if (ThisImage.sprite == Change_Image_Sad)
+                                 Image_Sad();
+                             else if (ThisImage.sprite == Change_Image_Angry)
+                                 Image_Angry();
+                         }
+                        TodayFeelingMenu.SetActive(false);
+                        FeelingMenuOff = false;
+                    }
+                    else
+                    Draw();
 
-                        }
 
-                        else
-                        {
-                            btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
-                            btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
+                    if (curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
+                        curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
+                         //|| curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
+                         //curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                    {
+                         currentPenWidth = 0.05f;
+                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
+                         btn_Eraser.onClick.RemoveListener(func_DrawingSettings.SetEraser);
+                         btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+                    }
 
-                        }
-                    
-
-                    
+                    else
+                    {
+                        btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
+                        btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
+                    }
                 }
-
                 else
                 {
                     Manager_Main.Instance.GetAudio().StopPlaySound(gameObject);
@@ -121,6 +143,7 @@ namespace FreeDraw
         public void TodayFeeling_Menu()
         {
             TodayFeelingMenu.SetActive(true);
+            FeelingMenuOff = true;
         }
         public bool ActiveTodayFeelingMenu()
         {
