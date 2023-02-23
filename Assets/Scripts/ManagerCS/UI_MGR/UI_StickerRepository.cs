@@ -9,8 +9,7 @@ public class UI_StickerRepository : MonoBehaviour
 {
     [SerializeField] Button on = null;
     [Header("===StickerButtons===")]
-    // [SerializeField] private Button[] ui_StickerBtns = null;
-    //토글 버튼들
+
     [SerializeField] private Toggle[] ui_StickerBtns = null;
     [Header("===Stickers===")]
     // 기본으로 깔리는 비눗방울
@@ -34,14 +33,17 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] private Image trashCan = null;
     [SerializeField] private Sprite closeTrashCan = null;
     [SerializeField] private Image deletePopUp = null;
+  
     private int presentNum = 0;
 
     private void Start()
     {
         path = Application.persistentDataPath;
- 
     }
-
+    private void OnEnable()
+    {
+        LoadLocalSticker(bubbleStickerList);
+    }
     public void OnClick_BubbleStickerRepository()
     {
         LoadLocalSticker(bubbleStickerList);
@@ -100,11 +102,11 @@ public class UI_StickerRepository : MonoBehaviour
                 {
                     recordingSignList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleGun"))
+                else if (allFiles[i].Contains("BubbleGunSticker"))
                 {
                     bubbleGunStickerList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleFree"))
+                else if (allFiles[i].Contains("BubbleFreeSticker"))
                 {
                     bubbleFreeStickerList.Add(allFiles[i]);
                 }
@@ -163,7 +165,7 @@ public class UI_StickerRepository : MonoBehaviour
         for (int i = 0; i < basicStickers.Count; i++)
         {
             basicStickers[i].texture = basicTextrue;
-            basicStickers[i].transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+            basicStickers[i].transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
           /*  if (anyList2 != null)
             {
                 ui_RecordSubStickers[i].color = new Color(255, 255, 255, 255);
@@ -193,6 +195,10 @@ public class UI_StickerRepository : MonoBehaviour
                 texture.name = filename;
                 basicStickers[i].texture = texture;
                 basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(basicStickers[i].texture.name);
+                if(basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text == "0")
+                {
+                    basicStickers[i].GetComponent<Button>().interactable = false;
+                }
             }
             if (anyList2 != null)
             {
@@ -231,6 +237,7 @@ public class UI_StickerRepository : MonoBehaviour
     public void Onclick_MinusBtn()
     {
         presentNum--;
+        if(presentNum < 0) presentNum = 0;
         stickerCountText.text = presentNum.ToString();
     }
 
