@@ -236,7 +236,7 @@ public class Manager_Main : MonoBehaviour
             getFreeStickerNum = allFiles.Length;
             if (getFreeStickerNum > 0 && int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]) >= getFreeStickerNum)
             {
-                getFreeStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]);
+                getFreeStickerNum = int.Parse(allFiles[getFreeStickerNum - 1].Split(".")[0].Split("-")[1]);
             }
             return getFreeStickerNum + 1;
         }
@@ -320,7 +320,6 @@ public class Manager_Main : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
-
     public string GetCurStickerUserCount(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName) == false)
