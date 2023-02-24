@@ -139,7 +139,7 @@ public class Func_DIarySave : Func_SaveSticker
                 {
                     Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("\\")[1].Split(".")[0]);
                 }*/
-                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("\\")[1].Split(".")[0]);
+                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleGunSticker/")[1].Split(".")[0]);
 
             }
         }
@@ -157,7 +157,7 @@ public class Func_DIarySave : Func_SaveSticker
                   {
                       Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("\\")[1].Split(".")[0]);
                   }*/
-                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("\\")[1].Split(".")[0]);
+                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleSticker/")[1].Split(".")[0]);
 
             }
         }
