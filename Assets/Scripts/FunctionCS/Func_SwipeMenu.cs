@@ -7,8 +7,8 @@ public class Func_SwipeMenu : MonoBehaviour
     [SerializeField] private Scrollbar scroll;
     [SerializeField] Func_ButtonEnabled[] childButtons = null;
 
-    private new Vector2 bigScale = new Vector2(1f, 1f);
-    private new Vector2 smallScale = new Vector2(0.7f, 0.7f);
+    private Vector2 bigScale = new Vector2(1f, 1f);
+    private Vector2 smallScale = new Vector2(0.7f, 0.7f);
     private float distacne = 0f;
 
     private void Start()
