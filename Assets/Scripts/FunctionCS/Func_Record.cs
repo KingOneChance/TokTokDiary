@@ -81,6 +81,7 @@ public class Func_Record : MonoBehaviour
         else
         {
             playSouce.clip = newClip;
+            playSouce.volume = 1;
             playSouce.Play();
             //Listening eff start
             StartCoroutine(Co_ListenEff());
