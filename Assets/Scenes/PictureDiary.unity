@@ -32667,7 +32667,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75600556ee9170498044c9fe573dce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCircleFrame: 0
+  circleSize: 0
+  Pen_Width: {fileID: 0}
+  line: {fileID: 0}
+  linePrefab: {fileID: 0}
+  obj: {fileID: 0}
+  col: {fileID: 0}
+  drawingAreaMaxX: 0
+  drawingAreaMinX: 0
+  drawingAreaMaxY: 0
+  drawingAreaMinY: 0
+  writingAreaMaxX: 0
+  writingAreaMinX: 0
+  writingAreaMaxY: 0
+  writingAreaMinY: 0
+  titleAreaMaxX: 0
+  titleAreaMinX: 0
+  titleAreaMaxY: 0
+  titleAreaMinY: 0
+  mainCam: {fileID: 0}
+  internalClick: 0
+  isDragSticker: 0
+  isDiaryScene: 0
+  onObject: 0
+  curColor: {r: 0, g: 0, b: 0, a: 1}
   func_Draw: {fileID: 804669447}
+  func_TodayFeelingImage: {fileID: 0}
   Transparency: 1
 --- !u!1 &1735196286
 GameObject:
@@ -44159,6 +44185,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1729917610}
         m_TargetAssemblyTypeName: FreeDraw.Func_DrawingSettings, Assembly-CSharp
         m_MethodName: OnClick_WritingEraser
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1729917610}
+        m_TargetAssemblyTypeName: FreeDraw.Func_DrawingSettings, Assembly-CSharp
+        m_MethodName: OnClick_TitleEraser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

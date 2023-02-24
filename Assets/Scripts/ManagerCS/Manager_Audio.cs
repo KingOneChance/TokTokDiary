@@ -52,7 +52,7 @@ public class Manager_Audio : MonoBehaviour
         }
         else
         {
-            val_BGM = 1.5f;
+            val_BGM = 0.5f;
         }
 
         if (PlayerPrefs.HasKey("Val_Eff"))
@@ -61,7 +61,7 @@ public class Manager_Audio : MonoBehaviour
         }
         else
         {
-            val_Eff = 1.5f;
+            val_Eff = 0.5f;
         }
 
         bgmSlider.value = val_BGM;

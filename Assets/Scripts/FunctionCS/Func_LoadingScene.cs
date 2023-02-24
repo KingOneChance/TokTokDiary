@@ -123,7 +123,6 @@ public class Func_LoadingScene : MonoBehaviour
 
             while (bathkkamdo.localEulerAngles.z > 341)
             {
-                Debug.Log(bathkkamdo.rotation.z);
                 bathkkamdo.localEulerAngles -= angle * Time.deltaTime * 25f;
                 yield return fixedDeltaTime;
             } 

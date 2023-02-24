@@ -26,6 +26,7 @@ public enum ColorType
     Black,
     Eraser,
     WritingEraser,
+    TitleEraser,
 }
 public enum MouseType
 {

@@ -68,27 +68,32 @@ namespace FreeDraw
                         TodayFeelingMenu.SetActive(false);
                         FeelingMenuOff = false;
                     }
-                    else
-                    
-
-
-                    if (curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
-                        curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
-                         //|| curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
-                         //curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                    else if (!ActiveTodayFeelingMenu())
                     {
-                         currentPenWidth = 0.05f;
-                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-                         btn_Eraser.onClick.RemoveListener(func_DrawingSettings.SetEraser);
-                         btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+                        Draw();
                     }
 
-                    else
+                    if (Input.GetMouseButtonUp(0) && curTouchPos_FreeSticker.x < drawingAreaMaxX && curTouchPos_FreeSticker.y < drawingAreaMaxY &&
+                       curTouchPos_FreeSticker.x > drawingAreaMinX && curTouchPos_FreeSticker.y > drawingAreaMinY)
                     {
-                        btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
+                        // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
+                        btn_Eraser.onClick.RemoveAllListeners();
                         btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
                     }
-                    Draw();
+                    else if (Input.GetMouseButtonUp(0) && curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
+                             curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
+                    {
+                        btn_Eraser.onClick.RemoveAllListeners();
+                        btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+                        
+                    }
+                    else if (Input.GetMouseButtonUp(0) && curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
+                             curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                    {
+                        btn_Eraser.onClick.RemoveAllListeners();
+                        btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_TitleEraser);
+                       
+                    }
                 }
                 else
                 {
@@ -107,6 +112,12 @@ namespace FreeDraw
             TodayFeelingMenu.SetActive(false);
         }
 
+        public void SetPenWidth(float width)
+        {
+            base.thinPenWidth = width;
+        }
+
+       
 
         public void Image_Excited()
         {
