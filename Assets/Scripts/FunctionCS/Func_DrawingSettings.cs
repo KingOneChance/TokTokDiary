@@ -6,22 +6,21 @@ using UnityEngine.EventSystems;
 namespace FreeDraw
 {
     // Helper methods used to set drawing settings
-    public class Func_DrawingSettings : MonoBehaviour
+    public class Func_DrawingSettings : Func_Draw
     {
         [SerializeField] Func_Draw func_Draw = null;
+        [SerializeField] Func_TodayFeelingImage func_TodayFeelingImage = null;
 
         public float Transparency = 1f;
 
-        // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
         public void SetMarkerColour(Color new_color)
         {
-        //    Func_Drawable.Pen_Colour = new_color;
-        //    Func_Drawable.drawable.AAAAA = new_color;
+
         }
         // new_width is radius in pixels
         public void SetMarkerWidth(int new_width)
         {
-         //   func_Draw.Pen_Width = new_width;
+
         }
         public void SetMarkerWidth(float new_width)
         {
@@ -31,9 +30,6 @@ namespace FreeDraw
         public void SetTransparency(float amount)
         {
             Transparency = amount;
-        //    Color c = Func_Drawable.Pen_Colour;
-        //    c.a = amount;
-        //    Func_Drawable.Pen_Colour = c;
         }
 
 
@@ -81,6 +77,10 @@ namespace FreeDraw
         public void OnClick_WritingEraser()
         {
             func_Draw.selectedColor(ColorType.WritingEraser);
+        }
+        public void OnClick_TitleEraser()
+        {
+            func_Draw.selectedColor(ColorType.TitleEraser);
         }
         public void PartialSetEraser()
         {

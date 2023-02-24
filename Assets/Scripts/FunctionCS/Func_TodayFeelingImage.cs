@@ -76,24 +76,28 @@ namespace FreeDraw
                         Draw();
                     }
 
-
-                    if (curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
-                        curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
-                         //|| curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
-                         //curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                    if (curTouchPos_FreeSticker.x < drawingAreaMaxX && curTouchPos_FreeSticker.y < drawingAreaMaxY &&
+                       curTouchPos_FreeSticker.x > drawingAreaMinX && curTouchPos_FreeSticker.y > drawingAreaMinY)
                     {
-                         currentPenWidth = 0.05f;
-                         // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
-                         btn_Eraser.onClick.RemoveListener(func_DrawingSettings.SetEraser);
-                         btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
-                    }
-
-                    else
-                    {
-                        btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
+                        Debug.Log("그리기 범위 들어옴");
+                        // 기존에 쓰는 지우개 함수를 쓰기전용 지우개 함수로 교체한다.
+                        btn_Eraser.onClick.RemoveAllListeners();
                         btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
                     }
-                    
+                    else if (curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
+                             curTouchPos_FreeSticker.x > writingAreaMinX && curTouchPos_FreeSticker.y > writingAreaMinY)
+                    {
+                        Debug.Log("쓰기 범위 들어옴");
+                        btn_Eraser.onClick.RemoveAllListeners();
+                        btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_WritingEraser);
+                    }
+                    else if (curTouchPos_FreeSticker.x < titleAreaMaxX && curTouchPos_FreeSticker.y < titleAreaMaxY &&
+                             curTouchPos_FreeSticker.x > titleAreaMinX && curTouchPos_FreeSticker.y > titleAreaMinY)
+                    {
+                        Debug.Log("제목 범위 들어옴");
+                        btn_Eraser.onClick.RemoveAllListeners();
+                        btn_Eraser.onClick.AddListener(func_DrawingSettings.OnClick_TitleEraser);
+                    }
                 }
                 else
                 {
