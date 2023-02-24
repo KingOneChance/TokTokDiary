@@ -244,7 +244,15 @@ public class Func_DiaryInventory : MonoBehaviour
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-                        textureTemp.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+
+
+
+#if UNITY_EDITOR
+                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+#endif
+                        textureTemp.name = filename;
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -276,7 +284,13 @@ public class Func_DiaryInventory : MonoBehaviour
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-                        textureTemp.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+
+#if UNITY_EDITOR
+                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+#endif
+                        textureTemp.name = filename;
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -301,16 +315,21 @@ public class Func_DiaryInventory : MonoBehaviour
                 else if (nowStickerType == StickerType.RecordSticker)
                 {
                     //playerprepth
-                    Texture2D texture = new Texture2D(0, 0);
-                    texture.LoadImage(byteTexture);
-                    texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
-                    Debug.Log(texture.name + "이름 넣는중");
+                    Texture2D textureTemp = new Texture2D(0, 0);
+                    textureTemp.LoadImage(byteTexture);
+#if UNITY_EDITOR
+                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+#endif
+                    textureTemp.name = filename;
+                    Debug.Log(textureTemp.name + "이름 넣는중");
 
                     mainStickers[i].gameObject.SetActive(true);
                     mainStickersBack[i].gameObject.SetActive(true);
 
-                    mainStickers[i].texture = texture;
-                    mainStickersBack[i].texture = texture;
+                    mainStickers[i].texture = textureTemp;
+                    mainStickersBack[i].texture = textureTemp;
 
                     mainStickers[i].gameObject.tag = "CanMake";
                     mainStickers[i].color = new Color(255, 255, 255, 255);
@@ -335,6 +354,12 @@ public class Func_DiaryInventory : MonoBehaviour
                     //playerprepth
                     Texture2D texture = new Texture2D(0, 0);
                     texture.LoadImage(byteTexture);
+#if UNITY_EDITOR
+                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+#endif
+                    texture.name = filename;
                     texture.name = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
                     Debug.Log(texture.name + "이름 넣는중");
 
