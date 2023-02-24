@@ -32,36 +32,33 @@ public class UI_StickerRepository : MonoBehaviour
     [SerializeField] private Image trashCan = null;
     [SerializeField] private Sprite closeTrashCan = null;
     [SerializeField] private Image deletePopUp = null;
-  
+
     private int presentNum = 0;
 
     private void Start()
     {
         path = Application.persistentDataPath;
     }
-    private void OnEnable()
-    {
-        LoadLocalSticker(bubbleStickerList);
-    }
+
     public void OnClick_BubbleStickerRepository()
     {
-        LoadLocalSticker(bubbleStickerList);
+        LoadLocalSticker(bubbleStickerList, "BubbleSticker");
     }
     public void OnClick_RecordingStickerRepository()
     {
-        LoadLocalSticker(recordingStickerList);
+        LoadLocalSticker(recordingStickerList, "RecordingSticker");
     }
     public void OnClick_RecordFileRepository()
     {
-        LoadLocalSticker(recordingStickerList, recordingSignList);
+        LoadLocalSticker(recordingStickerList, "RecordingSticker", recordingSignList);
     }
     public void OnClick_BubbleGunStickerRepository()
     {
-        LoadLocalSticker(bubbleGunStickerList);
+        LoadLocalSticker(bubbleGunStickerList, "BubbleGunSticker");
     }
     public void OnClick_BubbleFreeStickerRepository()
     {
-        LoadLocalSticker(bubbleFreeStickerList);
+        LoadLocalSticker(bubbleFreeStickerList, "BubbleFreeSticker");
     }
 
     public void OnClick_RepositoryOpen()
@@ -81,10 +78,10 @@ public class UI_StickerRepository : MonoBehaviour
 
             if (byteTexture.Length > 0)
             {
-                
+
                 Texture2D texture = new Texture2D(0, 0);
                 texture.LoadImage(byteTexture);
-               
+
                 if (allFiles[i].Contains("BubbleSticker"))
                 {
                     bubbleStickerList.Add(allFiles[i]);
@@ -111,7 +108,7 @@ public class UI_StickerRepository : MonoBehaviour
                 }
             }
         }
-
+        LoadLocalSticker(bubbleStickerList, "BubbleFreeSticker");
     }
     RawImage go;
     List<RawImage> MakingObj = new List<RawImage>();
@@ -120,11 +117,11 @@ public class UI_StickerRepository : MonoBehaviour
     /// </summary>
     /// <param name="anyList">Insert anyList without signlist</param>
     /// <param name="anyList2">Insert signList</param>
-    private void LoadLocalSticker(List<string> anyList, List<string> anyList2 = null)
+    private void LoadLocalSticker(List<string> anyList, string folderName, List<string> anyList2 = null)
     {
         if (anyList.Count < 12)
         {
-            for (int i = basicStickers.Count-1; i > 11; --i)
+            for (int i = basicStickers.Count - 1; i > 11; --i)
             {
                 basicStickers[i].texture = basicTextrue;
                 Destroy(basicStickers[i].gameObject);
@@ -136,7 +133,7 @@ public class UI_StickerRepository : MonoBehaviour
                 MakingObj.RemoveAt(i);
             }
         }
-        
+
         MakingObj.Clear();
         if (anyList.Count - 8 > 0)
         {
@@ -145,7 +142,7 @@ public class UI_StickerRepository : MonoBehaviour
             int makingLine = makingRawImage / 4 + 1;
             for (int k = 0; k < (makingLine); k++)
             {
-                for(int i= 0; i< 4; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     go = Instantiate(stickerPrefab, ui_myParent.transform).GetComponent<RawImage>();
                     MakingObj.Add(go);
@@ -161,18 +158,18 @@ public class UI_StickerRepository : MonoBehaviour
         {
             basicStickers[i].texture = basicTextrue;
             basicStickers[i].transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
-          /*  if (anyList2 != null)
-            {
-                ui_RecordSubStickers[i].color = new Color(255, 255, 255, 255);
-                ui_RecordSubStickers[i].texture = null;
-            }
-            else
-            {
-                //ui_RecordSubStickers[i].color = new Color(255, 255, 255, 0);
-                //ui_RecordSubStickers[i].texture = null;
-            }*/
+            /*  if (anyList2 != null)
+              {
+                  ui_RecordSubStickers[i].color = new Color(255, 255, 255, 255);
+                  ui_RecordSubStickers[i].texture = null;
+              }
+              else
+              {
+                  //ui_RecordSubStickers[i].color = new Color(255, 255, 255, 0);
+                  //ui_RecordSubStickers[i].texture = null;
+              }*/
         }
-        for(int i = 0; i < recordingSignList.Count; i++)
+        for (int i = 0; i < recordingSignList.Count; i++)
         {
             ui_RecordSubStickers[i].color = new Color(255, 255, 255, 0);
         }
@@ -190,15 +187,24 @@ public class UI_StickerRepository : MonoBehaviour
 
             if (byteTexture.Length > 0)
             {
-                Texture2D texture = new Texture2D(0, 0);
-                texture.LoadImage(byteTexture);
-                texture.name = filename;
-                basicStickers[i].texture = texture;
-                basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(basicStickers[i].texture.name);
-                if(basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text == "0")
+                string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/" + folderName, "*.png", SearchOption.AllDirectories);
+                int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split(folderName + "/")[1].Split(".")[0]));
+
+                if (allCount != 0)
                 {
-                    basicStickers[i].GetComponent<Button>().interactable = false;
+                    Texture2D texture = new Texture2D(0, 0);
+                    texture.LoadImage(byteTexture);
+                    texture.name = filename;
+                    basicStickers[i].texture = texture;
+                    if(allCount>0)
+                    basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(basicStickers[i].texture.name);
+                    //if (basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text == "0")
+                    //{
+                    //    basicStickers[i].GetComponent<Button>().interactable = false;
+                    //}
                 }
+                else
+                    basicStickers[i].GetComponent<Button>().interactable = false;
             }
             if (anyList2 != null)
             {
@@ -237,20 +243,20 @@ public class UI_StickerRepository : MonoBehaviour
     public void Onclick_MinusBtn()
     {
         presentNum--;
-        if(presentNum < 0) presentNum = 0;
+        if (presentNum < 0) presentNum = 0;
         stickerCountText.text = presentNum.ToString();
     }
 
     public void Onclick_TransferDelete()
     {
-        if(presentNum > int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
+        if (presentNum > int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {
             Debug.Log("스티커보다 수량보다 많습니다");
         }
-        else if(presentNum == 0)
+        else if (presentNum == 0)
         {
             Debug.Log("삭제될것이 없습니다");
-           
+
         }
         else if (presentNum == int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {
@@ -259,15 +265,15 @@ public class UI_StickerRepository : MonoBehaviour
             sticker.GetComponent<RawImage>().texture = basicTextrue;
             sticker.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
-        else if(presentNum < int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
+        else if (presentNum < int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {
-            for(int i = 0; i< presentNum; i++)
+            for (int i = 0; i < presentNum; i++)
             {
                 Manager_Main.Instance.UseSticker(sticker.name);
-                
+
             }
             sticker.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(sticker.name);
-         }
+        }
         else
         {
             Debug.Log("이상한 그림 가져왔음ㅋㅋ");
