@@ -42,9 +42,6 @@ namespace FreeDraw
             {
                 if (CheckArea() == true && stickerMaking == false)
                 {
-                    
-                    Debug.Log("그리기 가능");
-
                     Vector3 curTouchPos_FreeSticker = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
                     if (FeelingMenuOff && Input.GetMouseButtonUp(0))

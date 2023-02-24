@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
+using TMPro;
 public class Func_DiaryInventory : MonoBehaviour
 {
     public delegate void Del_SendName();
@@ -33,6 +33,7 @@ public class Func_DiaryInventory : MonoBehaviour
     [SerializeField] private StickerType nowStickerType = StickerType.None;
     [SerializeField] private string path = "";
     [SerializeField] private Func_DIarySave func_DiarySave;
+    [SerializeField] private TextMeshProUGUI pathcheck;
 
     private void Start()
     {
@@ -138,7 +139,7 @@ public class Func_DiaryInventory : MonoBehaviour
                 {
                     recordingSignList.Add(allFiles[i]);
                 }
-                else if (allFiles[i].Contains("BubbleGunSticker"))
+                else if (allFiles[i].Contains("BubbleGun"))
                 {
                     bubbleGunStickerList.Add(allFiles[i]);
                 }
@@ -226,12 +227,15 @@ public class Func_DiaryInventory : MonoBehaviour
 
             if (byteTexture.Length > 0)
             {
+
                 //버블 스티커와 버블건의 경우
                 //i번째의 스티커 개수를 세야한다. (플레이어 프렙스 개수 - 다이어리 보관한 사용 개수 리스트)>0 인지 확인 같다면 회색처리;
                 if (nowStickerType == StickerType.BubbleSticker)
                 {
                     string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleSticker", "*.png", SearchOption.AllDirectories);
-                    int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("\\")[1].Split(".")[0]));
+                    pathcheck.text = allfiles[0];
+                    
+                    int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]));
                     int usedCount = func_DiarySave.GetUsedBubbleNum();
 
                     /*if(Manager_Main.Instance.GetCurStickerUserCount("불러오려는 스티커") == "0")
@@ -244,13 +248,15 @@ public class Func_DiaryInventory : MonoBehaviour
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-                       
-#if UNITY_ANDROID
-                        string filename = anyList[i].Split('/')[9].Split('.')[0];
-#else
-            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+
+
+
+#if UNITY_EDITOR
+                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
 #endif
-                        textureTemp.name = filename;
+                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]);
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -275,19 +281,20 @@ public class Func_DiaryInventory : MonoBehaviour
                 else if (nowStickerType == StickerType.BubbleGunSticker)
                 {
                     string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGunSticker", "*.png", SearchOption.AllDirectories);
-                    string a = allfiles[i].Split("\\")[1].Split(".")[0];
+                    string a = allfiles[i].Split("BubbleGunSticker/")[1].Split(".")[0];
                     int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(a));
                     int usedCount = func_DiarySave.GetUsedGunNum();
                     if (allCount != 0)
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-#if UNITY_ANDROID
-                        string filename = anyList[i].Split('/')[9].Split('.')[0];
-#else
-            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+
+#if UNITY_EDITOR
+                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
 #endif
-                        textureTemp.name = filename;
+                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleGunSticker/")[1].Split(".")[0]);
                         Debug.Log(textureTemp.name + "이름 넣는중");
 
                         mainStickers[i].gameObject.SetActive(true);
@@ -309,35 +316,35 @@ public class Func_DiaryInventory : MonoBehaviour
                         }
                     }
                 }
-                else if (nowStickerType == StickerType.RecordSticker)
+                else if (nowStickerType == StickerType.FreeSticker)
                 {
                     //playerprepth
-                    Texture2D texture = new Texture2D(0, 0);
-                    texture.LoadImage(byteTexture);
-#if UNITY_ANDROID
-                    string filename = anyList[i].Split('/')[9].Split('.')[0];
-#else
-            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                    Texture2D textureTemp = new Texture2D(0, 0);
+                    textureTemp.LoadImage(byteTexture);
+#if UNITY_EDITOR
+                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
 #endif
-                    texture.name = filename;
-               
-                    Debug.Log(texture.name + "이름 넣는중");
+                    textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(anyList[i].Split("BubbleFreeSticker/")[1].Split(".")[0]);
+
+                    Debug.Log(textureTemp.name + "이름 넣는중");
 
                     mainStickers[i].gameObject.SetActive(true);
                     mainStickersBack[i].gameObject.SetActive(true);
 
-                    mainStickers[i].texture = texture;
-                    mainStickersBack[i].texture = texture;
+                    mainStickers[i].texture = textureTemp;
+                    mainStickersBack[i].texture = textureTemp;
 
                     mainStickers[i].gameObject.tag = "CanMake";
                     mainStickers[i].color = new Color(255, 255, 255, 255);
                     mainStickersBack[i].color = new Color(255, 255, 255, 255);
                     if (func_DiarySave.GetUsedFreeNum() > 0)//사용된아이들이 있다면 회색처리해주는 코드
                     {
-                        List<int> tempRecord = func_DiarySave.GetUsedFreeList();
-                        for (int j = 0; j < tempRecord.Count; j++)
+                        List<int> tempFree = func_DiarySave.GetUsedFreeList();
+                        for (int j = 0; j < tempFree.Count; j++)
                         {
-                            if (i == tempRecord[i])
+                            if (i == tempFree[i])
                             {
                                 mainStickers[i].gameObject.tag = "CannotMake";
                                 mainStickers[i].color = new Color(20, 20, 20, 20);
@@ -352,12 +359,12 @@ public class Func_DiaryInventory : MonoBehaviour
                     //playerprepth
                     Texture2D texture = new Texture2D(0, 0);
                     texture.LoadImage(byteTexture);
-#if UNITY_ANDROID
-                    string filename = anyList[i].Split('/')[9].Split('.')[0];
-#else
-            string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#if UNITY_EDITOR
+                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+#elif UNITY_ANDROID
+                          string filename = anyList[i].Split('/')[9].Split('.')[0];
 #endif
-                    texture.name = filename;
+                    texture.name = anyList[i].Split("RecordingSticker/")[1].Split(".")[0];
                     Debug.Log(texture.name + "이름 넣는중");
 
                     mainStickers[i].gameObject.SetActive(true);
@@ -374,7 +381,7 @@ public class Func_DiaryInventory : MonoBehaviour
                         List<int> tempRecord = func_DiarySave.GetUsedRecordList();
                         for (int j = 0; j < tempRecord.Count; j++)
                         {
-                            if (i == tempRecord[i])
+                            if (i == tempRecord[j])
                             {
                                 mainStickers[i].gameObject.tag = "CannotMake";
                                 mainStickers[i].color = new Color(20, 20, 20, 20);
@@ -401,7 +408,7 @@ public class Func_DiaryInventory : MonoBehaviour
                                 List<int> tempRecord = func_DiarySave.GetUsedRecordList();
                                 for (int j = 0; j < tempRecord.Count; j++)
                                 {
-                                    if (i == tempRecord[i])
+                                    if (i == tempRecord[j])
                                     {
                                         mainStickers[i].gameObject.tag = "CannotMake";
                                         signStickers[i].color = new Color(120, 120, 120, 120);
