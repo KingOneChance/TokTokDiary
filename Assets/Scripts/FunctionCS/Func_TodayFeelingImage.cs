@@ -71,8 +71,10 @@ namespace FreeDraw
                         TodayFeelingMenu.SetActive(false);
                         FeelingMenuOff = false;
                     }
-                    else
-                    
+                    else if (!ActiveTodayFeelingMenu())
+                    {
+                        Draw();
+                    }
 
 
                     if (curTouchPos_FreeSticker.x < writingAreaMaxX && curTouchPos_FreeSticker.y < writingAreaMaxY &&
@@ -91,7 +93,7 @@ namespace FreeDraw
                         btn_Eraser.onClick.RemoveListener(func_DrawingSettings.OnClick_WritingEraser);
                         btn_Eraser.onClick.AddListener(func_DrawingSettings.SetEraser);
                     }
-                    Draw();
+                    
                 }
                 else
                 {
