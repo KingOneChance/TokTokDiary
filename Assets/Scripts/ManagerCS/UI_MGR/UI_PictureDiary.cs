@@ -187,12 +187,12 @@ public class UI_PictureDiary : MonoBehaviour
             //Debug.Log("file Path : 2번째줄" + file);
             if (selected.Length > 50000000)
             {
-                Debug.Log("file Path 없음");
+                //Debug.Log("file Path 없음");
                 return;
             }
             if (!string.IsNullOrEmpty(file))
             {
-                Debug.Log("file Path 있음");
+                //Debug.Log("file Path 있음");
 
                 //불러와라
                 StartCoroutine(LoadImage(file, raw));

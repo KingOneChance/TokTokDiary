@@ -76,7 +76,7 @@ public class Manager_DiaryCase : MonoBehaviour
 #else
           selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
 #endif
-        Debug.Log(selectedProfilPath);
+        //Debug.Log(selectedProfilPath);
         //프로필 네임 
         Manager_Main.Instance.func_DiaryToJson.SetProfileName(Application.persistentDataPath + "/Profile/" + selectedProfileName);
         savedRecordFinePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Records";
@@ -147,7 +147,7 @@ public class Manager_DiaryCase : MonoBehaviour
                 dataDiary = Manager_Main.Instance.func_DiaryToJson.LoadRecord();
                 for (int j = 0; j < dataDiary.recordFileNames.Count; j++)
                 {
-                    Debug.Log(dataDiary.recordFileNames[j].ToString() + "카운트 개수");
+                    //Debug.Log(dataDiary.recordFileNames[j].ToString() + "카운트 개수");
                     recordFilesNames.Add(dataDiary.recordFileNames[j]);
                     recordFilesPos.Add(dataDiary.recordFilePos[j]);
                 }
@@ -176,8 +176,8 @@ public class Manager_DiaryCase : MonoBehaviour
     }
     public void FindRecordFile(string lastDay)
     {
-        Debug.Log("마지막 일기 사운드 확인 띄움");
-        Debug.Log(lastDay);
+       // Debug.Log("마지막 일기 사운드 확인 띄움");
+       // Debug.Log(lastDay);
         for (int i = 0; i < jsonFiles.Count; i++)
         {
             Debug.Log(jsonFiles[i]);
