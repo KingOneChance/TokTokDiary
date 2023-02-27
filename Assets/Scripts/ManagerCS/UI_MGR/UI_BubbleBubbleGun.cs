@@ -15,8 +15,9 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     [SerializeField] private Texture2D bubbleStickImage = null;
 
     //충돌처리해주는 이미지
-    [SerializeField] private RawImage followImage = null;
-    [SerializeField] private GameObject followObject = null;
+    public RawImage followImage = null;
+
+    public GameObject followObject = null;
 
     //마지막 획득 스티커
     [SerializeField] public Image sticker = null;
@@ -28,9 +29,12 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
 
+    private Camera mainCamera = null;
+
     Func_GunCollision func_GunCollision = null;
     void Start()
     {
+        mainCamera = Camera.main;
         followImage.transform.position = new Vector3(2000, 2000, 2000);
         followObject.transform.position = new Vector3(2000, 2000, 2000);
        func_GunCollision = FindObjectOfType<Func_GunCollision>();
@@ -45,8 +49,8 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        followImage.transform.position = Input.mousePosition;
-        followObject.transform.position = Input.mousePosition;
+        followImage.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 100);
+        followObject.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 100);
     }
     //restart버튼
     public void OnClick_Restart()

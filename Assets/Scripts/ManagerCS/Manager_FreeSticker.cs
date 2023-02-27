@@ -20,6 +20,9 @@ namespace FreeDraw
         [SerializeField] private bool isStickClicked = false;
         [SerializeField] private Func_Draw freeStickerDraw;
         [SerializeField] private Camera mainCam = null;
+
+        [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
+
         private Vector2 hotSpot = Vector2.zero;
         private CursorMode cursorMode = CursorMode.Auto;
         public MouseType MouseStateInfo { get { return MouseState; } }
@@ -81,6 +84,8 @@ namespace FreeDraw
                 rawImage.transform.position = new Vector3(deltaX, deltaY, 0f);
                 yield return null;
             }
+
+            StartCoroutine(CO_Bomb());
         } 
 
         public void OnClick_Result()
@@ -121,6 +126,22 @@ namespace FreeDraw
                 Cursor.SetCursor(default, hotSpot, cursorMode);
                 isStickClicked = false;
                 MouseState = MouseType.None;
+            }
+        }
+
+        private IEnumerator CO_Bomb()
+        {
+            Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
+            for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+            {
+                eff_GetBubbleSticker[i].Play();
+            }
+
+            yield return new WaitForSeconds(4f);
+
+            for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+            {
+                eff_GetBubbleSticker[i].Clear(true);
             }
         }
     }

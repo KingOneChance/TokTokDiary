@@ -13,8 +13,16 @@ namespace FreeDraw
         [SerializeField] private RawImage sticker = null;
         [SerializeField] private RawImage bubble = null;
         [SerializeField] private RawImage sign = null;
-    
-    
+
+        [SerializeField] private ParticleSystem eff_BubblePop = null;
+
+        private void PlayBubblePop(Vector2 myPosInScreen)
+        {
+            Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, gameObject, false, true);
+            eff_BubblePop.transform.position = new Vector3(myPosInScreen.x, myPosInScreen.y, eff_BubblePop.transform.position.z);
+            eff_BubblePop.Play();
+        }
+
         private void Start()
         {
             manager_FreeSticker = FindObjectOfType<Manager_FreeSticker>();
@@ -39,6 +47,7 @@ namespace FreeDraw
             if (manager_FreeSticker.MouseStateInfo == MouseType.Niddle)
             {
                 func_DragObject_FreeSticker.enabled = false; //드래그할 스크립트 켜고 끄면서 움직임 제어
+                PlayBubblePop(new Vector2(bubble.transform.position.x, bubble.transform.position.y));
                 bubble.gameObject.SetActive(false);
             }
             else if (manager_FreeSticker.MouseStateInfo == MouseType.BubbleStick)
