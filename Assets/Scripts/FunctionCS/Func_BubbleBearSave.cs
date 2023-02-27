@@ -12,6 +12,8 @@ public class Func_BubbleBearSave : Func_SaveSticker
     [SerializeField] private RawImage hogTempImage = null;
     [SerializeField] private GameObject finishPlayButton = null;
 
+    [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
+
     protected override void Start()
     {
         savePath = Application.persistentDataPath;
@@ -45,9 +47,27 @@ public class Func_BubbleBearSave : Func_SaveSticker
         widthValue = 525;
         heightValue = 525;
         SaveTexture(StickerType.SignSticker);
+
+        StartCoroutine(CO_Bomb());
     }
     public void OnClick_TurnOff()
     {
         finishPlayButton.SetActive(true);
+    }
+
+    private IEnumerator CO_Bomb()
+    {
+        Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
+        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+        {
+            eff_GetBubbleSticker[i].Play();
+        }
+
+        yield return new WaitForSeconds(4f);
+
+        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
+        {
+            eff_GetBubbleSticker[i].Clear(true);
+        }
     }
 }

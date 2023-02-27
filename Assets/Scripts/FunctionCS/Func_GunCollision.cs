@@ -170,6 +170,7 @@ public class Func_GunCollision : MonoBehaviour
         if (whiteList.Count == 0)
         {
             allPop = true;
+            ui_BubbleBubbleGun.followObject.gameObject.SetActive(false);
             skipOneRoundBtn.gameObject.SetActive(false);
         }
         if (cleanList.Count == 0)

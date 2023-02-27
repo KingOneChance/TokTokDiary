@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class Func_SwipeMenu : MonoBehaviour
         for (int i = 0; i < pos.Length; i++)
         {
             pos[i] = distacne * i;
+            childButtons[i].enabled = false;
         }
     }
 
