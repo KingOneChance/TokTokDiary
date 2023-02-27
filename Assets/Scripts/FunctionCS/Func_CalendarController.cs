@@ -74,9 +74,11 @@ public class Func_CalendarController : MonoBehaviour
         //마지막 파일의 날짜에 검은색 테두리만들기
         for (int i = _dateItems.Count; i > 0; --i)
         {
-            if (_dateItems[i - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("-")[0].Split("_")[2]
+            if (_dateItems[i - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == manager_DiaryCase.allFilesTexture[manager_DiaryCase.allFiles.Count - 1].name.Split("Profile")[1].Split("-")[0].Split("_")[2]
+                
                 && _dateItems[i - 1].transform.GetChild(1).GetChild(0).gameObject.activeSelf == true)
             {
+
                 _dateItems[i - 1].GetComponent<Button>().Select();
             }
 
@@ -277,16 +279,24 @@ public class Func_CalendarController : MonoBehaviour
     //일기가 있는 날짜에 스티커 켜주기
     private void TurnOnSticker()
     {
-        string fileName = "";
+        string filename = "";
 
         for (int k = 0; k < manager_DiaryCase.allFiles.Count; k++)
         {
-            fileName = manager_DiaryCase.allFiles[k].Split("\\")[1].Split(".")[0].Split("-")[0];
+            // fileName = manager_DiaryCase.allFiles[k].Split("\\")[1].Split(".")[0].Split("-")[0];
+           // fileName = manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0];
+#if UNITY_ANDROID
+            filename = manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0];
+            Debug.Log(manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0]);
+#else
+            filename = manager_DiaryCase.allFiles[k].Split('\\')[1].Split(".")[0];
+#endif
 
-            string year = fileName.Split("_")[0];
-            string month = fileName.Split("_")[1];
-            string day = fileName.Split("_")[2];
-
+            string year = filename.Split("_")[0];
+            string month = filename.Split("_")[1];
+            string day = filename.Split("_")[2].Split("-")[0];
+            Debug.Log(manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0]);
+            Debug.Log(year + month + day);
             for (int i = 0; i < stickers.Count; i++)
             {
                 if (int.Parse(day) == int.Parse(stickers[i].transform.parent.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text) &&
