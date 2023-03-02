@@ -12,8 +12,8 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private Button buttonRerecord = null;
     [SerializeField] private Button buttonPlay = null;
     [SerializeField] private Button buttonSave = null;
-    // [SerializeField] private Button buttonSign = null;
 
+    [SerializeField] private GameObject buttonGoHome = null;
     [SerializeField] private GameObject buttonBefore = null;
     [SerializeField] private GameObject buttonNext = null;
 
@@ -39,8 +39,8 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject restartAll = null;
     [SerializeField] private GameObject stickerRepo = null;
     [SerializeField] private GameObject hedgehogStage = null;
-
     [SerializeField] private TextMeshProUGUI explainText = null;
+
 
     [Header("===StageUI===")]
     [SerializeField] private RawImage Ui_Stage1 = null;
@@ -80,6 +80,7 @@ public class Manager_BubbleBear : MonoBehaviour
         toggleBelly.SetActive(false);
         toggleHead.SetActive(false);
         toggleArmLeg.SetActive(false);
+        buttonGoHome.SetActive(false);
 
         //Canvas move button GameObject
         sceneBefore.SetActive(false);
@@ -229,7 +230,6 @@ public class Manager_BubbleBear : MonoBehaviour
         InitAfterRecordButton();
     }
     #endregion
-
     #region Canvas Change
     //Canvas move to next Canvas
     public void OnClick_ToNextCanvas()
@@ -282,8 +282,6 @@ public class Manager_BubbleBear : MonoBehaviour
             StageUIChange(2);
         }
     }
-
-
     //Canvas Change "AudioCanvas" to "SignCanvas"
     public void OnClick_ButtonSave()
     {
@@ -331,6 +329,8 @@ public class Manager_BubbleBear : MonoBehaviour
         restartAll.SetActive(true);
         stickerRepo.SetActive(true);
         sceneBefore.SetActive(false);
+        buttonGoHome.SetActive(true);
+
         nowState = NowStateInAudio.Done;
 
         bubbleBearSave.TextureChange();
@@ -379,7 +379,6 @@ public class Manager_BubbleBear : MonoBehaviour
                 break;
         }
     }
-
     IEnumerator Co_SetActiveCheck()
     {
         yield return new WaitForEndOfFrame();
