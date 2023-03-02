@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,15 @@ public class Func_SwellUp : MonoBehaviour
     [SerializeField] private Manager_BubbleSticker manager_bs;
     [SerializeField] private GameObject getBubbleStickerPanel = null;
     [SerializeField] private GameObject curPanel = null;
-    [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
+
+    [SerializeField] private ParticleSystem eff_BubblePop = null;
+
+    private void PlayBubblePop(Vector2 myPosInScreen)
+    {
+        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
+        eff_BubblePop.transform.position = new Vector3(myPosInScreen.x, myPosInScreen.y, eff_BubblePop.transform.position.z);
+        eff_BubblePop.Play();
+    }
 
     private int curIdx = 0;
 
@@ -43,8 +52,6 @@ public class Func_SwellUp : MonoBehaviour
 
     public void SaveProcess()
     {
-        Manager_Main.Instance.GetAudio().PlaySound("Fanfare", SoundType.Common, gameObject, false, true);
-        StartCoroutine(CO_Bomb());
         swellUpButton.interactable = false;
         curPanel.SetActive(false);
         getBubbleStickerPanel.SetActive(true);
@@ -88,25 +95,9 @@ public class Func_SwellUp : MonoBehaviour
     {
         backButton.gameObject.SetActive(false);
         swellUpImg.rectTransform.localScale = Vector3.zero;
-        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
+        PlayBubblePop(new Vector2(stickerInBubbleImg.transform.position.x, stickerInBubbleImg.transform.position.y));
         // 터지는 파티클 추가해주기
-        SaveProcess();
-    }
-
-    private IEnumerator CO_Bomb()
-    {
-        Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
-        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
-        {
-            eff_GetBubbleSticker[i].Play();
-        }
-
-        yield return new WaitForSeconds(4f);
-
-        for (int i = 0; i < eff_GetBubbleSticker.Length; ++i)
-        {
-            eff_GetBubbleSticker[i].Clear(true);
-        }
+        Invoke(nameof(SaveProcess), 1.0f);
     }
 
     private IEnumerator Co_Fluffy()

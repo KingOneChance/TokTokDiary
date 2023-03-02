@@ -13,6 +13,7 @@ public class Func_ButtonEnabled : MonoBehaviour
     private void OnEnable()
     {
         myButton.interactable = true;
+        if (Manager_Main.Instance.GetAudio() == null) return;
         Manager_Main.Instance.GetAudio().PlaySound("ComeBack", SoundType.Touch, gameObject, false, true);
     }
 
