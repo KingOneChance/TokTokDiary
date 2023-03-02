@@ -300,7 +300,7 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_OpenPlusProfile()
     {
-        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") == 6)
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") >= 6)
         {
             return;
         }

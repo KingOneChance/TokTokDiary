@@ -32,7 +32,7 @@ public class Func_GunCollision : MonoBehaviour
 
     public bool allClear = false;
     public bool allPop = false;
-
+    private bool allPopUp = false;
     List<RawImage> blackList = new List<RawImage>();
     public List<RawImage> whiteList = new List<RawImage>();
     public List<RawImage> cleanList = new List<RawImage>();
@@ -177,7 +177,7 @@ public class Func_GunCollision : MonoBehaviour
         stickerBackGroundImage.gameObject.SetActive(false);
     }
 
-
+    
     private void Update()
     {
         if (whiteList.Count == 0)
@@ -185,8 +185,9 @@ public class Func_GunCollision : MonoBehaviour
             allPop = true;
             ui_BubbleBubbleGun.followObject.gameObject.SetActive(false);
             skipOneRoundBtn.gameObject.SetActive(false);
-            if(cleanList.Count == 24)
+            if(cleanList.Count == 24 && allPopUp == false)
             {
+                allPopUp = true;
                 StartCoroutine(PopUpProcess(PopUpTwo));
             }
         }
@@ -194,5 +195,6 @@ public class Func_GunCollision : MonoBehaviour
         {
             RoundFinish();
         }
+        
     }
 }

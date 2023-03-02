@@ -1600,7 +1600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &728939288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 2517f081f1eca8b48bcfbe1b8ba585b5, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2205,7 +2205,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -3485,6 +3485,7 @@ MonoBehaviour:
   isStickClicked: 0
   freeStickerDraw: {fileID: 976256087}
   mainCam: {fileID: 1359955307}
+  HomeButton: {fileID: 728939287}
   eff_GetBubbleSticker:
   - {fileID: 1921373168}
   - {fileID: 1601888994}
@@ -43383,7 +43384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2797128444625539243
 MonoBehaviour:
   m_ObjectHideFlags: 0

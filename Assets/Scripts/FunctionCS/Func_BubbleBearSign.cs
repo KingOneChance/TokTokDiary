@@ -74,9 +74,6 @@ public class Func_BubbleBearSign : MonoBehaviour
         tex.ReadPixels(rex, 0, 0);
         tex.Apply();
 
-
-        //
-        Debug.Log("BGC 22: " + backGroundColor);
         Texture2D newTex = new Texture2D(widthValue, heightValue);
         for (int x = 0; x < widthValue; x++)
         {

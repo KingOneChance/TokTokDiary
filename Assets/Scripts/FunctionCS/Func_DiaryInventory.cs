@@ -233,32 +233,22 @@ public class Func_DiaryInventory : MonoBehaviour
                 if (nowStickerType == StickerType.BubbleSticker)
                 {
                     string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleSticker", "*.png", SearchOption.AllDirectories);
-                    pathcheck.text = allfiles[0];
-                    
-                    int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]));
+#if UNITY_EDITOR
+                    int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker\\")[1].Split(".")[0]));
+#elif UNITY_ANDROID
+                        int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]));
+#endif
                     int usedCount = func_DiarySave.GetUsedBubbleNum();
-
-                    /*if(Manager_Main.Instance.GetCurStickerUserCount("불러오려는 스티커") == "0")
-                    {
-                        // 파일 삭제하고
-                        PlayerPrefs.DeleteKey("불러오려는 스티커");
-                    }*/
-
-                    if(allCount!=0)
+                    if (allCount != 0)
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
 
-
-
 #if UNITY_EDITOR
-                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker\\")[1].Split(".")[0]);
 #elif UNITY_ANDROID
-                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+                       textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]);
 #endif
-                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleSticker/")[1].Split(".")[0]);
-                        Debug.Log(textureTemp.name + "이름 넣는중");
-
                         mainStickers[i].gameObject.SetActive(true);
                         mainStickersBack[i].gameObject.SetActive(true);
 
@@ -281,22 +271,22 @@ public class Func_DiaryInventory : MonoBehaviour
                 else if (nowStickerType == StickerType.BubbleGunSticker)
                 {
                     string[] allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGunSticker", "*.png", SearchOption.AllDirectories);
+#if UNITY_EDITOR
+                    string a = allfiles[i].Split("BubbleGunSticker\\")[1].Split(".")[0];
+#elif UNITY_ANDROID
                     string a = allfiles[i].Split("BubbleGunSticker/")[1].Split(".")[0];
+#endif
                     int allCount = int.Parse(Manager_Main.Instance.GetCurStickerUserCount(a));
                     int usedCount = func_DiarySave.GetUsedGunNum();
                     if (allCount != 0)
                     {
                         Texture2D textureTemp = new Texture2D(0, 0);
                         textureTemp.LoadImage(byteTexture);
-
 #if UNITY_EDITOR
-                        string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleGunSticker\\")[1].Split(".")[0]);
 #elif UNITY_ANDROID
-                          string filename = anyList[i].Split('/')[9].Split('.')[0];
+                       textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleGunSticker/")[1].Split(".")[0]);
 #endif
-                        textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(allfiles[i].Split("BubbleGunSticker/")[1].Split(".")[0]);
-                        Debug.Log(textureTemp.name + "이름 넣는중");
-
                         mainStickers[i].gameObject.SetActive(true);
                         mainStickersBack[i].gameObject.SetActive(true);
 
@@ -322,14 +312,10 @@ public class Func_DiaryInventory : MonoBehaviour
                     Texture2D textureTemp = new Texture2D(0, 0);
                     textureTemp.LoadImage(byteTexture);
 #if UNITY_EDITOR
-                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                    textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(anyList[i].Split("BubbleFreeSticker\\")[1].Split(".")[0]);
 #elif UNITY_ANDROID
-                          string filename = anyList[i].Split('/')[9].Split('.')[0];
-#endif
                     textureTemp.name = Manager_Main.Instance.GetCurStickerUserCount(anyList[i].Split("BubbleFreeSticker/")[1].Split(".")[0]);
-
-                    Debug.Log(textureTemp.name + "이름 넣는중");
-
+#endif
                     mainStickers[i].gameObject.SetActive(true);
                     mainStickersBack[i].gameObject.SetActive(true);
 
@@ -360,13 +346,10 @@ public class Func_DiaryInventory : MonoBehaviour
                     Texture2D texture = new Texture2D(0, 0);
                     texture.LoadImage(byteTexture);
 #if UNITY_EDITOR
-                    string filename = anyList[i].Split('/')[6].Split('\\')[2].Split('.')[0];
+                    texture.name = anyList[i].Split("RecordingSticker\\")[1].Split(".")[0];
 #elif UNITY_ANDROID
-                          string filename = anyList[i].Split('/')[9].Split('.')[0];
-#endif
                     texture.name = anyList[i].Split("RecordingSticker/")[1].Split(".")[0];
-                    Debug.Log(texture.name + "이름 넣는중");
-
+#endif
                     mainStickers[i].gameObject.SetActive(true);
                     mainStickersBack[i].gameObject.SetActive(true);
 
