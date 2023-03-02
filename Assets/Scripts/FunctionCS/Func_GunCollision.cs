@@ -25,6 +25,9 @@ public class Func_GunCollision : MonoBehaviour
     [SerializeField] private Button skipOneRoundBtn = null;
     [SerializeField] private Button skipTwoRoundBtn = null;
 
+    [SerializeField] private GameObject PopUpOne = null;
+    [SerializeField] private GameObject PopUpTwo = null;
+
     private Color Nothing = new Color(255 / 255, 255 / 255, 255 / 255, 0);
 
     public bool allClear = false;
@@ -38,9 +41,12 @@ public class Func_GunCollision : MonoBehaviour
     UI_BubbleBubbleGun ui_BubbleBubbleGun = null;
 
     private int randNum = 0;
+
     private void Start()
     {
-        
+        PopUpOne.SetActive(false);
+        PopUpTwo.SetActive(false);
+        StartCoroutine(PopUpProcess(PopUpOne));
         for (int i = 0; i < blacks.Length; i++)
         {
             whiteList.Add(blacks[i]);
@@ -51,12 +57,20 @@ public class Func_GunCollision : MonoBehaviour
         func_BubbleGunSave = FindObjectOfType<Func_BubbleGunSave>();
         ui_BubbleBubbleGun = FindObjectOfType<UI_BubbleBubbleGun>();
 
-        for(int i = 0; i < blacks.Length; i++)
+        for (int i = 0; i < blacks.Length; i++)
         {
             randNum = Random.Range(0, dirtyImages.Length);
             blacks[i].texture = dirtyImages[randNum].texture;
         }
     }
+
+    private IEnumerator PopUpProcess(GameObject obj)
+    {
+        obj.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        obj.SetActive(false);
+    }
+
     public void AllPopChange()
     {
         allPop = true;
@@ -66,7 +80,7 @@ public class Func_GunCollision : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<RawImage>().texture.name.Contains("dirty"))
         {
-            
+
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
             blackList.Remove(collision.gameObject.GetComponent<RawImage>());
             //닦이는 사운드 및 이펙트
@@ -87,10 +101,9 @@ public class Func_GunCollision : MonoBehaviour
                 skipOneRoundBtn.gameObject.SetActive(true);
             }
         }
-        else if(collision.gameObject.GetComponent<RawImage>().texture.name.Contains("clean") && allPop == true)
+        else if (collision.gameObject.GetComponent<RawImage>().texture.name.Contains("clean") && allPop == true)
         {
             ChangeImage(collision.gameObject.GetComponent<RawImage>().texture.name, collision.gameObject);
-            
             cleanList.Remove(collision.gameObject.GetComponent<RawImage>());
             collision.gameObject.GetComponent<RawImage>().color = Nothing;
             //이펙트 및 터지는 사운드
@@ -114,10 +127,10 @@ public class Func_GunCollision : MonoBehaviour
         switch (bubbleState)
         {
             case "dirty":
-                for(int i =0; i< middleImages.GetLength(0); i++)
+                for (int i = 0; i < middleImages.GetLength(0); i++)
                 {
                     if (middleImages[i].name.Contains(bubbleColor))
-                    { 
+                    {
                         go.GetComponent<RawImage>().texture = middleImages[i].texture;
                         break;
                     }
@@ -127,7 +140,7 @@ public class Func_GunCollision : MonoBehaviour
                 for (int i = 0; i < claenImages.Length; i++)
                 {
                     if (claenImages[i].name.Contains(bubbleColor))
-                    {                     
+                    {
                         go.GetComponent<RawImage>().texture = claenImages[i].texture;
                         break;
                     }
@@ -144,16 +157,16 @@ public class Func_GunCollision : MonoBehaviour
     }
     public void OnClickSticker()
     {
-        for(int i =0; i < ui_BubbleBubbleGun.randImages.Length; i++)
+        for (int i = 0; i < ui_BubbleBubbleGun.randImages.Length; i++)
         {
             ui_BubbleBubbleGun.randImages[i].gameObject.SetActive(false);
         }
-        
+
         stickerBackGround.gameObject.SetActive(true);
         StartCoroutine(DisappearSticker());
 
         string fileName = ui_BubbleBubbleGun.sticker.sprite.name;
-            
+
         func_BubbleGunSave.SaveBubbleGun(fileName);
 
     }
@@ -164,7 +177,7 @@ public class Func_GunCollision : MonoBehaviour
         stickerBackGroundImage.gameObject.SetActive(false);
     }
 
-   
+
     private void Update()
     {
         if (whiteList.Count == 0)
@@ -172,6 +185,10 @@ public class Func_GunCollision : MonoBehaviour
             allPop = true;
             ui_BubbleBubbleGun.followObject.gameObject.SetActive(false);
             skipOneRoundBtn.gameObject.SetActive(false);
+            if(cleanList.Count == 24)
+            {
+                StartCoroutine(PopUpProcess(PopUpTwo));
+            }
         }
         if (cleanList.Count == 0)
         {
