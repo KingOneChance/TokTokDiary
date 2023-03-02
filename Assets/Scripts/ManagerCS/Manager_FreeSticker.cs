@@ -20,6 +20,7 @@ namespace FreeDraw
         [SerializeField] private bool isStickClicked = false;
         [SerializeField] private Func_Draw freeStickerDraw;
         [SerializeField] private Camera mainCam = null;
+        [SerializeField] private GameObject HomeButton = null;
 
         [SerializeField] private ParticleSystem[] eff_GetBubbleSticker = null;
 
@@ -143,6 +144,7 @@ namespace FreeDraw
             {
                 eff_GetBubbleSticker[i].Clear(true);
             }
+            HomeButton.SetActive(true);
         }
     }
 }
