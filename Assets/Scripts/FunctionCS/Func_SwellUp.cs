@@ -80,6 +80,8 @@ public class Func_SwellUp : MonoBehaviour
             {
                 if (idx == 3)
                 {
+                    explain1.SetActive(false);
+                    explain2.SetActive(true);
                     swellUpImg.GetComponent<Button>().onClick.AddListener(OnClick_SwellUpBubble);
                     stickerInBubbleImg.texture = manager_bs.BubbleSticker.texture;
                     stickerInBubbleImg.gameObject.SetActive(true);

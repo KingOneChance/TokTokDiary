@@ -8,7 +8,8 @@ public class Func_HelperGuideTilt : MonoBehaviour
     [SerializeField] private GameObject guideObj = null;
     [SerializeField] private RectTransform guideRect = null;
     [SerializeField] private List<RectTransform> wayOutPoints = null;
-    [SerializeField] private GameObject explain = null;
+    [SerializeField] private GameObject explainselectColor = null;
+    [SerializeField] private GameObject explainTilt = null;
     private WaitForFixedUpdate delay = new WaitForFixedUpdate();
     private WaitForSeconds time = new WaitForSeconds(0.03f);
 
@@ -23,7 +24,8 @@ public class Func_HelperGuideTilt : MonoBehaviour
 
     private void OnEnable()
     {
-        explain.SetActive(true);
+        explainselectColor.SetActive(false);
+        explainTilt.SetActive(true);
         StartCoroutine(MoveGuide());
     }
 
