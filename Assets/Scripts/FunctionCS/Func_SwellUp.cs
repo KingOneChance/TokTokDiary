@@ -19,6 +19,11 @@ public class Func_SwellUp : MonoBehaviour
 
     [SerializeField] private ParticleSystem eff_BubblePop = null;
 
+    [SerializeField] private GameObject explain1 = null;
+    [SerializeField] private GameObject explain2 = null;
+
+    [SerializeField] private GameObject homeButton = null;
+
     private void PlayBubblePop(Vector2 myPosInScreen)
     {
         Manager_Main.Instance.GetAudio().PlaySound("PopBubble", SoundType.Common, manager_bs.gameObject, false, true);
@@ -30,6 +35,9 @@ public class Func_SwellUp : MonoBehaviour
 
     private void OnEnable()
     {
+        explain1.SetActive(true);
+        explain2.SetActive(false);
+        homeButton.SetActive(false);
         skipButton.gameObject.SetActive(true);
         stickerInBubbleImg.gameObject.SetActive(false);
         helperGuideClick.gameObject.SetActive(true);
@@ -43,6 +51,8 @@ public class Func_SwellUp : MonoBehaviour
     {
         if(curIdx == 3)
         {
+            explain1.SetActive(false);
+            explain2.SetActive(true);
             swellUpButton.interactable = false;
             return;
         }
@@ -55,6 +65,7 @@ public class Func_SwellUp : MonoBehaviour
         swellUpButton.interactable = false;
         curPanel.SetActive(false);
         getBubbleStickerPanel.SetActive(true);
+        homeButton.SetActive(false);
         manager_bs.SaveBubbleSticker();
     }
 
@@ -87,6 +98,8 @@ public class Func_SwellUp : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        explain1.SetActive(false);
+        explain2.SetActive(true);
         swellUpButton.interactable = false;
         StartCoroutine(CO_SwellUp(3));
     }

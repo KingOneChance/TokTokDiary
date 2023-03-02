@@ -14,6 +14,11 @@ public class Func_Stir : MonoBehaviour
     [SerializeField] private Button SkipButton = null;
     [SerializeField] private Manager_BubbleSticker bsManager = null;
     [SerializeField] private GameObject bubbleStickGuide = null;
+
+    [SerializeField] private GameObject explain1 = null;
+    [SerializeField] private GameObject explain2 = null;
+    [SerializeField] private GameObject explain3 = null;
+
     private float radius = 0;
     private float deg = 0;
     private float stirSpeed = 0;
@@ -27,6 +32,9 @@ public class Func_Stir : MonoBehaviour
 
     private void OnEnable()
     {
+        explain1.SetActive(true);
+        explain2.SetActive(false);
+        explain3.SetActive(false);
         bubbleStickGuide.SetActive(true);
         for (int i = 0; i < 4; i++)
         {
@@ -80,6 +88,18 @@ public class Func_Stir : MonoBehaviour
                 deg = 0;
                 stickButton.enabled = true;
                 stirCount++;
+                if(stirCount == 1)
+                {
+                    explain1.SetActive(false);
+                    explain2.SetActive(true);
+                    explain3.SetActive(false);
+                }
+                else if(stirCount == 2)
+                {
+                    explain1.SetActive(false);
+                    explain2.SetActive(true);
+                    explain3.SetActive(true);
+                }
                 MixProcess(bsManager.ColorType, stirCount);
                 if (stirCount == 3)
                 {

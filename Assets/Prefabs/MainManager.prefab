@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &197694437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197694438}
+  m_Layer: 5
+  m_Name: VolumeButtonPos_Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &197694438
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197694437}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3220364833021344643}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 55.474976, y: 47.125}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &847681127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847681128}
+  m_Layer: 5
+  m_Name: VolumeButtonPos_PictureDiary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &847681128
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847681127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3220364833021344643}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 27.474976, y: 74.125}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3818636585261483291
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,9 +129,9 @@ MonoBehaviour:
   <ui_volumePanel>k__BackingField: {fileID: 4532158373711754346}
   volumeButton: {fileID: 4532158373842098223}
   buttonPos:
-  - {fileID: 1759225006689525283}
-  - {fileID: 8394642718335954116}
-  - {fileID: 2961693454035220660}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   bgmXImage: {fileID: 6343336479860569018}
   effXImage: {fileID: 4159991029589894999}
   mainAudioSource: {fileID: 842087781479576606}
@@ -333,11 +405,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1853238885802837809, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: -1602
       objectReference: {fileID: 0}
     - target: {fileID: 1853238885802837809, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -77
       objectReference: {fileID: 0}
     - target: {fileID: 1853238887352933044, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
       propertyPath: m_Name
@@ -481,11 +553,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
---- !u!224 &1759225006689525283 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4555238359834100030, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
-  m_PrefabInstance: {fileID: 2836547541952339741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2161699156532315897 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4225103347697146340, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
@@ -497,9 +564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2961693454035220660 stripped
+--- !u!224 &3220364833021344643 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1028927880887658409, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
+  m_CorrespondingSourceObject: {fileID: 859193798720627870, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
   m_PrefabInstance: {fileID: 2836547541952339741}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4159991029589894999 stripped
@@ -550,11 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8394642718335954116 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5990548257601254361, guid: 5331cd0d034d8d54a94696adbfd69d90, type: 3}
-  m_PrefabInstance: {fileID: 2836547541952339741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5097337398694215193
 PrefabInstance:
   m_ObjectHideFlags: 0
