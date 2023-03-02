@@ -87,30 +87,21 @@ public class Func_DIarySave : Func_SaveSticker
     #endregion 
     IEnumerator Co_SaveEndLoadScene()
     {
-        Debug.Log("저장 코루틴 시작");
-        //base.OnClick_SaveImgae(StickerType.FreeSticker);
         isSaveDone = false;
         if (canSave == true)
         {
-            Debug.Log("저장 if 시작");
             if (recordFileNames.Count == 0)
                 base.SaveTexture(StickerType.Diary, profileName);
             else
             {
-                Debug.Log("else 끝");
                 base.SaveTexture(StickerType.Diary, profileName, true);
             }
         }
-        Debug.Log("저장 완료");
         //저장 완료시 씬전환
         yield return new WaitUntil(() => isSaveDone == true);
         //사용한 스티커 삭제하기
-        Debug.Log("recordUsedNum 개수 : " + recordUsedNum.Count);
-
         for (int i = 0; i < recordUsedNum.Count; i++)
         {
-            Debug.Log("recordUsedNum 개수 : " + recordUsedNum.Count);
-
             string signBuffer = func_DiaryInventory.GetRecordingSignList(recordUsedNum[i]);
             string stickerBuffer = func_DiaryInventory.GetRecordingStickerList(recordUsedNum[i]);
             DeleteFile(signBuffer);
@@ -119,8 +110,6 @@ public class Func_DIarySave : Func_SaveSticker
 
         for (int i = 0; i < freeUsedNum.Count; i++)
         {
-            Debug.Log("freeUsedNum 개수 : " + freeUsedNum.Count);
-
             string freeBuffer = func_DiaryInventory.GetFreeStickerList(freeUsedNum[i]);
             DeleteFile(freeBuffer);
         }
@@ -130,8 +119,17 @@ public class Func_DIarySave : Func_SaveSticker
             allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleGunSticker", "*.png", SearchOption.AllDirectories);
             for (int i = 0; i < gunUsedNum.Count; i++)
             {
+
+#if UNITY_EDITOR
+                Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleGunSticker\\")[1].Split(".")[0]);
+#elif UNITY_ANDROID
                 Manager_Main.Instance.UseSticker(allfiles[gunUsedNum[i]].Split("BubbleGunSticker/")[1].Split(".")[0]);
+#endif
+#if UNITY_EDITOR
+                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleGunSticker\\")[1].Split(".")[0])) == 0)
+#elif UNITY_ANDROID
                 if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[gunUsedNum[i]].Split("BubbleGunSticker/")[1].Split(".")[0]))==0)
+#endif
                 {
                     DeleteFile(allfiles[gunUsedNum[i]]);
                 }
@@ -142,9 +140,16 @@ public class Func_DIarySave : Func_SaveSticker
             allfiles = Directory.GetFiles(Application.persistentDataPath + "/BubbleSticker", "*.png", SearchOption.AllDirectories);
             for (int i = 0; i < bubbleUsedNum.Count; i++)
             {
-
+#if UNITY_EDITOR
+                Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleSticker\\")[1].Split(".")[0]);
+#elif UNITY_ANDROID
                 Manager_Main.Instance.UseSticker(allfiles[bubbleUsedNum[i]].Split("BubbleSticker/")[1].Split(".")[0]);
-                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleSticker/")[1].Split(".")[0])) == 0)
+#endif
+#if UNITY_EDITOR
+                if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleSticker\\")[1].Split(".")[0])) == 0)
+#elif UNITY_ANDROID
+               if (int.Parse(Manager_Main.Instance.GetCurStickerUserCount(allfiles[bubbleUsedNum[i]].Split("BubbleSticker/")[1].Split(".")[0])) == 0)
+#endif
                 {
                     DeleteFile(allfiles[bubbleUsedNum[i]]);
                 }
