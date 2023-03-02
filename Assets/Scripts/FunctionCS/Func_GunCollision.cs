@@ -106,6 +106,7 @@ public class Func_GunCollision : MonoBehaviour
         }
 
     }
+
     public void ChangeImage(string textureName, GameObject go)
     {
         string bubbleState = textureName.Split("_")[0];
@@ -164,7 +165,7 @@ public class Func_GunCollision : MonoBehaviour
         stickerBackGroundImage.gameObject.SetActive(false);
     }
 
-   
+   private bool isShow = false;
     private void Update()
     {
         if (whiteList.Count == 0)
@@ -177,5 +178,11 @@ public class Func_GunCollision : MonoBehaviour
         {
             RoundFinish();
         }
+        if(whiteList.Count == 0 && cleanList.Count == 24 && isShow == false)
+        {
+            isShow = true;
+            Debug.Log("ø‰¿Ã");
+        }
+
     }
 }
