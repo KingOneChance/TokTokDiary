@@ -40,6 +40,8 @@ public class Manager_BubbleBear : MonoBehaviour
     [SerializeField] private GameObject stickerRepo = null;
     [SerializeField] private GameObject hedgehogStage = null;
 
+    [SerializeField] private TextMeshProUGUI explainText = null;
+
     [Header("===StageUI===")]
     [SerializeField] private RawImage Ui_Stage1 = null;
     [SerializeField] private RawImage Ui_Stage2 = null;
