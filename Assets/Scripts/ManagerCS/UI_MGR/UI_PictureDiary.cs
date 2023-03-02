@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 using static NativeCamera;
+using Unity.VisualScripting;
 
 public class UI_PictureDiary : MonoBehaviour
 {
@@ -77,8 +78,24 @@ public class UI_PictureDiary : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI dateText = null;
 
+    [SerializeField] private RectTransform[] volumePos = null;
+
+    [SerializeField] private RectTransform volumeContollerPos = null;
+
+    private void OnEnable()
+    {
+        volumeContollerPos.position = volumePos[0].position;
+    }
+
+    private void OnDisable()
+    {
+        volumeContollerPos.position = volumePos[1].position;
+    }
+
     private void Start()
     {
+        volumePos[0] = GameObject.Find("ButtonPos").transform.GetChild(0).GetComponent(typeof(RectTransform)) as RectTransform;
+        volumePos[1] = GameObject.Find("ButtonPos").transform.GetChild(1).GetComponent(typeof(RectTransform)) as RectTransform;
         dateText.text = DateTime.Now.ToString("yyyy" + " ³â " + "MM" + " ¿ù " + "dd" + "ÀÏ");
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
