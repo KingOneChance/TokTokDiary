@@ -15,11 +15,15 @@ public class Func_AlcoholLamp : Func_DragAndDrop
     [SerializeField] private GameObject alcoholLampDragGuide = null;
     [SerializeField] private GameObject[] colorBeakerPoppingGuideLine = null;
 
+    [SerializeField] private GameObject explain = null;
+    [SerializeField] private GameObject explain2 = null;
+
     private bool isSolutionFill = false;
 
     private new void OnEnable()
     {
         base.OnEnable();
+        explain.SetActive(true);
         isSolutionFill = false;
         alcoholLampDragGuide.SetActive(true);
         alcoholLampPosImg.color = Vector4.one;
@@ -40,6 +44,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
             StartCoroutine(CO_FillSolution());
             alcoholLampPosImg.color = Vector4.one;
             alcoholLampDragGuide.SetActive(false);
+            explain.SetActive(false);
         }
     }
 
@@ -70,6 +75,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     private IEnumerator CO_BlinkBlink(RawImage[] blinkImage)
     {
+        explain2.SetActive(true);
         float fadeAmount = 0;
         int fadeCount = 0;
         while (true)
@@ -149,6 +155,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
         }
         isSolutionFill = true;
         StartCoroutine(CO_BlinkBlink(colorBeakerImg));
+
         yield break;
     }
 
