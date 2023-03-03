@@ -256,7 +256,6 @@ public class Func_CalendarController : MonoBehaviour
                 int year = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[0]);
                 int month = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[1]);
                 int day = int.Parse(manager_DiaryCase.previewImg.texture.name.Split("-")[0].Split("_")[2]);
-                Debug.Log(year +" "+ month + " " + day);
                 ShowPreviewDate(year.ToString(), month.ToString(), day.ToString());
                 break;
             }
@@ -287,7 +286,6 @@ public class Func_CalendarController : MonoBehaviour
            // fileName = manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0];
 #if UNITY_ANDROID
             filename = manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0];
-            Debug.Log(manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0]);
 #else
             filename = manager_DiaryCase.allFiles[k].Split('\\')[1].Split(".")[0];
 #endif
@@ -295,8 +293,7 @@ public class Func_CalendarController : MonoBehaviour
             string year = filename.Split("_")[0];
             string month = filename.Split("_")[1];
             string day = filename.Split("_")[2].Split("-")[0];
-            Debug.Log(manager_DiaryCase.allFiles[k].Split('/')[11].Split('.')[0]);
-            Debug.Log(year + month + day);
+
             for (int i = 0; i < stickers.Count; i++)
             {
                 if (int.Parse(day) == int.Parse(stickers[i].transform.parent.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text) &&

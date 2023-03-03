@@ -143,13 +143,9 @@ public class Data_LinkedList : MonoBehaviour
         else  //처음 생긴 오브젝트일 경우
         {
             int num = 0;
-            Debug.Log(tail.myObject.name + " <= 이름");
             if (!tail.myObject.name.Contains("Line"))
             {
                 num = int.Parse(tail.myObject.name.Split("(")[0]);
-                Debug.Log(tail.myObject.name.Split("(")[0] + " <= 이름");
-                Debug.Log("num");
-                Debug.Log(tail.myObject.tag.ToString());
             }
 
             switch (tail.myObject.tag)
@@ -177,9 +173,7 @@ public class Data_LinkedList : MonoBehaviour
                     break;
             }
             Manager_Main.Instance.manager_PictureDiary.DestroySomthing(tail.myObject);
-            Debug.Log("파괴 : " + tail.myObject.name);
         }
-        Debug.Log("지운이름 : " + tail.myObject.name);
         if (tail == head)
         {
             head = null;
@@ -191,19 +185,13 @@ public class Data_LinkedList : MonoBehaviour
 
     public void Print()
     {
-        if (tail == null)
-            Debug.Log("자료가 없어요");
-        else
+        if (tail != null)
         {
             // cur 를 처음 노드(head)를 가리키게 하고
             cur = tail;
             // 다음 노드가 존재한다면 계속 반복
             do
             {
-                Debug.Log("현재 오브젝트 이름" + cur.myObject.name);
-                Debug.Log("현재 오브젝트 이름" + cur.prev.myObject.name);
-                Debug.Log("현재위치 : " + cur.nodeData.position);
-                Debug.Log("이전위치 : " + cur.prev.nodeData.position);
                 cur = cur.prev;
             } while (cur != head);
         }

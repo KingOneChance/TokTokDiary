@@ -289,7 +289,6 @@ public class Manager_Main : MonoBehaviour
             PlayerPrefs.SetInt(stickerName, 5);
         }
         PlayerPrefs.Save();
-        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     /// <summary>
@@ -303,32 +302,27 @@ public class Manager_Main : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(stickerName) == false)
         {
-            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
             return;
         }
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) - 1);
 
         PlayerPrefs.Save();
-        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public void ReturnSticker(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName) == false)
         {
-            Debug.LogError("The sticker you are trying to use does not exist. Please check Again - Request JongHoon");
             return;
         }
         PlayerPrefs.SetInt(stickerName, PlayerPrefs.GetInt(stickerName) + 1);
         PlayerPrefs.Save();
-        Debug.Log(stickerName + " Sticker Usable Count : " + PlayerPrefs.GetInt(stickerName));
     }
 
     public string GetCurStickerUserCount(string stickerName)
     {
         if (PlayerPrefs.HasKey(stickerName) == false)
         {
-            Debug.LogError("The sticker you are trying to get useNum does not exist. Please check Again - Request JongHoon");
             return "-1";
         }
         return PlayerPrefs.GetInt(stickerName).ToString();

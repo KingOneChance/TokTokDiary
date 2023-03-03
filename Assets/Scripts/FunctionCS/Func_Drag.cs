@@ -33,7 +33,6 @@ public class Func_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         test.y = test.y - 540 * 0.01f;
 
         rectTransform.transform.position = test;
-        Debug.Log(eventData.position);
     }
     public void OnEndDrag(PointerEventData eventData)
     {

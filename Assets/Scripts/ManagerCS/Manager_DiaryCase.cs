@@ -76,7 +76,6 @@ public class Manager_DiaryCase : MonoBehaviour
 #else
           selectedProfilPath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Diary";
 #endif
-        //Debug.Log(selectedProfilPath);
         //프로필 네임 
         Manager_Main.Instance.func_DiaryToJson.SetProfileName(Application.persistentDataPath + "/Profile/" + selectedProfileName);
         savedRecordFinePath = Application.persistentDataPath + "/Profile/" + selectedProfileName + "/Records";
@@ -87,10 +86,6 @@ public class Manager_DiaryCase : MonoBehaviour
             panels[0].SetActive(false);
             panels[1].SetActive(true);
             
-        }
-        else
-        {
-            Debug.Log("일기가 없습니다");
         }
     }
 
@@ -147,7 +142,6 @@ public class Manager_DiaryCase : MonoBehaviour
                 dataDiary = Manager_Main.Instance.func_DiaryToJson.LoadRecord();
                 for (int j = 0; j < dataDiary.recordFileNames.Count; j++)
                 {
-                    //Debug.Log(dataDiary.recordFileNames[j].ToString() + "카운트 개수");
                     recordFilesNames.Add(dataDiary.recordFileNames[j]);
                     recordFilesPos.Add(dataDiary.recordFilePos[j]);
                 }
@@ -157,10 +151,6 @@ public class Manager_DiaryCase : MonoBehaviour
         presentNum = allFiles.Count - 1;
 
         ShowPreviewDiary();
-        for (int i = 0; i < allFilesTexture.Count; i++)
-        {
-            Debug.Log(allFilesTexture[i].name);
-        }
     }
     //처음 들어갔을때 가장 최근일기 띄워주는 함수
     public void ShowPreviewDiary()
@@ -171,30 +161,20 @@ public class Manager_DiaryCase : MonoBehaviour
         string month = previewImg.texture.name.Split("-")[0].Split("_")[1];
         string day = previewImg.texture.name.Split("-")[0].Split("_")[2];
         func_CalendarController.ShowPreviewDate(year, month, day);
-        Debug.Log("마지막 일기 띄움");
         FindRecordFile(lastDay);
     }
     public void FindRecordFile(string lastDay)
     {
-       // Debug.Log("마지막 일기 사운드 확인 띄움");
-       // Debug.Log(lastDay);
         for (int i = 0; i < jsonFiles.Count; i++)
         {
-            Debug.Log(jsonFiles[i]);
-
             for (int k = 0; k < buttonPool.Count; k++)
             {
                 buttonPool[k].SetActive(false);
             }
             if (jsonFiles[i].Contains(lastDay) == true)
             {
-                Debug.Log("마지막 일기 사운드 있음");
                 InsertRecordButton(lastDay);
                 break;
-            }
-            else
-            {
-                Debug.Log("마지막 일기 사운드 없음");
             }
         }
     }
@@ -204,8 +184,7 @@ public class Manager_DiaryCase : MonoBehaviour
     {
         theDayRecordNames.Clear();
         theDayRecordPos.Clear();
-        Debug.Log(savedRecordFinePath);
-        Debug.Log(lastDay);
+
         string[] all = Directory.GetFiles(savedRecordFinePath, "*.wav", SearchOption.AllDirectories);
         for (int i = 0; i < all.Length; i++)
         {
@@ -225,21 +204,17 @@ public class Manager_DiaryCase : MonoBehaviour
     }
     public void CheckButtonPool()
     {
-        Debug.Log("오브젝트풀 생성");
         //오브젝트 풀이 부족하다면 
         if (buttonPool.Count < theDayRecordNames.Count)
         {  //현재 있는 오브젝트 풀과 그날 있는 오디오 개수의 차이만큼 생성
-            Debug.Log("오브젝트풀 부족");
             for (int k = 0; k < theDayRecordNames.Count - buttonPool.Count; k++)
             {
-                Debug.Log("오브젝트풀 생성중");
-
                 GameObject audioPool = GameObject.Instantiate(buttonPrefab, diaryPanel.transform);
                 audioPool.name = k.ToString();
                 buttonPool.Add(audioPool);
             }
         }
-        Debug.Log("오브젝트풀 생성완료");
+
         for(int k = 0; k<buttonPool.Count; k++)
         {
             buttonPool[k].SetActive(false);
@@ -248,12 +223,8 @@ public class Manager_DiaryCase : MonoBehaviour
 
         for (int k = 0; k < buttonPool.Count; k++)
         {
-            Debug.Log("오브젝트풀 처리중");
             if (k < theDayRecordNames.Count) //오브젝트풀
             {
-                Debug.Log(k);
-                Debug.Log(theDayRecordNames[k].ToString());
-                Debug.Log(buttonPool.Count);
                 Vector2 temp = theDayRecordPos[k];
                 buttonPool[k].SetActive(true);
                 buttonPool[k].GetComponent<RectTransform>().position = temp;
@@ -355,12 +326,10 @@ public class Manager_DiaryCase : MonoBehaviour
         {
             try
             {
-                Debug.Log(fileName);
                 File.Delete(fileName);
             }
             catch (IOException e)
             {
-                Debug.Log(e.Message);
                 return;
             }
         }

@@ -33,13 +33,11 @@ public class Func_BubbleBearSign : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(saveObjectFile.transform.position);
         beforeSignRect = saveObjectFile.GetComponent<RectTransform>();
         startXPos = saveObjectFile.gameObject.transform.position.x + beforeSignRect.rect.position.x + 960;
         startYPos = saveObjectFile.gameObject.transform.position.y + beforeSignRect.rect.position.y + 540;
         widthValue = (int)beforeSignRect.rect.width;
         heightValue = (int)beforeSignRect.rect.height;
-        //Debug.Log(startXPos);
     }
 
     public void CancelSign()

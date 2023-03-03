@@ -192,7 +192,6 @@ public class Func_Record : MonoBehaviour
     IEnumerator Co_ListenEff()
     {
         float playTime = 0;
-        Debug.Log("사운드 이펙트 재생");
         while (playTime <= time)
         {
             playTime += Time.deltaTime;

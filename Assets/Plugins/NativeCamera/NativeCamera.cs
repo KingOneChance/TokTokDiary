@@ -320,16 +320,12 @@ public static class NativeCamera
 		{
 			if( !result.LoadImage( File.ReadAllBytes( loadPath ), markTextureNonReadable ) )
 			{
-				Debug.LogWarning( "Couldn't load image at path: " + loadPath );
-
 				Object.DestroyImmediate( result );
 				return null;
 			}
 		}
 		catch( Exception e )
 		{
-			Debug.LogException( e );
-
 			Object.DestroyImmediate( result );
 			return null;
 		}
@@ -415,8 +411,6 @@ public static class NativeCamera
 						}
 						catch( Exception e )
 						{
-							Debug.LogException( e );
-
 							if( mipmapTexture )
 								Object.DestroyImmediate( mipmapTexture );
 						}
@@ -440,16 +434,12 @@ public static class NativeCamera
 			{
 				if( !result.LoadImage( File.ReadAllBytes( loadPath ), markTextureNonReadable ) )
 				{
-					Debug.LogWarning( "Couldn't load image at path: " + loadPath );
-
 					Object.DestroyImmediate( result );
 					return null;
 				}
 			}
 			catch( Exception e )
 			{
-				Debug.LogException( e );
-
 				Object.DestroyImmediate( result );
 				return null;
 			}

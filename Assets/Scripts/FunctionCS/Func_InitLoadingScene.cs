@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Android;
+//using static NativeCamera;
+//using static NativeGallery;
+
 
 public class Func_InitLoadingScene : MonoBehaviour
 {
@@ -21,10 +25,37 @@ public class Func_InitLoadingScene : MonoBehaviour
         });
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            StartCoroutine(CO_PermissionCheck());
+        }
+        yield return new WaitForSeconds(0.2f);
+        yield return new WaitUntil(() => Application.isFocused);
+
         StartCoroutine(SwingGGamdo());
         StartCoroutine(EmphasizeText());
+    }
+
+    private IEnumerator CO_PermissionCheck()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            Permission.RequestUserPermission(Permission.Microphone);
+        }
+
+        if(NativeCamera.CheckPermission(true) != NativeCamera.Permission.Granted)
+        {
+            NativeCamera.RequestPermission(true);
+        }
+
+        if (NativeGallery.CheckPermission(NativeGallery.PermissionType.Read, NativeGallery.MediaType.Image) != NativeGallery.Permission.Granted)
+        {
+            NativeGallery.RequestPermission(NativeGallery.PermissionType.Read, NativeGallery.MediaType.Image);
+        }
     }
 
     private IEnumerator SwingGGamdo()

@@ -30,7 +30,6 @@ public class Func_WavUtility
 	{
 		if (!filePath.StartsWith(Application.persistentDataPath) && !filePath.StartsWith(Application.dataPath))
 		{
-			Debug.LogWarning("This only supports files that are stored using Unity's Application data path. \nTo load bundled resources use 'Resources.Load(\"filename\") typeof(AudioClip)' method. \nhttps://docs.unity3d.com/ScriptReference/Resources.Load.html");
 			return null;
 		}
 		byte[] fileBytes = File.ReadAllBytes(filePath);
@@ -46,7 +45,6 @@ public class Func_WavUtility
 
 		// NB: Only uncompressed PCM wav files are supported.
 		string formatCode = FormatCode(audioFormat);
-		Debug.AssertFormat(audioFormat == 1 || audioFormat == 65534, "Detected format code '{0}' {1}, but only PCM and WaveFormatExtensable uncompressed formats are currently supported.", audioFormat, formatCode);
 
 		UInt16 channels = BitConverter.ToUInt16(fileBytes, 22);
 		int sampleRate = BitConverter.ToInt32(fileBytes, 24);
@@ -56,7 +54,6 @@ public class Func_WavUtility
 
 		int headerOffset = 16 + 4 + subchunk1 + 4;
 		int subchunk2 = BitConverter.ToInt32(fileBytes, headerOffset);
-		//Debug.LogFormat ("riff={0} wave={1} subchunk1={2} format={3} channels={4} sampleRate={5} byteRate={6} blockAlign={7} bitDepth={8} headerOffset={9} subchunk2={10} filesize={11}", riff, wave, subchunk1, formatCode, channels, sampleRate, byteRate, blockAlign, bitDepth, headerOffset, subchunk2, fileBytes.Length);
 
 		float[] data;
 		switch (bitDepth)
@@ -229,7 +226,6 @@ public class Func_WavUtility
 			filepath = string.Format("{0}/{1}/{2}.{3}", Application.persistentDataPath, dirname, DateTime.UtcNow.ToString("yyMMdd-HHmmss-fff"), "wav");
 			Directory.CreateDirectory(Path.GetDirectoryName(filepath));
 			File.WriteAllBytes(filepath, bytes);
-			//Debug.Log ("Auto-saved .wav file: " + filepath);
 		}
 		else
 		{
@@ -355,7 +351,6 @@ public class Func_WavUtility
 	{
 		int count = bytes.Length;
 		stream.Write(bytes, 0, count);
-		//Debug.LogFormat ("WAV:{0} wrote {1} bytes.", tag, count);
 		return count;
 	}
 
@@ -408,7 +403,6 @@ public class Func_WavUtility
 			case 65534:
 				return "WaveFormatExtensable";
 			default:
-				Debug.LogWarning("Unknown wav code format:" + code);
 				return "";
 		}
 	}

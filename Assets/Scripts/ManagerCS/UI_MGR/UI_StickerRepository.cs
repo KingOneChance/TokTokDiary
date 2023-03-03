@@ -73,7 +73,6 @@ public class UI_StickerRepository : MonoBehaviour
         bubbleFreeStickerList.Clear();
         for (int i = 0; i < allFiles.Length; i++)
         {
-            Debug.Log(allFiles[i]);
             byte[] byteTexture = File.ReadAllBytes(allFiles[i]);
 
             if (byteTexture.Length > 0)
@@ -101,10 +100,6 @@ public class UI_StickerRepository : MonoBehaviour
                 else if (allFiles[i].Contains("BubbleFreeSticker"))
                 {
                     bubbleFreeStickerList.Add(allFiles[i]);
-                }
-                else
-                {
-                    Debug.Log("It is not my Sticker");
                 }
             }
         }
@@ -137,7 +132,6 @@ public class UI_StickerRepository : MonoBehaviour
         MakingObj.Clear();
         if (anyList.Count - 8 > 0)
         {
-            Debug.Log(anyList.Count);
             int makingRawImage = anyList.Count - 9;
             int makingLine = makingRawImage / 4 + 1;
             for (int k = 0; k < (makingLine); k++)
@@ -177,7 +171,6 @@ public class UI_StickerRepository : MonoBehaviour
         //Fill in the raw image's texture
         for (int i = 0; i < anyList.Count; i++)
         {
-            Debug.Log(anyList[i]);
             byte[] byteTexture = File.ReadAllBytes(anyList[i]);
 #if UNITY_ANDROID
             string filename = anyList[i].Split('/')[9].Split('.')[0];
@@ -198,10 +191,6 @@ public class UI_StickerRepository : MonoBehaviour
                     basicStickers[i].texture = texture;
                     if(allCount>0)
                     basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Manager_Main.Instance.GetCurStickerUserCount(basicStickers[i].texture.name);
-                    //if (basicStickers[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text == "0")
-                    //{
-                    //    basicStickers[i].GetComponent<Button>().interactable = false;
-                    //}
                 }
                 else
                     basicStickers[i].GetComponent<Button>().interactable = false;
@@ -249,16 +238,7 @@ public class UI_StickerRepository : MonoBehaviour
 
     public void Onclick_TransferDelete()
     {
-        if (presentNum > int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
-        {
-            Debug.Log("스티커보다 수량보다 많습니다");
-        }
-        else if (presentNum == 0)
-        {
-            Debug.Log("삭제될것이 없습니다");
-
-        }
-        else if (presentNum == int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
+        if (presentNum == int.Parse(Manager_Main.Instance.GetCurStickerUserCount(sticker.name)))
         {
             PlayerPrefs.DeleteKey(sticker.name);
             PlayerPrefs.Save();
@@ -276,7 +256,6 @@ public class UI_StickerRepository : MonoBehaviour
         }
         else
         {
-            Debug.Log("이상한 그림 가져왔음ㅋㅋ");
             return;
         }
 

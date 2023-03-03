@@ -45,7 +45,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
     {
         if (myRawimage.texture != null)
         {
-            Debug.Log("스티커의 이름은" + myRawimage.texture.name);
             stickerName = myRawimage.texture.name;
         }
     }
@@ -88,7 +87,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         newSticker.AddComponent<Func_DragObject>();
         newSticker.AddComponent<Func_DetectOnSticker>();
         newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 2);
-        Debug.Log("스티커 상태 :" + func_DiaryInventory.GetNowType().ToString());
         switch (func_DiaryInventory.GetNowType())
         {
             case StickerType.BubbleSticker:
@@ -141,18 +139,6 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         gameObject.transform.SetParent(myParents.transform);
         drawObject.IsStickerMaking(false);
 
-        Debug.Log(stickerName + "깔깔");
-        // Use Sticker
-   /*     if (func_DiaryInventory.GetNowType() != StickerType.RecordSticker && func_DiaryInventory.GetNowType() != StickerType.FreeSticker)
-            Manager_Main.Instance.UseSticker(stickerName);*/
-
         Destroy(newSticker.GetComponent<Func_StickersCopy>());
-
-
-
-
-        //오디오 매니저 사용 방법
-        //Manager_Main.Instance.GetAudio().PlaySound("클립이름", SoundType.Touch, gameObject,  false);
-        //Manager_Main.Instance.GetAudio().PlayLocalSound("클립이름", newSticker, false);
     }
 }
