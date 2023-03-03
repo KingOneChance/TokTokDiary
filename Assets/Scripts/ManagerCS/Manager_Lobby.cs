@@ -11,7 +11,10 @@ public class Manager_Lobby : MonoBehaviour
     {
         if (FindObjectOfType<Manager_Main>() != null) return;
         else Instantiate(mainManager);
+    }
 
+    private void OnEnable()
+    {
         quitButton.onClick.AddListener(() =>
         {
             Application.Quit(0);
