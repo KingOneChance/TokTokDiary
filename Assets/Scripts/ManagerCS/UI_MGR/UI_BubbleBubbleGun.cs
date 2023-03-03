@@ -25,6 +25,8 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     //스티커가 될 
     [SerializeField] public RawImage[] randImages=null;
 
+    [SerializeField] private GameObject explainImg = null;
+
     private int randStickerNum = 0;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
@@ -49,6 +51,7 @@ public class UI_BubbleBubbleGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (explainImg.activeSelf) return;
         followImage.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 100);
         followObject.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 100);
     }
