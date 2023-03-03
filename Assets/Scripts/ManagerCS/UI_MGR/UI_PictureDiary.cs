@@ -239,6 +239,10 @@ public class UI_PictureDiary : MonoBehaviour
         tex.LoadImage(temp);
         loadImage.texture = tex;
         loadImage.rectTransform.rotation = Quaternion.identity;
+        loadImage.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        loadImage.gameObject.AddComponent<Func_DragObject>();
+        loadImage.gameObject.AddComponent<Func_DetectOnSticker>();
+        loadImage.gameObject.GetComponent<RectTransform>().transform.position = Vector3.zero ;
     }
 
     #region NiddleBtn , StickBtn
