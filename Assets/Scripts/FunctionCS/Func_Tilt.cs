@@ -10,6 +10,7 @@ public class Func_Tilt : MonoBehaviour
     [SerializeField] private RectTransform beakerSolutionImgPos = null;
     [SerializeField] private RectTransform beakerSolutionImgInitPos = null;
     [SerializeField] private Button NextButton = null;
+    [SerializeField] private GameObject explain = null;
 
     private RectTransform tiltObj = null;
     private Vector3 angle = new Vector3(0, 0, 1);
@@ -134,6 +135,7 @@ public class Func_Tilt : MonoBehaviour
         isSolutionFall = false;
         NextButton.gameObject.SetActive(true);
         Manager_Main.Instance.GetAudio().PlaySound("NextButton", SoundType.Common, gameObject, false, true);
+        explain.SetActive(false);
     }
 
     private void CheckColor(string name)

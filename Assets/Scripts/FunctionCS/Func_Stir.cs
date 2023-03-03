@@ -97,12 +97,13 @@ public class Func_Stir : MonoBehaviour
                 else if(stirCount == 2)
                 {
                     explain1.SetActive(false);
-                    explain2.SetActive(true);
+                    explain2.SetActive(false);
                     explain3.SetActive(true);
                 }
                 MixProcess(bsManager.ColorType, stirCount);
                 if (stirCount == 3)
                 {
+                    explain3.SetActive(false);
                     Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
                     SkipButton.gameObject.SetActive(false);
                     stickButton.enabled = false;
@@ -149,6 +150,9 @@ public class Func_Stir : MonoBehaviour
 
     public void OnClick_SkipButton()
     {
+        explain1.SetActive(false);
+        explain2.SetActive(false);
+        explain3.SetActive(false);
         Manager_Main.Instance.GetAudio().PlaySound("RollingGood", SoundType.BubbleSticker, gameObject, false, true);
         stickButton.enabled = false;
         Invoke(nameof(DelayProcess), 2f);

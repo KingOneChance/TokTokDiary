@@ -93,11 +93,13 @@ public class Func_StickersCopy : MonoBehaviour, IDragHandler, IBeginDragHandler,
         {
             case StickerType.BubbleSticker:
                 newSticker.tag = "BubbleSticker";
+                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 1);
                 func_DiarySave.SetUsedBubbleNum(int.Parse(gameObject.name));
                 func_DiaryInventory.OnClick_BubbleStickerRepository();
                 break;
             case StickerType.BubbleGunSticker:
                 newSticker.tag = "GunSticker";
+                newSticker.transform.localScale = new Vector2(newSticker.transform.localScale.x * 2, newSticker.transform.localScale.y * 1);
                 func_DiarySave.SetUsedGunNum(int.Parse(gameObject.name));
                 func_DiaryInventory.OnClick_BubbleGunStickerRepository();
                 break;
