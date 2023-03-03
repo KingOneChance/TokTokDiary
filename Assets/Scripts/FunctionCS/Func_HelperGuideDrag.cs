@@ -117,29 +117,16 @@ public class Func_HelperGuideDrag : MonoBehaviour
     {
         canDrag = true;
         drawingFun.enabled = false;
-       // DrawingObj.StopDraw(true);
-      //  for (int i = 0; i < Copyobjects.Length; i++)
-      //  {
-      //      Copyobjects[i].enabled = false;
-      //  }
+
         HelperMenu.SetActive(true);
         StopButton.SetActive(true);
-        Debug.Log("헬프메뉴켜짐?");
 
-      // if (!HelperMenu.activeSelf)
-      // {
-      //     HelperMenu.SetActive(false);
-      //     StopButton.SetActive(false);
-      //     DrawingObj.StopDraw(false);
-      //     Debug.Log("꺼짐?");
-      // }
     }
     WaitForFixedUpdate time = new WaitForFixedUpdate();
     IEnumerator Select_1()
     {
         DrawingObj.StopDraw(true);
         손가락.position = 출발지.position;
-        Debug.Log(손가락.transform.position);
 
         yield return new WaitForSeconds(0.5f);
         int i = 0;
@@ -160,7 +147,6 @@ public class Func_HelperGuideDrag : MonoBehaviour
     {
         DrawingObj.StopDraw(true);
         손가락.position = 출발지.position;
-        Debug.Log(손가락.transform.position);
 
         yield return new WaitForSeconds(0.5f);
         int i = 0;
@@ -170,7 +156,6 @@ public class Func_HelperGuideDrag : MonoBehaviour
             yield return time;
             i++;
         }
-        // transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.7f, 0.7f), 0.1f);
         손가락.gameObject.SetActive(false);
         HelperMenu.SetActive(true);
     }
@@ -179,7 +164,6 @@ public class Func_HelperGuideDrag : MonoBehaviour
     {
         DrawingObj.StopDraw(true);
         손가락.position = 출발지.position;
-        Debug.Log(손가락.transform.position);
 
         yield return new WaitForSeconds(0.5f);
         int i = 0;
@@ -197,7 +181,6 @@ public class Func_HelperGuideDrag : MonoBehaviour
     {
         DrawingObj.StopDraw(true);
         손가락.position = 출발지.position;
-        Debug.Log(손가락.transform.position);
 
         yield return new WaitForSeconds(0.5f);
         int i = 0;

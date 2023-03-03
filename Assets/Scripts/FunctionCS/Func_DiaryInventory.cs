@@ -107,7 +107,6 @@ public class Func_DiaryInventory : MonoBehaviour
             foreach (string file in allRecord)
             {
                 recordFileName.Add(file);
-                Debug.Log(file);
             }
         }
         //List Initiate for rearrange;
@@ -146,10 +145,6 @@ public class Func_DiaryInventory : MonoBehaviour
                 else if (allFiles[i].Contains("BubbleFreeSticker"))
                 {
                     bubbleFreeStickerList.Add(allFiles[i]);
-                }
-                else
-                {
-                    Debug.Log("It is not my Sticker");
                 }
             }
         }

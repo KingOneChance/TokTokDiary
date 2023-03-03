@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using FreeDraw;
 public delegate void Del_DrawStop(bool isStop);
-public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Func_StickerDrag : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public Del_DrawStop del_DrawStop = null;
     private RectTransform rect = null;
@@ -37,14 +37,8 @@ public class Func_StickerDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, 
         rect.transform.position = mousePos;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        //Debug.Log("Ω√¿€");
-    }
-
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("≥°");
         del_DrawStop(false);
     }
 

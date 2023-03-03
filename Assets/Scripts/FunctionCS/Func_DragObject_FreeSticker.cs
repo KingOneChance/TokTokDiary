@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using FreeDraw;
 
-public class Func_DragObject_FreeSticker : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Func_DragObject_FreeSticker : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     private SData_NodeData nodeData;
     private RectTransform rect;
@@ -36,9 +36,5 @@ public class Func_DragObject_FreeSticker : MonoBehaviour, IDragHandler, IBeginDr
             InArea = true;
             rect.position = mousePos;
         }
-    }
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("Å¬¸¯³¡");
     }
 }

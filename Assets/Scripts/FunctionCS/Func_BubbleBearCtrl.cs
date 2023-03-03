@@ -313,11 +313,9 @@ public class Func_BubbleBearCtrl : MonoBehaviour
                     bubbleHedgehogAccHeadBand.SetActive(true);
                 else if (head == 2)
                     bubbleHedgehogAccCon.SetActive(true);
-                Debug.Log("There is no accessory");
                 break;
 
             default:
-                Debug.Log("There is no type");
                 break;
         }
     }
@@ -360,7 +358,6 @@ public class Func_BubbleBearCtrl : MonoBehaviour
         tex.Apply();
 
         //
-        Debug.Log("BGC : " + backGroundColor);
         Texture2D newTex = new Texture2D(widthValue, heightValue);
         for (int x = 0; x < widthValue; x++)
         {

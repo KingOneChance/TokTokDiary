@@ -58,15 +58,12 @@ public class Func_OnTriggerStay : MonoBehaviour
             {
                 if(collision.transform.childCount == 1)
                 {
-                    Debug.Log("내자식은 1명이다");
                     go.GetComponent<RawImage>().color = showImgColor;
                 }
 
                 
                 if(go.GetComponent<RawImage>().color == showImgColor)
                 {
-                    Debug.Log(go.GetComponent<RawImage>().texture);
-
                     subCanvas.gameObject.SetActive(true);
                     mainCanvas.gameObject.SetActive(false);
                 }

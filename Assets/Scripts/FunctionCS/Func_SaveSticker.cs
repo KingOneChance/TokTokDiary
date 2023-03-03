@@ -63,8 +63,7 @@ public class Func_SaveSticker : MonoBehaviour
 
         texture.ReadPixels(rect, 0, 0);
         texture.Apply();
-        //
-        Debug.Log("BGC : " + backGroundColor);
+        
         Texture2D newTex = new Texture2D(widthValue, heightValue);
         for (int x = 0; x < widthValue; x++)
         {
@@ -128,8 +127,7 @@ public class Func_SaveSticker : MonoBehaviour
                 nowNum = Manager_Main.Instance.GetDiaryNum(diaryFolder, name);
                 Manager_Main.Instance.SetDiaryNum();
                 SaveTextureToPng(saveTemp.texture, savePath + $"/{diaryFolder}/" + name + "/Diary/", saveFileName + "-" + nowNum);
-                Debug.Log("저장 경로와 파일 이름 " + savePath + $"/{diaryFolder}/" + name + "/Diary/" + saveFileName + "-" + nowNum + 1);
-                //제이슨 저장 02.21 김원찬 해야할 일
+
                 if (recordFile == true)
                 {
                     //1.스티커 삭제
@@ -141,7 +139,6 @@ public class Func_SaveSticker : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("there is no sticker what you want");
                 nowNum = 0;
                 break;
         }
@@ -166,7 +163,6 @@ public class Func_SaveSticker : MonoBehaviour
         //
         if (test == 0)
         {
-            Debug.Log("BGC 22: " + backGroundColor);
             Texture2D newTex = new Texture2D(widthValue, heightValue);
             for (int x = 0; x < widthValue; x++)
             {

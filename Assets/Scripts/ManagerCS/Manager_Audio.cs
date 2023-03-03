@@ -222,7 +222,6 @@ public class Manager_Audio : MonoBehaviour
 
         if (curdic == null)
         {
-            Debug.LogError("The type does not exist");
             return null;
         }
         else return curdic;

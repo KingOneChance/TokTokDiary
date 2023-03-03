@@ -96,10 +96,6 @@ public class UI_PictureDiary : MonoBehaviour
         //바늘 상태
         MouseState = MouseType.None;
 
-        foreach (string device in Microphone.devices)
-        {
-            Debug.Log("Name: " + device);
-        }
         before = new TextMeshProUGUI();
     }
 
@@ -158,55 +154,41 @@ public class UI_PictureDiary : MonoBehaviour
 
     public void Onclick_LoadImage()
     {
-        Debug.Log("file Path : ");
         NativeGallery.GetImageFromGallery((file) =>
         {
-            //용량제한
-            Debug.Log("file Path : 1번째줄" + file);
             FileInfo selected = new FileInfo(file);
             //용량제한
-            Debug.Log("file Path : 2번째줄" + file);
             if (selected.Length > 50000000)
             {
-                Debug.Log("file Path 없음");
                 return;
             }
             if (!string.IsNullOrEmpty(file))
             {
-                Debug.Log("file Path 있음");
-
                 //불러와라
                 StartCoroutine(LoadImage(file, loadImage));
             }
         });
-        Debug.Log("file Path 탐색끝 ");
+
         if (loadImage.rectTransform.rotation != Quaternion.identity)
             loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
     public void Onclick_LoadImage(RawImage raw)
     {
-        //Debug.Log("file Path : ");
         NativeGallery.GetImageFromGallery((file) =>
         {
             //용량제한
-            //Debug.Log("file Path : 1번째줄" + file);
             FileInfo selected = new FileInfo(file);
             //용량제한
-            //Debug.Log("file Path : 2번째줄" + file);
             if (selected.Length > 50000000)
             {
-                //Debug.Log("file Path 없음");
                 return;
             }
             if (!string.IsNullOrEmpty(file))
             {
-                //Debug.Log("file Path 있음");
-
                 //불러와라
                 StartCoroutine(LoadImage(file, raw));
             }
         });
-        //Debug.Log("file Path 탐색끝 ");
         if (loadImage.rectTransform.rotation != Quaternion.identity)
             loadImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
@@ -215,12 +197,6 @@ public class UI_PictureDiary : MonoBehaviour
         yield return null;
         byte[] fileData = File.ReadAllBytes(path);
         string fileName = Path.GetFileName(path).Split('.')[0];
-        // string savePath = Application.persistentDataPath + "/TestImage/";
-
-        //if (!Directory.Exists(savePath))
-        //{
-        //    Directory.CreateDirectory(savePath);
-        //}
 
         File.WriteAllBytes(path + fileName + ".png", fileData);
 
@@ -478,7 +454,6 @@ public class UI_PictureDiary : MonoBehaviour
         {
             try
             {
-                Debug.Log(fileName + "/" + before.text + ".png");
                 File.Delete(fileName + "/" + before.text + ".png");
             }
             catch (IOException e)

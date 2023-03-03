@@ -92,11 +92,8 @@ namespace FreeDraw
         public void OnClick_Result()
         {
             freeStickerDraw.StopDraw(true);
-            Debug.Log("스톱");
             // 이미지의 SetActive 값을 반전시킴
             Result.SetActive(!Result.activeSelf);
-
-            //Destroy(Func_Draw.Draw());
         }
 
         public void OnClick_NiddleButton()

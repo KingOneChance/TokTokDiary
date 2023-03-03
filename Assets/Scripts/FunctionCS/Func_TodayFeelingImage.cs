@@ -49,10 +49,8 @@ namespace FreeDraw
                          
                          if (ThisImage.rectTransform.rect.Contains(curTouchPos_FreeSticker - ThisImage.rectTransform.position))
                          {
-                            Debug.Log("범위 클릭");
                              if (ThisImage.sprite == Change_Image_Excited)
                             {
-                                Debug.Log("익사이팅 클릭");
                                 Image_Excited();
 
                             }

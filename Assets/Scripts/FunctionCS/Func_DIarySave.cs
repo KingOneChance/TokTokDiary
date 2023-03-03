@@ -158,7 +158,6 @@ public class Func_DIarySave : Func_SaveSticker
 
 
         //씬전환
-        Debug.Log("세이브 상태 :" + isSaveDone);
         Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadScene("PictureDiary");
     }
@@ -177,8 +176,6 @@ public class Func_DIarySave : Func_SaveSticker
         tex.ReadPixels(rex, 0, 0);
         tex.Apply();
 
-        //
-        Debug.Log("BGC : " + backGroundColor);
         Texture2D newTex = new Texture2D(widthValue, heightValue);
         for (int x = 0; x < widthValue; x++)
         {
@@ -252,22 +249,18 @@ public class Func_DIarySave : Func_SaveSticker
     public void SetUsedRecordNum(int num)
     {
         recordUsedNum.Add(num);
-        Debug.Log("사용된 녹음 스티커 수 " + recordUsedNum.Count);
     }
     public void SetUsedFreeNum(int num)
     {
         freeUsedNum.Add(num);
-        Debug.Log("사용된 프리 스티커 수 " + freeUsedNum.Count);
     }
     public void SetUsedGunNum(int num)
     {
         gunUsedNum.Add(num);
-        Debug.Log("사용된 프리 스티커 수 " + gunUsedNum.Count);
     }
     public void SetUsedBubbleNum(int num)
     {
         bubbleUsedNum.Add(num);
-        Debug.Log("사용된 프리 스티커 수 " + bubbleUsedNum.Count);
     }
     public void RemoveRecordAtList(int num)
     {
@@ -284,6 +277,5 @@ public class Func_DIarySave : Func_SaveSticker
     public void RemoveBubbleAtList(int num)
     {
         bubbleUsedNum.Remove(num);
-        Debug.Log(bubbleUsedNum.Count + "<= 지워지고 난 후 숫자");
     }
 }

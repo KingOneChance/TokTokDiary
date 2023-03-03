@@ -110,7 +110,6 @@ public class Manager_BubbleBear : MonoBehaviour
             else
             {
                 toggleBoddy.SetActive(true);
-                Debug.Log("몸을 선택해주세요");
             }
         }
         //belly to head
@@ -124,7 +123,6 @@ public class Manager_BubbleBear : MonoBehaviour
             else
             {
                 toggleBelly.SetActive(true);
-                Debug.Log("배를 선택해주세요");
             }
         }
         //head to arm&leg
@@ -139,7 +137,6 @@ public class Manager_BubbleBear : MonoBehaviour
             else
             {
                 toggleHead.SetActive(true);
-                Debug.Log("머리를 선택해주세요");
             }
         }
         //arm&leg to Record saveCanvas
@@ -156,7 +153,6 @@ public class Manager_BubbleBear : MonoBehaviour
             else
             {
                 toggleArmLeg.SetActive(true);
-                Debug.Log("팔다리를 선택해주세요");
             }
         }
     }
@@ -240,10 +236,6 @@ public class Manager_BubbleBear : MonoBehaviour
             {
                 hedgehogStage.SetActive(false);
                 StartCoroutine(Co_SetActiveCheck());
-            }
-            else
-            {
-                Debug.Log("고슴도치를 완성해주세요");
             }
         }
         else if (nowState == NowStateInAudio.Audio)//no func

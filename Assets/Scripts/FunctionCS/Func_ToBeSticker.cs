@@ -17,12 +17,9 @@ public class Func_ToBeSticker : MonoBehaviour
 
     public void OnClick_InventorySticker(int stickerNum)
     {
-        Debug.Log("눌림");
         soapBubble.gameObject.SetActive(true);
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         soapBubble.transform.position = mousePos;
         soapBubble.texture = ui_Stikcers[stickerNum].texture;
-
-        //비눗방울 모션 생성
     }
 }
