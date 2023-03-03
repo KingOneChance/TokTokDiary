@@ -19,7 +19,9 @@ namespace FreeDraw
         [SerializeField] public LineRenderer lineRenderer; // 라인 렌더러 컴포넌트를 가리키는 변수
         [SerializeField] private Button btn_Eraser = null;
         [SerializeField] private Func_DrawingSettings func_DrawingSettings = null;
+        [SerializeField] private GameObject Tutorial = null;
         private bool FeelingMenuOff = false;
+        private bool TutorialImage = false;
         
         public void OnButtonClick()
         {
@@ -66,7 +68,7 @@ namespace FreeDraw
                         TodayFeelingMenu.SetActive(false);
                         FeelingMenuOff = false;
                     }
-                    else if (!ActiveTodayFeelingMenu())
+                    else if (!ActiveTodayFeelingMenu() && TutorialImage == false)
                     {
                         Draw();
                     }
@@ -100,7 +102,19 @@ namespace FreeDraw
                 }
             }
         }
-        
+
+        public void OnClick_Tutorial()
+        {
+            Tutorial.SetActive(true);
+            TutorialImage = true;
+        }
+
+        public void OnClick_TutorialMenualOff()
+        {
+            Tutorial.SetActive(false);
+            TutorialImage = false;
+        }
+
         public void IsStickerMaking(bool state)
         {
             if (state == true) 

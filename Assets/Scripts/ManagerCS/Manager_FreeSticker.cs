@@ -87,7 +87,7 @@ namespace FreeDraw
             }
 
             StartCoroutine(CO_Bomb());
-        } 
+        }
 
         public void OnClick_Result()
         {
