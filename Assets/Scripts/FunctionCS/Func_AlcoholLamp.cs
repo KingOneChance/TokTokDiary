@@ -17,6 +17,7 @@ public class Func_AlcoholLamp : Func_DragAndDrop
 
     [SerializeField] private GameObject explain = null;
     [SerializeField] private GameObject explain2 = null;
+    [SerializeField] private GameObject explain3 = null;
 
     private bool isSolutionFill = false;
 
@@ -24,6 +25,8 @@ public class Func_AlcoholLamp : Func_DragAndDrop
     {
         base.OnEnable();
         explain.SetActive(true);
+        explain2.SetActive(false);
+        explain3.SetActive(false);
         isSolutionFill = false;
         alcoholLampDragGuide.SetActive(true);
         alcoholLampPosImg.color = Vector4.one;
