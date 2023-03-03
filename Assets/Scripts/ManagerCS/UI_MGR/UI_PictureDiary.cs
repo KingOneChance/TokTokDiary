@@ -7,6 +7,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using static NativeCamera;
 
+public abstract class test1
+{
+    protected int t1;
+    protected int t2;
+    public abstract void Init(int t1, int t2);
+    public void testcase1()
+    {
+        Console.Write("1");
+    }
+}
+public interface Itest2
+{
+    void Init(int t1, int t2);
+    public void testcase1()
+    {
+        Console.Write("1");
+    }
+}
+
 public class UI_PictureDiary : MonoBehaviour
 {
     //그림판
@@ -91,7 +110,7 @@ public class UI_PictureDiary : MonoBehaviour
         hotSpot.x = ui_NiddleImage.width / 2;
         hotSpot.y = ui_NiddleImage.height / 2;
 
-       // Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
+        // Manager_Main.Instance.UI_StickerRepository.OnClick_RepositoryOpen();
 
         //바늘 상태
         MouseState = MouseType.None;
@@ -233,13 +252,13 @@ public class UI_PictureDiary : MonoBehaviour
         loadImage.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         loadImage.gameObject.AddComponent<Func_DragObject>();
         loadImage.gameObject.AddComponent<Func_DetectOnSticker>();
-        loadImage.gameObject.GetComponent<RectTransform>().transform.position = Vector3.zero ;
+        loadImage.gameObject.GetComponent<RectTransform>().transform.position = Vector3.zero;
     }
 
     #region NiddleBtn , StickBtn
     public void OnClick_NiddleBtn()
     {
-        if (MouseState!=MouseType.Niddle)
+        if (MouseState != MouseType.Niddle)
         {
             Cursor.SetCursor(ui_NiddleImage, hotSpot, cursorMode);
             isNiddleClicked = true;
@@ -281,7 +300,7 @@ public class UI_PictureDiary : MonoBehaviour
     //프로필 메인
     public void OnClick_OpenProfileButton()
     {
-       new WaitForEndOfFrame();
+        new WaitForEndOfFrame();
         ui_ProfileBackGround.gameObject.SetActive(true);
         func_LoadProfilePicture = FindObjectOfType<Func_LoadProfilePicture>();
         ui_ProfileMain.gameObject.SetActive(true);
@@ -292,14 +311,14 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void SelectedProfile(RawImage profileImg)
     {
-        for(int i=0; i < profileFrames.Length; i++)
+        for (int i = 0; i < profileFrames.Length; i++)
         {
             profileFrames[i].gameObject.SetActive(false);
         }
-        if(profileImg.transform.GetChild(0).gameObject.activeSelf == false)
+        if (profileImg.transform.GetChild(0).gameObject.activeSelf == false)
         {
             profileImg.transform.GetChild(0).gameObject.SetActive(true);
-            
+
         }
     }
     public void OnClick_OpenPlusProfile()
@@ -322,7 +341,7 @@ public class UI_PictureDiary : MonoBehaviour
         }
         InitProfile();
         ui_ProfilePick.gameObject.SetActive(true);
-       
+
         ui_ProfilePlus.gameObject.SetActive(false);
         ui_ProfileMain.gameObject.SetActive(false);
         ui_ProfileOverWrite.gameObject.SetActive(false);
@@ -341,7 +360,7 @@ public class UI_PictureDiary : MonoBehaviour
     {
         ui_ProfilePickImagePlus.gameObject.SetActive(true);
     }
-    
+
     public void PickProfileImage(RawImage picked)
     {
         plusProfileImage.texture = picked.texture;
@@ -349,7 +368,7 @@ public class UI_PictureDiary : MonoBehaviour
     }
     public void OnClick_SaveNewProfile()
     {
-        if(plusProfileImage.texture == plusSprite.texture || newNickName.text =="")
+        if (plusProfileImage.texture == plusSprite.texture || newNickName.text == "")
         {
             return;
         }
@@ -366,13 +385,13 @@ public class UI_PictureDiary : MonoBehaviour
         int count = 0;
         try
         {
-            if ( Directory.Exists(filePath))
+            if (Directory.Exists(filePath))
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
-                foreach(var item in directoryInfo.GetDirectories())
+                foreach (var item in directoryInfo.GetDirectories())
                 {
                     count++;
-                 
+
                 }
             }
         }
@@ -382,7 +401,7 @@ public class UI_PictureDiary : MonoBehaviour
     }
     private void SaveTextureToPng(Texture texture, string directoryPath, string fileName)
     {
-        if(GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") > 6)
+        if (GetDirecotoryCount(Application.persistentDataPath + "/" + "Profile") > 6)
         {
             return;
         }
@@ -465,7 +484,7 @@ public class UI_PictureDiary : MonoBehaviour
     public void OnClick_OverWriteDirectory()
     {
         string path = Application.persistentDataPath + "/Profile/";
-        
+
         if (false == Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + overWriteNickName.text);
 
         Rename(path);
@@ -497,8 +516,8 @@ public class UI_PictureDiary : MonoBehaviour
     {
         string oldFile = filepath + "/" + before.text;
         string newFile = filepath + "/" + overWriteNickName.text;
-        if(oldFile != newFile)
-        Directory.Move(oldFile, newFile);
+        if (oldFile != newFile)
+            Directory.Move(oldFile, newFile);
     }
 
     public void OnClick_DeleteProfile()
@@ -525,6 +544,6 @@ public class UI_PictureDiary : MonoBehaviour
     private void InitProfile()
     {
         func_LoadProfilePicture.FillProfileImg();
-             func_LoadProfilePicture.FillOverWrite();
+        func_LoadProfilePicture.FillOverWrite();
     }
 }
