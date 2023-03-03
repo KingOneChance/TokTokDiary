@@ -44,9 +44,9 @@ namespace FreeDraw
             //saveImageRect.rect.position.x + 960 + 73;
             startYPos = 226.5f;
             //saveImageRect.rect.position.y + 540 + 23;
-            widthValue = 1290;
+            widthValue = 1280;
             //(int)saveImageRect.rect.width;
-            heightValue = 740;
+            heightValue = 720;
             //(int)saveImageRect.rect.height;
             MouseState = MouseType.None;
         }
