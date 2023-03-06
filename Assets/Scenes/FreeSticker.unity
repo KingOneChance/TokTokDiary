@@ -986,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &266131723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3008,6 +3008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359955308}
   - component: {fileID: 1359955307}
+  - component: {fileID: 1359955309}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3073,6 +3074,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1359955309
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359955305}
+  m_Enabled: 1
 --- !u!1 &1391612985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,7 +3647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1664951115
 RectTransform:
   m_ObjectHideFlags: 0
