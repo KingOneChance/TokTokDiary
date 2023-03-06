@@ -13,7 +13,7 @@ public class Func_labLoadingSpread : MonoBehaviour
     {
         speed = Random.Range(1f, 2f);
         myRect = GetComponent<RectTransform>();
-        myRandomDir = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(Mathf.Tan(40 * (Mathf.PI / 180)), 1f)).normalized;
+        myRandomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(Mathf.Tan(40 * (Mathf.PI / 180)), 1f)).normalized;
         StartCoroutine(Co_Move());
     }
 
