@@ -59,7 +59,7 @@ namespace FreeDraw
         {
             StartCoroutine(CO_FreeStickerSave(scale));
         }
-    
+        
         private IEnumerator CO_FreeStickerSave(float scale)
         {
             isSaveDone = false;
