@@ -219,9 +219,9 @@ public class Manager_Main : MonoBehaviour
         {
             string[] allFiles = Directory.GetFiles(Application.persistentDataPath + $"/{folder}/", "*.wav", SearchOption.TopDirectoryOnly);
             getAudioStickerNum = allFiles.Length;
-            if (getAudioStickerNum > 0 && int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]) >= getAudioStickerNum)
+            if (getAudioStickerNum > 0 && int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("_")[1]) >= getAudioStickerNum)
             {
-                getAudioStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("-")[1]);
+                getAudioStickerNum = int.Parse(allFiles[getAudioStickerNum - 1].Split(".")[0].Split("_")[1]);
             }
             return getAudioStickerNum + 1;
         }
