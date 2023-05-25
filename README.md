@@ -1,11 +1,11 @@
-# TokTokDiary
-Porject with "L4Box" Company
+# 깜도의 톡톡일기
+Project with "L4Box" Company
 
-# 🎆[ **Team Relax Box** ]🎆
+# 🎆[ **개톡기톡 팀** ]🎆
 ![TeamLogoOrigin](https://user-images.githubusercontent.com/67819713/195285425-776cdb3e-903e-4650-b33d-4e9d877bcce1.gif)
 #
-# 💾 [ **Me'rror Projects** ] 💾
-## 🎞️ **Introduce Game**
+# 💾 [ **깜도의 톡톡일기 Projects** ] 💾
+## 🎞️ **Introduce Project**
 ![TitleWorkout](https://user-images.githubusercontent.com/67819713/195285303-2a743e88-fbbf-405f-ad04-dcb026b46703.png)
                                                            *i have to kill myself...*
      
@@ -23,23 +23,37 @@ Let's kill another me...
 </div>
 
 
-## 🧑🏻 Team Member 
+## 💁🏻 Dev Team Member 
 <div align = "center">
 
 
 
 ```
-Jeon Mu Hyuk
+김원찬
 
-Kim Jong Hoon
+김종훈
 
-Kim Bo Kang
+이동협
 
-Choi Min Ju
+최민주
 
-Kwon Yong Mun
 
-Sin Sung Hwan
+```
+  
+## 💁‍♂️🏻 P/M Team Member 
+<div align = "center">
+
+
+
+```
+이상빈
+
+김진수
+
+김지혜
+
+김수진
+
 
 ```
 </div>
