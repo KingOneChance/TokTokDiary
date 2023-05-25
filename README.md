@@ -45,5 +45,6 @@ Project with "L4Box" Company
 </div>
 
 * Trello : [Trello]([https://topaz-mantis-c3b.notion.site/Team-Relax-Box-0c84487b632e43e79223cae4f1cbf232](https://trello.com/b/5RWy4uH7/toktokdiary))
-* Link: [Google][[googlelink](https://google.com "Go google")]
+* 외부링크: <https://topaz-mantis-c3b.notion.site/Team-Relax-Box-0c84487b632e43e79223cae4f1cbf232](https://trello.com/b/5RWy4uH7/toktokdiary/>
+* Link: [Google][[googlelink]([https://google.com](https://trello.com/b/5RWy4uH7/toktokdiary) "Go google")]
 
