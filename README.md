@@ -26,6 +26,11 @@
 
 &nbsp;
 
+## 🗓️ 작업 기간
+2022.12.26 ~ 2023.03.07
+
+&nbsp;
+
 ## 😎 맡은 업무
 
 * 프로젝트에 필요한 전체적인 기능구현Task를 나누어 팀원들에게 분배
@@ -44,5 +49,5 @@
 
 &nbsp;
 
-* [Trello](https://trello.com/b/5RWy4uH7/toktokdiary, "Trello Link")
+🔗 * [Trello](https://trello.com/b/5RWy4uH7/toktokdiary, "Trello Link")
 
