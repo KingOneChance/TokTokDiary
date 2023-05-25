@@ -2,7 +2,7 @@
 Project with "L4Box" Company
 
 # 🎆[ **개톡기톡 팀** ]🎆
-![TeamLogoOrigin](https://user-images.githubusercontent.com/67819713/195285425-776cdb3e-903e-4650-b33d-4e9d877bcce1.gif)
+![image21](https://github.com/KingOneChance/TokTokDiary/assets/49630123/6a61be51-8dfe-413c-b929-a8dda75ac76e)
 #
 # 💾 [ **깜도의 톡톡일기 Projects** ] 💾
 ## 🎞️ **Introduce Project**
