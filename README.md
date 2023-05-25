@@ -16,7 +16,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)
 &nbsp;&nbsp;&nbsp;&nbsp;
-
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 &nbsp;
 
