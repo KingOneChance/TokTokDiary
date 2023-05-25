@@ -52,5 +52,5 @@
 
 &nbsp;
 
-🔗 * [Trello](https://trello.com/b/5RWy4uH7/toktokdiary, "Trello Link")
+🔗 [Trello](https://trello.com/b/5RWy4uH7/toktokdiary, "Trello Link")
 
