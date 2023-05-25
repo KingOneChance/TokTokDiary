@@ -6,8 +6,7 @@ Project with "L4Box" Company
 #
 # 💾 [ **깜도의 톡톡일기 Projects** ] 💾
 ## 🎞️ **Introduce Project**
-![TitleWorkout](https://user-images.githubusercontent.com/67819713/195285303-2a743e88-fbbf-405f-ad04-dcb026b46703.png)
-                                                           *i have to kill myself...*
+![TokTokDiaryIntroduce](https://github.com/KingOneChance/TokTokDiary/assets/49630123/b51b2582-fb4d-487d-939c-14882a67c781)
      
 <div align = "center">
 
