@@ -24,8 +24,6 @@ Project with "L4Box" Company
 이동협 Clerk
 
 최민주 Schedule Manager
-
-
 ```
 </div>
 
@@ -43,10 +41,9 @@ Project with "L4Box" Company
 김지혜 UI/UX Designer
 
 김수진 Contents Manager
-
-
 ```
 </div>
 
 * Trello : [Trello]([https://topaz-mantis-c3b.notion.site/Team-Relax-Box-0c84487b632e43e79223cae4f1cbf232](https://trello.com/b/5RWy4uH7/toktokdiary))
+* Link: [Google][[googlelink](https://google.com "Go google")]
 
