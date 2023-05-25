@@ -1,50 +1,42 @@
 # 깜도의 톡톡일기
-Project with "L4Box" Company
-
-# 🎆[ **개톡기톡 팀** ]🎆
+&nbsp;
+### Project with "L4Box" Company
+&nbsp;
+# 🎆[ **개톡기톡 팀** ]
 ![image21](https://github.com/KingOneChance/TokTokDiary/assets/49630123/6a61be51-8dfe-413c-b929-a8dda75ac76e)
 #
-# 💾 [ **깜도의 톡톡일기 Projects** ] 💾
+&nbsp;
+# 💾 [ **깜도의 톡톡일기 Projects** ]
 ## 🎞️ **Introduce Project**
 ![TokTokDiaryIntroduce](https://github.com/KingOneChance/TokTokDiary/assets/49630123/b51b2582-fb4d-487d-939c-14882a67c781)
-     
+&nbsp;
+
+## 🔧 기술 스택
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 
+&nbsp;
 
-## 💁🏻 Dev Team Member 
-<div align = "center">
+## 😎 맡은 업무
 
+* 프로젝트에 필요한 전체적인 기능구현Task를 나누어 팀원들에게 분배
+* 카메라와 갤러리를 이용한 사진찍기 및 사진 저장
+* 비동기 로딩씬 구현
+* 퐁퐁퐁 실험시간(컨텐츠) 구현
 
+&nbsp;
 
-```
-김원찬 Dev Leader
+## ❕ 깨달은 점
 
-김종훈 Task Distributor
+* 이상빈 Project Director
+* 김진수 Project Manager
+* 김지혜 UI/UX Designer
+* 김수진 Contents Manager
 
-이동협 Clerk
+&nbsp;
 
-최민주 Schedule Manager
-```
-</div>
-
-
-## 💁‍♂️🏻 P/M Team Member 
-<div align = "center">
-
-
-
-```
-이상빈 Project Director
-
-김진수 Project Manager
-
-김지혜 UI/UX Designer
-
-김수진 Contents Manager
-```
-</div>
-
-* Trello : [Trello]([https://topaz-mantis-c3b.notion.site/Team-Relax-Box-0c84487b632e43e79223cae4f1cbf232](https://trello.com/b/5RWy4uH7/toktokdiary))
-* 외부링크: <https://topaz-mantis-c3b.notion.site/Team-Relax-Box-0c84487b632e43e79223cae4f1cbf232](https://trello.com/b/5RWy4uH7/toktokdiary/>
-* Link: [Google][[googlelink]([https://google.com](https://trello.com/b/5RWy4uH7/toktokdiary) "Go google")]
+* [Trello](https://trello.com/b/5RWy4uH7/toktokdiary, "Trello Link")
 
