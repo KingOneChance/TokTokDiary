@@ -42,10 +42,12 @@
 
 ## ❕ 깨달은 점
 
-* 이상빈 Project Director
-* 김진수 Project Manager
-* 김지혜 UI/UX Designer
-* 김수진 Contents Manager
+* Android앱에 권한을 부여하는 방법을 학습
+* Android NativeLibrary를 사용해봄으로서, 앱에 특정 기능을 추가하고 사용자 경험을 개선할 수 있었음
+* 단순 기능 구현이 전부가 아니라 UX의 관점에서 개발해야 한다는 점을 느낌
+* 2D UI에 대해 많이 다뤄봄으로서 UI에 대한 이해도가 증가
+* 기획자들과의 소통이 중요하다는 것을 깨달음
+* 동기/비동기에 대한 이해도가 증가
 
 &nbsp;
 
