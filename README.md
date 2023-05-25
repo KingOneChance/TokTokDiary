@@ -6,7 +6,7 @@
 ![image21](https://github.com/KingOneChance/TokTokDiary/assets/49630123/6a61be51-8dfe-413c-b929-a8dda75ac76e)
 #
 &nbsp;
-# 💾 [ **깜도의 톡톡일기 Projects** ]
+# 💾 [ **깜도의 톡톡일기 Project** ]
 ## 🎞️ **Introduce Project**
 ![TokTokDiaryIntroduce](https://github.com/KingOneChance/TokTokDiary/assets/49630123/b51b2582-fb4d-487d-939c-14882a67c781)
 &nbsp;
